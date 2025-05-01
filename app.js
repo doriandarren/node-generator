@@ -16,11 +16,11 @@ const main = async() => {
 
         switch (opt) {
             case 'Proyecto':
-                startProject();
+                await startProject();
                 break;
         
             case 'Modulo':
-                startModule();
+                await startModule();
                 break;
             
             default:

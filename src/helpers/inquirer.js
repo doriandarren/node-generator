@@ -1,6 +1,5 @@
 import inquirer from "inquirer";
-import color from "colors";
-
+import "colors";
 
 
 
@@ -22,6 +21,30 @@ export const menuMain = async(questions) => {
     return selection;
 }
  
+
+
+export const readInput = async(message, allowEmpty = false) => {
+    const question = [
+        {
+            type: 'input',
+            name: 't',
+            message,
+            validate(value){
+                if( !allowEmpty && value.length === 0){
+                    return 'Por favor introduzca un valor'
+                }
+                return true;
+            }
+        }
+    ];
+
+    const { t } = await inquirer.prompt(question);
+    return t;
+}
+
+
+
+
 
 export const clearScreen = async() => {
     console.clear();

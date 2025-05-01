@@ -1,6 +1,6 @@
 
 
-export const startModule = () => {
+export const startModule = async() => {
     
     console.log("Module");
     
