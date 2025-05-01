@@ -4,20 +4,44 @@ import color from "colors";
 
 
 
-export const menu = async() => {
+export const menuMain = async(questions) => {
     console.clear();
     console.log('==============================='.green);
     console.log('    Seleccione un opción'.white);
     console.log('===============================\n'.green);
 
-    const {opcion} = await inquirer.prompt(preguntas);
+    const q = [{
+        type: 'list',
+        name: 'selection',
+        message: '¿Qué quieres crear?',
+        choices: ['Proyecto', 'Modulo', 'Salir'],
+    }];
 
-    return opcion;
+    const {selection} = await inquirer.prompt(q);
 
+    return selection;
+}
+ 
+
+export const clearScreen = async() => {
+    console.clear();
 }
 
 
+export const exitScreen = async() => {
+    console.log('\n👋 Bye...');
+}
 
-export function clearScreen() {
-    console.clear(); // limpia terminal como `cls` o `clear`
+
+export const pause = async() => {
+    const question = [
+        {
+            type: 'input',
+            name: 'enter',
+            message: `Presione ${ 'ENTER'.green } para continuar`
+        }
+    ];
+
+    console.log('\n');
+    await inquirer.prompt(question);
 }
