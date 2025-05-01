@@ -1,15 +1,14 @@
 import { clearScreen, exitScreen, menuMain, pause } from "./src/helpers/inquirer.js";
+import { startModule } from "./src/node/to_create_module/startModule.js";
+import { startProject } from "./src/node/to_create_project/startProject.js";
 
 
 
 const main = async() => {
+    let opt = '';
 
     clearScreen();
     console.log('NODEJS');
-    
-
-    let opt = '';
-
 
     do{
 
@@ -17,15 +16,11 @@ const main = async() => {
 
         switch (opt) {
             case 'Proyecto':
-                console.log("Proyecto");
+                startProject();
                 break;
         
             case 'Modulo':
-                console.log("Modula");
-                break;
-
-            case 'Salir':
-                console.log("Modula");
+                startModule();
                 break;
             
             default:
@@ -37,9 +32,7 @@ const main = async() => {
     }while(opt != 'Salir')
 
 
-
     exitScreen();
-
 
 }
 

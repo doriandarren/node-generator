@@ -29,7 +29,7 @@ export const clearScreen = async() => {
 
 
 export const exitScreen = async() => {
-    console.log('\n👋 Bye...');
+    console.log('\n👋 Bye...'.green);
 }
 
 
