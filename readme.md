@@ -6,12 +6,11 @@
 
 npm init -y
 
-npm i express                           // Express
-npm i express-validator                 // Validator fields
-npm i bcryptjs                          // Encriptar password
 
+npm i colors                            // Colors
+npm i inquirer                          // Inquirer
 npm i dotenv                            // DotEnv
-npm i cors                              // Cors
+
 
 npm install sequelize mysql2            // ORM Sequelize
 npm i jsonwebtoken                      // JSON webtoken
