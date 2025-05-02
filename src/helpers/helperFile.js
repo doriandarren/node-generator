@@ -22,17 +22,22 @@ export function runExec(cmd, cwd = process.cwd()) {
 
 
 
+
 /**
  * Crea una carpeta si no existe.
  * @param {string} targetPath - Ruta de la carpeta.
  */
-export async function createFolder(targetPath) {
-  if (!fs.existsSync(targetPath)) {
-    fs.mkdirSync(targetPath, { recursive: true });
-    console.log(`📁 Carpeta creada: ${targetPath}`.green);
-  } else {
-    console.log(`ℹ️  Carpeta ya existe: ${targetPath}`.cyan);
+export function createFolder(targetPath) {
+  try {
+    if (!fs.existsSync(targetPath)) {
+      fs.mkdirSync(targetPath, { recursive: true });
+      console.log(`📁 Carpeta creada: ${targetPath}`.green);
+    }
+  } catch (error) {
+    console.error(`❌ Error creando carpeta: ${targetPath}\n${error.message}`.red);
   }
 }
+
+
 
 

@@ -1,5 +1,8 @@
 import { readInput } from "../../helpers/inquirer.js";
 import { generateCommandLine } from "./generateCommandLine.js";
+import { generateReadme } from "./generateReadme.js";
+import { generateApp } from "./generateApp.js";
+
 
 
 export const startProject = async() => {
@@ -21,6 +24,9 @@ export const startProject = async() => {
 
 
     await generateCommandLine(fullPath);
+    await generateReadme(fullPath);
+    await generateApp(fullPath);
+    
     
 
 }

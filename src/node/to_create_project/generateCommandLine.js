@@ -16,7 +16,7 @@ export const generateCommandLine = async(fullPath) => {
 
 
 const createProject = async(fullPath) => {
-    await createFolder(fullPath);
+    createFolder(fullPath);
     const cmd = `npm init -y`;
     await runExec(cmd, fullPath);
 }
@@ -41,8 +41,8 @@ const updatePackageJSON = async(fullPath) => {
   
       pkg.type = "module";
       pkg.scripts = {
-        ...pkg.scripts,
-        dev: "node src/index.js"
+        //...pkg.scripts,
+        dev: "nodemon app.js"
       };
   
       fs.writeFileSync(packagePath, JSON.stringify(pkg, null, 2));
