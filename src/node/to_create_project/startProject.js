@@ -1,7 +1,6 @@
 import { readInput } from "../../helpers/inquirer.js";
 import { generateCommandLine } from "./generateCommandLine.js";
 import { generateReadme } from "./generateReadme.js";
-import { generateApp } from "./generateApp.js";
 import { generateEnv } from "./generateEnv.js";
 import { generateGitignore } from "./generateGitignore.js";
 import { generateServer } from "./generateServer.js";
@@ -31,7 +30,9 @@ export const startProject = async() => {
 
     await generateCommandLine(fullPath, projectName);
     await generateReadme(fullPath);
-    await generateApp(fullPath);
+
+
+
     await generateEnv(fullPath);
     await generateGitignore(fullPath);
     await generateServer(fullPath);
