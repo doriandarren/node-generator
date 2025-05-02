@@ -6,6 +6,8 @@ import { generateEnv } from "./generateEnv.js";
 import { generateGitignore } from "./generateGitignore.js";
 import { generateServer } from "./generateServer.js";
 import { generateScripts } from "./generateScripts.js";
+import { generateRoutes } from "./generateRoutes.js";
+import { generateMulter } from "./generateMulter.js";
 
 
 
@@ -34,6 +36,13 @@ export const startProject = async() => {
     await generateGitignore(fullPath);
     await generateServer(fullPath);
     await generateScripts(fullPath);
+
+
+    await generateRoutes(fullPath);
+
+
+    await generateMulter(fullPath);
+
     
 
 }

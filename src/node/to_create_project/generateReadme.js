@@ -34,6 +34,8 @@ npm i cors                              // Cors
 npm install sequelize mysql2            // ORM Sequelize
 npm i jsonwebtoken                      // JSON webtoken
 
+npm install multer                      // Para parse form-data
+
 \`\`\`
 
 

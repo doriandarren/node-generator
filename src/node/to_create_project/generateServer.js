@@ -19,10 +19,10 @@ export const generateServer = async(fullPath) => {
     const code = `
 import express from 'express';
 import cors from 'cors';
-import authRoutes from '../routes/authRoutes.js';
-import userRoutes from '../routes/userRoutes.js';
-import categoryRoutes from '../routes/categoryRoutes.js';
-import itemRoutes from '../routes/itemRoutes.js';
+import authRoutes from '../routes/api/authRoutes.js';
+import userRoutes from '../routes/api/userRoutes.js';
+import categoryRoutes from '../routes/api/categoryRoutes.js';
+import itemRoutes from '../routes/api/itemRoutes.js';
 import { attachBaseController } from '../middlewares/attachBaseController.js';
 
 
@@ -80,7 +80,7 @@ export class Server {
 
     listen(){
         this.app.listen( this.port, ()=> {
-            console.log(\`Servidor ejecutandose en el puerto: \${ this.port }\`);
+            console.log(\`Servidor ejecutandose en el puerto: ${ this.port }\`);
         });
     }
 
