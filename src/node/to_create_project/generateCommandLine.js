@@ -14,8 +14,6 @@ export const generateCommandLine = async(fullPath, projectName) => {
     await installSequalize(fullPath);
     await installJsonwebtoken(fullPath);
 
-    await installMulter(fullPath);
-
     await updatePackageJSON(fullPath, projectName);
 
 }
