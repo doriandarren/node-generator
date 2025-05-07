@@ -10,6 +10,7 @@ import { generateRoutes } from "./generateRoutes.js";
 import { generateApp } from "./generateApp.js";
 import { generateRepositories } from "./generateRepositories.js";
 import { generateModels } from "./generateModels.js";
+import { generateMiddlewares } from "./generateMiddlewares.js";
 
 
 

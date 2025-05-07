@@ -20,6 +20,7 @@ export const generateRoutes = async(fullPath) => {
 
 
 
+
 export const createAuth = async(fullPath) => {    
 
     // Folder
@@ -54,9 +55,6 @@ export default router;
 }
 
 
-
-
-
 export const createCategory = async(fullPath) => {    
 
     // Folder
@@ -88,7 +86,6 @@ export default router;
     console.log(`✅ Archivo creado: ${filePath}`.green);
 
 }
-
 
 
 export const createItem = async(fullPath) => {    
@@ -125,14 +122,13 @@ export default router;
 }
 
 
-
 export const createUser = async(fullPath) => {    
 
     // Folder
     const folderPath = path.join(fullPath, 'src', 'routes', 'api');
     
     // File
-    const filePath = path.join(folderPath, 'Routes.js');
+    const filePath = path.join(folderPath, 'userRoutes.js');
 
     // Asegurar que la carpeta exista
     createFolder(folderPath);

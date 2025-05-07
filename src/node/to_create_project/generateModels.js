@@ -90,7 +90,7 @@ import sequelize from '../database/settings/config.js';
 
 const AbilityGroup = sequelize.define('AbilityGroup', {
   id: {
-    type: DataTypes.BIGINT.UNSIGNED, // ¡clave!
+    type: DataTypes.BIGINT.UNSIGNED,
     autoIncrement: true,
     primaryKey: true
   },
@@ -101,7 +101,7 @@ const AbilityGroup = sequelize.define('AbilityGroup', {
 }, {
   tableName: 'ability_groups',
   timestamps: true,
-  paranoid: true, // 👈 Soft deletes (elimina con deletedAt)
+  paranoid: true, // Soft deletes (elimina con deletedAt)
 });
 
 export default AbilityGroup;
@@ -120,7 +120,7 @@ const createAbilityUser = async(fullPath) => {
     const folderPath = path.join(fullPath, 'src', 'models');
     
     // File
-    const filePath = path.join(folderPath, '');
+    const filePath = path.join(folderPath, 'AbilityUser.js');
 
     // Asegurar que la carpeta exista
     createFolder(folderPath);

@@ -34,7 +34,7 @@ const WITH = ['roles', 'status'];
 
 export class UserRepository extends BaseRepository {
   
-  // 📌 List
+  // List
   async list() {
     return await User.findAll({
       order: [this.LATEST],
@@ -42,14 +42,14 @@ export class UserRepository extends BaseRepository {
     });
   }
 
-  // 📌 Show
+  // Show
   async show(id) {
     return await User.findByPk(id, {
       include: WITH
     });
   }
 
-  // 📌 Find
+  // Find
   async findByEmail(email) {
     return await User.findOne({
       where: { email },
@@ -57,47 +57,45 @@ export class UserRepository extends BaseRepository {
     });
   }
 
-  // 📌 Store
+  // Store
   async store(data) {
     return await User.create(data);
   }
 
-  // 📌 Update
+  // Update
   async update(id, data) {
     const user = await User.findByPk(id);
     if (!user) return null;
     return await user.update(data);
   }
 
-  // 📌 Destroy (soft-delete)
+  // Destroy (soft-delete)
   async destroy(id) {
     const user = await User.findByPk(id);
     if (!user) return null;
     return await user.destroy();
   }
 
-  // 📌 Restaurar usuario soft-deleted
+  // Restaurar usuario soft-deleted
   async restore(id) {
     const user = await User.findByPk(id, { paranoid: false });
     if (!user) return null;
     return await user.restore();
   }
 
-  // 📌 Buscar por nombre o correo
+  // Buscar por nombre o correo
   async search(term) {
     return await User.findAll({
         include: WITH,
         where: {
             [Op.or]: [
-            { name: { [Op.like]: \`%${term}%\` } },
-            { email: { [Op.like]: \`%${term}%\` } }
+            { name: { [Op.like]: \`%\${term}%\` } },
+            { email: { [Op.like]: \`%\${term}%\` } }
             ]
         }
     });
   }
 }
-
-    
 `.trimStart();
 
     fs.writeFileSync(filePath, code);
