@@ -3,7 +3,20 @@ import path from 'path';
 import { createFolder } from '../../helpers/helperFile.js';
 
 
-export const createAbility = async(fullPath) => {    
+export const generateModels = async(fullPath) => {
+  await createAbility(fullPath);
+  await createAbilityGroup(fullPath);
+  await createAbilityUser(fullPath);
+  await createInitAssociations(fullPath);
+  await createRole(fullPath);
+  await createRoleUser(fullPath);
+  await createUser(fullPath);
+  await createUserSession(fullPath);
+  await createUserStatus(fullPath);
+}
+
+
+const createAbility = async(fullPath) => {    
 
     // Folder
     const folderPath = path.join(fullPath, 'src', 'models');
@@ -58,7 +71,7 @@ export default Ability;
 }
 
 
-export const createAbilityGroup = async(fullPath) => {    
+const createAbilityGroup = async(fullPath) => {    
 
     // Folder
     const folderPath = path.join(fullPath, 'src', 'models');
@@ -101,7 +114,7 @@ export default AbilityGroup;
 }
 
 
-export const createAbilityUser = async(fullPath) => {    
+const createAbilityUser = async(fullPath) => {    
 
     // Folder
     const folderPath = path.join(fullPath, 'src', 'models');
@@ -151,7 +164,7 @@ export default AbilityUser;
 }
 
 
-export const createinitAssociations = async(fullPath) => {    
+const createInitAssociations = async(fullPath) => {    
 
     // Folder
     const folderPath = path.join(fullPath, 'src', 'models');
@@ -245,7 +258,7 @@ AbilityGroup.belongsTo(Ability, {
 }
 
 
-export const createRole = async(fullPath) => {    
+const createRole = async(fullPath) => {    
 
     // Folder
     const folderPath = path.join(fullPath, 'src', 'models');
@@ -296,7 +309,7 @@ export default Role;
 }
 
 
-export const createRoleUser = async(fullPath) => {    
+const createRoleUser = async(fullPath) => {    
 
     // Folder
     const folderPath = path.join(fullPath, 'src', 'models');
@@ -344,7 +357,7 @@ export default RoleUser;
 
 }
 
-export const createUser = async(fullPath) => {    
+const createUser = async(fullPath) => {    
 
     // Folder
     const folderPath = path.join(fullPath, 'src', 'models');
@@ -436,7 +449,7 @@ export default User;
 }
 
 
-export const createUserSession = async(fullPath) => {    
+const createUserSession = async(fullPath) => {    
 
     // Folder
     const folderPath = path.join(fullPath, 'src', 'models');
@@ -500,7 +513,7 @@ export default UserSession;
 }
 
 
-export const createUserStatus = async(fullPath) => {    
+const createUserStatus = async(fullPath) => {    
 
     // Folder
     const folderPath = path.join(fullPath, 'src', 'models');

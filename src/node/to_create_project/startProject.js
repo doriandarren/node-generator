@@ -9,6 +9,7 @@ import { generateRoutes } from "./generateRoutes.js";
 
 import { generateApp } from "./generateApp.js";
 import { generateRepositories } from "./generateRepositories.js";
+import { generateModels } from "./generateModels.js";
 
 
 
@@ -37,12 +38,9 @@ export const startProject = async() => {
     await generateServer(fullPath);
     await generateScripts(fullPath);
 
-
     await generateRoutes(fullPath);
-
     await generateRepositories(fullPath);
-
-
+    await generateModels(fullPath);
     await generateMiddlewares(fullPath);
     
 
