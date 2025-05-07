@@ -7,6 +7,7 @@ import { generateServer } from "./generateServer.js";
 import { generateScripts } from "./generateScripts.js";
 import { generateRoutes } from "./generateRoutes.js";
 import { generateMulter } from "./generateMulter.js";
+import { generateApp } from "./generateApp.js";
 
 
 
@@ -30,6 +31,7 @@ export const startProject = async() => {
 
     await generateCommandLine(fullPath, projectName);
     await generateReadme(fullPath);
+    await generateApp(fullPath);
 
 
 
