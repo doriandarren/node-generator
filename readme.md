@@ -1,5 +1,19 @@
 # Project
 
+# TODO Tareas Pendientes:
+
+- Crear todos los controller de Authenticacion Recuperacion de contraseña y demás
+- Enviar correos
+- Cron y tareas programadas
+- Crear shared que son por defecto 
+
+- Empezar a generar Modulo (Route, Repository, Controller, Modelos)
+
+
+
+
+
+
 ## Installation
 
 ```sh

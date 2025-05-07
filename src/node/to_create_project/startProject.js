@@ -12,7 +12,10 @@ import { generateRepositories } from "./generateRepositories.js";
 import { generateModels } from "./generateModels.js";
 import { generateMiddlewares } from "./generateMiddlewares.js";
 import { generateMulter } from "./generateMulter.js";
-import { generateApp } from "./generateApp.js";
+import { generateHelpers } from "./generateHelpers.js";
+import { generateEnums } from "./generateEnums.js";
+import { generateDatabase } from "./generateDatabase.js";
+import { generateControllerAuth } from "./generateControllerAuth.js";
 
 
 
@@ -45,12 +48,16 @@ export const startProject = async() => {
     await generateRepositories(fullPath);
     await generateModels(fullPath);
     await generateMiddlewares(fullPath);
-    
-
-
-
     await generateMulter(fullPath);
 
+
+    await generateHelpers(fullPath);
+    await generateEnums(fullPath);
     
+    await generateDatabase(fullPath);
+
+
+    //TODO falta 
+    await generateControllerAuth(fullPath);
 
 }

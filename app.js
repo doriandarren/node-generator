@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import { clearScreen, exitScreen, menuMain, pause } from "./src/helpers/inquirer.js";
 import { startModule } from "./src/node/to_create_module/startModule.js";
 import { startProject } from "./src/node/to_create_project/startProject.js";

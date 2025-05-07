@@ -107,49 +107,49 @@ export const seedUsers = async () => {
     {
       name: 'Dorian',
       email: 'doriandarren1@gmail.com',
-      password: 'Splytin2024',
+      password: '${process.env.PASSWORD_DEFAULT}',
       role: EnumRole.ADMIN,
       image_url: 'https://i.pravatar.cc/150?img=2'
     },
     {
       name: 'Milena',
       email: 'darimile@gmail.com',
-      password: 'Splytin2024',
+      password: '${process.env.PASSWORD_DEFAULT}',
       role: EnumRole.ADMIN,
       image_url: 'https://i.pravatar.cc/150?img=1'
     },
     {
       name: 'Dilan',
       email: 'dilandarren@gmail.com',
-      password: 'Splytin2024',
+      password: '${process.env.PASSWORD_DEFAULT}',
       role: EnumRole.ADMIN,
       image_url: 'https://i.pravatar.cc/150?img=3'
     },
     {
       name: 'Dariana',
       email: 'dorianadamiled@gmail.com',
-      password: 'Splytin2024',
+      password: '${process.env.PASSWORD_DEFAULT}',
       role: EnumRole.ADMIN,
       image_url: 'https://i.pravatar.cc/150?img=4'
     },
     {
       name: 'Max',
       email: 'max16506@gmail.com',
-      password: 'Splytin2024',
+      password: '${process.env.PASSWORD_DEFAULT}',
       role: EnumRole.ADMIN,
       image_url: 'https://i.pravatar.cc/150?img=5'
     },
     {
       name: 'Manager',
       email: 'manager@splytin.com',
-      password: 'Splytin2024',
+      password: '${process.env.PASSWORD_DEFAULT}',
       role: EnumRole.MANAGER,
       image_url: 'https://i.pravatar.cc/150?img=6'
     },
     {
       name: 'User',
       email: 'user@splytin.com',
-      password: 'Splytin2024',
+      password: '${process.env.PASSWORD_DEFAULT}',
       role: EnumRole.USER,
       image_url: 'https://i.pravatar.cc/150?img=7'
     }
@@ -197,7 +197,7 @@ export const seedUsers = async () => {
 
     if (!hasRole) {
       await RoleUser.create({ user_id: user.id, role_id: role.id });
-      console.log(\`✅ Rol "${item.role}" asignado a \${item.email}\`);
+      console.log(\`✅ Rol "\${item.role}" asignado a \${item.email}\`);
     } else {
       console.log(\`🔁 \${item.email} ya tiene el rol "\${item.role}"\`);
     }

@@ -3,7 +3,6 @@ import path from 'path';
 import { createFolder } from '../../helpers/helperFile.js';
 
 
-
 export const generateEnums = async(fullPath) => {
     await createEnumRole(fullPath);
     await createEnumUserStatuses(fullPath);
@@ -49,6 +48,10 @@ export const EnumRole = {
     console.log(`✅ Archivo creado: ${filePath}`.green);
 
 }
+
+
+
+
 
 const createEnumUserStatuses = async(fullPath) => {    
 
