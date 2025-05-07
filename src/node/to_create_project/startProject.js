@@ -11,6 +11,7 @@ import { generateApp } from "./generateApp.js";
 import { generateRepositories } from "./generateRepositories.js";
 import { generateModels } from "./generateModels.js";
 import { generateMiddlewares } from "./generateMiddlewares.js";
+import { generateMulter } from "./generateMulter.js";
 
 
 
@@ -47,7 +48,7 @@ export const startProject = async() => {
 
 
 
-    //await generateMulter(fullPath);
+    await generateMulter(fullPath);
 
     
 
