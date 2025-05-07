@@ -17,46 +17,17 @@ export const generateApp = async(fullPath) => {
 
     // Code
     const code = `
-import { clearScreen, exitScreen, menuMain, pause } from "./src/helpers/inquirer.js";
-import { startModule } from "./src/node/to_create_module/startModule.js";
-import { startProject } from "./src/node/to_create_project/startProject.js";
+//import 'dotenv/config';
+import { Server } from './src/server/server.js';
+import dotenv from 'dotenv';
+import './src/models/initAssociations.js';
 
 
+dotenv.config();
 
-const main = async() => {
-    let opt = '';
+const server = new Server();
 
-    clearScreen();
-    console.log('NODEJS');
-
-    do{
-
-        opt = await menuMain();
-
-        switch (opt) {
-            case 'Proyecto':
-                await startProject();
-                break;
-        
-            case 'Modulo':
-                await startModule();
-                break;
-            
-            default:
-                break;
-        }
-
-        await pause();
-
-    }while(opt != 'Salir')
-
-
-    exitScreen();
-
-}
-
-
-main();
+server.listen();
 `.trimStart();
 
     fs.writeFileSync(filePath, code);

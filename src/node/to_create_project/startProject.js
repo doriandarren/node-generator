@@ -6,6 +6,11 @@ import { generateGitignore } from "./generateGitignore.js";
 import { generateServer } from "./generateServer.js";
 import { generateScripts } from "./generateScripts.js";
 import { generateRoutes } from "./generateRoutes.js";
+
+import { generateApp } from "./generateApp.js";
+import { generateRepositories } from "./generateRepositories.js";
+import { generateModels } from "./generateModels.js";
+import { generateMiddlewares } from "./generateMiddlewares.js";
 import { generateMulter } from "./generateMulter.js";
 import { generateApp } from "./generateApp.js";
 
@@ -28,20 +33,20 @@ export const startProject = async() => {
     // Combinar la ruta y el nombre del proyecto
     const fullPath = `${projectPath}/${projectName}`;
 
-
     await generateCommandLine(fullPath, projectName);
     await generateReadme(fullPath);
     await generateApp(fullPath);
-
-
-
     await generateEnv(fullPath);
     await generateGitignore(fullPath);
     await generateServer(fullPath);
     await generateScripts(fullPath);
 
-
     await generateRoutes(fullPath);
+    await generateRepositories(fullPath);
+    await generateModels(fullPath);
+    await generateMiddlewares(fullPath);
+    
+
 
 
     await generateMulter(fullPath);
