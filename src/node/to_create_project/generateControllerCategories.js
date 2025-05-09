@@ -7,27 +7,11 @@ import { createFolder } from '../../helpers/helperFile.js';
 export const generateControllerCategories = async(fullPath) => {
     await createCategoryListController(fullPath);
     
-    
-
-    // Folder
-    const folderPath = path.join(fullPath, 'src', '');
-    
-    // File
-    const filePath = path.join(folderPath, '');
-
-    // Asegurar que la carpeta exista
-    createFolder(folderPath);
-
-
-    // Code
-    const code = `
-    
-`.trimStart();
-
-    fs.writeFileSync(filePath, code);
-    console.log(`✅ Archivo creado: ${filePath}`.green);
-
 }
+
+
+
+
 
 
 const createCategoryListController = async(fullPath) => {    
