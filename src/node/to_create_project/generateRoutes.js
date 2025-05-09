@@ -36,7 +36,7 @@ export const createAuth = async(fullPath) => {
     // Code
     const code = `
 import { Router } from "express";
-import { authLoginController } from "../../controllers/auth/authLoginController.js";
+import { authLoginController } from "../../controllers/api/auth/authLoginController.js";
 
 
 const router = Router();
