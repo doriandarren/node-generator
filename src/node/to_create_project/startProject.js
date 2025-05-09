@@ -59,5 +59,7 @@ export const startProject = async() => {
 
     //TODO falta 
     await generateControllerAuth(fullPath);
+    
+    
 
 }

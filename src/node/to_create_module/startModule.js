@@ -14,9 +14,9 @@ export const startModule = async () => {
     { name: "Repositorio", value: "repository", checked: true },
     { name: "Rutas", value: "routes", checked: true },
     { name: "Migración", value: "migration", checked: true },
-    { name: "Seeder", value: "seeder", checked: false },
-    { name: "Factory", value: "factory", checked: false },
-    { name: "Archivo Postman", value: "postman", checked: false },
+    { name: "Seeder", value: "seeder", checked: true },
+    { name: "Factory", value: "factory", checked: true },
+    { name: "Archivo Postman", value: "postman", checked: true },
   ];
 
   const { selectedComponents } = await inquirer.prompt([
@@ -47,6 +47,7 @@ export const startModule = async () => {
 
   await generateModuleStandard(
     selectedComponents,
+    namespace,
     nameProject,
     projectPath,
     singularName,

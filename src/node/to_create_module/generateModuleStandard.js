@@ -3,6 +3,15 @@
 
 const generateModuleStandard = async(selectedComponents, singularName, pluralName, columns, projectPath) => {
     
-    console.log();
+    console.log(
+        selectedComponents,
+        nameProject,
+        projectPath,
+        singularName,
+        pluralName,
+        columns
+    );
+
+
 
 }
