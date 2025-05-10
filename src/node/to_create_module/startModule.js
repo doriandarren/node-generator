@@ -31,12 +31,8 @@ export const startModule = async () => {
 
   await pause();
 
-  let fullPath = "/Users/dorian/NodeProjects/";
-  console.log(`[Directorio por defecto es: ${fullPath}]`.cyan);
 
-
-
-  const nameProject = await readInput("Carpeta Proyecto:", false, "example");
+  const fullPath = await readInput("Ruta Proyecto:", false, "/Users/dorian/NodeProjects/app-1");
   const namespace = await readInput("Namespace (erp / api / invoices):", false, "api");
   const singularName = await readInput("Nombre singular:", false, "AgendaUnloading");
   const pluralName = await readInput("Nombre plural:", false, "AgendaUnloadings");
@@ -46,14 +42,10 @@ export const startModule = async () => {
   const columns = inputColumns.split(" ").map((col) => ({ name: col }));
 
 
-  fullPath = fullPath + nameProject + '/';
-
-
   await generateModuleStandard(
     fullPath,
     selectedComponents,
     namespace,
-    nameProject,
     projectPath,
     singularName,
     pluralName,
