@@ -4,6 +4,9 @@ import { createFolder } from '../../helpers/helperFile.js';
 
 
 export const generateRoute = async(fullPath, namespace, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCase, pluralNameCase, columns) => {    
+    
+
+    //console.log(fullPath);
 
     // Folder
     const folderPath = path.join(fullPath, 'src', 'routes', namespace);
@@ -76,7 +79,13 @@ router.delete('/:id', [
 export default router;    
 `.trimStart();
 
-    fs.writeFileSync(filePath, code);
-    console.log(`✅ Archivo creado: ${filePath}`.green);
+    console.log("file; ", filePath);
+
+    try {
+        fs.writeFileSync(fullPath, '// contenido');
+        console.log(`✅ Archivo creado: ${filePath}`.green);
+    } catch (error) {
+        console.error(`❌ Error al crear archivo: ${error.message}`);
+    }
 
 }

@@ -22,13 +22,13 @@ export const generateModuleStandard = async(fullPath, selectedComponents, namesp
     // Verificar si el projecto existe
 
 
-    console.log(singularNameKebab , pluralNameKebab , singularNameSnake , pluralNameSnake, singularNameCamel, pluralNameCamel);
+    //console.log(singularNameKebab , pluralNameKebab , singularNameSnake , pluralNameSnake, singularNameCamel, pluralNameCamel);
     
 
 
     //if(selectedComponents.lal === 'Rutas')
 
-    //await generateRoute(fullPath, namespace, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCamel, pluralNameCamel, columns);
+    await generateRoute(fullPath, namespace, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCamel, pluralNameCamel, columns);
 
 
 
