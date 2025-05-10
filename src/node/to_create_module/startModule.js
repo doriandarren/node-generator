@@ -37,7 +37,7 @@ export const startModule = async () => {
 
 
   const nameProject = await readInput("Carpeta Proyecto:", false, "example");
-  const namespace = await readInput("Namespace (ERP / API / INVOICES):", false, "API");
+  const namespace = await readInput("Namespace (erp / api / invoices):", false, "api");
   const singularName = await readInput("Nombre singular:", false, "AgendaUnloading");
   const pluralName = await readInput("Nombre plural:", false, "AgendaUnloadings");
   const inputColumns = await readInput("Columnas (separadas por espacio):", false, "name amount description");

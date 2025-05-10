@@ -22,6 +22,10 @@ export const generateModuleStandard = async(fullPath, selectedComponents, namesp
 
 
 
+    
+
+
+
 
     //if(selectedComponents.lal === 'Rutas')
 
