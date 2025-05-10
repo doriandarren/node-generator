@@ -24,8 +24,8 @@ import { Router } from "express";
 import { check, param } from "express-validator";
 import { validateFields } from "../middlewares/validate-fields.js";
 import { checkIdExists } from "../../helpers/validators/checkIdExists.js";
-import ${singularName} from "../../models/${singularName}.js";
 import { validateJWT } from "../../middlewares/validateJWT.js";
+import ${singularName} from "../../models/${singularName}.js";
 import { ${singularNameCase}ListController } from "../../controllers/${namespace}/${pluralNameCase}/${singularNameCase}ListController.js";
 import { ${singularNameCase}ShowController } from "../../controllers/${namespace}/${pluralNameCase}/${singularNameCase}ShowController.js";
 import { ${singularNameCase}StoreController } from "../../controllers/${namespace}/${pluralNameCase}/${singularNameCase}StoreController.js";
@@ -41,7 +41,7 @@ const router = Router();
  */
 router.get('/', [
     validateJWT,
-], abilityListController);
+], ${singularNameCase}ListController);
 
 
 /**
@@ -49,31 +49,31 @@ router.get('/', [
  */
 router.get('/:id', [
     validateJWT,
-    check('name', 'El name es obligatorio').not().isEmpty(),
-    param('id').custom( checkIdExists(Ability) ),
+    //check('name', 'El name es obligatorio').not().isEmpty(),
+    param('id').custom( checkIdExists(${singularName}) ),
     validateFields
-], abilityShowController);
+], ${singularNameCase}ShowController);
 
 /**
  * Store
  */
 router.post('/', [
     validateJWT,
-], abilityStoreController);
+], ${singularNameCase}StoreController);
 
 /**
  * Update
  */
 router.put('/:id', [
     validateJWT,
-], abilityUpdateController);
+], ${singularNameCase}UpdateController);
 
 /**
  * Delete
  */ 
 router.delete('/:id', [
     validateJWT,
-], abilityDeleteController);
+], ${singularNameCase}DeleteController);
 
 
 export default router;    
