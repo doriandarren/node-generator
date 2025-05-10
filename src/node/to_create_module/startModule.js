@@ -31,8 +31,8 @@ export const startModule = async () => {
 
   await pause();
 
-  const defaultPath = "/Users/dorian/NodeProjects/";
-  console.log(`[Directorio por defecto es: ${defaultPath}]`.cyan);
+  let fullPath = "/Users/dorian/NodeProjects/";
+  console.log(`[Directorio por defecto es: ${fullPath}]`.cyan);
 
 
 
@@ -46,7 +46,11 @@ export const startModule = async () => {
   const columns = inputColumns.split(" ").map((col) => ({ name: col }));
 
 
+  fullPath = fullPath + nameProject + '/';
+
+
   await generateModuleStandard(
+    fullPath,
     selectedComponents,
     namespace,
     nameProject,
