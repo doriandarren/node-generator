@@ -79,8 +79,6 @@ router.delete('/:id', [
 export default router;    
 `.trimStart();
 
-    console.log("file; ", filePath);
-
     try {
         fs.writeFileSync(fullPath, '// contenido');
         console.log(`✅ Archivo creado: ${filePath}`.green);
