@@ -46,7 +46,6 @@ export const startModule = async () => {
     fullPath,
     selectedComponents,
     namespace,
-    projectPath,
     singularName,
     pluralName,
     columns

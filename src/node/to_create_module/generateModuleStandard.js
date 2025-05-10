@@ -3,15 +3,10 @@ import { generateRoute } from "./generateRoute.js";
 
 
 
-export const generateModuleStandard = async(fullPath, selectedComponents, namespace, projectPath, singularName, pluralName, columns) => {
+export const generateModuleStandard = async(fullPath, selectedComponents, namespace, singularName, pluralName, columns) => {
     
-    console.log(
-        nameProject,
-        projectPath,
-        singularName,
-        pluralName,
-        columns
-    );
+
+    console.log(fullPath, selectedComponents, namespace, singularName, pluralName, columns);
 
 
     const singularNameKebab = camelToKebab(singularName);   // invoice-header
@@ -22,10 +17,7 @@ export const generateModuleStandard = async(fullPath, selectedComponents, namesp
     const pluralNameCamel = camelCase(pluralName)           // invoiceHeaders
 
 
-
-
     console.log(fullPath);
-
 
     
 
