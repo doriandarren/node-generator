@@ -11,6 +11,7 @@ export const generateHelpers = async(fullPath) => {
     await createSafeJson(fullPath);
     await createJWT(fullPath);
     await createMessageChannel(fullPath);
+    await createBaseRepository(fullPath);
     await createCheckIdExists(fullPath);
 
 }
@@ -319,7 +320,7 @@ const createCheckIdExists = async(fullPath) => {
     const folderPath = path.join(fullPath, 'src', 'helpers', 'validators');
     
     // File
-    const filePath = path.join(folderPath, 'checkIdExists');
+    const filePath = path.join(folderPath, 'checkIdExists.js');
 
     // Asegurar que la carpeta exista
     createFolder(folderPath);

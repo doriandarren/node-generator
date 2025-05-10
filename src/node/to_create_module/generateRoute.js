@@ -9,7 +9,7 @@ export const generateRoute = async(nameProject, projectPath, singularName, plura
     const folderPath = path.join(fullPath, 'src', 'routes', 'api');
     
     // File countryRoutes
-    const filePath = path.join(folderPath, `${singularName}Routes.js`);
+    const filePath = path.join(folderPath, `${singularName}Routes.js`);  // agendaUpdalodRoutes
 
     // Asegurar que la carpeta exista
     createFolder(folderPath);
