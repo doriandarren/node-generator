@@ -1,8 +1,9 @@
+import { camelToKebab, camelToSnake } from "../../helpers/helperString";
 import { generateRoute } from "./generateRoute";
 
 
 
-const generateModuleStandard = async(selectedComponents, singularName, pluralName, columns, projectPath) => {
+export const generateModuleStandard = async(selectedComponents, singularName, pluralName, columns, projectPath) => {
     
     console.log(
         nameProject,
@@ -13,14 +14,10 @@ const generateModuleStandard = async(selectedComponents, singularName, pluralNam
     );
 
 
-    singular_name_kebab = camel_to_kebab(singularName); // invoice-header
-    plural_name_kebab = camel_to_kebab(pluralName);     // invoice-headers
-    singular_name_snake = camel_to_snake(singularName)  // invoice_header
-    plural_name_snake = camel_to_snake(pluralName)      // invoice_headers
-
-
-
-
+    singularNameKebab = camelToKebab(singularName); // invoice-header
+    pluralNameKebab = camelToKebab(pluralName);     // invoice-headers
+    singularNameSnake = camelToSnake(singularName)  // invoice_header
+    pluralNameSnake = camelToSnake(pluralName)      // invoice_headers
 
 
 
@@ -28,7 +25,7 @@ const generateModuleStandard = async(selectedComponents, singularName, pluralNam
 
     //if(selectedComponents.lal === 'Rutas')
 
-    await generateRoute(nameProject, projectPath, singularName, pluralName, columns);
+    await generateRoute(nameProject, projectPath, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, columns);
 
 
 
