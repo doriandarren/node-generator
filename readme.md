@@ -28,7 +28,8 @@ plural-name-kebab
 singular_name_snake
 plural_name_snake
 
-
+singularNameCase
+pluralNameCase
 
 
 ```
