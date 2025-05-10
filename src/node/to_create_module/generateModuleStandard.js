@@ -1,4 +1,4 @@
-import { camelToKebab, camelToSnake } from "../../helpers/helperString";
+import { camelCase, camelToKebab, camelToSnake } from "../../helpers/helperString";
 import { generateRoute } from "./generateRoute";
 
 
@@ -14,22 +14,21 @@ export const generateModuleStandard = async(fullPath, selectedComponents, namesp
     );
 
 
-    const singularNameKebab = camelToKebab(singularName); // invoice-header
-    const pluralNameKebab = camelToKebab(pluralName);     // invoice-headers
-    const singularNameSnake = camelToSnake(singularName)  // invoice_header
-    const pluralNameSnake = camelToSnake(pluralName)      // invoice_headers
+    const singularNameKebab = camelToKebab(singularName);   // invoice-header
+    const pluralNameKebab = camelToKebab(pluralName);       // invoice-headers
+    const singularNameSnake = camelToSnake(singularName)    // invoice_header
+    const pluralNameSnake = camelToSnake(pluralName)        // invoice_headers
+    const singularNameCamel = camelCase(singularName)       // invoiceHeader
+    const pluralNameCamel = camelCase(pluralName)           // invoiceHeaders
 
 
 
 
     
 
-
-
-
     //if(selectedComponents.lal === 'Rutas')
 
-    await generateRoute(fullPath, namespace, nameProject, projectPath, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, columns);
+    await generateRoute(fullPath, namespace, nameProject, projectPath, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCamel, pluralNameCamel, columns);
 
 
 

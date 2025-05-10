@@ -26,7 +26,7 @@ export function camelToSnake(str) {
  * @param {string} str
  * @returns {string}
  */
-export function capitalizeCamelCase(str) {
+export function camelCase(str) {
   return str
     .split("_")
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
