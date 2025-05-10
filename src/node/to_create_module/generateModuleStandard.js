@@ -1,5 +1,5 @@
-import { camelCase, camelToKebab, camelToSnake } from "../../helpers/helperString";
-import { generateRoute } from "./generateRoute";
+import { camelCase, camelToKebab, camelToSnake } from "../../helpers/helperString.js";
+import { generateRoute } from "./generateRoute.js";
 
 
 
