@@ -14,10 +14,10 @@ export const generateModuleStandard = async(selectedComponents, singularName, pl
     );
 
 
-    singularNameKebab = camelToKebab(singularName); // invoice-header
-    pluralNameKebab = camelToKebab(pluralName);     // invoice-headers
-    singularNameSnake = camelToSnake(singularName)  // invoice_header
-    pluralNameSnake = camelToSnake(pluralName)      // invoice_headers
+    const singularNameKebab = camelToKebab(singularName); // invoice-header
+    const pluralNameKebab = camelToKebab(pluralName);     // invoice-headers
+    const singularNameSnake = camelToSnake(singularName)  // invoice_header
+    const pluralNameSnake = camelToSnake(pluralName)      // invoice_headers
 
 
 
