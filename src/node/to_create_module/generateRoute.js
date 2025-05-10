@@ -80,7 +80,7 @@ export default router;
 `.trimStart();
 
     try {
-        fs.writeFileSync(fullPath, '// contenido');
+        fs.writeFileSync(fullPath, code);
         console.log(`✅ Archivo creado: ${filePath}`.green);
     } catch (error) {
         console.error(`❌ Error al crear archivo: ${error.message}`);
