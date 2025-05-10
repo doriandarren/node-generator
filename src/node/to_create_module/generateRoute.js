@@ -3,7 +3,7 @@ import path from 'path';
 import { createFolder } from '../../helpers/helperFile.js';
 
 
-export const generateRoute = async(nameProject, projectPath, singularName, pluralName, columns) => {    
+export const generateRoute = async(nameProject, projectPath, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, columns) => {    
 
     // Folder
     const folderPath = path.join(fullPath, 'src', 'routes', 'api');
