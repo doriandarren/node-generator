@@ -26,9 +26,30 @@ export const generateModuleStandard = async(fullPath, selectedComponents, namesp
     
 
 
+
+    // model
+    // controller_list
+    // controller_show
+    // controller_store
+    // controller_update
+    // controller_destroy
+    // repository
+    // routes               ------->>> hecho
+    // migration
+    // seeder
+    // factory
+    // postman
+
     //if(selectedComponents.lal === 'Rutas')
 
     await generateRoute(fullPath, namespace, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCamel, pluralNameCamel, columns);
+
+
+   
+
+
+
+
 
 
 

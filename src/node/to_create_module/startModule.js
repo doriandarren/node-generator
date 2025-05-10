@@ -32,7 +32,7 @@ export const startModule = async () => {
   await pause();
 
 
-  const fullPath = await readInput("Ruta Proyecto:", false, "/Users/dorian/NodeProjects/app-1");
+  const fullPath = await readInput("Ruta Proyecto:", false, "/Users/dorian/NodejsProjects/app-1");
   const namespace = await readInput("Namespace (erp / api / invoices):", false, "api");
   const singularName = await readInput("Nombre singular:", false, "AgendaUnloading");
   const pluralName = await readInput("Nombre plural:", false, "AgendaUnloadings");
