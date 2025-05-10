@@ -26,7 +26,7 @@ import { validateFields } from "../middlewares/validate-fields.js";
 import { checkIdExists } from "../../helpers/validators/checkIdExists.js";
 import ${singularName} from "../../models/${singularName}.js";
 import { validateJWT } from "../../middlewares/validateJWT.js";
-import { ${singularNameCase}ListController from "../../controllers/${namespace}/${pluralNameCase}/${singularNameCase}ListController.js";
+import { ${singularNameCase}ListController } from "../../controllers/${namespace}/${pluralNameCase}/${singularNameCase}ListController.js";
 import { ${singularNameCase}ShowController } from "../../controllers/${namespace}/${pluralNameCase}/${singularNameCase}ShowController.js";
 import { ${singularNameCase}StoreController } from "../../controllers/${namespace}/${pluralNameCase}/${singularNameCase}StoreController.js";
 import { ${singularNameCase}UpdateController } from "../../controllers/${namespace}/${pluralNameCase}/${singularNameCase}UpdateController.js";
