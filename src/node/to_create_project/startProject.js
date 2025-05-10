@@ -17,6 +17,8 @@ import { generateEnums } from "./generateEnums.js";
 import { generateDatabase } from "./generateDatabase.js";
 import { generateControllerAuth } from "./generateControllerAuth.js";
 import { generateControllerCategories } from "./generateControllerCategories.js";
+import { generateControllerItems } from "./generateControllerItems.js";
+import { generateControllerUsers } from "./generateControllerUsers.js";
 
 
 
@@ -61,6 +63,8 @@ export const startProject = async() => {
     //TODO falta 
     await generateControllerAuth(fullPath);
     await generateControllerCategories(fullPath);
+    await generateControllerItems(fullPath);
+    await generateControllerUsers(fullPath);
     
 
 
