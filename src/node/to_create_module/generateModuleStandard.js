@@ -3,7 +3,7 @@ import { generateRoute } from "./generateRoute";
 
 
 
-export const generateModuleStandard = async(fullPath, selectedComponents, singularName, pluralName, columns, projectPath) => {
+export const generateModuleStandard = async(fullPath, selectedComponents, namespace, nameProject, projectPath, singularName, pluralName, columns) => {
     
     console.log(
         nameProject,
@@ -25,9 +25,7 @@ export const generateModuleStandard = async(fullPath, selectedComponents, singul
 
     //if(selectedComponents.lal === 'Rutas')
 
-    await generateRoute(fullPath, nameProject, projectPath, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, columns);
-
-
+    await generateRoute(fullPath, namespace, nameProject, projectPath, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, columns);
 
 
 
