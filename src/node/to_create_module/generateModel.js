@@ -19,11 +19,22 @@ export const generateModel = async(fullPath, namaspace, singularName, pluralName
 
 
     const properties = columns
-    .map(col => {
-      return `  ${col.name}: {
+    .map((col, index) => {
+        let str = '';
+
+        if(index == 0){
+            str += `${col.name}: {
     type: DataTypes.${col.type},
     allowNull: ${col.allowNull}
   }`;
+        }else{
+            str += `  ${col.name}: {
+    type: DataTypes.${col.type},
+    allowNull: ${col.allowNull}
+  }`;
+        }
+
+      return str;
     })
     .join(',\n');
 
@@ -35,7 +46,7 @@ import { DataTypes } from 'sequelize';
 import sequelize from '../database/settings/config.js';
 
 
-const RoleUser = sequelize.define('${singularName}', {
+const ${singularName} = sequelize.define('${singularName}', {
   id: {
     type: DataTypes.BIGINT,
     autoIncrement: true,
