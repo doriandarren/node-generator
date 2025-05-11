@@ -39,7 +39,7 @@ const router = Router();
 /**
  * List
  */
-router.get('/', [
+router.get('/list', [
     validateJWT,
 ], ${singularNameCase}ListController);
 
@@ -47,7 +47,7 @@ router.get('/', [
 /**
  * Show
  */
-router.get('/:id', [
+router.get('/show/:id', [
     validateJWT,
     //check('name', 'El name es obligatorio').not().isEmpty(),
     param('id').custom( checkIdExists(${singularName}) ),
@@ -57,21 +57,21 @@ router.get('/:id', [
 /**
  * Store
  */
-router.post('/', [
+router.post('/store', [
     validateJWT,
 ], ${singularNameCase}StoreController);
 
 /**
  * Update
  */
-router.put('/:id', [
+router.put('/update/:id', [
     validateJWT,
 ], ${singularNameCase}UpdateController);
 
 /**
  * Delete
  */ 
-router.delete('/:id', [
+router.delete('/delete/:id', [
     validateJWT,
 ], ${singularNameCase}DeleteController);
 
