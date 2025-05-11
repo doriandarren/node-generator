@@ -3,7 +3,8 @@ import path from 'path';
 import { createFolder } from '../../helpers/helperFile.js';
 
 
-export const generate = async(fullPath, namaspace, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCamel, pluralNameCamel, columns) => {    
+
+export const generateModel = async(fullPath, namaspace, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCamel, pluralNameCamel, columns) => {    
 
     // Folder
     const folderPath = path.join(fullPath, 'src', 'models');

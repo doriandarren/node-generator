@@ -1,4 +1,5 @@
 import { pascalToCamelCase, pascalToKebab, pascalToSnake } from "../../helpers/helperString.js";
+import { generateModel } from "./generateModel.js";
 import { generateRoute } from "./generateRoute.js";
 
 
@@ -39,7 +40,7 @@ export const generateModuleStandard = async(fullPath, selectedComponents, namesp
     // postman
 
 
-    
+
     //if(selectedComponents.lal === 'Rutas')
 
     await generateRoute(fullPath, namespace, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCamel, pluralNameCamel, columns);
