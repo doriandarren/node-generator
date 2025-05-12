@@ -12,8 +12,8 @@ export const generateControllerShow = async(
   pluralNameKebab,
   singularNameSnake,
   pluralNameSnake,
-  singularNameCase,
-  pluralNameCase,
+  singularNameCamel,
+  pluralNameCamel,
   columns
 ) => {    
 
@@ -29,7 +29,33 @@ export const generateControllerShow = async(
 
     // Code
     const code = `
+import { response } from "express";
+import { ${singularName}Repository } from "../../../repositories/${pluralNameSnake}/${singularNameCamel}Repository.js";
+
+
+
+const repository = new ${singularName}Repository();
+
+
+/**
+ * @param {import('express').Request} req
+ * @param {import('express').Response & { handler: import('../../../helpers/controllers/baseController.js').BaseController }} res
+ */
+export const ${singularNameCamel}ShowController = async(req, res = response) => {
     
+    const { id } = req.params;
+
+    try {
+        const data = await repository.show(id);
+
+        return res.handler.respondWithData('${singularName} show', data);
+
+    } catch (error) {
+        console.error('❌ Error en ${singularNameCamel}ListController:', error);
+        return res.handler.respondHttpInternalError(error.message);
+    }
+
+}   
 `.trimStart();
 
   try {
