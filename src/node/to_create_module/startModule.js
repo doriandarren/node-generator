@@ -39,8 +39,16 @@ export const startModule = async () => {
   const inputColumns = await readInput("Columnas (separadas por espacio):", false, "name amount description");
 
 
-  const columns = inputColumns.split(" ").map((col) => ({ name: col }));
+  //const columns = inputColumns.split(" ").map((col) => ({ name: col }));
 
+
+  const columns = inputColumns
+                          .split(" ")
+                          .map((col) => ({
+                            name: col,
+                            type: 'STRING',       // por defecto STRING
+                            allowNull: true       // por defecto true
+                          }));
 
   await generateModuleStandard(
     fullPath,
