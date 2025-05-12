@@ -18,10 +18,10 @@ export const generateControllerShow = async(
 ) => {    
 
     // Folder
-    const folderPath = path.join(fullPath, 'src', '');
+    const folderPath = path.join(fullPath, 'src', 'controllers', namespace, pluralNameSnake);
     
     // File
-    const filePath = path.join(folderPath, '');
+    const filePath = path.join(folderPath, `${singularNameCamel}ShowController.js`);
 
     // Asegurar que la carpeta exista
     createFolder(folderPath);
