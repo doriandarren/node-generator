@@ -28,7 +28,7 @@ export const generateModuleStandard = async(fullPath, selectedComponents, namesp
 
     // routes               ------->>> hecho
     // model                ------->>> hecho
-    // controller_list
+    // controller_list      ------->>> hecho
     // controller_show
     // controller_store
     // controller_update
