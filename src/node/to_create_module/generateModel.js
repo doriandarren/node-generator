@@ -16,24 +16,20 @@ export const generateModel = async(fullPath, namaspace, singularName, pluralName
     createFolder(folderPath);
 
 
+    const properties = columns.map((col, index) => {
+                    let str = '';
 
-
-    const properties = columns
-    .map((col, index) => {
-        let str = '';
-
-        if(index == 0){
-            str += `${col.name}: {
-    type: DataTypes.${col.type},
-    allowNull: ${col.allowNull}
-  }`;
-        }else{
-            str += `  ${col.name}: {
-    type: DataTypes.${col.type},
-    allowNull: ${col.allowNull}
-  }`;
+                    if(index == 0){
+                        str += `${col.name}: {
+                type: DataTypes.${col.type},
+                allowNull: ${col.allowNull}
+            }`;
+                    }else{
+                        str += `  ${col.name}: {
+                type: DataTypes.${col.type},
+                allowNull: ${col.allowNull}
+            }`;
         }
-
       return str;
     })
     .join(',\n');
