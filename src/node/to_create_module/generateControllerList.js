@@ -29,7 +29,29 @@ export const generate = async(
 
     // Code
     const code = `
-    
+import { response, request } from 'express';
+import { ${singularName}Repository } from '../../../repositories/${pluralNameSnake}/${singularNameCamel}Repository.js';
+
+
+const repository = new ${singularName}Repository();
+
+
+/**
+ * @param {import('express').Request} req
+ * @param {import('express').Response & { handler: import('../../../helpers/controllers/baseController.js').BaseController }} res
+ */
+export const ${singularNameCamel}ListController = async(req = request, res = response) => {
+
+    try {
+        const data = await repository.list();
+        return res.handler.respondWithData('${singularName} list', data);
+
+    } catch (error) {
+        console.error('❌ Error en userListController:', error);
+        return res.handler.respondHttpInternalError(error.message);
+    }
+
+}    
 `.trimStart();
 
   try {
