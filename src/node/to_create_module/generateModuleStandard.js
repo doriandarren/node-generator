@@ -1,4 +1,7 @@
 import { pascalToCamelCase, pascalToKebab, pascalToSnake } from "../../helpers/helperString.js";
+import { generateControllerList } from "./generateControllerList.js";
+import { generateControllerShow } from "./generateControllerShow.js";
+import { generateControllerStore } from "./generateControllerStore.js";
 import { generateModel } from "./generateModel.js";
 import { generateRoute } from "./generateRoute.js";
 
@@ -29,8 +32,8 @@ export const generateModuleStandard = async(fullPath, selectedComponents, namesp
     // routes               ------->>> hecho
     // model                ------->>> hecho
     // controller_list      ------->>> hecho
-    // controller_show
-    // controller_store
+    // controller_show      
+    // controller_store     
     // controller_update
     // controller_destroy
     // repository
@@ -54,7 +57,13 @@ export const generateModuleStandard = async(fullPath, selectedComponents, namesp
     await generateControllerList(fullPath, namespace, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCamel, pluralNameCamel, columns);
 
 
-   
+
+
+    await generateControllerShow(fullPath, namespace, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCamel, pluralNameCamel, columns);
+
+
+    
+     await generateControllerStore(fullPath, namespace, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCamel, pluralNameCamel, columns);
 
 
 
