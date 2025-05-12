@@ -1,43 +1,50 @@
-import fs from 'fs';
-import path from 'path';
-import { createFolder } from '../../helpers/helperFile.js';
+import fs from "fs";
+import path from "path";
+import { createFolder } from "../../helpers/helperFile.js";
 
+export const generateModel = async (
+  fullPath,
+  namaspace,
+  singularName,
+  pluralName,
+  singularNameKebab,
+  pluralNameKebab,
+  singularNameSnake,
+  pluralNameSnake,
+  singularNameCamel,
+  pluralNameCamel,
+  columns
+) => {
+  // Folder
+  const folderPath = path.join(fullPath, "src", "models");
 
+  // File
+  const filePath = path.join(folderPath, `${singularName}.js`);
 
-export const generateModel = async(fullPath, namaspace, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCamel, pluralNameCamel, columns) => {    
+  // Asegurar que la carpeta exista
+  createFolder(folderPath);
 
-    // Folder
-    const folderPath = path.join(fullPath, 'src', 'models');
-    
-    // File
-    const filePath = path.join(folderPath, `${singularName}.js`);
+  const properties = columns
+    .map((col, index) => {
+      let str = "";
 
-    // Asegurar que la carpeta exista
-    createFolder(folderPath);
-
-
-    const properties = columns.map((col, index) => {
-                    let str = '';
-
-                    if(index == 0){
-                        str += `${col.name}: {
-                type: DataTypes.${col.type},
-                allowNull: ${col.allowNull}
-            }`;
-                    }else{
-                        str += `  ${col.name}: {
-                type: DataTypes.${col.type},
-                allowNull: ${col.allowNull}
-            }`;
-        }
+      if (index == 0) {
+        str += `${col.name}: {
+    type: DataTypes.${col.type},
+    allowNull: ${col.allowNull}
+  }`;
+      } else {
+        str += `  ${col.name}: {
+    type: DataTypes.${col.type},
+    allowNull: ${col.allowNull}
+  }`;
+      }
       return str;
     })
-    .join(',\n');
+    .join(",\n");
 
-
-
-    // Code
-    const code = `
+  // Code
+  const code = `
 import { DataTypes } from 'sequelize';
 import sequelize from '../database/settings/config.js';
 
@@ -65,5 +72,4 @@ export default ${singularName};
   } catch (error) {
     console.error(`❌ Error al crear archivo: ${error.message}`);
   }
-
-}
+};

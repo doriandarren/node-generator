@@ -66,6 +66,8 @@ router.post('/store', [
  */
 router.put('/update/:id', [
     validateJWT,
+    param('id').custom( checkIdExists(${singularName}) ),
+    validateFields
 ], ${singularNameCase}UpdateController);
 
 /**
@@ -73,6 +75,8 @@ router.put('/update/:id', [
  */ 
 router.delete('/delete/:id', [
     validateJWT,
+    param('id').custom( checkIdExists(${singularName}) ),
+    validateFields
 ], ${singularNameCase}DeleteController);
 
 

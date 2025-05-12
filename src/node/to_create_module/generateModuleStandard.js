@@ -48,9 +48,14 @@ export const generateModuleStandard = async(fullPath, selectedComponents, namesp
 
 
     await generateModel(fullPath, namespace, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCamel, pluralNameCamel, columns);
+    
+    
+    
+    await generateControllerList(fullPath, namespace, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCamel, pluralNameCamel, columns);
 
 
    
+
 
 
 }
