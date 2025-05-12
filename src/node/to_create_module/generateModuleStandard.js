@@ -2,6 +2,8 @@ import { pascalToCamelCase, pascalToKebab, pascalToSnake } from "../../helpers/h
 import { generateControllerList } from "./generateControllerList.js";
 import { generateControllerShow } from "./generateControllerShow.js";
 import { generateControllerStore } from "./generateControllerStore.js";
+import { generateControllerUpdate } from "./generateControllerUpdate.js";
+import { generateControllerDelete } from "./generateControllerDelete.js";
 import { generateModel } from "./generateModel.js";
 import { generateRoute } from "./generateRoute.js";
 
@@ -63,7 +65,13 @@ export const generateModuleStandard = async(fullPath, selectedComponents, namesp
 
 
     
-     await generateControllerStore(fullPath, namespace, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCamel, pluralNameCamel, columns);
+    await generateControllerStore(fullPath, namespace, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCamel, pluralNameCamel, columns);
+     
+    
+    await generateControllerUpdate(fullPath, namespace, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCamel, pluralNameCamel, columns);
+    
+
+    await generateControllerDelete(fullPath, namespace, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCamel, pluralNameCamel, columns);
 
 
 
