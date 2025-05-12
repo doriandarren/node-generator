@@ -3,7 +3,7 @@ import path from 'path';
 import { createFolder } from '../../helpers/helperFile.js';
 
 
-export const generate = async(
+export const generateControllerShow = async(
   fullPath,
   namespace,
   singularName,
@@ -34,9 +34,9 @@ export const generate = async(
 
   try {
     fs.writeFileSync(filePath, code);
-    console.log(✅ Archivo creado: ${filePath}.green);
+    console.log(`✅ Archivo creado: ${filePath}`.green);
   } catch (error) {
-    console.error(❌ Error al crear archivo: ${error.message});
+    console.error(`❌ Error al crear archivo: ${error.message}`);
   }
 
 }
