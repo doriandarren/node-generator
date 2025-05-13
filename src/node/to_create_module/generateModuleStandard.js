@@ -6,6 +6,9 @@ import { generateControllerUpdate } from "./generateControllerUpdate.js";
 import { generateControllerDelete } from "./generateControllerDelete.js";
 import { generateModel } from "./generateModel.js";
 import { generateRoute } from "./generateRoute.js";
+import { generateRepository } from "./generateRepository.js";
+import { generateMigration } from "./generateMigration.js";
+import { generateSeeder } from "./generateSeeder.js";
 
 
 
@@ -38,9 +41,9 @@ export const generateModuleStandard = async(fullPath, selectedComponents, namesp
     // controller_store     ------->>> hecho
     // controller_update    ------->>> hecho
     // controller_destroy   ------->>> hecho
-    // repository
-    // migration
-    // seeder
+    // repository           ------->>> hecho
+    // migration            ------->>> hecho            
+    // seeder               ------->>> hecho
     // factory
     // postman
 
@@ -51,20 +54,15 @@ export const generateModuleStandard = async(fullPath, selectedComponents, namesp
     await generateRoute(fullPath, namespace, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCamel, pluralNameCamel, columns);
 
 
-
     await generateModel(fullPath, namespace, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCamel, pluralNameCamel, columns);
     
-    
-    
+        
     await generateControllerList(fullPath, namespace, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCamel, pluralNameCamel, columns);
-
-
 
 
     await generateControllerShow(fullPath, namespace, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCamel, pluralNameCamel, columns);
 
 
-    
     await generateControllerStore(fullPath, namespace, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCamel, pluralNameCamel, columns);
      
     
@@ -72,6 +70,18 @@ export const generateModuleStandard = async(fullPath, selectedComponents, namesp
     
 
     await generateControllerDelete(fullPath, namespace, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCamel, pluralNameCamel, columns);
+    
+    
+    await generateRepository(fullPath, namespace, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCamel, pluralNameCamel, columns);
+    
+    await generateMigration(fullPath, namespace, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCamel, pluralNameCamel, columns);
+    
+    
+
+    await generateSeeder(fullPath, namespace, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCamel, pluralNameCamel, columns);
+
+
+
 
 
 
