@@ -1,7 +1,7 @@
 import 'dotenv/config';
 import { clearScreen, exitScreen, menuMain, pause } from "./src/helpers/inquirer.js";
-import { startModule } from "./src/node/to_create_module/startModule.js";
 import { nodeMain } from './src/node/ nodeMain.js';
+import { databaseMain } from './src/database/databaseMain.js';
 
 
 
@@ -13,9 +13,14 @@ const main = async() => {
 
     do{
 
-        opt = await menuMain(['NodeJS', 'Salir']);
+        opt = await menuMain(['Database', 'NodeJS', 'Salir']);
 
         switch (opt) {
+
+            case 'Database':
+                await databaseMain();
+                break;
+
             case 'NodeJS':
                 await nodeMain();
                 break;
@@ -29,7 +34,6 @@ const main = async() => {
         await pause();
 
     }while(opt != 'Salir')
-
 
     exitScreen();
 
