@@ -28,7 +28,9 @@ export const databaseMain = async() => {
                 break;
         }
 
-        //await pause();
+
+        //TODO: Comentar luego para no hacer doble el entrer atras
+        await pause();
 
     }while(opt != 'Salir')
 

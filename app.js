@@ -13,15 +13,19 @@ const main = async() => {
 
     do{
 
-        opt = await menuMain(['Database', 'NodeJS', 'Salir']);
+        opt = await menuMain([
+            { name: "Database", value: "database" },
+            { name: "NodeJS", value: "nodejs" },
+            { name: "Salir", value: "salir" },
+        ]);
 
         switch (opt) {
 
-            case 'Database':
+            case 'database':
                 await databaseMain();
                 break;
 
-            case 'NodeJS':
+            case 'nodejs':
                 await nodeMain();
                 break;
         
@@ -33,7 +37,7 @@ const main = async() => {
 
         await pause();
 
-    }while(opt != 'Salir')
+    }while(opt != 'salir')
 
     exitScreen();
 
