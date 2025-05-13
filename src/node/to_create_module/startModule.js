@@ -13,10 +13,9 @@ export const startModule = async () => {
     { name: "Controlador - Update", value: "controller_update", checked: true },
     { name: "Controlador - Destroy", value: "controller_destroy",checked: true },
     { name: "Repositorio", value: "repository", checked: true },
-    { name: "Rutas", value: "routes", checked: true },
+    { name: "Rutas", value: "route", checked: true },
     { name: "Migración", value: "migration", checked: true },
     { name: "Seeder", value: "seeder", checked: true },
-    { name: "Factory", value: "factory", checked: true },
     { name: "Archivo Postman", value: "postman", checked: true },
   ];
 
@@ -37,9 +36,6 @@ export const startModule = async () => {
   const singularName = await readInput("Nombre singular:", false, "AgendaUnloading");
   const pluralName = await readInput("Nombre plural:", false, "AgendaUnloadings");
   const inputColumns = await readInput("Columnas (separadas por espacio):", false, "name amount description");
-
-
-  //const columns = inputColumns.split(" ").map((col) => ({ name: col }));
 
 
   const columns = inputColumns
