@@ -60,8 +60,6 @@ export const generateModuleStandard = async(fullPath, selectedComponents, namesp
         await generateMigration(fullPath, namespace, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCamel, pluralNameCamel, columns);
     }
     
-     
-    
     if(selectedComponents.includes('seeder')){
         await generateSeeder(fullPath, namespace, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCamel, pluralNameCamel, columns);
     }
