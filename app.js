@@ -1,7 +1,7 @@
 import 'dotenv/config';
 import { clearScreen, exitScreen, menuMain, pause } from "./src/helpers/inquirer.js";
 import { startModule } from "./src/node/to_create_module/startModule.js";
-import { startProject } from "./src/node/to_create_project/startProject.js";
+import { nodeMain } from './src/node/ nodeMain.js';
 
 
 
@@ -9,22 +9,20 @@ const main = async() => {
     let opt = '';
 
     clearScreen();
-    console.log('NODEJS');
+    console.log('🔧 Generador de Código');
 
     do{
 
-        opt = await menuMain();
+        opt = await menuMain(['NodeJS', 'Salir']);
 
         switch (opt) {
-            case 'Proyecto':
-                await startProject();
+            case 'NodeJS':
+                await nodeMain();
                 break;
         
-            case 'Modulo':
-                await startModule();
-                break;
             
             default:
+                //console.log('❓ Opción no válida');
                 break;
         }
 

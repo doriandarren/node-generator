@@ -3,7 +3,7 @@ import "colors";
 
 
 
-export const menuMain = async(questions) => {
+export const menuMain = async(choices = []) => {
     console.clear();
     console.log('==============================='.green);
     console.log('    Seleccione un opción'.white);
@@ -13,13 +13,16 @@ export const menuMain = async(questions) => {
         type: 'list',
         name: 'selection',
         message: '¿Qué quieres crear?',
-        choices: ['Proyecto', 'Modulo', 'Salir'],
+        choices,
     }];
 
     const {selection} = await inquirer.prompt(q);
 
     return selection;
 }
+ 
+
+
  
 
 
