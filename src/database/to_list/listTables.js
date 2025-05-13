@@ -1,7 +1,7 @@
 
 
 
-export const listProject = async() => {
+export const listTables = async() => {
     
     console.log("Lista DATABASE");
 
