@@ -1,4 +1,4 @@
-import { clearScreen, menuMain, pause } from "../helpers/inquirer.js";
+import { clearScreen, menuMain, pause, readInput } from "../helpers/inquirer.js";
 import { startGenerate } from "./to_generate/startGenerate.js";
 import { listTables } from "./to_list/listTables.js";
 
@@ -38,9 +38,9 @@ export const databaseMain = async () => {
 
   // Configuración de entorno
   const passwordMap = {
-    local: process.env.DATABASE_LOCAL_PASSWORD || "",
-    docker1: process.env.DATABASE_DOCKER_PASSWORD || "",
-    docker2: process.env.DATABASE_DOCKER_PASSWORD || "",
+    local: process.env.DB_PASSWORD_LOCAL || "",
+    docker1: process.env.DB_PASSWORD_DOCKER1 || "",
+    docker2: process.env.DB_PASSWORD_DOCKER2 || "",
   };
 
   const portMap = {
@@ -60,34 +60,13 @@ export const databaseMain = async () => {
 
   // Ejecutar acción
   if (generatorType === "listar") {
-    await listTablesAndColumns(config);
+    await listTables(config);
   }
 
   if (generatorType === "generar") {
-    await generateTablesAndColumns(config);
+    await startGenerate(config);
   }
 
   console.log("\n✅ Operación finalizada.\n".green);
 
-  // do{
-
-  //     opt = await menuMain(['Listar', 'Generar', 'Salir']);
-
-  //     switch (opt) {
-  //         case 'Listar':
-  //             await listTables();
-  //             break;
-
-  //         case 'Generar':
-  //             await startGenerate();
-  //             break;
-
-  //         default:
-  //             break;
-  //     }
-
-  //     //TODO: Comentar luego para no hacer doble el entrer atras
-  //     await pause();
-
-  // }while(opt != 'Salir')
 };
