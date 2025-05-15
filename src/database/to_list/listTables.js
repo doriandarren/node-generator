@@ -1,8 +1,5 @@
 import mysql from 'mysql2/promise';
 
-
-
-
 export const listTables = async({ host, user, password, database, port, tables }) => {
     
     console.log("Lista DATABASE" , { host, user, password, database, port, tables });
