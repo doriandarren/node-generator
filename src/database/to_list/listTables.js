@@ -22,21 +22,23 @@ export const listTables = async({ host, user, password, database, port, tables }
         : await getAllTables(connection, database);
 
         for (const tableName of tablesToList) {
-        console.log(`📄 Tabla: ${tableName}`);
 
-        const [columns] = await connection.execute(`
-            SELECT COLUMN_NAME, DATA_TYPE, IS_NULLABLE, COLUMN_KEY
-            FROM INFORMATION_SCHEMA.COLUMNS
-            WHERE TABLE_SCHEMA = ? AND TABLE_NAME = ?
-        `, [database, tableName]);
+            console.log(`📄 Tabla: ${tableName}`);
 
-        columns.forEach(col => {
+            const [columns] = await connection.execute(`
+                SELECT COLUMN_NAME, DATA_TYPE, IS_NULLABLE, COLUMN_KEY
+                FROM INFORMATION_SCHEMA.COLUMNS
+                WHERE TABLE_SCHEMA = ? AND TABLE_NAME = ?
+            `, [database, tableName]);
+
+            columns.forEach(col => {
                 const pk = col.COLUMN_KEY === 'PRI' ? ' [PK]' : '';
                 const nullable = col.IS_NULLABLE === 'YES' ? ' (nullable)' : '';
                 console.log(`  - ${col.COLUMN_NAME} (${col.DATA_TYPE})${pk}${nullable}`);
             });
 
             console.log('');
+            
         }
 
         await connection.end();

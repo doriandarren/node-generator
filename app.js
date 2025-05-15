@@ -2,6 +2,7 @@ import 'dotenv/config';
 import { clearScreen, exitScreen, menuMain, pause } from "./src/helpers/inquirer.js";
 import { nodeMain } from './src/node/ nodeMain.js';
 import { databaseMain } from './src/database/databaseMain.js';
+import { phpMain } from './src/php/phpMain.js';
 
 
 
@@ -16,6 +17,7 @@ const main = async() => {
         opt = await menuMain([
             { name: "Database", value: "database" },
             { name: "NodeJS", value: "nodejs" },
+            { name: "PHP", value: "php" },
             { name: "Salir", value: "salir" },
         ]);
 
@@ -27,6 +29,10 @@ const main = async() => {
 
             case 'nodejs':
                 await nodeMain();
+                break;
+
+            case 'php':
+                await phpMain();
                 break;
         
             
