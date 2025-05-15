@@ -30,3 +30,21 @@ export function pascalToCamelCase(str) {
   if (!str) return '';
   return str.charAt(0).toLowerCase() + str.slice(1);
 }
+
+
+
+
+/**
+ * Convierte un String de SnakeCase a PascalCase
+ * @param {*} str 
+ * @returns 
+ */
+export const convertSnakeCaseToPascalCase = (str) => {
+  // convertir este nombre de la tabla de BD clientes_estandar a ClienteEstandar.
+  if (!str) return '';
+  
+  return str
+    .split('_')                              // ['clientes', 'estandar']
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()) // ['Clientes', 'Estandar']
+    .join('');  
+}
