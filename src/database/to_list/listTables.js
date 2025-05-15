@@ -4,7 +4,6 @@ export const listTables = async({ host, user, password, database, port, tables }
     
     console.log("Lista DATABASE" , { host, user, password, database, port, tables });
 
-
     try {
 
         const connection = await mysql.createConnection({
