@@ -1,5 +1,7 @@
 import pluralize from 'pluralize';
 
+
+
 /**
  * Convierte CamelCase a kebab-case.
  * @param {string} str
@@ -50,6 +52,9 @@ export const convertSnakeCaseToPascalCase = (str) => {
     .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()) // ['Clientes', 'Estandar']
     .join('');  
 }
+
+
+
 
 /**
  * Convierte un String de SnakeCase a PascalCase en Singular

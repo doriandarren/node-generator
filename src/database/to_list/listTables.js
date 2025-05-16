@@ -1,4 +1,6 @@
 import mysql from 'mysql2/promise';
+import { convertSnakeCaseToPascalCase, convertSnakeCaseToPascalSingularCase } from '../../helpers/helperString.js';
+import { printMessage } from '../../helpers/inquirer.js';
 
 export const listTables = async({ host, user, password, database, port, tables }) => {
     
@@ -23,7 +25,10 @@ export const listTables = async({ host, user, password, database, port, tables }
 
         for (const tableName of tablesToList) {
 
-            console.log(`📄 Tabla: ${tableName}`);
+            const tableNamePluralPascal = convertSnakeCaseToPascalCase(tableName);// ClientesEstandar
+            const tableNameSingularPascal = convertSnakeCaseToPascalSingularCase(tableName); //ClienteEstandar
+
+            printMessage(`📄 Tabla: ${tableName} ${tableNameSingularPascal} ${tableNamePluralPascal}`, 'yellow');
 
             const [columns] = await connection.execute(`
                 SELECT COLUMN_NAME, DATA_TYPE, IS_NULLABLE, COLUMN_KEY

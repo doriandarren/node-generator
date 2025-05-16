@@ -1,7 +1,7 @@
 
 import mysql from 'mysql2/promise';
 import { convertSnakeCaseToPascalCase, convertSnakeCaseToPascalSingularCase } from '../../helpers/helperString.js';
-import pluralize from 'pluralize';
+
 
 
 export const startGenerate = async({ host, user, password, database, port, tables }) => {
