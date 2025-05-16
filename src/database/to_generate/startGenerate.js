@@ -29,13 +29,13 @@ export const startGenerate = async({ host, user, password, database, port, table
         for (const tableName of tablesToList) {
             
         
-            const tableNamePascal = convertSnakeCaseToPascalCase(tableName);// ClientesEstandar
+            const tableNamePluralPascal = convertSnakeCaseToPascalCase(tableName);// ClientesEstandar
            
 
-            const tableNamePluralPascal = convertSnakeCaseToPascalSingularCase(tableName); //ClienteEstandar
+            const tableNameSingularPascal = convertSnakeCaseToPascalSingularCase(tableName); //ClienteEstandar
 
             //console.log(pascalCase, pluralPascalCase);
-            console.log(`📄 Tabla: ${tableName} ${tableNamePascal} ${tableNamePluralPascal}`);
+            console.log(`📄 Tabla: ${tableName} ${tableNameSingularPascal} ${tableNamePluralPascal} `);
          
             const [columns] = await connection.execute(`
                 SELECT COLUMN_NAME, DATA_TYPE, IS_NULLABLE, COLUMN_KEY
