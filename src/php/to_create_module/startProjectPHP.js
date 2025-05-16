@@ -1,10 +1,12 @@
-import { pause } from "../../helpers/inquirer";
+import { readInput } from "../../helpers/inquirer.js";
+import { generatePHPCommandLine } from "../to_create_project/generatePHPCommandLine.js";
+
 
 
 export const startProjectPHP = async() => {
     
     // Ruta predeterminada
-        const defaultPath = "/Users/dorian/NodejsProjects";
+        const defaultPath = "/Users/dorian/PhpstormProjects81";
     
         const projectName = await readInput("Nombre del proyecto Node: ");
         let projectPath = await readInput(`Ruta para crear el proyecto (por defecto: ${defaultPath}): `, true);
@@ -13,16 +15,19 @@ export const startProjectPHP = async() => {
         if( !projectPath){
             projectPath = defaultPath;
         }
-            
+        
     
         // Combinar la ruta y el nombre del proyecto
         const fullPath = `${projectPath}/${projectName}`;
 
 
 
-        console.log(fullPath);
+        await generatePHPCommandLine(fullPath);
 
-
-        await pause();
+        
 
 }
+
+
+
+
