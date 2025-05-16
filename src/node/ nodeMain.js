@@ -1,6 +1,6 @@
 import { clearScreen, menuMain, pause } from "../helpers/inquirer.js";
-import { startModule } from "./to_create_module/startModule.js";
-import { startProject } from "./to_create_project/startProject.js";
+import { startModuleNodeJS } from "./to_create_module/startModuleNodeJS.js";
+import { startProjectNodeJS } from "./to_create_project/startProjectNodeJS.js";
 
 
 export const nodeMain = async() => {
@@ -15,11 +15,11 @@ export const nodeMain = async() => {
 
         switch (opt) {
             case 'Proyecto':
-                await startProject();
+                await startProjectNodeJS();
                 break;
         
             case 'Modulo':
-                await startModule();
+                await startModuleNodeJS();
                 break;
             
             default:

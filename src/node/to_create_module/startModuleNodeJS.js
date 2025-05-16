@@ -2,7 +2,7 @@ import inquirer from "inquirer";
 import { pause, readInput, clearScreen } from "../../helpers/inquirer.js";
 import { generateModuleStandard } from "./generateModuleStandard.js";
 
-export const startModule = async () => {
+export const startModuleNodeJS = async () => {
   await clearScreen();
 
   const opt = [

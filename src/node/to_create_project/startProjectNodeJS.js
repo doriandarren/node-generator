@@ -22,7 +22,7 @@ import { generateControllerUsers } from "./generateControllerUsers.js";
 
 
 
-export const startProject = async() => {
+export const startProjectNodeJS = async() => {
     
     // Ruta predeterminada
     const defaultPath = "/Users/dorian/NodejsProjects";
@@ -58,9 +58,7 @@ export const startProject = async() => {
     await generateEnums(fullPath);
     
     await generateDatabase(fullPath);
-
-
-    //TODO falta 
+    
     await generateControllerAuth(fullPath);
     await generateControllerCategories(fullPath);
     await generateControllerItems(fullPath);
