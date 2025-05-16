@@ -9,8 +9,7 @@
 
 - Empezar a generar Modulo (Route, Repository, Controller, Modelos)
 - Agregar selector de la ruta de: C:\Users\miled\Desktop\WorkSpaceNode\PROYECTOS
-- Milena: convertir el String de la Tabla de plural a singular
-
+- Milena: quitar de las columnas: id, create_at, update_at y delete_at
 
 
 
