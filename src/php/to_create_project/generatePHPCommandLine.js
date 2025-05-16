@@ -1,11 +1,11 @@
 import fs from 'fs';
 import path from 'path';
-import { createFolder } from '../../helpers/helperFile.js';
 import { runExec, createFolder } from "../../helpers/helperFile.js";
+import { printMessage } from '../../helpers/inquirer.js';
 
 
 
-export const generatePHPCommandLine = async() => {    
+export const generatePHPCommandLine = async(fullPath) => {    
 
     await createProject(fullPath);
     await createInstallSanctum(fullPath);
@@ -17,13 +17,13 @@ export const generatePHPCommandLine = async() => {
 const createProject = async (fullPath) => {
     // Verifica si el directorio ya existe
     if (fs.existsSync(fullPath)) {
-        printMessage(`El directorio ${fullPath} ya existe. Abortando.`, 'green');
+        printMessage(`El directorio ${fullPath} ya existe. Abortando.`);
         return;
     }
 
     const cmd = `composer create-project --prefer-dist laravel/laravel ${fullPath}`;
     await runExec(cmd);
-    printMessage(`Proyecto Laravel creado en: ${fullPath}`, 'green');
+    printMessage(`Proyecto Laravel creado en: ${fullPath}`);
 };
 
 
@@ -31,15 +31,7 @@ const createProject = async (fullPath) => {
 const createInstallSanctum = async (fullPath) => {
     printMessage('Instalando Sanctum...', 'cyan');
     await runExec(`php artisan install:api -n`, fullPath);
-    printMessage('Sanctum instalado correctamente.', 'green');
+    printMessage('Sanctum instalado correctamente.');
 };
 
 
-
-
-
-// const createProject = async(fullPath) => {
-//     createFolder(fullPath);
-//     const cmd = `XXX`;
-//     await runExec(cmd, fullPath);
-// }

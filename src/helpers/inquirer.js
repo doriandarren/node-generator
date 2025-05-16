@@ -72,3 +72,24 @@ export const pause = async() => {
     console.log('\n');
     await inquirer.prompt(question);
 }
+
+
+
+
+/**
+ * Imprime un mensaje en consola con color
+ * @param {string} message - El mensaje a imprimir
+ * @param {'green' | 'cyan' | 'red' | 'yellow' | 'white'} color - El color del texto
+ */
+export const printMessage = (message, color = 'green') => {
+    const colors = {
+        green: message => message.green,
+        cyan: message => message.cyan,
+        red: message => message.red,
+        yellow: message => message.yellow,
+        white: message => message.white,
+    };
+
+    const colorFn = colors[color] || colors.white;
+    console.log(colorFn(message));
+};
