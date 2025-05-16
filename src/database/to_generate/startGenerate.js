@@ -1,6 +1,8 @@
 
 import mysql from 'mysql2/promise';
-import { convertSnakeCaseToPascalCase } from '../../helpers/helperString.js';
+import { convertSnakeCaseToPascalCase, convertSnakeCaseToPascalSingularCase } from '../../helpers/helperString.js';
+import pluralize from 'pluralize';
+
 
 export const startGenerate = async({ host, user, password, database, port, tables }) => {
     
@@ -26,9 +28,15 @@ export const startGenerate = async({ host, user, password, database, port, table
 
         for (const tableName of tablesToList) {
             console.log(`📄 Tabla: ${tableName}`);
-            console.log(convertSnakeCaseToPascalCase(tableName)); // ClienteEstandar
 
+            const pascalCase = convertSnakeCaseToPascalCase(tableName);// ClientesEstandar
+           
 
+            const pluralPascalCase = convertSnakeCaseToPascalSingularCase(tableName); //ClienteEstandar
+
+            console.log(pascalCase, pluralPascalCase);
+              
+         
             const [columns] = await connection.execute(`
                 SELECT COLUMN_NAME, DATA_TYPE, IS_NULLABLE, COLUMN_KEY
                 FROM INFORMATION_SCHEMA.COLUMNS

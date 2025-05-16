@@ -54,6 +54,9 @@ npm install sequelize mysql2            // ORM Sequelize
 npm i jsonwebtoken                      // JSON webtoken
 npm i uuid                              // UUID
 npm install mysql2                      // Para lectura de DB
+npm install pluralize                   // Para convertir String a singular
+
+
 
 
 ```
