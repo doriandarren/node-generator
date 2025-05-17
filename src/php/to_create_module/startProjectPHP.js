@@ -1,5 +1,7 @@
 import { readInput } from "../../helpers/inquirer.js";
+import { generateFpdfMerge } from "../to_create_project/generateFpdfMerge.js";
 import { generatePHPCommandLine } from "../to_create_project/generatePHPCommandLine.js";
+import { generateSnappy } from "../to_create_project/generateSnappy.js";
 
 
 
@@ -23,6 +25,8 @@ export const startProjectPHP = async() => {
 
 
         await generatePHPCommandLine(fullPath);
+        await generateSnappy(fullPath);
+        await generateFpdfMerge(fullPath);
 
         
 

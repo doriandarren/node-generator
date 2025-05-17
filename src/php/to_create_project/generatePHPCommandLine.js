@@ -33,5 +33,3 @@ const createInstallSanctum = async (fullPath) => {
     await runExec(`php artisan install:api -n`, fullPath);
     printMessage('Sanctum instalado correctamente.');
 };
-
-
