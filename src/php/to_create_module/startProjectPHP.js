@@ -1,8 +1,10 @@
 import { readInput } from "../../helpers/inquirer.js";
+import { generateBaseController } from "../to_create_project/generateBaseController.js";
 import { generateBatchProcesses } from "../to_create_project/generateBatchProcesses.js";
 import { generateEnums } from "../to_create_project/generateEnums.js";
 import { generateFpdfMerge } from "../to_create_project/generateFpdfMerge.js";
 import { generateMaatwebsiteExcel } from "../to_create_project/generateMaatwebsiteExcel.js";
+import { generateModuleAuth } from "../to_create_project/generateModuleAuth.js";
 import { generatePHPCommandLine } from "../to_create_project/generatePHPCommandLine.js";
 import { generateSnappy } from "../to_create_project/generateSnappy.js";
 
@@ -32,9 +34,9 @@ export const startProjectPHP = async() => {
     await generateEnums(fullPath);
 
     await generateBatchProcesses(fullPath);
+    await generateBaseController(fullPath);
 
-
-
+    await generateModuleAuth(fullPath);
 
 
 
