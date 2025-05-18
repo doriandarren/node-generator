@@ -14,7 +14,6 @@ export const updateModelUser = async(fullPath) => {
 
 
 
-
 const updateUse = async (fullPath) => {
   const userModelPath = path.join(fullPath, 'app', 'Models', 'User.php');
 
@@ -154,10 +153,4 @@ const updateLastLine = async (fullPath) => {
   } catch (error) {
     console.error(`❌ Error al actualizar ${userModelPath}: ${error.message}`.cyan);
   }
-};
-
-
-
-
-
-
+}

@@ -11,6 +11,14 @@ import { generateShared } from "./shared/generateShared.js";
 import { generateUtilities } from "./utilities/generateUtilities.js";
 import { updateModelUser } from "./updates/updateModelUser.js";
 import { updateAppPhp } from "./updates/updateAppPhp.js";
+import { updateReadme } from "./updates/updateReadme.js";
+import { generateExecuteController } from "./dev/generateExecuteController.js";
+import { generateTestController } from "./dev/generateTestController.js";
+import { generateRouteTest } from "./dev/generateRouteTest.js";
+import { updateGitignore } from "./updates/updateGitignore.js";
+import { generateCompanyLogos } from "./generateCompanyLogos.js";
+import { updateWelcomeBlade } from "./updates/updateWelcomeBlade.js";
+import { updateRouteApiPhp } from "./updates/updateRouteApiPhp.js";
 
 
 
@@ -49,12 +57,30 @@ export const startProjectPHP = async() => {
     await generateShared(fullPath);  // TODO   --------......--------
 
 
+
+
     await generateUtilities(fullPath);
+
+    // Updates
     await updateModelUser(fullPath);
     await updateAppPhp(fullPath);
     await updateModelUser(fullPath);
+    await updateReadme(fullPath);
+    await updateGitignore(fullPath);
 
 
+
+    // Dev
+    await generateExecuteController(fullPath);
+    await generateTestController(fullPath);
+    await generateRouteTest(fullPath);
+
+    await generateCompanyLogos(fullPath);
+
+    await updateWelcomeBlade(fullPath);
+
+    await updateRouteApiPhp(fullPath);
+    
 
 
 }
