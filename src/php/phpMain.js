@@ -1,6 +1,8 @@
 import { clearScreen, menuMain, pause } from "../helpers/inquirer.js";
-import { startProjectPHP } from "./to_create_module/startProjectPHP.js";
-import { startModulePHP } from "./to_create_project/startModulePHP.js";
+import { startModulePHP } from "./to_create_module/startModulePHP.js";
+import { startProjectPHP } from "./to_create_project/startProjectPHP.js";
+
+
 
 export const phpMain = async () => {
   let opt = "";
