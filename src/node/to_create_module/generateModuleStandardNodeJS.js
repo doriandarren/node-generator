@@ -13,7 +13,7 @@ import { generatePostman } from "./generatePostman.js";
 
 
 
-export const generateModuleStandard = async(fullPath, selectedComponents, namespace, singularName, pluralName, columns) => {
+export const generateModuleStandardNodeJS = async(fullPath, selectedComponents, namespace, singularName, pluralName, columns) => {
     
     const singularNameKebab = pascalToKebab(singularName);   // invoice-header
     const pluralNameKebab = pascalToKebab(pluralName);       // invoice-headers

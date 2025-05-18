@@ -55,6 +55,7 @@ export const startProjectPHP = async() => {
 
 
     await generateShared(fullPath);  // TODO   --------......--------
+    
 
 
 

@@ -1,6 +1,6 @@
 import inquirer from "inquirer";
 import { pause, readInput, clearScreen } from "../../helpers/inquirer.js";
-import { generateModuleStandard } from "./generateModuleStandard.js";
+import { generateModuleStandardNodeJS } from "./generateModuleStandardNodeJS.js";
 
 export const startModuleNodeJS = async () => {
   await clearScreen();
@@ -39,14 +39,14 @@ export const startModuleNodeJS = async () => {
 
 
   const columns = inputColumns
-                          .split(" ")
-                          .map((col) => ({
-                            name: col,
-                            type: 'STRING',       // por defecto STRING
-                            allowNull: true       // por defecto true
-                          }));
+    .split(" ")
+    .map((col) => ({
+      name: col,
+      type: 'STRING',       // por defecto STRING
+      allowNull: true       // por defecto true
+    }));
 
-  await generateModuleStandard(
+  await generateModuleStandardNodeJS(
     fullPath,
     selectedComponents,
     namespace,
@@ -55,9 +55,7 @@ export const startModuleNodeJS = async () => {
     columns
   );
 
-
-
-};
+}
 
 
 
