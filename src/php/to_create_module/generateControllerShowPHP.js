@@ -1,29 +1,25 @@
 import fs from 'fs';
 import path from 'path';
-import { createControllerStructure } from '../../helpers/helperFile.js'; // debe existir esta función
+import { createFolder } from '../../helpers/helperFile.js';
 
 export const generateControllerShowPHP = async (
   fullPath,
   namespace,
+  pathController,
   singularName,
   pluralName,
-  singularNameKebab,
-  pluralNameKebab,
   singularNameSnake,
-  pluralNameSnake,
-  singularNameCamel,
-  pluralNameCamel,
-  columns
+  pluralNameSnake
 ) => {
-  // Crear la estructura de carpetas app/pathController dentro de fullPath
-  const controllerFolderPath = createControllerStructure(fullPath, pathController);
+  // Carpeta destino: app/{pathController}
+  const folderPath = path.join(fullPath, 'app', pathController);
+  const filePath = path.join(folderPath, `${singularName}ShowController.php`);
 
-  // Nombre del archivo PHP
-  const fileName = `${singularName}ShowController.php`;
-  const controllerFilePath = path.join(controllerFolderPath, fileName);
+  // Crear carpeta si no existe
+  createFolder(folderPath);
 
-  // Contenido del archivo PHP
-  const controllerContent = `<?php
+  // Contenido del archivo
+  const code = `<?php
 
 namespace App\\Http\\Controllers\\${namespace}\\${pluralName};
 
@@ -62,13 +58,13 @@ class ${singularName}ShowController extends Controller
         }
     }
 }
-`;
+`.trimStart();
 
-  // Crear el archivo
+  // Escribir el archivo
   try {
-    fs.writeFileSync(controllerFilePath, controllerContent);
-    console.log(`✅ Archivo PHP controlador '${fileName}' creado en: ${controllerFolderPath}`);
+    fs.writeFileSync(filePath, code, 'utf-8');
+    console.log(`✅ Archivo controlador creado: ${filePath}`.green);
   } catch (error) {
-    console.error(`❌ Error al crear el archivo PHP del controlador '${fileName}': ${error.message}`);
+    console.error(`❌ Error al crear archivo controlador: ${error.message}`.red);
   }
 };
