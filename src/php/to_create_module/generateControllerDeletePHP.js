@@ -4,8 +4,6 @@ import { createFolder } from '../../helpers/helperFile.js';
 
 
 
-
-
 export const generateControllerDestroyPHP = async (
   fullPath,
   namespace,
