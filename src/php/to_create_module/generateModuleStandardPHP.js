@@ -1,7 +1,5 @@
-import { generateControllerListPHP } from "./generateControllerListPHP.js";
-import { generateControllerShowPHP } from "./generateControllerShowPHP.js";
-import { generateControllerStorePHP } from "./generateControllerStorePHP.js";
-import { generateModelPHP } from "./generateModelPHP.js";
+import { generateModelPHP } from "./generateModelPHP";
+
 
 export const generateModuleStandardPHP = async (
   fullPath,
@@ -26,18 +24,30 @@ export const generateModuleStandardPHP = async (
   //}
 
 
-    await generateControllerListPHP(fullPath, namespace, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCamel, pluralNameCamel, columns);
+    await generateControllerListPH(fullPath, namespace, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCamel, pluralNameCamel, columns);
 
 
-    await generateControllerShowPHP(fullPath, namespace, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCamel, pluralNameCamel, columns);
-
-
-    
-    await generateControllerStorePHP(fullPath, namespace, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCamel, pluralNameCamel, columns);
-
+    // await generateControllerShowPHP(fullPath, namespace, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCamel, pluralNameCamel, columns);
 
 
     
+    // await generateControllerStorePHP(fullPath, namespace, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCamel, pluralNameCamel, columns);
+
+
+
+    // await generateControllerUpdatePHP(fullPath, namespace, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCamel, pluralNameCamel, columns);
+
+
+
+    // await generateControllerDeletePHP(fullPath, namespace, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCamel, pluralNameCamel, columns);
+
+
+    // await generateControllerRepositoryPHP(fullPath, namespace, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCamel, pluralNameCamel, columns);
+
+
+
+
+
 
 
 

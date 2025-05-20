@@ -3,7 +3,10 @@ import path from 'path';
 import { createFolder } from '../../helpers/helperFile.js';
 
 
-export const generateControllerListPHP = async (
+
+
+
+export const generateControllerDestroyPHP = async (
   fullPath,
   namespace,
   singularName,
@@ -13,27 +16,28 @@ export const generateControllerListPHP = async (
   singularNameSnake,
   pluralNameSnake,
   singularNameCamel,
-  pluralNameCamel
+  pluralNameCamel,
+  columns
 ) => {
-  
-
+  // Carpeta: app/Http/Controllers/{namespace}/{pluralName}
   const folderPath = path.join(fullPath, 'app', 'Http', 'Controllers', namespace, pluralName);
-  
-  const filePath = path.join(folderPath, `${singularName}ListController.php`);
+  const filePath = path.join(folderPath, `${singularName}DestroyController.php`);
 
+  // Crear carpeta si no existe
   createFolder(folderPath);
 
-  
+  // Contenido del archivo PHP
   const code = `<?php
 
 namespace App\\Http\\Controllers\\${namespace}\\${pluralName};
 
+use App\\Models\\${pluralName}\\${singularName};
 use Illuminate\\Http\\JsonResponse;
 use Illuminate\\Http\\Request;
 use App\\Http\\Controllers\\Controller;
 use App\\Repositories\\${pluralName}\\${singularName}Repository;
 
-class ${singularName}ListController extends Controller
+class ${singularName}DestroyController extends Controller
 {
     private ${singularName}Repository \$repository;
 
@@ -44,21 +48,21 @@ class ${singularName}ListController extends Controller
 
     /**
     * @header Authorization Bearer TOKEN 
+    * @urlParam id required The ID of the table.
     *
     * @param Request \$request
+    * @param ${singularName} \$${singularNameSnake}
     * @return JsonResponse
     */
-    public function __invoke(Request \$request): JsonResponse
+    public function __invoke(Request \$request, ${singularName} \$${singularNameSnake}): JsonResponse
     {
         if (\$this->isAdmin(auth()->user()->roles)) {
-            \$data = \$this->repository->list();
-        } elseif (\$this->isManager(auth()->user()->roles)) {
-            \$data = \$this->repository->listByRoleManager();
+            \$data = \$this->repository->destroy(\$${singularNameSnake}->id);
+            return \$this->respondWithData('${singularName} deleted', \$data);
         } else {
-            \$data = \$this->repository->listByRoleUser();
+            \$data = \$this->repository->destroy(\$${singularNameSnake}->id);
+            return \$this->respondWithData('${singularName} deleted', \$data);
         }
-        
-        return \$this->respondWithData('${pluralName} list', \$data);
     }
 }
 `.trimStart();
