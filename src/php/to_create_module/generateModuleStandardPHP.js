@@ -1,3 +1,6 @@
+import { generateControllerListPHP } from "./generateControllerListPHP.js";
+import { generateControllerShowPHP } from "./generateControllerShowPHP.js";
+import { generateControllerStorePHP } from "./generateControllerStorePHP.js";
 import { generateModelPHP } from "./generateModelPHP.js";
 
 export const generateModuleStandardPHP = async (
@@ -21,6 +24,20 @@ export const generateModuleStandardPHP = async (
   //if(selectedComponents.includes('model')){
     await generateModelPHP(fullPath, namespace, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCamel, pluralNameCamel, columns);
   //}
+
+
+    await generateControllerListPHP(fullPath, namespace, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCamel, pluralNameCamel, columns);
+
+
+    await generateControllerShowPHP(fullPath, namespace, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCamel, pluralNameCamel, columns);
+
+
+    
+    await generateControllerStorePHP(fullPath, namespace, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCamel, pluralNameCamel, columns);
+
+
+
+    
 
 
 
