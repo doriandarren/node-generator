@@ -1,4 +1,6 @@
+import { pascalToCamelCase, pascalToKebab, pascalToSnake } from "../../helpers/helperString.js";
 import { generateControllerDestroyPHP } from "./generateControllerDeletePHP.js";
+import { generateControllerListPHP } from "./generateControllerListPHP.js";
 import { generateControllerShowPHP } from "./generateControllerShowPHP.js";
 import { generateControllerStorePHP } from "./generateControllerStorePHP.js";
 import { generateControllerUpdatePHP } from "./generateControllerUpdatePHP.js";
@@ -32,7 +34,7 @@ export const generateModuleStandardPHP = async (
   //}
 
 
-    await generateControllerListPH(fullPath, namespace, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCamel, pluralNameCamel, columns);
+    await generateControllerListPHP(fullPath, namespace, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCamel, pluralNameCamel, columns);
 
 
     await generateControllerShowPHP(fullPath, namespace, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCamel, pluralNameCamel, columns);

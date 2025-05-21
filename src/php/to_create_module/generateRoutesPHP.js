@@ -15,8 +15,9 @@ export const generateRoutesPHP = async (
   pluralNameCamel,
   columns
 ) => {
-  // Carpeta: base_ruta/pathRoutes/namespace
-  const folderPath = path.join(fullPath, pathRoutes, namespace);
+  
+  const folderPath = path.join(fullPath, 'routes', namespace);
+
   const filePath = path.join(folderPath, `${pluralNameSnake}.php`);
 
   // Crear carpeta si no existe

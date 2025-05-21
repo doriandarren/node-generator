@@ -18,11 +18,11 @@ export const generateControllerUpdatePHP = async (
   pluralNameCamel,
   columns
 ) => {
-  // Carpeta: app/Http/Controllers/{namespace}/{pluralName}
+
   const folderPath = path.join(fullPath, 'app', 'Http', 'Controllers', namespace, pluralName);
+
   const filePath = path.join(folderPath, `${singularName}UpdateController.php`);
 
-  // Crear carpeta si no existe
   createFolder(folderPath);
 
   // Comentarios @bodyParam

@@ -11,14 +11,14 @@ export const generateControllerShowPHP = async (
   singularNameSnake,
   pluralNameSnake
 ) => {
-  // Carpeta destino: app/{pathController}
-  const folderPath = path.join(fullPath, 'app', pathController);
+
+  const folderPath = path.join(fullPath, 'app', 'Http', 'Controllers', namespace, pluralName);
+  
   const filePath = path.join(folderPath, `${singularName}ShowController.php`);
 
-  // Crear carpeta si no existe
   createFolder(folderPath);
 
-  // Contenido del archivo
+  
   const code = `<?php
 
 namespace App\\Http\\Controllers\\${namespace}\\${pluralName};

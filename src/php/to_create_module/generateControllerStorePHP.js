@@ -8,7 +8,6 @@ import { createFolder } from '../../helpers/helperFile.js';
 export const generateControllerStorePHP = async (
   fullPath,
   namespace,
-  pathController,
   singularName,
   pluralName,
   singularNameKebab,
@@ -19,11 +18,18 @@ export const generateControllerStorePHP = async (
   pluralNameCamel,
   columns
 ) => {
-  const folderPath = path.join(fullPath, 'app', pathController);
+  const folderPath = path.join(fullPath, 'app', 'Http', 'Controllers', namespace, pluralName);
+  
   const filePath = path.join(folderPath, `${singularName}StoreController.php`);
 
   // Crear carpeta si no existe
   createFolder(folderPath);
+
+
+
+  console.log(columns);
+
+
 
   // Comentarios @bodyParam
   const bodyParamComments = columns.map(col =>

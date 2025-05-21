@@ -1,4 +1,5 @@
-import { clearScreen, readInput } from "../../helpers/inquirer.js";
+import inquirer from "inquirer";
+import { clearScreen, pause, readInput } from "../../helpers/inquirer.js";
 import { generateModuleStandardPHP } from "./generateModuleStandardPHP.js";
 
 
@@ -34,8 +35,6 @@ export const startModulePHP = async () => {
     },
   ]);
 
-  await pause();
-
   const fullPath = await readInput(
     "Ruta Proyecto:",
     false,
@@ -62,6 +61,7 @@ export const startModulePHP = async () => {
     "name amount description"
   );
 
+
   const columns = inputColumns.split(" ").map((col) => ({
     name: col,
     type: "STRING", // por defecto STRING
@@ -76,4 +76,8 @@ export const startModulePHP = async () => {
     pluralName,
     columns
   );
+
+
+  //await pause();
+
 };
