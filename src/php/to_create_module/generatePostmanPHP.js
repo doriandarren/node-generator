@@ -16,12 +16,12 @@ export const generatePostmanPHP = async (
   pluralNameCamel,
   columns
 ) => {
-  // Carpeta: public/Scripts
-  const folderPath = path.join(fullPath, 'public', 'Scripts');
-  const fileName = `${singularName}Collection.json`;
-  const filePath = path.join(folderPath, fileName);
 
-  // Crear carpeta si no existe
+  const folderPath = path.join(fullPath, 'public', 'Scripts');
+  
+  const filePath = path.join(folderPath, `${singularName}Collection.json`);
+
+  
   createFolder(folderPath);
 
   const columnNames = columns.map(col => col.name);

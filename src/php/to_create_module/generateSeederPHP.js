@@ -15,12 +15,13 @@ export const generateSeederPHP = async (
   pluralNameCamel,
   columns
 ) => {
-  // Carpeta: base/pathSeeder
-  const folderPath = path.join(fullPath, pathSeeder);
-  const fileName = `${singularName}Seeder.php`;
-  const filePath = path.join(folderPath, fileName);
+  
 
-  // Crear carpeta si no existe
+  const folderPath = path.join(fullPath, 'database', 'seeders', pluralName);
+  
+  const filePath = path.join(folderPath, `${singularName}Seeder.php`);
+  
+  
   createFolder(folderPath);
 
   // Columnas en el factory
@@ -31,7 +32,7 @@ export const generateSeederPHP = async (
   // Contenido del archivo PHP del seeder
   const code = `<?php
 
-namespace Database\\Seeders;
+namespace Database\\Seeders\\${pluralName};
 
 use Illuminate\\Database\\Seeder;
 use App\\Models\\${pluralName}\\${singularName};

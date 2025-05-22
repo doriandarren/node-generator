@@ -5,7 +5,9 @@ import { generateControllerShowPHP } from "./generateControllerShowPHP.js";
 import { generateControllerStorePHP } from "./generateControllerStorePHP.js";
 import { generateControllerUpdatePHP } from "./generateControllerUpdatePHP.js";
 import { generateFactoryPHP } from "./generateFactoryPHP.js";
+import { generateMigrationPHP } from "./generateMigrationPHP.js";
 import { generateModelPHP } from "./generateModelPHP.js";
+import { generatePostmanPHP } from "./generatePostmanPHP.js";
 import { generateRepositoryPHP } from "./generateRepositoryPHP.js";
 import { generateRoutesPHP } from "./generateRoutesPHP.js";
 import { generateSeederPHP } from "./generateSeederPHP.js";
@@ -64,7 +66,8 @@ export const generateModuleStandardPHP = async (
     await generateFactoryPHP(fullPath, namespace, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCamel, pluralNameCamel, columns);
 
 
-     await generatePostmanPHP(fullPath, namespace, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCamel, pluralNameCamel, columns);
+
+    await generatePostmanPHP(fullPath, namespace, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCamel, pluralNameCamel, columns);
 
 
 

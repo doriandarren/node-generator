@@ -5,11 +5,15 @@ import { createFolder } from '../../helpers/helperFile.js';
 export const generateControllerShowPHP = async (
   fullPath,
   namespace,
-  pathController,
   singularName,
   pluralName,
+  singularNameKebab,
+  pluralNameKebab,
   singularNameSnake,
-  pluralNameSnake
+  pluralNameSnake,
+  singularNameCamel,
+  pluralNameCamel,
+  columns
 ) => {
 
   const folderPath = path.join(fullPath, 'app', 'Http', 'Controllers', namespace, pluralName);

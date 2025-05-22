@@ -4,7 +4,7 @@ import { createFolder } from '../../helpers/helperFile.js';
 
 
 export const generateControllerListPHP = async (
-  fullPath,
+   fullPath,
   namespace,
   singularName,
   pluralName,
@@ -13,7 +13,8 @@ export const generateControllerListPHP = async (
   singularNameSnake,
   pluralNameSnake,
   singularNameCamel,
-  pluralNameCamel
+  pluralNameCamel,
+  columns
 ) => {
   
 

@@ -26,6 +26,7 @@ export const generateMigrationPHP = async (
   pluralNameCamel,
   columns
 ) => {
+  
   const folderPath = path.join(fullPath, 'database', 'migrations');
   const now = new Date();
   const formattedDate = now.toISOString().replace(/[-:T]/g, '_').split('.')[0]; // yyyy_MM_dd_HH_MM_SS
