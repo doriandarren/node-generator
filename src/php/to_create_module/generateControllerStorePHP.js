@@ -26,11 +26,6 @@ export const generateControllerStorePHP = async (
   createFolder(folderPath);
 
 
-
-  console.log(columns);
-
-
-
   // Comentarios @bodyParam
   const bodyParamComments = columns.map(col =>
     `    * @bodyParam ${col.name} string required`

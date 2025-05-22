@@ -3,6 +3,7 @@ import { clearScreen, exitScreen, menuMain, pause } from "./src/helpers/inquirer
 import { nodeMain } from './src/node/ nodeMain.js';
 import { databaseMain } from './src/database/databaseMain.js';
 import { phpMain } from './src/php/phpMain.js';
+import { reactMain } from './src/react/reactMain.js';
 
 
 
@@ -18,6 +19,7 @@ const main = async() => {
             { name: "Database", value: "database" },
             { name: "NodeJS", value: "nodejs" },
             { name: "PHP", value: "php" },
+            { name: "React", value: "react" },
             { name: "Salir", value: "salir" },
         ]);
 
@@ -35,6 +37,9 @@ const main = async() => {
                 await phpMain();
                 break;
         
+            case 'php':
+                await reactMain();
+                break;
             
             default:
                 //console.log('❓ Opción no válida');

@@ -31,7 +31,7 @@ export const startProjectPHP = async() => {
     // Ruta predeterminada
     const defaultPath = "/Users/dorian/PhpstormProjects81";
 
-    const projectName = await readInput("Nombre del proyecto Node: ");
+    const projectName = await readInput("Nombre del proyecto: ");
     let projectPath = await readInput(`Ruta para crear el proyecto (por defecto: ${defaultPath}): `, true);
 
     // Si no se introduce una ruta, usar la predeterminada

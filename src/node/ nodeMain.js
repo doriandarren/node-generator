@@ -11,14 +11,18 @@ export const nodeMain = async() => {
 
     do{
 
-        opt = await menuMain(['Proyecto', 'Modulo', 'Salir']);
+        opt = await menuMain([
+            { name: "Proyecto", value: "proyect" },
+            { name: "Módulo", value: "module" },
+            { name: "Atrás", value: "back" },
+        ]);
 
         switch (opt) {
-            case 'Proyecto':
+            case 'proyect':
                 await startProjectNodeJS();
                 break;
         
-            case 'Modulo':
+            case 'module':
                 await startModuleNodeJS();
                 break;
             
@@ -28,6 +32,6 @@ export const nodeMain = async() => {
 
         //await pause();
 
-    }while(opt != 'Salir')
+    }while(opt != 'back')
 
 }

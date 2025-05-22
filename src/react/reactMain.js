@@ -1,15 +1,15 @@
 import { clearScreen, menuMain, pause } from "../helpers/inquirer.js";
-import { startModulePHP } from "./to_create_module/startModulePHP.js";
-import { startProjectPHP } from "./to_create_project/startProjectPHP.js";
+import { startModuleReact } from "./to_create_module/startModuleReact.js";
+import { startProjectReact } from "./to_create_project/startProjectReact.js";
 
 
 
-export const phpMain = async () => {
+export const reactMain = async () => {
   let opt = "";
 
   clearScreen();
 
-  console.log("PHP");
+  console.log("REACT");
 
   do {
     opt = await menuMain([
@@ -20,11 +20,11 @@ export const phpMain = async () => {
 
     switch (opt) {
       case "proyect":
-        await startProjectPHP();
+        await startProjectReact();
         break;
 
       case "module":
-        await startModulePHP();
+        await startModuleReact();
         break;
 
       default:
