@@ -1,5 +1,9 @@
 # Project
 
+## Ruta Mile no borrar
+C:\Users\miled\Desktop\WorkSpaceNode\PROYECTOS\app1
+splytin_api
+
 # TODO Tareas Pendientes:
 
 - Crear todos los controller de Authenticacion Recuperacion de contraseña y demás
@@ -9,7 +13,11 @@
 
 - Empezar a generar Modulo (Route, Repository, Controller, Modelos)
 - Agregar selector de la ruta de: C:\Users\miled\Desktop\WorkSpaceNode\PROYECTOS
-- Milena: quitar de las columnas: id, create_at, update_at y delete_at
+
+
+
+- Milena: quitar de las columnas: id, created_at, updated_at y deleted_at LISTO
+- Terminar con la llamada a callGenerate
 
 
 

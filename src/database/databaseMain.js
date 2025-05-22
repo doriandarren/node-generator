@@ -22,9 +22,9 @@ export const databaseMain = async () => {
 
   // Leer nombre base de datos (con valor por defecto)
   const dbName = await readInput(
-    "Nombre de la base de datos [portuarios_api]:",
+    "Nombre de la base de datos [splytin_api]:",
     true,
-    "portuarios_api"
+    "splytin_api"
   );
 
   // Leer nombres de tablas separados por espacio
