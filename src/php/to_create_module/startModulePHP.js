@@ -14,11 +14,7 @@ export const startModulePHP = async () => {
     { name: "Controlador - Show", value: "controller_show", checked: true },
     { name: "Controlador - Store", value: "controller_store", checked: true },
     { name: "Controlador - Update", value: "controller_update", checked: true },
-    {
-      name: "Controlador - Destroy",
-      value: "controller_destroy",
-      checked: true,
-    },
+    { name: "Controlador - Destroy", value: "controller_destroy", checked: true, },
     { name: "Repositorio", value: "repository", checked: true },
     { name: "Rutas", value: "route", checked: true },
     { name: "Migración", value: "migration", checked: true },

@@ -30,45 +30,53 @@ export const generateModuleStandardPHP = async (
   const pluralNameCamel = pascalToCamelCase(pluralName); // invoiceHeaders
 
 
-
-  //if(selectedComponents.includes('model')){
+  if(selectedComponents.includes('model')){
     await generateModelPHP(fullPath, namespace, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCamel, pluralNameCamel, columns);
-  //}
+  }
 
-
+  if(selectedComponents.includes('route')){
+    await generateRoutesPHP(fullPath, namespace, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCamel, pluralNameCamel, columns);
+  }
+  
+  if(selectedComponents.includes('controller_list')){
     await generateControllerListPHP(fullPath, namespace, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCamel, pluralNameCamel, columns);
-
-
+  }
+  
+  if(selectedComponents.includes('controller_show')){
     await generateControllerShowPHP(fullPath, namespace, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCamel, pluralNameCamel, columns);
+  }
 
-
+  if(selectedComponents.includes('controller_store')){
     await generateControllerStorePHP(fullPath, namespace, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCamel, pluralNameCamel, columns);
 
-
+  }
+  
+  if(selectedComponents.includes('controller_update')){
     await generateControllerUpdatePHP(fullPath, namespace, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCamel, pluralNameCamel, columns);
+  }
 
-
+  if(selectedComponents.includes('controller_destroy')){
     await generateControllerDestroyPHP(fullPath, namespace, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCamel, pluralNameCamel, columns);
-
-
+  }
+  
+  if(selectedComponents.includes('repository')){
     await generateRepositoryPHP(fullPath, namespace, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCamel, pluralNameCamel, columns);
+  }
 
-
-    await generateRoutesPHP(fullPath, namespace, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCamel, pluralNameCamel, columns);
-
-
+  if(selectedComponents.includes('migration')){
     await generateMigrationPHP(fullPath, namespace, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCamel, pluralNameCamel, columns);
-
-
+  }
+  
+  if(selectedComponents.includes('seeder')){
     await generateSeederPHP(fullPath, namespace, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCamel, pluralNameCamel, columns);
+  }
 
-
+  if(selectedComponents.includes('factory')){
     await generateFactoryPHP(fullPath, namespace, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCamel, pluralNameCamel, columns);
-
-
-
+  }
+  
+  if(selectedComponents.includes('postman')){
     await generatePostmanPHP(fullPath, namespace, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCamel, pluralNameCamel, columns);
-
-
+  }
 
 };
