@@ -12,11 +12,13 @@ export const reactMain = async () => {
   console.log("REACT");
 
   do {
+
     opt = await menuMain([
       { name: "Proyecto", value: "proyect" },
       { name: "Módulo", value: "module" },
       { name: "Atrás", value: "back" },
     ]);
+
 
     switch (opt) {
       case "proyect":
@@ -32,5 +34,6 @@ export const reactMain = async () => {
     }
 
     await pause();
+
   } while (opt != "back");
 };

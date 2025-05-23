@@ -37,7 +37,7 @@ const main = async() => {
                 await phpMain();
                 break;
         
-            case 'php':
+            case 'react':
                 await reactMain();
                 break;
             
