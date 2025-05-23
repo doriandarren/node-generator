@@ -42,15 +42,20 @@ export const generateMigrationPHP = async (
 
   for (const col of columns) {
     if (col.name.includes('_id')) {
+      
       const refTable = getPlural(col.name.replace('_id', ''));
+      
       columnDefinitions += `                $table->unsignedBigInteger('${col.name}');\n`;
-      columnDefinitions += `                $table->foreign('${col.name}')->references('id')->on('${refTable}')->onDelete('cascade');\n`;
+      columnDefinitions += `                $table->foreign('${col.name}')->references('id')->on('${refTable}')->onDelete('cascade');\n\n`;
+
+      
       downForeigns += `        if (Schema::connection('api')->hasColumn('${pluralNameSnake}', '${col.name}')) {\n`;
       downForeigns += `            Schema::connection('api')->table('${pluralNameSnake}', function (Blueprint $table) {\n`;
       downForeigns += `                $table->dropForeign(['${col.name}']);\n`;
       downForeigns += `                $table->dropColumn('${col.name}');\n`;
       downForeigns += `            });\n`;
       downForeigns += `        }\n\n`;
+
     } else {
       columnDefinitions += `                $table->string('${col.name}')->nullable();\n`;
     }
