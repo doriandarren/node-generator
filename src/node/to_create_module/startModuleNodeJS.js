@@ -38,14 +38,19 @@ export const startModuleNodeJS = async () => {
   const inputColumns = await readInput("Columnas (separadas por espacio):", false, "name amount description");
 
 
-  const columns = inputColumns
-    .split(" ")
-    .map((col) => ({
-      name: col,
-      type: 'STRING',       // por defecto STRING
-      allowNull: true       // por defecto true
-    }));
 
+  const cleanedInput = inputColumns.replace(/[.,;:]+/g, ' '); // reemplaza comas, puntos, punto y coma, dos puntos por espacio
+
+  const columns = cleanedInput
+    .split(/\s+/) // divide por uno o más espacios
+    .filter(Boolean) // elimina vacíos
+    .map((col) => ({
+      name: col.trim(),
+      type: "STRING",
+      allowNull: true,
+    }));
+  
+  
   await generateModuleStandardNodeJS(
     fullPath,
     selectedComponents,
