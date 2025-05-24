@@ -5,6 +5,12 @@ import { createFolder } from '../../../helpers/helperFile.js';
 import { updateCountrySeeder } from './updates/updateCountrySeeder.js';
 import { updateUserStatusSeeder } from './updates/updateUserStatusSeeder.js';
 import { updateRoleSeeder } from './updates/updateRoleSeeder.js';
+import { updateAbilitySeeder } from './updates/updateAbilitySeeder.js';
+import { updateUserRolesAbilitiesSeeder } from './updates/updateUserRolesAbilities.js';
+import { updateAbilityModel } from './updates/updateAbilityModel.js';
+import { updateAbilityGroupModel } from './updates/updateAbilityGroupModel.js';
+import { updateAbilityUser } from './updates/updateAbilityUserModel.js';
+import { updateDatabaseSeeder } from './updates/updateDatabaseSeeder.js';
 
 
 export const generateShared = async(fullPath) => {
@@ -20,10 +26,23 @@ export const generateShared = async(fullPath) => {
     // all migrations
     await generateAllMigrations(fullPath);
 
-    // Updates
+
+
+    // Update Seeders
     await updateCountrySeeder(fullPath);
     await updateUserStatusSeeder(fullPath);
     await updateRoleSeeder(fullPath);
+    await updateAbilitySeeder(fullPath);
+    await updateUserRolesAbilitiesSeeder(fullPath);
+    await updateDatabaseSeeder(fullPath);
+
+
+
+    // Update Models
+    await updateAbilityModel(fullPath);
+    await updateAbilityGroupModel(fullPath);
+    await updateAbilityUser(fullPath);
+
 
 
 
