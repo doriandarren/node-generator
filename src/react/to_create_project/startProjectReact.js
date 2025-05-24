@@ -1,5 +1,6 @@
 import { readInput } from "../../helpers/inquirer.js";
 import { generateReactCommandLine } from "./generateReactCommandLine.js";
+import { generateStyle } from "./generateStyles.js";
 
 
 
@@ -21,6 +22,7 @@ export const startProjectReact = async() => {
 
     
     await generateReactCommandLine(fullPath);
+    await generateStyle(fullPath);
 
 
 }

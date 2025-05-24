@@ -37,10 +37,9 @@ const createFile = (filePath, content) => {
   });
 };
 
-// === Archivos individuales ===
 
-const createDev = async (base) => {
-  const filePath = path.join(base, 'app', 'Enums', 'Dev', 'EnumDefaultCompany.php');
+const createDev = async (fullPath) => {
+  const filePath = path.join(fullPath, 'app', 'Enums', 'Dev', 'EnumDefaultCompany.php');
   const content = `<?php
 
 namespace App\\Enums\\Dev;
@@ -64,8 +63,9 @@ class EnumDefaultCompany
   await createFile(filePath, content);
 };
 
-const createExcludeTable = async (base) => {
-  const filePath = path.join(base, 'app', 'Enums', 'Dev', 'EnumExcludeTable.php');
+
+const createExcludeTable = async (fullPath) => {
+  const filePath = path.join(fullPath, 'app', 'Enums', 'Dev', 'EnumExcludeTable.php');
   const content = `<?php
 
 namespace App\\Enums\\Dev;
@@ -89,8 +89,9 @@ enum EnumExcludeTable
   await createFile(filePath, content);
 };
 
-const createRole = async (base) => {
-  const filePath = path.join(base, 'app', 'Enums', 'Roles', 'EnumRole.php');
+
+const createRole = async (fullPath) => {
+  const filePath = path.join(fullPath, 'app', 'Enums', 'Roles', 'EnumRole.php');
   const content = `<?php
 
 namespace App\\Enums\\Roles;
@@ -116,8 +117,9 @@ class EnumRole
   await createFile(filePath, content);
 };
 
-const createUser = async (base) => {
-  const filePath = path.join(base, 'app', 'Enums', 'Users', 'EnumUser.php');
+
+const createUser = async (fullPath) => {
+  const filePath = path.join(fullPath, 'app', 'Enums', 'Users', 'EnumUser.php');
   const content = `<?php
 
 namespace App\\Enums\\Users;
@@ -131,8 +133,9 @@ enum EnumUser
   await createFile(filePath, content);
 };
 
-const createUserStatus = async (base) => {
-  const filePath = path.join(base, 'app', 'Enums', 'UserStatuses', 'EnumUserStatus.php');
+
+const createUserStatus = async (fullPath) => {
+  const filePath = path.join(fullPath, 'app', 'Enums', 'UserStatuses', 'EnumUserStatus.php');
   const content = `<?php
 
 namespace App\\Enums\\UserStatuses;
@@ -149,8 +152,9 @@ class EnumUserStatus
   await createFile(filePath, content);
 };
 
-const createAbilityGroups = async (base) => {
-  const filePath = path.join(base, 'app', 'Enums', 'EnumAbilityGroups.php');
+
+const createAbilityGroups = async (fullPath) => {
+  const filePath = path.join(fullPath, 'app', 'Enums', 'EnumAbilityGroups.php');
   const content = `<?php
 
 namespace App\\Enums;
@@ -178,8 +182,9 @@ class EnumAbilityGroups
   await createFile(filePath, content);
 };
 
-const createAbilitySuffix = async (base) => {
-  const filePath = path.join(base, 'app', 'Enums', 'EnumAbilitySuffix.php');
+
+const createAbilitySuffix = async (fullPath) => {
+  const filePath = path.join(fullPath, 'app', 'Enums', 'EnumAbilitySuffix.php');
   const content = `<?php
 
 namespace App\\Enums;
@@ -197,8 +202,9 @@ abstract class EnumAbilitySuffix
   await createFile(filePath, content);
 };
 
-const createApiSetup = async (base) => {
-  const filePath = path.join(base, 'app', 'Enums', 'EnumApiSetup.php');
+
+const createApiSetup = async (fullPath) => {
+  const filePath = path.join(fullPath, 'app', 'Enums', 'EnumApiSetup.php');
   const content = `<?php
 
 namespace App\\Enums;
@@ -215,8 +221,9 @@ abstract class EnumApiSetup
   await createFile(filePath, content);
 };
 
-const createSettingPaginate = async (base) => {
-  const filePath = path.join(base, 'app', 'Enums', 'EnumSettingPaginate.php');
+
+const createSettingPaginate = async (fullPath) => {
+  const filePath = path.join(fullPath, 'app', 'Enums', 'EnumSettingPaginate.php');
   const content = `<?php
 
 namespace App\\Enums;
