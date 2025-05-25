@@ -73,6 +73,8 @@ Route::prefix(EnumApiSetup::API_VERSION )->group(function () {
     require base_path('routes/SHARED/user_statuses.php');
     
     // API
+    require base_path('routes/API/auth.php');
+    
     // ...
 });`;
 
