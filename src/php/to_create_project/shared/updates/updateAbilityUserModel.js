@@ -9,7 +9,7 @@ export const updateAbilityUser = async(fullPath) => {
     const folderPath = path.join(fullPath, 'app', 'Models', 'AbilityUsers');
     
     // File
-    const filePath = path.join(folderPath, '');
+    const filePath = path.join(folderPath, 'AbilityUser.php');
 
     // Asegurar que la carpeta exista
     createFolder(folderPath);
