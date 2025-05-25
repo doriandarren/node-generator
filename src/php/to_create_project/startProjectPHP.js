@@ -54,6 +54,7 @@ export const startProjectPHP = async() => {
     await generateModuleAuth(fullPath);
 
 
+    //Shared Module
     await generateShared(fullPath);
     
 

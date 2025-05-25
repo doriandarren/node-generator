@@ -9,8 +9,10 @@ import { updateAbilitySeeder } from './updates/updateAbilitySeeder.js';
 import { updateUserRolesAbilitiesSeeder } from './updates/updateUserRolesAbilities.js';
 import { updateAbilityModel } from './updates/updateAbilityModel.js';
 import { updateAbilityGroupModel } from './updates/updateAbilityGroupModel.js';
-import { updateAbilityUser } from './updates/updateAbilityUserModel.js';
+import { updateAbilityUserModel } from './updates/updateAbilityUserModel.js';
 import { updateDatabaseSeeder } from './updates/updateDatabaseSeeder.js';
+import { updateRoleModel } from './updates/updateRoleModel.js';
+import { updateRoleUserModel } from './updates/updateRoleUserModel.js';
 
 
 export const generateShared = async(fullPath) => {
@@ -41,7 +43,9 @@ export const generateShared = async(fullPath) => {
     // Update Models
     await updateAbilityModel(fullPath);
     await updateAbilityGroupModel(fullPath);
-    await updateAbilityUser(fullPath);
+    await updateAbilityUserModel(fullPath);
+    await updateRoleModel(fullPath);
+    await updateRoleUserModel(fullPath);
 
 
 

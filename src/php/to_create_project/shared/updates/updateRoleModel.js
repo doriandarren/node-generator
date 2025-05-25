@@ -3,13 +3,13 @@ import path from 'path';
 import { createFolder } from '../../../../helpers/helperFile.js';
 
 
-export const updateAbilityUserModel = async(fullPath) => {    
+export const updateRoleModel = async(fullPath) => {    
 
     // Folder
-    const folderPath = path.join(fullPath, 'app', 'Models', 'AbilityUsers');
+    const folderPath = path.join(fullPath, 'app', 'Models', 'Roles');
     
     // File
-    const filePath = path.join(folderPath, 'AbilityUser.php');
+    const filePath = path.join(folderPath, 'Role.php');
 
     // Asegurar que la carpeta exista
     createFolder(folderPath);
@@ -19,47 +19,33 @@ export const updateAbilityUserModel = async(fullPath) => {
     const code = `
 <?php
 
-namespace App\\Models\\AbilityUsers;
+namespace App\\Models\\Roles;
 
 use App\\Models\\Abilities\\Ability;
-use App\\Models\\User;
 use Illuminate\\Database\\Eloquent\\Factories\\HasFactory;
 use Illuminate\\Database\\Eloquent\\Model;
-use Illuminate\\Database\\Eloquent\\Relations\\BelongsTo;
+use Illuminate\\Database\\Eloquent\\Relations\\BelongsToMany;
 
-class AbilityUser extends Model
+class Role extends Model
 {
 
     use HasFactory;
-
     //use SoftDeletes;
 
     protected $connection = 'api';
-    protected $table = 'ability_user';
+    protected $table = 'roles';
 
     /***********************
      * RELATIONS
      ***********************/
 
-    /**
-     * @return BelongsTo
-     */
-    public function user(): BelongsTo
+    public function abilities(): BelongsToMany
     {
-        return $this->belongsTo(User::class, 'user_id', 'id');
+        return $this->belongsToMany(Ability::class)->withTimestamps();
     }
 
 
-
-    /**
-     * @return BelongsTo
-     */
-    public function ability(): BelongsTo
-    {
-        return $this->belongsTo(Ability::class, 'ability_id', 'id');
-    }
-
-}    
+}
 `.trimStart();
 
   try {
