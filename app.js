@@ -4,6 +4,8 @@ import { nodeMain } from './src/node/ nodeMain.js';
 import { databaseMain } from './src/database/databaseMain.js';
 import { phpMain } from './src/php/phpMain.js';
 import { reactMain } from './src/react/reactMain.js';
+import { exportDiagramsMain } from './src/export_diagrams/exportDigramsMain.js';
+import { importDiagramsMain } from './src/import_diagrams/importDiagramsMain.js';
 
 
 
@@ -17,9 +19,11 @@ const main = async() => {
 
         opt = await menuMain([
             { name: "Database", value: "database" },
+            { name: "Export Diagrams", value: "export_diagrams" },
+            { name: "Import Diagrams", value: "import_diagrams" },
+            { name: "React", value: "react" },
             { name: "NodeJS", value: "nodejs" },
             { name: "PHP", value: "php" },
-            { name: "React", value: "react" },
             { name: "Salir", value: "salir" },
         ]);
 
@@ -39,6 +43,14 @@ const main = async() => {
         
             case 'react':
                 await reactMain();
+                break;
+            
+            case 'export_diagrams':
+                await exportDiagramsMain();
+                break;
+            
+            case 'import_diagrams':
+                await importDiagramsMain();
                 break;
             
             default:
