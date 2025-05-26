@@ -13,14 +13,7 @@ export const listTables = async ({
   port,
   tables,
 }) => {
-  console.log("Lista DATABASE", {
-    host,
-    user,
-    password,
-    database,
-    port,
-    tables,
-  });
+  
 
   try {
     const connection = await mysql.createConnection({
@@ -56,20 +49,32 @@ export const listTables = async ({
         [database, tableName]
       );
 
-      columns.forEach((col) => {
-        if (
-          col.COLUMN_NAME !== "id" &&
-          col.COLUMN_NAME !== "created_at" &&
-          col.COLUMN_NAME !== "updated_at" &&
-          col.COLUMN_NAME !== "deleted_at"
-        ) {
-          const pk = col.COLUMN_KEY === "PRI" ? " [PK]" : "";
-          const nullable = col.IS_NULLABLE === "YES" ? " (nullable)" : "";
-          console.log(
-            `  - ${col.COLUMN_NAME} (${col.DATA_TYPE})${pk}${nullable}`
-          );
-        }
+      // Filtra las columnas id, created_at...
+      const filteredColumns = columns.filter((col) =>
+        col.COLUMN_NAME !== "id" &&
+        col.COLUMN_NAME !== "created_at" &&
+        col.COLUMN_NAME !== "updated_at" &&
+        col.COLUMN_NAME !== "deleted_at"
+      );
+
+      // const filteredInfo = filteredColumns.map((col) => {
+      //   const pk = col.COLUMN_KEY === "PRI" ? " [PK]" : "";
+      //   const nullable = col.IS_NULLABLE === "YES" ? " (nullable)" : "";
+      //   return `  - ${col.COLUMN_NAME} (${col.DATA_TYPE})${pk}${nullable}`;
+      // });
+      // filteredInfo.forEach(line => console.log(line));
+
+
+      let str = '';
+
+      const filteredInfo = filteredColumns.map((col) => {
+        str += `${col.COLUMN_NAME} `;
+        return `${col.COLUMN_NAME} `;
       });
+
+      //filteredInfo.forEach(line => console.log(line));
+      
+      console.log(str);
 
       console.log("");
     }
