@@ -78,6 +78,7 @@ const createModule = async(
         "repository",
         "route",
         "seeder",
+        "factory",
         "postman",
     ];
 

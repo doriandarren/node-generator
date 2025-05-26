@@ -19,6 +19,7 @@ export const startModulePHP = async () => {
     { name: "Rutas", value: "route", checked: true },
     { name: "Migración", value: "migration", checked: true },
     { name: "Seeder", value: "seeder", checked: true },
+    { name: "Factory", value: "factory", checked: true },
     { name: "Archivo Postman", value: "postman", checked: true },
   ];
 
