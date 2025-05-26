@@ -6,12 +6,14 @@ splytin_api
 
 # TODO Tareas Pendientes:
 
+- Importante: CREAR POSTMAN POR DEFECTO (conseguir en base_laravel_10)
+- Empezar a generar REACT
+
 - Crear todos los controller de Authenticacion Recuperacion de contraseña y demás
 - Enviar correos
 - Cron y tareas programadas
 - Crear shared que son por defecto
 
-- Empezar a generar Modulo (Route, Repository, Controller, Modelos)
 - Agregar selector de la ruta de: C:\Users\miled\Desktop\WorkSpaceNode\PROYECTOS
 
 
