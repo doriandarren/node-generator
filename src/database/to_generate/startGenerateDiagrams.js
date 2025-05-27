@@ -1,5 +1,6 @@
 import mysql from "mysql2/promise";
 import { createDiagrams } from "../../export_diagrams/createDiagrams.js";
+import path from "path";
 
 
 
@@ -48,7 +49,7 @@ export const startGenerateDiagrams = async ({
 
     for (const tableName of tablesToList) {
       
-      console.log(`📄 Tabla: ${tableName}`);
+      //console.log(`📄 Tabla: ${tableName}`);
 
       const [columns] = await connection.execute(
         `
@@ -59,8 +60,16 @@ export const startGenerateDiagrams = async ({
         [database, tableName]
       );
 
+
+      const filteredColumns = columns.filter((col) =>
+        col.COLUMN_NAME !== "id" &&
+        col.COLUMN_NAME !== "created_at" &&
+        col.COLUMN_NAME !== "updated_at" &&
+        col.COLUMN_NAME !== "deleted_at"
+      );
+
       
-      const filteredInfo = columns.map((col) => {
+      const filteredInfo = filteredColumns.map((col) => {
         // const pk = col.COLUMN_KEY === "PRI" ? " [PK]" : "";
         // const nullable = col.IS_NULLABLE === "YES" ? " (nullable)" : "";
         // return `  - ${col.COLUMN_NAME} (${col.DATA_TYPE})${pk}${nullable}`;
@@ -78,10 +87,8 @@ export const startGenerateDiagrams = async ({
     }
 
 
-    console.log(myTables);
-
-    await createDiagrams(myTables);
-
+    const fullPath = path.join(process.cwd(), 'src', 'assets', 'diagrams');
+    await createDiagrams(myTables, fullPath, database);
 
     await connection.end();
 
