@@ -8,22 +8,21 @@ splytin_api
 
 # TODO Tareas Pendientes:
 
-- Importante: CREAR POSTMAN POR DEFECTO (conseguir en base_laravel_10)
+- Importante: CREAR POSTMAN POR DEFECTO (conseguir en base_laravel_10) En los proyectos de BACKEND
+- Agregar selector de la ruta de: C:\Users\miled\Desktop\WorkSpaceNode\PROYECTOS
 - Empezar a generar REACT
 
-- Crear todos los controller de Authenticacion Recuperacion de contraseña y demás
 - Enviar correos
 - Cron y tareas programadas
-- Crear shared que son por defecto
 
-- Agregar selector de la ruta de: C:\Users\miled\Desktop\WorkSpaceNode\PROYECTOS
 
-- Milena: quitar de las columnas: id, created_at, updated_at y deleted_at LISTO
+
+
 - Terminar con la llamada a callGenerate
 
 
 
-## Notations
+## Notes
 
 ```sh
 
