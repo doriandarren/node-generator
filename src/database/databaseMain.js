@@ -1,5 +1,6 @@
 import { clearScreen, menuMain, pause, readInput } from "../helpers/inquirer.js";
 import { startGenerate } from "./to_generate/startGenerate.js";
+import { startGenerateDiagrams } from "./to_generate/startGenerateDiagrams.js";
 import { listTables } from "./to_list/listTables.js";
 
 export const databaseMain = async () => {
@@ -11,6 +12,7 @@ export const databaseMain = async () => {
   const generatorType = await menuMain([
     { name: "[1] Listar", value: "listar" },
     { name: "[2] Generar", value: "generar" },
+    { name: "[3] Generar Diagrams", value: "diagrams" },
   ]);
 
   // Elegir base de datos
@@ -65,6 +67,10 @@ export const databaseMain = async () => {
 
   if (generatorType === "generar") {
     await startGenerate(config);
+  }
+
+  if (generatorType === "diagrams") {
+    await startGenerateDiagrams(config);
   }
 
   console.log("\n✅ Operación finalizada.\n".green);
