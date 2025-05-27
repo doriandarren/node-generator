@@ -76,3 +76,5 @@ dist/
 # Misc
 .DS_Store
 Thumbs.db
+
+src/assets/diagrams

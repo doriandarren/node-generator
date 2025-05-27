@@ -166,55 +166,184 @@
         <mxCell id="customers-0-52" value="deleted_at" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="customers-0" vertex="1">
           <mxGeometry y="1352" width="240" height="26" as="geometry"/>
         </mxCell>
-        <mxCell id="users-0" value="users" style="swimlane;fontStyle=2;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" parent="1" vertex="1">
-          <mxGeometry x="220" y="1532" width="240" height="420" as="geometry">
+        <mxCell id="customer_invoices-0" value="customer_invoices" style="swimlane;fontStyle=2;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="220" y="1532" width="240" height="732" as="geometry">
             <mxRectangle x="230" y="1552" width="240" height="26" as="alternateBounds"/>
           </mxGeometry>
         </mxCell>
-        <mxCell id="users-0-1" value="id" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="users-0" vertex="1">
+        <mxCell id="customer_invoices-0-1" value="id" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="customer_invoices-0" vertex="1">
           <mxGeometry y="26" width="240" height="26" as="geometry"/>
         </mxCell>
-        <mxCell id="users-0-2" value="email" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="users-0" vertex="1">
+        <mxCell id="customer_invoices-0-2" value="customer_id" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="customer_invoices-0" vertex="1">
           <mxGeometry y="52" width="240" height="26" as="geometry"/>
         </mxCell>
-        <mxCell id="users-0-3" value="password" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="users-0" vertex="1">
+        <mxCell id="customer_invoices-0-3" value="bank_id" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="customer_invoices-0" vertex="1">
           <mxGeometry y="78" width="240" height="26" as="geometry"/>
         </mxCell>
-        <mxCell id="users-0-4" value="api_token" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="users-0" vertex="1">
+        <mxCell id="customer_invoices-0-4" value="remitance_type" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="customer_invoices-0" vertex="1">
           <mxGeometry y="104" width="240" height="26" as="geometry"/>
         </mxCell>
-        <mxCell id="users-0-5" value="permissions" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="users-0" vertex="1">
+        <mxCell id="customer_invoices-0-5" value="remittance_type_id" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="customer_invoices-0" vertex="1">
           <mxGeometry y="130" width="240" height="26" as="geometry"/>
         </mxCell>
-        <mxCell id="users-0-6" value="last_login" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="users-0" vertex="1">
+        <mxCell id="customer_invoices-0-6" value="truckwash_cash_payment" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="customer_invoices-0" vertex="1">
           <mxGeometry y="156" width="240" height="26" as="geometry"/>
         </mxCell>
-        <mxCell id="users-0-7" value="first_name" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="users-0" vertex="1">
+        <mxCell id="customer_invoices-0-7" value="bank_name" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="customer_invoices-0" vertex="1">
           <mxGeometry y="182" width="240" height="26" as="geometry"/>
         </mxCell>
-        <mxCell id="users-0-8" value="last_name" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="users-0" vertex="1">
+        <mxCell id="customer_invoices-0-8" value="iban" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="customer_invoices-0" vertex="1">
           <mxGeometry y="208" width="240" height="26" as="geometry"/>
         </mxCell>
-        <mxCell id="users-0-9" value="extension" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="users-0" vertex="1">
+        <mxCell id="customer_invoices-0-9" value="swift_bic" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="customer_invoices-0" vertex="1">
           <mxGeometry y="234" width="240" height="26" as="geometry"/>
         </mxCell>
-        <mxCell id="users-0-10" value="mobile_phone" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="users-0" vertex="1">
+        <mxCell id="customer_invoices-0-10" value="bank_account" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="customer_invoices-0" vertex="1">
           <mxGeometry y="260" width="240" height="26" as="geometry"/>
         </mxCell>
-        <mxCell id="users-0-11" value="department_id" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="users-0" vertex="1">
+        <mxCell id="customer_invoices-0-11" value="account_holder" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="customer_invoices-0" vertex="1">
           <mxGeometry y="286" width="240" height="26" as="geometry"/>
         </mxCell>
-        <mxCell id="users-0-12" value="status" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="users-0" vertex="1">
+        <mxCell id="customer_invoices-0-12" value="b2b_received_data" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="customer_invoices-0" vertex="1">
           <mxGeometry y="312" width="240" height="26" as="geometry"/>
         </mxCell>
-        <mxCell id="users-0-13" value="created_at" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="users-0" vertex="1">
+        <mxCell id="customer_invoices-0-13" value="b2b_received_user" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="customer_invoices-0" vertex="1">
           <mxGeometry y="338" width="240" height="26" as="geometry"/>
         </mxCell>
-        <mxCell id="users-0-14" value="updated_at" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="users-0" vertex="1">
+        <mxCell id="customer_invoices-0-14" value="received_b2b" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="customer_invoices-0" vertex="1">
           <mxGeometry y="364" width="240" height="26" as="geometry"/>
         </mxCell>
-        <mxCell id="users-0-15" value="deleted_at" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="users-0" vertex="1">
+        <mxCell id="customer_invoices-0-15" value="send_b2b" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="customer_invoices-0" vertex="1">
           <mxGeometry y="390" width="240" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell id="customer_invoices-0-16" value="show_invoice_details" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="customer_invoices-0" vertex="1">
+          <mxGeometry y="416" width="240" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell id="customer_invoices-0-17" value="min_accounting_reserved_coding" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="customer_invoices-0" vertex="1">
+          <mxGeometry y="442" width="240" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell id="customer_invoices-0-18" value="max_accounting_reserved_coding" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="customer_invoices-0" vertex="1">
+          <mxGeometry y="468" width="240" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell id="customer_invoices-0-19" value="due_date" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="customer_invoices-0" vertex="1">
+          <mxGeometry y="494" width="240" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell id="customer_invoices-0-20" value="due_days_date" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="customer_invoices-0" vertex="1">
+          <mxGeometry y="520" width="240" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell id="customer_invoices-0-21" value="invoice_serial" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="customer_invoices-0" vertex="1">
+          <mxGeometry y="546" width="240" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell id="customer_invoices-0-22" value="invoice_serial_gas_b" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="customer_invoices-0" vertex="1">
+          <mxGeometry y="572" width="240" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell id="customer_invoices-0-23" value="invoice_serial_globalwallet" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="customer_invoices-0" vertex="1">
+          <mxGeometry y="598" width="240" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell id="customer_invoices-0-24" value="credit_invoice_serial" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="customer_invoices-0" vertex="1">
+          <mxGeometry y="624" width="240" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell id="customer_invoices-0-25" value="created_at" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="customer_invoices-0" vertex="1">
+          <mxGeometry y="650" width="240" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell id="customer_invoices-0-26" value="updated_at" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="customer_invoices-0" vertex="1">
+          <mxGeometry y="676" width="240" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell id="customer_invoices-0-27" value="deleted_at" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="customer_invoices-0" vertex="1">
+          <mxGeometry y="702" width="240" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell id="customer_emails-0" value="customer_emails" style="swimlane;fontStyle=2;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="220" y="2294" width="240" height="212" as="geometry">
+            <mxRectangle x="230" y="2314" width="240" height="26" as="alternateBounds"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="customer_emails-0-1" value="id" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="customer_emails-0" vertex="1">
+          <mxGeometry y="26" width="240" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell id="customer_emails-0-2" value="customer_id" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="customer_emails-0" vertex="1">
+          <mxGeometry y="52" width="240" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell id="customer_emails-0-3" value="email" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="customer_emails-0" vertex="1">
+          <mxGeometry y="78" width="240" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell id="customer_emails-0-4" value="primary" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="customer_emails-0" vertex="1">
+          <mxGeometry y="104" width="240" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell id="customer_emails-0-5" value="created_at" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="customer_emails-0" vertex="1">
+          <mxGeometry y="130" width="240" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell id="customer_emails-0-6" value="updated_at" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="customer_emails-0" vertex="1">
+          <mxGeometry y="156" width="240" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell id="customer_emails-0-7" value="deleted_at" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="customer_emails-0" vertex="1">
+          <mxGeometry y="182" width="240" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell id="alvic_customers-0" value="alvic_customers" style="swimlane;fontStyle=2;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="220" y="2536" width="240" height="342" as="geometry">
+            <mxRectangle x="230" y="2556" width="240" height="26" as="alternateBounds"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="alvic_customers-0-1" value="id" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="alvic_customers-0" vertex="1">
+          <mxGeometry y="26" width="240" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell id="alvic_customers-0-2" value="customer_id" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="alvic_customers-0" vertex="1">
+          <mxGeometry y="52" width="240" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell id="alvic_customers-0-3" value="customer_code" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="alvic_customers-0" vertex="1">
+          <mxGeometry y="78" width="240" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell id="alvic_customers-0-4" value="company_name" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="alvic_customers-0" vertex="1">
+          <mxGeometry y="104" width="240" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell id="alvic_customers-0-5" value="password" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="alvic_customers-0" vertex="1">
+          <mxGeometry y="130" width="240" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell id="alvic_customers-0-6" value="web_center" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="alvic_customers-0" vertex="1">
+          <mxGeometry y="156" width="240" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell id="alvic_customers-0-7" value="web_octan" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="alvic_customers-0" vertex="1">
+          <mxGeometry y="182" width="240" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell id="alvic_customers-0-8" value="status_web_center" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="alvic_customers-0" vertex="1">
+          <mxGeometry y="208" width="240" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell id="alvic_customers-0-9" value="status_web_octan" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="alvic_customers-0" vertex="1">
+          <mxGeometry y="234" width="240" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell id="alvic_customers-0-10" value="created_at" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="alvic_customers-0" vertex="1">
+          <mxGeometry y="260" width="240" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell id="alvic_customers-0-11" value="updated_at" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="alvic_customers-0" vertex="1">
+          <mxGeometry y="286" width="240" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell id="alvic_customers-0-12" value="deleted_at" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="alvic_customers-0" vertex="1">
+          <mxGeometry y="312" width="240" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell id="alvic_customer_emails-0" value="alvic_customer_emails" style="swimlane;fontStyle=2;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="220" y="2908" width="240" height="212" as="geometry">
+            <mxRectangle x="230" y="2928" width="240" height="26" as="alternateBounds"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="alvic_customer_emails-0-1" value="id" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="alvic_customer_emails-0" vertex="1">
+          <mxGeometry y="26" width="240" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell id="alvic_customer_emails-0-2" value="alvic_customer_id" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="alvic_customer_emails-0" vertex="1">
+          <mxGeometry y="52" width="240" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell id="alvic_customer_emails-0-3" value="email" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="alvic_customer_emails-0" vertex="1">
+          <mxGeometry y="78" width="240" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell id="alvic_customer_emails-0-4" value="primary" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="alvic_customer_emails-0" vertex="1">
+          <mxGeometry y="104" width="240" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell id="alvic_customer_emails-0-5" value="created_at" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="alvic_customer_emails-0" vertex="1">
+          <mxGeometry y="130" width="240" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell id="alvic_customer_emails-0-6" value="updated_at" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="alvic_customer_emails-0" vertex="1">
+          <mxGeometry y="156" width="240" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell id="alvic_customer_emails-0-7" value="deleted_at" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="alvic_customer_emails-0" vertex="1">
+          <mxGeometry y="182" width="240" height="26" as="geometry"/>
         </mxCell>
       </root>
     </mxGraphModel>

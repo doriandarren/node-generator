@@ -105,6 +105,11 @@ export const createDiagrams = async (tables, fullPath = null, fileName = null) =
     fullPath = fullPathDefault;
   }
 
+  // ✅ Verificar si el directorio existe y crearlo si no
+  if (!fs.existsSync(fullPath)) {
+    fs.mkdirSync(fullPath, { recursive: true });
+  }
+
   const outputFilename = path.join(fullPath, `${fileName}_diagram.drawio`);
   fs.writeFileSync(outputFilename, xml, 'utf8');
   console.log(`✅ Diagrama con todas las tablas generado en ${outputFilename}`);
