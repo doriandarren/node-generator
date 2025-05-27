@@ -1,29 +1,60 @@
 import fs from 'fs';
 import path from 'path';
+import { parseDrawioFile } from './parseDrawioFile.js';
+import inquirer from 'inquirer';
 
 
-export const importDiagramsMain = async() => {    
 
-//     // Folder
-//     const folderPath = path.join(fullPath, 'src', '');
-    
-//     // File
-//     const filePath = path.join(folderPath, '');
+export const importDiagramsMain = async () => {
+  const folderPath = path.join(process.cwd(), 'src', 'assets', 'diagrams');
 
-//     // Asegurar que la carpeta exista
-//     createFolder(folderPath);
+  // Obtener todos los archivos .xml o .drawio.xml
+  const allFiles = fs.readdirSync(folderPath);
+  const xmlFiles = allFiles.filter(f => f.endsWith('.xml') || f.endsWith('.drawio'));
 
+  if (xmlFiles.length === 0) {
+    console.log('❌ No se encontraron archivos .xml en la carpeta.');
+    return;
+  }
 
-//     // Code
-//     const code = `
-    
-// `.trimStart();
+  // Mostrar lista para elegir
+  const { fileName } = await inquirer.prompt([
+    {
+      type: 'list',
+      name: 'fileName',
+      message: '📂 Selecciona un archivo para importar:',
+      choices: xmlFiles,
+    },
+  ]);
 
-//   try {
-//     fs.writeFileSync(filePath, code);
-//     console.log(`✅ Archivo creado: ${filePath}`.green);
-//   } catch (error) {
-//     console.error(`❌ Error al crear archivo: ${error.message}`);
-//  }
+  const filePath = path.join(folderPath, fileName);
+  const result = await parseDrawioFile(filePath);
 
+  if (result) {
+
+    //console.log('✅ Tablas importadas:', JSON.stringify(result, null, 2));
+
+    result.forEach( el => {
+      console.log(`📄 Table: ${el.table}`);
+
+      const cleanColumns = el.columns.filter( c => 
+        !['id', 'created_at', 'updated_at', 'deleted_at'].includes(c)
+      );
+
+      let str = '';
+
+      cleanColumns.forEach( c => {
+        str += c + ' ';
+      });
+
+      if(str.length > 0){
+
+        console.log(`Columns: ${str}`);
+      }
+
+      console.log(" ");
+    });
+
+  }
 }
+
