@@ -1,30 +1,34 @@
-import fs from 'fs';
-import path from 'path';
-import { createFolder } from '../../helpers/helperFile.js';
+import { clearScreen, menuMain } from '../helpers/inquirer.js';
+import { generateExportDiagrams } from './generateExportDiagrams.js';
+
+
 
 
 export const exportDiagramsMain = async() => {    
 
-    // Folder
-    const folderPath = path.join(fullPath, 'src', '');
-    
-    // File
-    const filePath = path.join(folderPath, '');
+    let opt = '';
 
-    // Asegurar que la carpeta exista
-    createFolder(folderPath);
+    clearScreen();
 
+    console.log('📦 Export Diagrams');
 
-    // Code
-    const code = `
-    
-`.trimStart();
+    do {
+        opt = await menuMain([
+            { name: "Nuevo archivo", value: "empty" },
+            { name: "Atrás", value: "back" },
+        ]);
 
-  try {
-    fs.writeFileSync(filePath, code);
-    console.log(`✅ Archivo creado: ${filePath}`.green);
-  } catch (error) {
-    console.error(`❌ Error al crear archivo: ${error.message}`);
-  }
+        switch (opt) {
+            case 'empty':
+                await generateExportDiagrams();
+                break;
+
+            default:
+                break;
+        }
+
+        //await pause();
+
+    } while (opt !== 'back');
 
 }

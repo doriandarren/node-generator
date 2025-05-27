@@ -1,30 +1,29 @@
 import fs from 'fs';
 import path from 'path';
-import { createFolder } from '../../helpers/helperFile.js';
 
 
 export const importDiagramsMain = async() => {    
 
-    // Folder
-    const folderPath = path.join(fullPath, 'src', '');
+//     // Folder
+//     const folderPath = path.join(fullPath, 'src', '');
     
-    // File
-    const filePath = path.join(folderPath, '');
+//     // File
+//     const filePath = path.join(folderPath, '');
 
-    // Asegurar que la carpeta exista
-    createFolder(folderPath);
+//     // Asegurar que la carpeta exista
+//     createFolder(folderPath);
 
 
-    // Code
-    const code = `
+//     // Code
+//     const code = `
     
-`.trimStart();
+// `.trimStart();
 
-  try {
-    fs.writeFileSync(filePath, code);
-    console.log(`✅ Archivo creado: ${filePath}`.green);
-  } catch (error) {
-    console.error(`❌ Error al crear archivo: ${error.message}`);
-  }
+//   try {
+//     fs.writeFileSync(filePath, code);
+//     console.log(`✅ Archivo creado: ${filePath}`.green);
+//   } catch (error) {
+//     console.error(`❌ Error al crear archivo: ${error.message}`);
+//  }
 
 }
