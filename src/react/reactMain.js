@@ -8,16 +8,14 @@ export const reactMain = async () => {
   let opt = "";
 
   clearScreen();
-
-  console.log("REACT");
-
+  
   do {
 
     opt = await menuMain([
       { name: "Proyecto", value: "proyect" },
       { name: "Módulo", value: "module" },
       { name: "Atrás", value: "back" },
-    ]);
+    ], 'REACT');
 
 
     switch (opt) {

@@ -7,7 +7,6 @@ export const nodeMain = async() => {
     let opt = '';
 
     clearScreen();
-    console.log('NODEJS');
 
     do{
 
@@ -15,7 +14,7 @@ export const nodeMain = async() => {
             { name: "Proyecto", value: "proyect" },
             { name: "Módulo", value: "module" },
             { name: "Atrás", value: "back" },
-        ]);
+        ], 'NODEJS');
 
         switch (opt) {
             case 'proyect':

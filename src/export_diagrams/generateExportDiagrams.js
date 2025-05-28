@@ -4,6 +4,11 @@ import { createDiagrams } from './createDiagrams.js';
 
 export const generateExportDiagrams = async() => {
 
+  console.clear();
+  console.log('========================================'.green);
+  console.log('    Seleccione un opción EXPORT DIAGRAMS'.white);
+  console.log('========================================\n'.green);
+
   const myTables = [];
 
   let more = true;

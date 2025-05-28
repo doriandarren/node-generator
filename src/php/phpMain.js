@@ -16,7 +16,7 @@ export const phpMain = async () => {
       { name: "Proyecto", value: "proyect" },
       { name: "Módulo", value: "module" },
       { name: "Atrás", value: "back" },
-    ]);
+    ], 'PHP');
 
     switch (opt) {
       case "proyect":

@@ -13,14 +13,14 @@ export const databaseMain = async () => {
     { name: "[1] Listar", value: "listar" },
     { name: "[2] Generar", value: "generar" },
     { name: "[3] Generar Diagrams", value: "diagrams" },
-  ]);
+  ], 'DATABASE');
 
   // Elegir base de datos
   const dbType = await menuMain([
     { name: "[1] Local (3306)", value: "local" },
     { name: "[2] Docker (3307)", value: "docker1" },
     { name: "[3] Docker (3308)", value: "docker2" },
-  ]);
+  ], 'DATABASE');
 
   // Leer nombre base de datos (con valor por defecto)
   const dbName = await readInput(

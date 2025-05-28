@@ -22,7 +22,7 @@ export const generateRoute = async(fullPath, namespace, singularName, pluralName
     const code = `
 import { Router } from "express";
 import { check, param } from "express-validator";
-import { validateFields } from "../middlewares/validate-fields.js";
+import { validateFields } from "../../middlewares/validateFields.js";
 import { checkIdExists } from "../../helpers/validators/checkIdExists.js";
 import { validateJWT } from "../../middlewares/validateJWT.js";
 import ${singularName} from "../../models/${singularName}.js";

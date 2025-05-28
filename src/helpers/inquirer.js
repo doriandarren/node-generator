@@ -3,11 +3,11 @@ import "colors";
 
 
 
-export const menuMain = async(choices = []) => {
+export const menuMain = async(choices = [], section = '--') => {
     console.clear();
-    console.log('==============================='.green);
-    console.log('    Seleccione un opción'.white);
-    console.log('===============================\n'.green);
+    console.log('==================================='.green);
+    console.log('    Seleccione un opción'.white + ` ${section}`.white);
+    console.log('===================================\n'.green);
 
     const q = [{
         type: 'list',

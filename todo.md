@@ -8,7 +8,9 @@ splytin_api
 
 # TODO Tareas Pendientes:
 
-- Importante: CREAR POSTMAN POR DEFECTO (conseguir en base_laravel_10) En los proyectos de BACKEND
+- Importante: CREAR POSTMAN POR DEFECTO (conseguir en base_laravel_10) y agregarlos en todos los proyectos de BACKEND
+- Crear los modules de migracion para todos SHARED de NODEJS
+- 
 - Agregar selector de la ruta de: C:\Users\miled\Desktop\WorkSpaceNode\PROYECTOS
 - Empezar a generar REACT
 

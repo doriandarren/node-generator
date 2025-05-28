@@ -6,6 +6,12 @@ import inquirer from 'inquirer';
 
 
 export const importDiagramsMain = async () => {
+
+  console.clear();
+  console.log('========================================'.green);
+  console.log('    Seleccione un opción IMPORT DIAGRAMS'.white);
+  console.log('========================================\n'.green);
+
   const folderPath = path.join(process.cwd(), 'src', 'assets', 'diagrams');
 
   // Obtener todos los archivos .xml o .drawio.xml

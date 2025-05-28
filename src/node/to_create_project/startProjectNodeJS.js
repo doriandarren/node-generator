@@ -6,19 +6,18 @@ import { generateGitignore } from "./generateGitignore.js";
 import { generateServer } from "./generateServer.js";
 import { generateScripts } from "./generateScripts.js";
 import { generateRoutes } from "./generateRoutes.js";
-
 import { generateApp } from "./generateApp.js";
 import { generateRepositories } from "./generateRepositories.js";
-import { generateModels } from "./generateModels.js";
 import { generateMiddlewares } from "./generateMiddlewares.js";
 import { generateMulter } from "./generateMulter.js";
 import { generateHelpers } from "./generateHelpers.js";
 import { generateEnums } from "./generateEnums.js";
 import { generateDatabase } from "./generateDatabase.js";
 import { generateControllerAuth } from "./generateControllerAuth.js";
-import { generateControllerCategories } from "./generateControllerCategories.js";
-import { generateControllerItems } from "./generateControllerItems.js";
 import { generateControllerUsers } from "./generateControllerUsers.js";
+import { generateShared } from "./shared/generateShared.js";
+import { generateDev } from "./generateDev.js";
+
 
 
 
@@ -47,23 +46,24 @@ export const startProjectNodeJS = async() => {
     await generateServer(fullPath);
     await generateScripts(fullPath);
 
+
     await generateRoutes(fullPath);
     await generateRepositories(fullPath);
-    await generateModels(fullPath);
     await generateMiddlewares(fullPath);
     await generateMulter(fullPath);
-
-
     await generateHelpers(fullPath);
     await generateEnums(fullPath);
-    
     await generateDatabase(fullPath);
+
     
     await generateControllerAuth(fullPath);
-    await generateControllerCategories(fullPath);
-    await generateControllerItems(fullPath);
     await generateControllerUsers(fullPath);
+
+
+    await generateDev(fullPath);
     
+
+    await generateShared(fullPath);
 
 
 }
