@@ -16,7 +16,9 @@ export const importDiagramsMain = async () => {
 
   // Obtener todos los archivos .xml o .drawio.xml
   const allFiles = fs.readdirSync(folderPath);
-  const xmlFiles = allFiles.filter(f => f.endsWith('.xml') || f.endsWith('.drawio'));
+  const xmlFilesTemp = allFiles.filter(f => f.endsWith('.xml') || f.endsWith('.drawio'));
+
+  const xmlFiles = [ ...xmlFilesTemp,  { name: "Atrás", value: "back" }];
 
   if (xmlFiles.length === 0) {
     console.log('❌ No se encontraron archivos .xml en la carpeta.');
@@ -32,6 +34,13 @@ export const importDiagramsMain = async () => {
       choices: xmlFiles,
     },
   ]);
+
+
+
+  if (fileName.value === "back") {
+    return;
+  }
+
 
   const filePath = path.join(folderPath, fileName);
   const result = await parseDrawioFile(filePath);

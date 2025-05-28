@@ -6,14 +6,20 @@ import { listTables } from "./to_list/listTables.js";
 export const databaseMain = async () => {
 
   clearScreen();
-  console.log("DATABASE");
 
   // Elegir acción
   const generatorType = await menuMain([
     { name: "[1] Listar", value: "listar" },
     { name: "[2] Generar", value: "generar" },
     { name: "[3] Generar Diagrams", value: "diagrams" },
+    { name: "[4] Atrás", value: "back" },
   ], 'DATABASE');
+
+
+  if (generatorType === "back") {
+    return;
+  }
+
 
   // Elegir base de datos
   const dbType = await menuMain([
