@@ -38,7 +38,7 @@ export const startModulePHP = async () => {
     "/Users/dorian/PhpstormProjects81/app-1"
   );
   const namespace = await readInput(
-    "Namespace (erp / api / invoices):",
+    "Namespace (API / SHARED / ERP):",
     false,
     "API"
   );

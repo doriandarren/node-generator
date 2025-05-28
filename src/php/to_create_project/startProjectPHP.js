@@ -63,7 +63,7 @@ export const startProjectPHP = async() => {
     // Updates
     await updateModelUser(fullPath);
     await updateAppPhp(fullPath);
-    await updateReadme(fullPath);
+    await updateReadme(fullPath, projectName);
     await updateGitignore(fullPath);
 
 

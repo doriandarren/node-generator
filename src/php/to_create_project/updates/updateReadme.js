@@ -5,14 +5,22 @@ import { createFolder } from '../../../helpers/helperFile.js';
 
 
 
-export const updateReadme = async (fullPath) => {
+export const updateReadme = async (fullPath, projectName) => {
   const folderPath = path.join(fullPath);
-  const filePath = path.join(folderPath, 'README.md');
+  const filePath = path.join(folderPath, 'readme.md');
 
   // Asegurar que la carpeta exista
   createFolder(folderPath);
 
-  const content = `## Base Laravel 12
+  const content = `
+<p align="center">
+<a href="https://${projectName.toLowerCase()}" target="_blank">
+<img src="https://${projectName.toLowerCase()}/public/brand/images/company_logos/logo.png" width="400" alt="Img"></a>
+</p>
+
+<h2 align="center">${projectName}</h2>
+
+---
 
 ## Installation
 
