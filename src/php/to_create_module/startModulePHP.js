@@ -33,27 +33,27 @@ export const startModulePHP = async () => {
   ]);
 
   const fullPath = await readInput(
-    "Ruta Proyecto:",
+    "Ruta Proyecto: ",
     false,
     "/Users/dorian/PhpstormProjects81/app-1"
   );
   const namespace = await readInput(
-    "Namespace (API / SHARED / ERP):",
+    "Namespace (API / SHARED / ERP): ",
     false,
     "API"
   );
   const singularName = await readInput(
-    "Nombre singular:",
+    "Nombre singular: ",
     false,
     "AgendaUnloading"
   );
   const pluralName = await readInput(
-    "Nombre plural:",
+    "Nombre plural: ",
     false,
     "AgendaUnloadings"
   );
   const inputColumns = await readInput(
-    "Columnas (separadas por espacio):",
+    "Columnas (separadas por espacio): ",
     false,
     "name amount description"
   );
@@ -79,7 +79,6 @@ export const startModulePHP = async () => {
     pluralName,
     columns
   );
-
 
   //await pause();
 

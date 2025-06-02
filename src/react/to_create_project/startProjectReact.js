@@ -1,5 +1,6 @@
 import { readInput } from "../../helpers/inquirer.js";
 import { generateImages } from "./generate_images/generateImages.js";
+import { generatePublicHeader } from "./generatePublicHeader.js";
 import { generateReactCommandLine } from "./generateReactCommandLine.js";
 import { generateStyle } from "./generateStyles.js";
 
@@ -26,7 +27,10 @@ export const startProjectReact = async() => {
     await generateStyle(fullPath);
     await generateImages(fullPath);
 
-    
+
+    // 
+    await generatePublicHeader(fullPath);
+
 
 
 }
