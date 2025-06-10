@@ -1,4 +1,3 @@
-import 'dotenv/config';
 import { clearScreen, exitScreen, menuMain, pause } from "./src/helpers/inquirer.js";
 import { nodeMain } from './src/node/ nodeMain.js';
 import { databaseMain } from './src/database/databaseMain.js';
@@ -6,13 +5,15 @@ import { phpMain } from './src/php/phpMain.js';
 import { reactMain } from './src/react/reactMain.js';
 import { exportDiagramsMain } from './src/export_diagrams/exportDigramsMain.js';
 import { importDiagramsMain } from './src/import_diagrams/importDiagramsMain.js';
-
+import 'dotenv/config';
+import { aiMain } from "./src/ai/aiMain.js";
 
 
 const main = async() => {
     let opt = '';
 
     clearScreen();
+
     console.log('🔧 Generador de Código');
 
     do{
@@ -24,6 +25,7 @@ const main = async() => {
             { name: "React", value: "react" },
             { name: "NodeJS", value: "nodejs" },
             { name: "PHP", value: "php" },
+            { name: "Ollama", value: "ollama" },
             { name: "Salir", value: "salir" },
         ]);
 
@@ -51,6 +53,10 @@ const main = async() => {
             
             case 'import_diagrams':
                 await importDiagramsMain();
+                break;
+
+            case 'ollama':
+                await aiMain();
                 break;
             
             default:

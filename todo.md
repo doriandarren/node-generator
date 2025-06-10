@@ -1,5 +1,7 @@
 # TODOLIST
 
+Prueba: node src/ai/ollama/ollamaAI.js
+
 ## Ruta Mile no borrar
 
 C:\Users\miled\Desktop\WorkSpaceNode\PROYECTOS\app1
