@@ -17,6 +17,7 @@
     "mysql2": "^3.14.1",
     "ora": "^8.2.0",
     "pluralize": "^8.0.0",
+    "sequelize": "^6.37.7",
     "uuid": "^11.1.0",
     "xmlbuilder2": "^3.1.1"
   }

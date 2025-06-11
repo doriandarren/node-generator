@@ -3,13 +3,7 @@ import { menuMain, pause, printMessage, readInput } from "../../../helpers/inqui
 
 
 
-// export const startOllamaAI = async() => {
 
-//     await sendMessage("hola! Me puedes ayudar a generar diner, ingresos pasivos u otra cosa que sea rentable?");
-
-//     await pause();
-
-// }
 
 
 export const startOllamaAI = async () => {
