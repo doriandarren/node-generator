@@ -69,9 +69,9 @@ export class ${singularName}Repository extends BaseRepository {
 
   // 📌 Update
   async update(id, data) {
-    const data = await ${singularName}.findByPk(id);
-    if (!data) return null;
-    return await data.update(data);
+    const record = await ${singularName}.findByPk(id);
+    if (!record) return null;
+    return await record.update(data);
   }
 
   // 📌 Destroy (soft-delete)

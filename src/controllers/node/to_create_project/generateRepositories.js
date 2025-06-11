@@ -64,9 +64,9 @@ export class UserRepository extends BaseRepository {
 
   // Update
   async update(id, data) {
-    const user = await User.findByPk(id);
-    if (!user) return null;
-    return await user.update(data);
+    const record = await User.findByPk(id);
+    if (!record) return null;
+    return await record.update(data);
   }
 
   // Destroy (soft-delete)
