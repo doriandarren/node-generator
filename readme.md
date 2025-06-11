@@ -18,6 +18,7 @@ node app.js
 
 npm i colors                            // Colors
 npm i inquirer                          // Inquirer
+npm install ora                         // Preloader
 npm i dotenv                            // DotEnv
 
 npm install sequelize mysql2            // ORM Sequelize

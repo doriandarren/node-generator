@@ -1,12 +1,12 @@
 import { clearScreen, exitScreen, menuMain, pause } from "./src/helpers/inquirer.js";
-import { nodeMain } from './src/node/ nodeMain.js';
-import { databaseMain } from './src/database/databaseMain.js';
-import { phpMain } from './src/php/phpMain.js';
-import { reactMain } from './src/react/reactMain.js';
-import { exportDiagramsMain } from './src/export_diagrams/exportDigramsMain.js';
-import { importDiagramsMain } from './src/import_diagrams/importDiagramsMain.js';
+import { nodeMain } from './src/controllers/node/nodeMain.js';
+import { databaseMain } from './src/controllers/database/databaseMain.js';
+import { phpMain } from './src/controllers/php/phpMain.js';
+import { reactMain } from './src/controllers/react/reactMain.js';
+import { exportDiagramsMain } from './src/controllers/export_diagrams/exportDigramsMain.js';
+import { importDiagramsMain } from './src/controllers/import_diagrams/importDiagramsMain.js';
 import 'dotenv/config';
-import { aiMain } from "./src/ai/aiMain.js";
+import { aiMain } from "./src/controllers/ai/aiMain.js";
 
 
 const main = async() => {
