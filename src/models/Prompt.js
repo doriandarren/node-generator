@@ -1,7 +1,7 @@
 import { DataTypes } from "sequelize";
-import { sequelize } from "../database/settings/config.js"
+import sequelize from "../database/settings/config.js"
 
-export const Prompt = sequelize.define("Prompt", {
+const Prompt = sequelize.define("Prompt", {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -17,5 +17,9 @@ export const Prompt = sequelize.define("Prompt", {
   },
 }, {
   tableName: 'prompts',
-  timestamps: true, // crea campos createdAt y updatedAt
+  timestamps: true,
+  createdAt: 'created_at', // renombrar
+  updatedAt: 'updated_at', // renombrar
 });
+
+export default Prompt;

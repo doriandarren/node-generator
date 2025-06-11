@@ -3,10 +3,20 @@ import path from 'path';
 import { createFolder } from '../../../helpers/helperFile.js';
 
 
-export const generateRoute = async(fullPath, namespace, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCase, pluralNameCase, columns) => {    
+export const generateRoute = async(
+    fullPath, 
+    namespace, 
+    singularName, 
+    pluralName, 
+    singularNameKebab, 
+    pluralNameKebab, 
+    singularNameSnake, 
+    pluralNameSnake, 
+    singularNameCase, 
+    pluralNameCase, 
+    columns
+) => {    
     
-
-    //console.log(fullPath);
 
     // Folder
     const folderPath = path.join(fullPath, 'src', 'routes', namespace);
@@ -26,11 +36,11 @@ import { validateFields } from "../../middlewares/validateFields.js";
 import { checkIdExists } from "../../helpers/validators/checkIdExists.js";
 import { validateJWT } from "../../middlewares/validateJWT.js";
 import ${singularName} from "../../models/${singularName}.js";
-import { ${singularNameCase}ListController } from "../../controllers/${namespace}/${pluralNameCase}/${singularNameCase}ListController.js";
-import { ${singularNameCase}ShowController } from "../../controllers/${namespace}/${pluralNameCase}/${singularNameCase}ShowController.js";
-import { ${singularNameCase}StoreController } from "../../controllers/${namespace}/${pluralNameCase}/${singularNameCase}StoreController.js";
-import { ${singularNameCase}UpdateController } from "../../controllers/${namespace}/${pluralNameCase}/${singularNameCase}UpdateController.js";
-import { ${singularNameCase}DeleteController } from "../../controllers/${namespace}/${pluralNameCase}/${singularNameCase}DeleteController.js";
+import { ${singularNameCase}ListController } from "../../controllers/${namespace}/${pluralNameSnake}/${singularNameCase}ListController.js";
+import { ${singularNameCase}ShowController } from "../../controllers/${namespace}/${pluralNameSnake}/${singularNameCase}ShowController.js";
+import { ${singularNameCase}StoreController } from "../../controllers/${namespace}/${pluralNameSnake}/${singularNameCase}StoreController.js";
+import { ${singularNameCase}UpdateController } from "../../controllers/${namespace}/${pluralNameSnake}/${singularNameCase}UpdateController.js";
+import { ${singularNameCase}DeleteController } from "../../controllers/${namespace}/${pluralNameSnake}/${singularNameCase}DeleteController.js";
 
 
 const router = Router();

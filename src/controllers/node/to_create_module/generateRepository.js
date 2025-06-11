@@ -18,7 +18,7 @@ export const generateRepository = async(
 ) => {    
 
     // Folder
-    const folderPath = path.join(fullPath, 'src', 'repositories', singularNameSnake, );
+    const folderPath = path.join(fullPath, 'src', 'repositories', pluralNameSnake);
     
     // File
     const filePath = path.join(folderPath, `${singularNameCamel}Repository.js`);

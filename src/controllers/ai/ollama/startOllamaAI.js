@@ -1,9 +1,6 @@
 import ora from "ora";
 import { menuMain, pause, printMessage, readInput } from "../../../helpers/inquirer.js";
-
-
-
-
+import Prompt from "../../../models/Prompt.js";
 
 
 export const startOllamaAI = async () => {
@@ -11,7 +8,17 @@ export const startOllamaAI = async () => {
   let prompt = await readInput("¿Pregunta a Ollama? [e: salir]");
 
   while (prompt.trim().toLowerCase() !== 'e') {
-    await sendMessage(prompt);
+    // Guardar el prompt
+    const promptNew = await Prompt.create({ prompt });
+
+    // Obtener respuesta de Ollama
+    const response = await sendMessage(prompt);
+
+    // Actualizar el registro con la respuesta (si no es null)
+    if (response) {
+      await promptNew.update({ response });
+    }
+
     await pause();
 
     prompt = await readInput("¿Qué quieres preguntarle a Ollama? [e: salir]");
@@ -60,12 +67,15 @@ const sendMessage = async(prompt) => {
         printMessage("\n📨 Respuesta de Ollama:\n", 'cyan');
         console.log(answer || "No se encontró respuesta válida.");
 
+
+        return answer;
         
 
     } catch (err) {
         spinner.fail("❌ Error al llamar a Ollama.");
         console.log(err);   
         printMessage(`Detalles del error: ${err.message}`, 'red');
+        return null;
     }
 
 }

@@ -40,6 +40,10 @@ npm install xmlbuilder2                 // XML
 npm run dev
 npm run db:connection                   // Test DB connection
 
+
+node src/scripts/dbTestConnection.js
+node src/scripts/dbAlter.js
+
 ```
 
 
