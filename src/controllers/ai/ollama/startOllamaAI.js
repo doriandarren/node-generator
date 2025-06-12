@@ -18,6 +18,7 @@ export const startOllamaAI = async () => {
     if (response) {
       await promptNew.update({ response });
     }
+    
 
     await pause();
 

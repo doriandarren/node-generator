@@ -1,4 +1,4 @@
-import { readInput } from "../../../helpers/inquirer.js";
+import { pause, readInput } from "../../../helpers/inquirer.js";
 import { generateCommandLine } from "./generateCommandLine.js";
 import { generateReadme } from "./generateReadme.js";
 import { generateEnv } from "./generateEnv.js";
@@ -17,6 +17,7 @@ import { generateControllerAuth } from "./generateControllerAuth.js";
 import { generateControllerUsers } from "./generateControllerUsers.js";
 import { generateShared } from "./shared/generateShared.js";
 import { generateDev } from "./generateDev.js";
+import { generateIndexHTML } from "./genarateIndexHTML.js";
 
 
 
@@ -65,5 +66,9 @@ export const startProjectNodeJS = async() => {
 
     await generateShared(fullPath);
 
+
+    await generateIndexHTML(fullPath);
+
+    await pause();
 
 }
