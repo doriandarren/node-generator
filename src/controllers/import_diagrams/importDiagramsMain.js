@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { parseDrawioFile } from './parseDrawioFile.js';
 import inquirer from 'inquirer';
+import { convertSnakeCaseToPascalCase, convertSnakeCaseToPascalSingularCase } from '../../helpers/helperString.js';
 
 
 
@@ -47,10 +48,12 @@ export const importDiagramsMain = async () => {
 
   if (result) {
 
-    //console.log('✅ Tablas importadas:', JSON.stringify(result, null, 2));
-
     result.forEach( el => {
-      console.log(`📄 Table: ${el.table}`);
+      
+      const tableNamePluralPascal = convertSnakeCaseToPascalCase(el.table);
+      const tableNameSingularPascal = convertSnakeCaseToPascalSingularCase(el.table);
+
+      console.log(`📄 Table: ${el.table} - ${tableNameSingularPascal} - ${tableNamePluralPascal}`);
 
       const cleanColumns = el.columns.filter( c => 
         !['id', 'created_at', 'updated_at', 'deleted_at'].includes(c)
