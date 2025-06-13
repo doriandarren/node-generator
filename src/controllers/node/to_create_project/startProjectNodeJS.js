@@ -18,6 +18,7 @@ import { generateControllerUsers } from "./generateControllerUsers.js";
 import { generateShared } from "./shared/generateShared.js";
 import { generateDev } from "./generateDev.js";
 import { generateIndexHTML } from "./genarateIndexHTML.js";
+import { generatePostman } from "./generatePostman.js";
 
 
 
@@ -68,6 +69,10 @@ export const startProjectNodeJS = async() => {
 
 
     await generateIndexHTML(fullPath);
+
+    await generatePostman(fullPath);
+
+    
 
     await pause();
 
