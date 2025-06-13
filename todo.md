@@ -52,16 +52,19 @@ pluralNameCase
 
 📄 Table: dishes - Dish - Dishes
 Columns: name description 
- 
-📄 Table: types - Type - Types
+
+
+📄 Table: dish_types - DishType - DishTypes
 Columns: name 
- 
+
+
 📄 Table: carbohydrates - Carbohydrate - Carbohydrates
 Columns: name 
- 
+
+
 📄 Table: proteins - Protein - Proteins
 Columns: name 
- 
+
 📄 Table: vegetables - Vegetable - Vegetables
 Columns: name 
  
@@ -82,15 +85,16 @@ Columns: carbohydrate_id dish_id
  
 📄 Table: dish_proteins - DishProtein - DishProteins
 Columns: protein_id dish_id 
- 
+
 📄 Table: dish_vegetables - DishVegetable - DishVegetables
 Columns: vegetable_id dish_id 
  
+
 📄 Table: dish_fats - DishFat - DishFats
 Columns: fat_id dish_id 
  
-📄 Table: dish_types - DishType - DishTypes
-Columns: dish_id type_id 
+📄 Table: dish_dish_types - DishDishType - DishDishTypes
+Columns: dish_id dish_type_id 
  
 📄 Table: dish_seasons - DishSeason - DishSeasons
 Columns: dish_id season_id 
@@ -98,6 +102,8 @@ Columns: dish_id season_id
 📄 Table: dish_type_preparations - DishTypePreparation - DishTypePreparations
 Columns: dish_id type_preparation_id 
  
+
 📄 Table: dish_schedules - DishSchedule - DishSchedules
 Columns: dish_id schedule_id 
+ 
  
