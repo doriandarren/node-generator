@@ -8,10 +8,16 @@ C:\Users\miled\Desktop\WorkSpaceNode\PROYECTOS\app1
 splytin_api
 
 
-# TODO Tareas Pendientes:
+# TODO Tareas Pendientes NODE:
 
-- Importante: CREAR POSTMAN POR DEFECTO (conseguir en base_laravel_10) y agregarlos en todos los proyectos de BACKEND
+
 - Crear los modules de migracion para todos SHARED de NODEJS
+- Crear vvalores por defectos en las migraciones
+- Crear relaciones de tablas
+
+
+
+
 - Agregar selector de la ruta de: C:\Users\miled\Desktop\WorkSpaceNode\PROYECTOS
 - Empezar a generar REACT
 - Enviar correos

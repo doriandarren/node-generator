@@ -113,9 +113,8 @@ const updatePackageJSON = async(fullPath, projectName) => {
         //...pkg.scripts,
         dev: "nodemon app.js",
         "db:connection": "node src/scripts/dbTestConnection.js",
-        "db:reset": "node src/scripts/dbReset.js",
-        "db:alter": "node src/scripts/dbAlter.js",
-        "make:controller": "node scripts/makeController.js",
+        "db:migration": "node src/scripts/dbMigration.js",
+        "db:reset": "node src/scripts/dbReset.js"
       };
   
       fs.writeFileSync(packagePath, JSON.stringify(pkg, null, 2));

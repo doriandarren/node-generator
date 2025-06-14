@@ -7,7 +7,7 @@ import { createFolder } from '../../../helpers/helperFile.js';
 
 export const generateScripts = async(fullPath) => {
     
-    await createDbAlter(fullPath);
+    await createDbMigration(fullPath);
     await createDbReset(fullPath);
     await createDbTestConection(fullPath);
 
@@ -16,13 +16,13 @@ export const generateScripts = async(fullPath) => {
 
 
 
-const createDbAlter = async(fullPath) => {    
+const createDbMigration = async(fullPath) => {    
 
     // Folder
     const folderPath = path.join(fullPath, 'src', 'scripts');
     
     // File
-    const filePath = path.join(folderPath, 'dbAlter.js');
+    const filePath = path.join(folderPath, 'dbMigration.js');
 
     // Asegurar que la carpeta exista
     createFolder(folderPath);
@@ -36,7 +36,7 @@ import User from '../models/User.js';
 
 
 
-async function syncAlter() {
+async function syncMigration() {
   try {
     await sequelize.authenticate();
     console.log('🔌 Conectado a la base de datos');
@@ -51,7 +51,7 @@ async function syncAlter() {
   }
 }
 
-syncAlter();
+syncMigration();
 `.trimStart();
 
     fs.writeFileSync(filePath, code);
