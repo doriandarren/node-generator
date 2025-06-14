@@ -43,11 +43,7 @@ export class Server {
         }
 
         this.pathShared = {
-            abilityGroups: '/api/v1/ability-groups',
-            abilities: '/api/v1/abilities',
-            abilityUsers: '/api/v1/ability-users',
-            roleUsers: '/api/v1/ability-users',
-            users: '/api/v1/users',
+            
         }
 
         this.pathDev = {
@@ -83,16 +79,6 @@ export class Server {
 
 
     routes(){
-
-        // Shared
-        this.app.use( this.pathShared.abilityGroups, abilityGroupRoutes);
-        this.app.use( this.pathShared.abilities, abilityRoutes);
-        this.app.use( this.pathShared.abilityUsers, abilityUserRoutes);
-        this.app.use( this.pathShared.roleUsers, roleUserRoutes);
-        this.app.use( this.pathShared.userUsers, userRoutes);
-        
-        // Dev
-        this.app.use( this.pathDev.dev, devRoutes);
 
 
         // Api
