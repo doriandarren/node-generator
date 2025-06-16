@@ -22,11 +22,6 @@ import cors from 'cors';
 import { attachBaseController } from '../middlewares/attachBaseController.js';
 
 import authRoutes from '../routes/api/authRoutes.js';
-import abilityGroupRoutes from '../routes/shared/abilityGroupRoutes.js';
-import abilityRoutes from '../routes/shared/abilityRoutes.js';
-import abilityUserRoutes from '../routes/shared/abilityUserRoutes.js';
-import roleUserRoutes from '../routes/shared/roleUserRoutes.js';
-import userRoutes from '../routes/api/userRoutes.js';
 import devRoutes from '../routes/dev/devRoutes.js';
 
 
@@ -83,6 +78,7 @@ export class Server {
 
         // Api
         this.app.use( this.pathApi.auth, authRoutes);
+        this.app.use( this.pathDev.dev, devRoutes);
         
         
         //TODO Others routes

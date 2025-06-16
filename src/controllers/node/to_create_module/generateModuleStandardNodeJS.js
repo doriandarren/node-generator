@@ -10,6 +10,7 @@ import { generateRepository } from "./generateRepository.js";
 import { generateMigration } from "./generateMigration.js";
 import { generateSeeder } from "./generateSeeder.js";
 import { generatePostman } from "./generatePostman.js";
+import { pause } from "../../../helpers/inquirer.js";
 
 
 

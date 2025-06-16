@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { createFolder } from '../../../helpers/helperFile.js';
+import { pause } from '../../../helpers/inquirer.js';
 
 
 export const generateRoute = async(
@@ -179,7 +180,7 @@ const updateServerJS = async (
   const importPath = `../routes/${namespace}/${singularNameCamel}Routes.js`;
   const apiPath = `/api/v1/${pluralNameKebab}`;
 
-  const commentTag = '// System Write\n';
+  const commentTag = '// Written by system\n';
 
   try {
     let content = fs.readFileSync(serverFilePath, 'utf8');
@@ -196,16 +197,6 @@ const updateServerJS = async (
       }
     }
 
-
-    // 2. Agregar path
-    // const pathKey = namespace.toLowerCase() === 'shared' ? 'pathShared' : 'pathApi';
-    // const pathRegex = new RegExp(`this\\.${pathKey}\\s*=\\s*{([\\s\\S]*?)}`, 'm');
-    // const matchPath = content.match(pathRegex);
-    // if (matchPath && !matchPath[1].includes(pluralNameCamel)) {
-    //   const insertIndex = matchPath.index + matchPath[0].lastIndexOf('}');
-    //   const newLine = `            ${pluralNameCamel}: '${apiPath}', ${commentTag}`;
-    //   content = content.slice(0, insertIndex) + newLine + content.slice(insertIndex);
-    // }
 
 
 
@@ -225,24 +216,40 @@ const updateServerJS = async (
 
 
 
-
-
     // 3. Agregar uso en `routes()`
-    const appUseRegex = new RegExp(`this\\.app\\.use\\(\\s*this\\.${pathNamespace}\\.\\w+,\\s*\\w+Routes\\);`, 'g');
-    const appUseMatches = [...content.matchAll(appUseRegex)];
-    const alreadyIncluded = content.includes(`${pluralNameCamel}Routes`);
+    const routesBlockRegex = /routes\s*\(\)\s*{([\s\S]*?)\n\s*}/m;
+    const matchRoutes = content.match(routesBlockRegex);
 
-    if (appUseMatches.length > 0 && !alreadyIncluded) {
-        const lastMatch = appUseMatches[appUseMatches.length - 1];
-        const insertIndex = lastMatch.index + lastMatch[0].length;
-        const newRouteLine = `\n        this.app.use( this.${pathNamespace}.${pluralNameCamel}, ${pluralNameCamel}Routes); ${commentTag}`;
-        content = content.slice(0, insertIndex) + newRouteLine + content.slice(insertIndex);
+    const routeLine = `        this.app.use( this.${pathNamespace}.${pluralNameCamel}, ${singularNameCamel}Routes); // Written by system`;
+
+    const alreadyUsedRegex = new RegExp(`this\\.app\\.use\\(\\s*this\\.${pathNamespace}\\.${pluralNameCamel},\\s*${singularNameCamel}Routes\\);`);
+
+    if (matchRoutes && !alreadyUsedRegex.test(matchRoutes[0])) {
+
+        const routesBody = matchRoutes[1];
+
+        // Insertar antes del '//TODO Others routes' con salto de línea
+        const todoRegex = /(\n\s*\/\/TODO Others routes)/;
+        const newRoutesBody = routesBody.replace(todoRegex, `\n${routeLine}\n$1`);
+
+        // Reemplazar el método completo
+        const fullOldRoutes = matchRoutes[0];
+        const fullNewRoutes = fullOldRoutes.replace(routesBody, newRoutesBody);
+
+        content = content.replace(fullOldRoutes, fullNewRoutes);
+        
     }
+
+
+
+    //TODO probar.......
 
 
     // Guardar archivo
     fs.writeFileSync(serverFilePath, content);
     console.log(`✅ server.js actualizado correctamente`.green);
+
+
   } catch (err) {
     console.error(`❌ Error al actualizar server.js: ${err.message}`);
   }
