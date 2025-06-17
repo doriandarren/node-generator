@@ -30,7 +30,7 @@ import { EnumRole } from '../../../enums/enumRole.js';
 import Role from '../../../models/Role.js';
 
 
-export const seedRoles = async () => { 
+export const seedRole = async () => { 
   const roles = [
     {
       id: EnumRole.ADMIN_ID,
@@ -230,8 +230,8 @@ const createUserStatuses = async(fullPath) => {
 
     // Code
     const code = `
+import { EnumUserStatus } from '../../../enums/enumsUserStatuses.js';
 import UserStatus from '../../../models/UserStatus.js';
-import { EnumUserStatus } from '../../../enums/enumUserStatuses.js';
 
 export const seedUserStatuses = async () => {
   const statuses = [

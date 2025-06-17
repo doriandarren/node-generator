@@ -14,23 +14,9 @@ export const generateShared = async(fullPath) => {
     await createModule(fullPath, 'shared', 'Role', 'Roles', 'name description');                        // roles
     await createModule(fullPath, 'shared', 'RoleUser', 'RoleUsers', 'user_id role_id');                 // role_users
     await createModule(fullPath, 'shared', 'Country', 'Countries', 'common_name iso_name code_alpha_2 code_alpha_3 numerical_code phone_code'); // countries
-    await createModule(fullPath, 'api', 'User', 'Users', 'user_status_id name email email_verified_at password image_url');                       // user_statuses
+    await createModule(fullPath, 'api', 'User', 'Users', 'user_status_id name email email_verified_at password image_url');                  // user_statuses
     await createModule(fullPath, 'shared', 'UserStatus', 'UserStatuses', 'name');                       // user_statuses
     
-
-
-  // await createAbility(fullPath);
-  // await createAbilityGroup(fullPath);
-  // await createAbilityUser(fullPath);
-  // await createRole(fullPath);
-  // await createRoleUser(fullPath);
-  // await createUser(fullPath);
-  // await createUserSession(fullPath);
-  // await createUserStatus(fullPath);
-
-
-    //TODO crear los modules de migracion para todos... y ve 
-
 
     await createInitAssociations(fullPath);
 

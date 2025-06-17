@@ -62,12 +62,9 @@ export const startProjectNodeJS = async() => {
     await generateControllerAuth(fullPath);
     await generateControllerUsers(fullPath);
 
-
     await generateDev(fullPath);
-    
 
     await generateShared(fullPath);
-
 
     await generateIndexHTML(fullPath);
 

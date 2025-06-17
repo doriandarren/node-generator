@@ -40,7 +40,7 @@ export const generateSeeder = async(
     // Code
     const code = `
 import { faker } from '@faker-js/faker';
-import { ${singularName} } from '../../../models/${singularName}.js';
+import ${singularName} from '../../../models/${singularName}.js';
 
 export async function seed${pluralName}() {
   try {

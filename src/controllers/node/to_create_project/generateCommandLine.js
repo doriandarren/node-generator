@@ -13,13 +13,17 @@ export const generateCommandLine = async(fullPath, projectName) => {
     await installCors(fullPath);
     await installSequalize(fullPath);
     await installJsonwebtoken(fullPath);
+    await installFaker(fullPath);
 
     await updatePackageJSON(fullPath, projectName);
 
 }
 
 
-
+/**
+ * Init Project
+ * @param {*} fullPath 
+ */
 const createProject = async(fullPath) => {
     createFolder(fullPath);
     const cmd = `npm init -y`;
@@ -29,7 +33,7 @@ const createProject = async(fullPath) => {
 
 
 /**
- * Env
+ * Install Env
  * @param {*} fullPath 
  */
 const installEnv = async(fullPath) => {
@@ -40,7 +44,7 @@ const installEnv = async(fullPath) => {
 
 
 /**
- * Express
+ * Install Express
  * @param {*} fullPath 
  */
 const installExpress = async(fullPath) => {
@@ -51,7 +55,7 @@ const installExpress = async(fullPath) => {
 
 
 /**
- * Encript password
+ * Install Encript password
  * @param {*} fullPath 
  */
 const installBcryptjs = async(fullPath) => {
@@ -63,7 +67,7 @@ const installBcryptjs = async(fullPath) => {
 
 
 /**
- * cors
+ * Install Cors
  * @param {*} fullPath 
  */
 const installCors = async(fullPath) => {
@@ -75,7 +79,7 @@ const installCors = async(fullPath) => {
 
 
 /**
- * Sequalize
+ * Install Sequalize
  * @param {*} fullPath 
  */
 const installSequalize = async(fullPath) => {
@@ -86,7 +90,7 @@ const installSequalize = async(fullPath) => {
 
 
 /**
- * Jsonwebtoken
+ * Install Jsonwebtoken
  * @param {*} fullPath 
  */
 const installJsonwebtoken = async(fullPath) => {
@@ -97,7 +101,23 @@ const installJsonwebtoken = async(fullPath) => {
 
 
 
+/**
+ * Install Faker
+ * @param {*} fullPath 
+ */
+const installFaker = async(fullPath) => {
+    createFolder(fullPath);
+    const cmd = `npm install @faker-js/faker`;
+    await runExec(cmd, fullPath);
+}
 
+
+
+/**
+ * Update Package JSON
+ * @param {*} fullPath 
+ * @param {*} projectName 
+ */
 const updatePackageJSON = async(fullPath, projectName) => {
 
     const packagePath = path.join(fullPath, 'package.json');
