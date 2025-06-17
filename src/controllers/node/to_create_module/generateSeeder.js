@@ -18,7 +18,7 @@ export const generateSeeder = async(
 ) => {    
 
     // Folder
-    const folderPath = path.join(fullPath, 'src', 'database', 'seeders', singularNameSnake);
+    const folderPath = path.join(fullPath, 'src', 'database', 'seeders', pluralNameSnake);
     
     // File
     const filePath = path.join(folderPath, `${singularNameCamel}Seeder.js`);

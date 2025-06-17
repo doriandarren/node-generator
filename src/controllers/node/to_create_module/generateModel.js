@@ -57,7 +57,7 @@ const ${singularName} = sequelize.define('${singularName}', {
   },
   ${properties}
 }, {
-  tableName: '${singularNameSnake}',
+  tableName: '${pluralNameSnake}',
   timestamps: true,
   createdAt: 'created_at',
   updatedAt: 'updated_at',

@@ -19,6 +19,7 @@ import { generateShared } from "./shared/generateShared.js";
 import { generateDev } from "./generateDev.js";
 import { generateIndexHTML } from "./genarateIndexHTML.js";
 import { generatePostman } from "./generatePostman.js";
+import { updateSeeders } from "./updateSeeders.js";
 
 
 
@@ -71,6 +72,9 @@ export const startProjectNodeJS = async() => {
     await generateIndexHTML(fullPath);
 
     await generatePostman(fullPath);
+
+
+    await updateSeeders(fullPath);
 
     
 
