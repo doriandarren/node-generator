@@ -59,7 +59,7 @@ const createEnumUserStatuses = async(fullPath) => {
     const folderPath = path.join(fullPath, 'src', 'enums');
     
     // File
-    const filePath = path.join(folderPath, 'enumsUserStatuses.js');
+    const filePath = path.join(folderPath, 'enumUserStatuses.js');
 
     // Asegurar que la carpeta exista
     createFolder(folderPath);

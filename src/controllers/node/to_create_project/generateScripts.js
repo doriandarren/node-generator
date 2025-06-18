@@ -56,9 +56,9 @@ import '../models/initAssociations.js';
 /**********
  * Seeders
  **********/
-import { seedUserStatuses } from '../database/seeders/userStatuses/userStatusSeeder.js';
-import { seedRoles } from '../database/seeders/roles/roleSeeder.js';
-import { seedUsers } from '../database/seeders/users/userSeeder.js';
+import seedUserStatuses from '../database/seeders/userStatuses/userStatusSeeder.js';
+import seedRoles from '../database/seeders/roles/roleSeeder.js';
+import seedUsers from '../database/seeders/users/userSeeder.js';
 
 
 

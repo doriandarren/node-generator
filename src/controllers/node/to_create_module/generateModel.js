@@ -24,24 +24,42 @@ export const generateModel = async (
   // Asegurar que la carpeta exista
   createFolder(folderPath);
 
-  const properties = columns
-    .map((col, index) => {
-      let str = "";
+  // const properties = columns
+  //   .map((col, index) => {
+  //     let str = "";
 
-      if (index == 0) {
-        str += `${col.name}: {
-    type: DataTypes.${col.type},
+  //     if (index == 0) {
+  //       str += `${col.name}: {
+  //   type: DataTypes.${col.type},
+  //   allowNull: ${col.allowNull}
+  // }`;
+  //     } else {
+  //       str += `  ${col.name}: {
+  //   type: DataTypes.${col.type},
+  //   allowNull: ${col.allowNull}
+  // }`;
+  //     }
+  //     return str;
+  //   })
+  //   .join(",\n");
+
+
+  const properties = columns
+  .map((col, index) => {
+      // Detectar si es clave foránea
+      const isForeignKey = col.name.toLowerCase().includes("_id");
+      const dataType = isForeignKey ? "BIGINT" : "STRING";
+
+      const indentation = index === 0 ? "" : "  ";
+
+      return `${indentation}${col.name}: {
+    type: DataTypes.${dataType},
     allowNull: ${col.allowNull}
   }`;
-      } else {
-        str += `  ${col.name}: {
-    type: DataTypes.${col.type},
-    allowNull: ${col.allowNull}
-  }`;
-      }
-      return str;
-    })
-    .join(",\n");
+  })
+  .join(",\n");
+
+
 
   // Code
   const code = `
