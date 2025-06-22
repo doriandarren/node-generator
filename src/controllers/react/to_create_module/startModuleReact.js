@@ -11,10 +11,10 @@ export const startModuleReact = async() => {
     // route list create edit barrel service
 
     const opt = [
-        { name: "route", value: "route", checked: true },
-        { name: "List", value: "controller_list", checked: true },
-        { name: "Create", value: "controller_create", checked: true },
-        { name: "Edit", value: "controller_edit", checked: true },
+        { name: "Route", value: "route", checked: true },
+        { name: "List", value: "list", checked: true },
+        { name: "Create", value: "create", checked: true },
+        { name: "Edit", value: "edit", checked: true },
         { name: "Barrel", value: "barrel", checked: true },
         { name: "service", value: "service", checked: true, },
     ];
@@ -31,12 +31,13 @@ export const startModuleReact = async() => {
     const fullPath = await readInput(
         "Ruta Proyecto:",
         false,
-        "/Users/dorian/PhpstormProjects81/app-1"
+        "/Users/dorian/ReactProjects/app-1"
     );
+
     const namespace = await readInput(
         "Namespace (erp / api / invoices):",
         false,
-        "API"
+        "api"
     );
     const singularName = await readInput(
         "Nombre singular:",
