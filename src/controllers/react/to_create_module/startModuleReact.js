@@ -1,5 +1,5 @@
 import inquirer from "inquirer";
-import { readInput } from "../../../helpers/inquirer.js";
+import { clearScreen, readInput } from "../../../helpers/inquirer.js";
 
 
 
