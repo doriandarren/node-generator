@@ -1,12 +1,7 @@
 import { pascalToCamelCase, pascalToKebab, pascalToSnake } from "../../../helpers/helperString.js";
-
-import { generateCreate } from "./generateCreate.js";
-import { generateList } from "./generateList.js";
-import { generateRoutes } from "./generateRoutes.js";
 import { generateBarrel } from "./generateBarrel.js";
 import { generateEdit } from "./generateEdit.js";
 import { generateService } from "./generateService.js";
-
 
 
 export const generateModuleStandardReact = async (
@@ -30,17 +25,17 @@ export const generateModuleStandardReact = async (
 
 
 
-  // if (selectedComponents.includes("route")) {
-  //   await generateRoutes(projectPath, singularName, pluralNameSnake);
-  // }
+  if (selectedComponents.includes("route")) {
+    await generateRoutes(projectPath, singularName, pluralNameSnake);
+  }
 
-  // if (selectedComponents.includes("list") || selectedComponents.includes("list")) {
-  //   await generateList(projectPath, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularFirstCamel, columns);
-  // }
+  if (selectedComponents.includes("list") || selectedComponents.includes("list")) {
+    await generateList(projectPath, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularFirstCamel, columns);
+  }
 
-  // if (selectedComponents.includes("create") || selectedComponents.includes("create")) {
-  //   await generateCreate(projectPath, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularFirstCamel, columns);
-  // }
+  if (selectedComponents.includes("create") || selectedComponents.includes("create")) {
+    await generateCreate(projectPath, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularFirstCamel, columns);
+  }
 
   if (selectedComponents.includes("edit") || selectedComponents.includes("edit")) {
     await generateEdit(projectPath, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularFirstCamel, columns);
