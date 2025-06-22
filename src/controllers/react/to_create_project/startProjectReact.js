@@ -22,7 +22,7 @@ export const startProjectReact = async() => {
     // Combinar la ruta y el nombre del proyecto
     const fullPath = `${projectPath}/${projectName}`;
 
-    
+    //
     await generateReactCommandLine(fullPath);
     await generateStyle(fullPath);
     await generateImages(fullPath);

@@ -1,5 +1,6 @@
 import inquirer from "inquirer";
 import { clearScreen, readInput } from "../../../helpers/inquirer.js";
+import { generateModuleStandardReact } from "./generateModuleStandardReact.js";
 
 
 
@@ -69,16 +70,14 @@ export const startModuleReact = async() => {
         }));
 
 
-
-    //TODO:::
-//   await generateModuleStandardReact(
-//     fullPath,
-//     selectedComponents,
-//     namespace,
-//     singularName,
-//     pluralName,
-//     columns
-//   );
+    await generateModuleStandardReact(
+        fullPath,
+        selectedComponents,
+        namespace,
+        singularName,
+        pluralName,
+        columns
+    );
 
 
 }
