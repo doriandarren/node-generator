@@ -142,14 +142,14 @@ export const HeaderLayout = () => {
                     {category.sections.map((section) => (
                       <div key={section.name}>
                         <p
-                          id={\`${category.id}-${section.id}-heading-mobile\`}
+                          id={\`\${category.id}-\${section.id}-heading-mobile\`}
                           className="font-medium text-gray-900"
                         >
                           {section.name}
                         </p>
                         <ul
                           role="list"
-                          aria-labelledby={\`${category.id}-${section.id}-heading-mobile\`}
+                          aria-labelledby={\`\${category.id}-\${section.id}-heading-mobile\`}
                           className="mt-6 flex flex-col space-y-6"
                         >
                           {section.items.map((item) => (
@@ -312,14 +312,14 @@ export const HeaderLayout = () => {
                                 {category.sections.map((section) => (
                                   <div key={section.name}>
                                     <p
-                                      id={\`${section.name}-heading\`}
+                                      id={\`\${section.name}-heading\`}
                                       className="font-medium text-gray-900"
                                     >
                                       {section.name}
                                     </p>
                                     <ul
                                       role="list"
-                                      aria-labelledby={\`${section.name}-heading\`}
+                                      aria-labelledby={\`\${section.name}-heading\`}
                                       className="mt-6 space-y-6 sm:mt-4 sm:space-y-4"
                                     >
                                       {section.items.map((item) => (
