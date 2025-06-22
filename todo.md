@@ -2,6 +2,8 @@
 
 C:\Users\doria\Desktop\Dilan\WorkspaceReact
 
+C:\Users\miled\Desktop\WorkspaceJS\PROYECTOS
+
 Prueba: node src/ai/ollama/ollamaAI.js
 
 ## Ruta Mile no borrar
