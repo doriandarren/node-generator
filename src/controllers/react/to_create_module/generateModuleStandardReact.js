@@ -1,4 +1,7 @@
 import { pascalToCamelCase, pascalToKebab, pascalToSnake } from "../../../helpers/helperString.js";
+import { generateCreate } from "./generateCreate.js";
+import { generateList } from "./generateList.js";
+import { generateRoutes } from "./generateRoutes.js";
 
 
 export const generateModuleStandardReact = async (
