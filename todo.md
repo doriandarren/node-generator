@@ -1,5 +1,7 @@
 # TODOLIST
 
+C:\Users\doria\Desktop\Dilan\WorkspaceReact
+
 Prueba: node src/ai/ollama/ollamaAI.js
 
 ## Ruta Mile no borrar
