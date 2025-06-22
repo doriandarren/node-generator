@@ -8,18 +8,15 @@ export const startModuleReact = async() => {
     
     await clearScreen();
 
+    // route list create edit barrel service
+
     const opt = [
-        { name: "Modelo", value: "model", checked: true },
-        { name: "Controlador - List", value: "controller_list", checked: true },
-        { name: "Controlador - Show", value: "controller_show", checked: true },
-        { name: "Controlador - Store", value: "controller_store", checked: true },
-        { name: "Controlador - Update", value: "controller_update", checked: true },
-        { name: "Controlador - Destroy", value: "controller_destroy", checked: true, },
-        { name: "Repositorio", value: "repository", checked: true },
-        { name: "Rutas", value: "route", checked: true },
-        { name: "Migración", value: "migration", checked: true },
-        { name: "Seeder", value: "seeder", checked: true },
-        { name: "Archivo Postman", value: "postman", checked: true },
+        { name: "route", value: "route", checked: true },
+        { name: "List", value: "controller_list", checked: true },
+        { name: "Create", value: "controller_create", checked: true },
+        { name: "Edit", value: "controller_edit", checked: true },
+        { name: "Barrel", value: "barrel", checked: true },
+        { name: "service", value: "service", checked: true, },
     ];
 
     const { selectedComponents } = await inquirer.prompt([
