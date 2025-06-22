@@ -23,27 +23,27 @@ export const generateModuleStandardReact = async (
 
 
   if (selectedComponents.includes("route")) {
-    await createRoutes(projectPath, singularName, pluralNameSnake);
+    await generateRoutes(projectPath, singularName, pluralNameSnake);
   }
 
-  // if (selectedComponents.includes("list") || selectedComponents.includes("list")) {
-  //   await createListPage(projectPath, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularFirstCamel, columns);
-  // }
+  if (selectedComponents.includes("list") || selectedComponents.includes("list")) {
+    await generateList(projectPath, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularFirstCamel, columns);
+  }
 
-  // if (selectedComponents.includes("create") || selectedComponents.includes("create")) {
-  //   await createCreatePage(projectPath, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularFirstCamel, columns);
-  // }
+  if (selectedComponents.includes("create") || selectedComponents.includes("create")) {
+    await generateCreate(projectPath, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularFirstCamel, columns);
+  }
 
-  // if (selectedComponents.includes("edit") || selectedComponents.includes("edit")) {
-  //   await createEditPage(projectPath, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularFirstCamel, columns);
-  // }
+  if (selectedComponents.includes("edit") || selectedComponents.includes("edit")) {
+    await generateEdit(projectPath, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularFirstCamel, columns);
+  }
 
-  // if (selectedComponents.includes("barrel")) {
-  //   await createBarrelFile(projectPath, singularName, pluralNameSnake);
-  // }
+  if (selectedComponents.includes("barrel")) {
+    await generateBarrel(projectPath, singularName, pluralNameSnake);
+  }
 
-  // if (selectedComponents.includes("service")) {
-  //   await createServiceFile(projectPath, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularFirstCamel, columns);
-  // }
+  if (selectedComponents.includes("service")) {
+    await generateService(projectPath, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularFirstCamel, columns);
+  }
 
 };
