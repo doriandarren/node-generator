@@ -25,17 +25,17 @@ export const generateModuleStandardReact = async (
 
 
 
-  if (selectedComponents.includes("route")) {
-    await generateRoutes(projectPath, singularName, pluralNameSnake);
-  }
+  // if (selectedComponents.includes("route")) {
+  //   await generateRoutes(projectPath, singularName, pluralNameSnake);
+  // }
 
-  if (selectedComponents.includes("list") || selectedComponents.includes("list")) {
-    await generateList(projectPath, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularFirstCamel, columns);
-  }
+  // if (selectedComponents.includes("list") || selectedComponents.includes("list")) {
+  //   await generateList(projectPath, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularFirstCamel, columns);
+  // }
 
-  if (selectedComponents.includes("create") || selectedComponents.includes("create")) {
-    await generateCreate(projectPath, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularFirstCamel, columns);
-  }
+  // if (selectedComponents.includes("create") || selectedComponents.includes("create")) {
+  //   await generateCreate(projectPath, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularFirstCamel, columns);
+  // }
 
   if (selectedComponents.includes("edit") || selectedComponents.includes("edit")) {
     await generateEdit(projectPath, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularFirstCamel, columns);
