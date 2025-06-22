@@ -35,15 +35,15 @@ export const generateModuleStandardReact = async (
   // }
 
   // if (selectedComponents.includes("list") || selectedComponents.includes("list")) {
-  //   await generateList(projectPath, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularFirstCamel, columns);
+  //   await generateList(projectPath, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCamel, columns);
   // }
 
-  // if (selectedComponents.includes("create") || selectedComponents.includes("create")) {
-  //   await generateCreate(projectPath, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularFirstCamel, columns);
-  // }
+  if (selectedComponents.includes("create") || selectedComponents.includes("create")) {
+    await generateCreate(projectPath, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularFirstCamel, columns);
+  }
 
   if (selectedComponents.includes("edit") || selectedComponents.includes("edit")) {
-    await generateEdit(projectPath, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularFirstCamel, columns);
+    await generateEdit(projectPath, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCamel, columns);
   }
 
   if (selectedComponents.includes("barrel")) {
@@ -51,7 +51,7 @@ export const generateModuleStandardReact = async (
   }
 
   if (selectedComponents.includes("service")) {
-    await generateService(projectPath, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularFirstCamel, columns);
+    await generateService(projectPath, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCamel, columns);
   }
 
 };
