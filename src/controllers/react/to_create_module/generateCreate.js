@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { createFolder } from '../../../helpers/helperFile.js';
 
-export const generateCreate = (
+export const generateCreate = async(
   projectPath,
   singularName,
   pluralName,
