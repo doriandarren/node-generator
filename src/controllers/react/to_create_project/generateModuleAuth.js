@@ -15,11 +15,14 @@ export const generateModuleAuth = async(fullPath) => {
     await createFileThunksAuth(fullPath)
 }
 
+
+
+
 /**
  * ## Routes
  * Genera el archivo AuthRoutes.jsx dentro de src/modules/auth/routes.
  */
-export const createRoutes = async (fullPath) => {
+const createRoutes = async (fullPath) => {
   // 1) Definir la ruta del archivo
   const routesDir = path.join(fullPath, 'src', 'modules', 'auth', 'routes');
   const filePath  = path.join(routesDir, 'AuthRoutes.jsx');
@@ -51,13 +54,13 @@ export const AuthRoutes = () => {
   } catch (error) {
     console.error(`❌ Error al crear el archivo ${filePath}: ${error}`);
   }
-};
+}
 
 /**
  * ## Pages
  * Genera el archivo LoginPage.jsx dentro de src/modules/auth/pages
  */
-export const createLogin = async(fullPath) => {
+const createLogin = async(fullPath) => {
   // 1) Definir la ruta del archivo
   const pagesDir = path.join(fullPath, 'src', 'modules', 'auth', 'pages');
   const filePath = path.join(pagesDir, 'LoginPage.jsx');
@@ -212,9 +215,9 @@ export const LoginPage = () => {
   } catch (error) {
     console.error(`❌ Error al crear el archivo ${filePath}: ${error}`);
   }
-};
+}
 
-export const createRegister = async(fullPath) => {
+const createRegister = async(fullPath) => {
   // 1) Definir la ruta del archivo
   const pagesDir = path.join(fullPath, 'src', 'modules', 'auth', 'pages');
   const filePath = path.join(pagesDir, 'RegisterPage.jsx');
@@ -369,9 +372,9 @@ export const RegisterPage = () => {
   } catch (error) {
     console.error(`❌ Error al crear el archivo ${filePath}: ${error}`);
   }
-};
+}
 
-export const createAuthIndex = async(fullPath) => {
+const createAuthIndex = async(fullPath) => {
   // Importación de módulos necesarios (fs y path ya deben estar importados en el archivo principal)
   
   // Define la ruta del archivo
@@ -393,13 +396,13 @@ export * from './RegisterPage';
   } catch (e) {
     console.error(`❌ Error al crear el archivo ${filePath}: ${e}`);
   }
-};
+}
 
 /**
  * ## Redux
  * Genera el archivo authSlice.js dentro de la carpeta store/auth
  */
-export const createFileAuthSlice = async(fullPath) => {
+const createFileAuthSlice = async(fullPath) => {
   // Define la ruta del archivo
   const routesDir = path.join(projectPath, "src", "store", "auth");
   const filePath = path.join(routesDir, "authSlice.js");
@@ -469,9 +472,9 @@ export const { login, logout, checkingCredentials, setErrorMessage } = authSlice
   } catch (e) {
     console.error(`❌ Error al crear el archivo ${filePath}: ${e}`);
   }
-};
+}
 
-export const createBarrelFileSlice = async(fullPath) => {
+const createBarrelFileSlice = async(fullPath) => {
   // Define la ruta del archivo
   const routesDir = path.join(projectPath, "src", "store", "auth");
   const filePath = path.join(routesDir, "index.js");
@@ -490,10 +493,10 @@ export * from './thunks';`;
   } catch (e) {
     console.error(`❌ Error al crear el archivo ${filePath}: ${e}`);
   }
-};
+}
 
 // Genera el archivo thunks.js dentro de src/store/auth
-export const createFileThunksAuth = async(fullPath) => {
+const createFileThunksAuth = async(fullPath) => {
   // 1) Definir la ruta del archivo
   const routesDir = path.join(projectPath, "src", "store", "auth");
   const filePath  = path.join(routesDir, "thunks.js");
@@ -605,7 +608,7 @@ export const startRestoreSession = () => {
   } catch (e) {
     console.error(`❌ Error al crear el archivo ${filePath}: ${e}`);
   }
-};
+}
 
 
 

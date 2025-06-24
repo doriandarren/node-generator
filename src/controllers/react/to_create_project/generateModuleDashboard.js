@@ -12,7 +12,7 @@ export const generateModuleDashboard = async(fullPath) => {
 
 }
 
-export const installRecharts = async(fullPath) => {
+const installRecharts = async(fullPath) => {
   const CYAN  = chalk.cyan;
   const GREEN = chalk.green;
   const RED   = chalk.red;
@@ -26,9 +26,9 @@ export const installRecharts = async(fullPath) => {
   } catch (error) {
     printMessage(`❌ Error al instalar Recharts: ${error.message}`, RED);
   }
-};
+}
 
-export const createRoutes = async(fullPath) => {
+const createRoutes = async(fullPath) => {
   const routesDir = path.join(fullPath, 'src', 'modules', 'dashboard', 'routes');
   const filePath = path.join(routesDir, 'DashboardRoutes.jsx');
 
@@ -56,9 +56,9 @@ export const DashboardRoutes = () => {
   } catch (error) {
     console.error(`❌ Error al crear el archivo ${filePath}: ${error}`);
   }
-};
+}
 
-export const createDashboard = async(fullPath) => {
+const createDashboard = async(fullPath) => {
   const pagesDir = path.join(fullPath, 'src', 'modules', 'dashboard', 'pages');
   const filePath = path.join(pagesDir, 'DashboardPage.jsx');
 
@@ -167,9 +167,9 @@ export const DashboardPage = () => {
   } catch (error) {
     console.error(`❌ Error al crear el archivo ${filePath}: ${error}`);
   }
-};
+}
 
-export const createProfile = async(fullPath) => {
+const createProfile = async(fullPath) => {
   const pagesDir = path.join(fullPath, 'src', 'modules', 'dashboard', 'pages');
   const filePath = path.join(pagesDir, 'ProfilePage.jsx');
 
@@ -294,5 +294,5 @@ export const ProfilePage = () => {
   } catch (error) {
     console.error(`❌ Error al crear el archivo ${filePath}: ${error}`);
   }
-};
+}
 

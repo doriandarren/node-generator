@@ -1,6 +1,8 @@
 import { readInput } from "../../../helpers/inquirer.js";
 import { generateImages } from "./generate_images/generateImages.js";
 import { generateComponents } from "./generateComponents.js";
+import { generateModuleAuth } from "./generateModuleAuth.js";
+import { generateModuleDashboard } from "./generateModuleDashboard.js";
 import { generateModulePublic } from "./generateModulePublic.js";
 import { generatePrivateLayout } from "./generatePrivateLayout.js";
 import { generatePublicHeader } from "./generatePublicHeader.js";
@@ -45,13 +47,18 @@ export const startProjectReact = async() => {
     await generateComponents(fullPath);
 
 
-
-
     // Dashboard
     await generateModuleDashboard(fullPath);
 
     // Auth
     await generateModuleAuth(fullPath);
+
+
+
+
+
+    //TODO quedamos aqui
+
 
     // Profile
     await generateModuleProfile(fullPath);
