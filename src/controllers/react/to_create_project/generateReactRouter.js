@@ -12,7 +12,9 @@ export const generateReactRouter = async(fullPath) => {
     await generatePublicRoute(fullPath)    
 }
 
-export const setupReactRouter = async(fullPath) => {
+
+
+const setupReactRouter = async(fullPath) => {
   const CYAN  = chalk.cyan;
   const GREEN = chalk.green;
   const RED   = chalk.red;
@@ -26,9 +28,9 @@ export const setupReactRouter = async(fullPath) => {
   } catch (err) {
     printMessage(`❌ Error instalando React Router: ${err.message}`, RED);
   }
-};
+}
 
-export const setupAppJsx = async(fullPath) => {
+const setupAppJsx = async(fullPath) => {
   const GREEN = chalk.green;
   const RED   = chalk.red;
 
@@ -52,10 +54,10 @@ export const App = () => {
   } catch (err) {
     printMessage(`Error al escribir App.jsx: ${err.message}`, RED);
   }
-};
+}
 
-export const generateAppRouter = async(fullPath) => {
-  const routesDir = path.join(projectPath, 'src', 'router');
+const generateAppRouter = async(fullPath) => {
+  const routesDir = path.join(fullPath, 'src', 'router');
   const filePath  = path.join(routesDir, 'AppRouter.jsx');
 
   createFolder(routesDir);
@@ -115,7 +117,7 @@ export const AppRouter = () => {
   } catch (error) {
     console.error(`❌ Error al crear el archivo ${filePath}: ${error}`);
   }
-};
+}
 
 export const generatePrivateRoute = async(fullPath) => {
   const routesDir = path.join(fullPath, 'src', 'router');
@@ -136,7 +138,7 @@ export const PrivateRoute = ({ isAuthenticated }) => {
   } catch (error) {
     console.error(`❌ Error al crear el archivo ${filePath}: ${error}`);
   }
-};
+}
 
 export const generatePublicRoute = async(fullPath) => {
   const routesDir = path.join(fullPath, 'src', 'router');
@@ -157,5 +159,5 @@ export const PublicRoute = ({ isAuthenticated }) => {
   } catch (error) {
     console.error(`❌ Error al crear el archivo ${filePath}: ${error}`);
   }
-};
+}
 
