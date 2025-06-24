@@ -33,4 +33,51 @@ export const startProjectReact = async() => {
 
 
 
+
+    // TODO haciendo
+    await generatePrivateLayouts(full_path)
+
+
+    ## generate Public
+    generate_module_public(full_path)
+
+    ## React Router
+    generate_react_router(full_path)
+
+    generate_components(full_path)
+
+    # Dashboard
+    generate_module_dashboard(full_path)
+
+    # Auth
+    generate_module_auth(full_path)
+
+    ## Profile
+    generate_module_profile(full_path)
+
+    # Teams
+    generate_module_teams(full_path)
+
+    # Redux
+    generate_redux(full_path)
+
+    # Helpers
+    generate_helpers(full_path)
+
+    # Translate
+    generate_translate(full_path)
+
+    generate_env(full_path)
+
+    generate_gitignore(full_path)
+
+    generate_readme(full_path)
+
+    ## index.html
+    generate_index_html(full_path)
+
+    generate_folder_api(full_path)
+
+
+
 }
