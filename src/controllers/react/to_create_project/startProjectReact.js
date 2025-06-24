@@ -28,57 +28,53 @@ export const startProjectReact = async() => {
     await generateImages(fullPath);
 
 
-    // 
     await generatePublicHeader(fullPath);
 
 
-
-    
-
     // TODO haciendo
-    await generatePrivateLayouts(fullPath)
+    await generatePrivateLayout(fullPath);
 
 
 
     // generate Public
-    await generateModulePublic(fullPath)
+    await generateModulePublic(fullPath);
 
     // React Router
-    await generateReactRouter(fullPath)
+    await generateReactRouter(fullPath);
 
-    await generateComponents(fullPath)
+    await generateComponents(fullPath);
 
     // Dashboard
-    await generateModuleDashboard(fullPath)
+    await generateModuleDashboard(fullPath);
 
     // Auth
-    await generateModuleAuth(fullPath)
+    await generateModuleAuth(fullPath);
 
     // Profile
-    await generateModuleProfile(fullPath)
+    await generateModuleProfile(fullPath);
 
     // Teams
-    await generateModuleTeams(fullPath)
+    await generateModuleTeams(fullPath);
 
     // Redux
-    await generateRedux(fullPath)
+    await generateRedux(fullPath);
 
     // Helpers
-    await generateHelpers(fullPath)
+    await generateHelpers(fullPath);
 
     // Translate
-    await generateTranslate(fullPath)
+    await generateTranslate(fullPath);
 
-    await generateEnv(fullPath)
+    await generateEnv(fullPath);
 
-    await generateGitignore(fullPath)
+    await generateGitignore(fullPath);
 
-    await generateReadme(fullPath)
+    await generateReadme(fullPath);
 
     // index.html
-    await generateIndexHtml(fullPath)
+    await generateIndexHtml(fullPath);
 
-    await generateFolderApi(fullPath)
+    await generateFolderApi(fullPath);
 
 
 
