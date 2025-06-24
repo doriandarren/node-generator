@@ -33,50 +33,52 @@ export const startProjectReact = async() => {
 
 
 
+    
 
     // TODO haciendo
-    await generatePrivateLayouts(full_path)
+    await generatePrivateLayouts(fullPath)
 
 
-    ## generate Public
-    generate_module_public(full_path)
 
-    ## React Router
-    generate_react_router(full_path)
+    // generate Public
+    await generateModulePublic(fullPath)
 
-    generate_components(full_path)
+    // React Router
+    await generateReactRouter(fullPath)
 
-    # Dashboard
-    generate_module_dashboard(full_path)
+    await generateComponents(fullPath)
 
-    # Auth
-    generate_module_auth(full_path)
+    // Dashboard
+    await generateModuleDashboard(fullPath)
 
-    ## Profile
-    generate_module_profile(full_path)
+    // Auth
+    await generateModuleAuth(fullPath)
 
-    # Teams
-    generate_module_teams(full_path)
+    // Profile
+    await generateModuleProfile(fullPath)
 
-    # Redux
-    generate_redux(full_path)
+    // Teams
+    await generateModuleTeams(fullPath)
 
-    # Helpers
-    generate_helpers(full_path)
+    // Redux
+    await generateRedux(fullPath)
 
-    # Translate
-    generate_translate(full_path)
+    // Helpers
+    await generateHelpers(fullPath)
 
-    generate_env(full_path)
+    // Translate
+    await generateTranslate(fullPath)
 
-    generate_gitignore(full_path)
+    await generateEnv(fullPath)
 
-    generate_readme(full_path)
+    await generateGitignore(fullPath)
 
-    ## index.html
-    generate_index_html(full_path)
+    await generateReadme(fullPath)
 
-    generate_folder_api(full_path)
+    // index.html
+    await generateIndexHtml(fullPath)
+
+    await generateFolderApi(fullPath)
 
 
 
