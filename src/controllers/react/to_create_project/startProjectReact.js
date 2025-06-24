@@ -1,9 +1,11 @@
 import { readInput } from "../../../helpers/inquirer.js";
 import { generateImages } from "./generate_images/generateImages.js";
+import { generateComponents } from "./generateComponents.js";
 import { generateModulePublic } from "./generateModulePublic.js";
 import { generatePrivateLayout } from "./generatePrivateLayout.js";
 import { generatePublicHeader } from "./generatePublicHeader.js";
 import { generateReactCommandLine } from "./generateReactCommandLine.js";
+import { generateReactRouter } from "./generateReactRouter.js";
 import { generateStyle } from "./generateStyles.js";
 
 
@@ -30,22 +32,20 @@ export const startProjectReact = async() => {
     await generateImages(fullPath);
 
 
+
     await generatePublicHeader(fullPath);
-
-
-    // TODO haciendo
     await generatePrivateLayout(fullPath);
 
     // generate Public
     await generateModulePublic(fullPath);
 
-
-
-
     // React Router
     await generateReactRouter(fullPath);
 
     await generateComponents(fullPath);
+
+
+
 
     // Dashboard
     await generateModuleDashboard(fullPath);

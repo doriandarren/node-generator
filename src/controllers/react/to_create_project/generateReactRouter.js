@@ -119,7 +119,7 @@ export const AppRouter = () => {
   }
 }
 
-export const generatePrivateRoute = async(fullPath) => {
+const generatePrivateRoute = async(fullPath) => {
   const routesDir = path.join(fullPath, 'src', 'router');
   const filePath  = path.join(routesDir, 'PrivateRoute.jsx');
 
@@ -140,7 +140,7 @@ export const PrivateRoute = ({ isAuthenticated }) => {
   }
 }
 
-export const generatePublicRoute = async(fullPath) => {
+const generatePublicRoute = async(fullPath) => {
   const routesDir = path.join(fullPath, 'src', 'router');
   const filePath  = path.join(routesDir, 'PublicRoute.jsx');
 

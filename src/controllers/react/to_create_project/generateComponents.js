@@ -2,7 +2,48 @@ import fs from 'fs';
 import path from 'path';
 import { createFolder } from '../../../helpers/helperFile.js';
 
-export const generateButton = async (fullPath) => {
+
+
+export const generateComponents = async(fullPath) => {
+  
+  // Btn
+  await createButton(fullPath);
+
+  // Section
+  await createSection(fullPath);
+
+  // Preloader
+  await createPreloaderSVG(fullPath);
+  await createPreloader(fullPath);
+  await createPreloaderMain(fullPath);
+  await createPreloaderMainCSS(fullPath);
+  
+  await createPreloaderButtonCSS(fullPath);
+  await createPreloaderButton(fullPath);
+
+
+  // DataTable
+  await createDatatable(fullPath);
+
+
+  // ComboBoxes
+  await createComboBox(fullPath);
+  await createToggleButton(fullPath);
+
+
+  await createBadge(fullPath);
+
+  await createTooltip(fullPath);
+
+  await createInvoiceIcon(fullPath);
+
+
+}
+
+
+
+
+const createButton = async (fullPath) => {
   // Ruta de la carpeta Buttons
   const stylesPath = path.join(fullPath, 'src', 'components', 'Buttons');
   createFolder(stylesPath);
@@ -44,10 +85,10 @@ export const Button = ({ children, type = "button", variant = "primary", onClick
   } catch (error) {
     console.error(`❌ Error al generar el archivo ${filePath}: ${error.message}`);
   }
-};
+}
 
 
-export const generateSection = async (fullPath) => {
+const createSection = async (fullPath) => {
   // Carpeta destino
   const sectionsDir = path.join(fullPath, 'src', 'components', 'Sections');
   createFolder(sectionsDir);
@@ -77,10 +118,10 @@ export const Section = ({ title, subtitle, className, children }) => {
   } catch (error) {
     console.error(`❌ Error al generar el archivo ${filePath}: ${error.message}`);
   }
-};
+}
 
 
-export const generatePreloaderSvg = async (fullPath) => {
+const createPreloaderSVG = async (fullPath) => {
   // Carpeta destino
   const preloaderDir = path.join(fullPath, 'src', 'components', 'Preloader');
   createFolder(preloaderDir);
@@ -120,9 +161,9 @@ export const generatePreloaderSvg = async (fullPath) => {
   } catch (error) {
     console.error(`❌ Error al generar el archivo ${filePath}: ${error.message}`);
   }
-};
+}
 
-export const generatePreloader = async (fullPath) => {
+const createPreloader = async (fullPath) => {
   // Ruta a la carpeta del componente
   const preloaderDir = path.join(fullPath, 'src', 'components', 'Preloader');
   createFolder(preloaderDir);
@@ -148,9 +189,9 @@ export const Preloader = () => {
   } catch (error) {
     console.error(`❌ Error al generar el archivo ${filePath}: ${error.message}`);
   }
-};
+}
 
-export const generatePreloaderMain = async (fullPath) => {
+const createPreloaderMain = async (fullPath) => {
   // Carpeta destino
   const preloaderDir = path.join(fullPath, 'src', 'components', 'Preloader');
   createFolder(preloaderDir);
@@ -177,10 +218,10 @@ export const PreloaderMain = () => {
   } catch (error) {
     console.error(`❌ Error al generar el archivo ${filePath}: ${error.message}`);
   }
-};
+}
 
 
-export const generatePreloaderMainCss = async (fullPath) => {
+const createPreloaderMainCSS = async (fullPath) => {
   // Carpeta destino
   const preloaderDir = path.join(fullPath, 'src', 'components', 'Preloader');
   createFolder(preloaderDir);
@@ -227,10 +268,10 @@ export const generatePreloaderMainCss = async (fullPath) => {
   } catch (error) {
     console.error(`❌ Error al generar el archivo ${filePath}: ${error.message}`);
   }
-};
+}
 
 
-export const generateDatatable = async (fullPath) => {
+const createDatatable = async (fullPath) => {
   const datatableDir = path.join(fullPath, 'src', 'components', 'DataTables');
   createFolder(datatableDir);
 
@@ -255,10 +296,10 @@ import { Tooltip } from "../Tooltips/Tooltip";
   } catch (error) {
     console.error(`❌ Error al generar el archivo ${filePath}: ${error.message}`);
   }
-};
+}
 
 
-export const generatePreloaderButtonCss = async (fullPath) => {
+const createPreloaderButtonCSS = async (fullPath) => {
   const preloaderDir = path.join(fullPath, 'src', 'components', 'Preloader');
   createFolder(preloaderDir);
 
@@ -302,10 +343,37 @@ export const generatePreloaderButtonCss = async (fullPath) => {
   } catch (error) {
     console.error(`❌ Error al generar el archivo ${filePath}: ${error.message}`);
   }
+}
+
+
+
+const createPreloaderButton = async (fullPath) => {
+  const stylesPath = path.join(fullPath, 'src', 'components', 'Preloader');
+  const filePath = path.join(stylesPath, 'PreloaderButton.jsx');
+
+  createFolder(stylesPath);
+
+  const content = `import { PreloaderSVG } from "./PreloaderSVG";
+
+export const PreloaderButton = () => {
+  return (
+    <div className="w-8 h-8">
+      <PreloaderSVG />  
+    </div>
+  );
 };
+`;
+
+  try {
+    await fs.promises.writeFile(filePath, content);
+    printMessage(`✅ Archivo generado: ${filePath}`, GREEN);
+  } catch (e) {
+    printMessage(`❌ Error al generar el archivo ${filePath}: ${e}`, CYAN);
+  }
+}
 
 
-export const generateComboBox = async (fullPath) => {
+const createComboBox = async (fullPath) => {
   const comboDir = path.join(fullPath, 'src', 'components', 'ComboBoxes');
   createFolder(comboDir);
 
@@ -415,9 +483,10 @@ export default function CustomCombobox({
   } catch (error) {
     console.error(`❌ Error al generar el archivo ${filePath}: ${error.message}`);
   }
-};
+}
 
-export const generateToggleButton = async (fullPath) => {
+
+const createToggleButton = async (fullPath) => {
   const toggleDir = path.join(fullPath, 'src', 'components', 'Toggles');
   createFolder(toggleDir);
 
@@ -486,9 +555,10 @@ export default function ToggleButton({
   } catch (error) {
     console.error(`❌ Error al generar el archivo ${filePath}: ${error.message}`);
   }
-};
+}
 
-export const generateBadge = async (fullPath) => {
+
+const createBadge = async (fullPath) => {
   const badgeDir = path.join(fullPath, 'src', 'components', 'Badges');
   createFolder(badgeDir);
 
@@ -519,9 +589,10 @@ export const Badge = ({ text, variant = "gray", className = "" }) => {
   } catch (error) {
     console.error(`❌ Error al generar el archivo ${filePath}: ${error.message}`);
   }
-};
+}
 
-export const generateTooltip = async (fullPath) => {
+
+const createTooltip = async (fullPath) => {
   const tooltipDir = path.join(fullPath, 'src', 'components', 'Tooltips');
   createFolder(tooltipDir);
 
@@ -586,9 +657,10 @@ export const Tooltip = ({ children, text }) => {
   } catch (error) {
     console.error(`❌ Error al generar el archivo ${filePath}: ${error.message}`);
   }
-};
+}
 
-export const generateInvoiceIcon = async (fullPath) => {
+
+const createInvoiceIcon = async (fullPath) => {
   const stylesPath = path.join(fullPath, 'src', 'components', 'Icons');
   createFolder(stylesPath);
 
@@ -624,4 +696,4 @@ export const ImageInvoiceIcon = ({ variant = "neutral", className = "w-6 h-6" })
   } catch (error) {
     console.error(`❌ Error al generar el archivo ${filePath}: ${error.message}`);
   }
-};
+}

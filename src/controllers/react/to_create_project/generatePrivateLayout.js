@@ -10,7 +10,7 @@ export const generatePrivateLayout = async (fullPath) => {
 
 
 
-export const createSessionLayout = async (fullPath) => {
+const createSessionLayout = async (fullPath) => {
   const layoutsDir = path.join(fullPath, 'src', 'layouts', 'private');
   const filePath   = path.join(layoutsDir, 'SessionLayout.jsx');
 
