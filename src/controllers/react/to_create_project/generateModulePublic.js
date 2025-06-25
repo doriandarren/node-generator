@@ -5,10 +5,10 @@ import { createFolder } from '../../../helpers/helperFile.js';
 
 export const generateModulePublic = async(fullPath) => {    
 
-    await createRoutes(project_path)
-    await createHome(project_path)
-    await createContact(project_path)
-    await createAbout(project_path)
+    await createRoutes(fullPath)
+    await createHome(fullPath)
+    await createContact(fullPath)
+    await createAbout(fullPath)
 
 }
 

@@ -13,7 +13,7 @@ export const generatePublicHeader = async(fullPath) => {
 
 
 
-const createPublicHeaderLayout = async (projectPath) => {
+const createPublicHeaderLayout = async (fullPath) => {
   printMessage('Generando HeaderLayout.jsx...', 'cyan');
 
   const layoutsDir = path.join(projectPath, 'src', 'layouts', 'public');
