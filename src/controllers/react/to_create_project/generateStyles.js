@@ -149,9 +149,9 @@ const createTailwindStyles = async (fullPath) => {
   --color-success-light: #61e265;
   --color-success-dark: #3a893d;
   
-  --color-info: #FFB300;
-  --color-info-light: #FFD54F;
-  --color-info-dark: #FFA000;
+  --color-info: #60A5FA;
+    --color-info-light: #BFDBFE;
+    --color-info-dark: #2563EB;
   
   --color-warning: #facc15;         
   --color-warning-light: #fef9c3;   
@@ -164,8 +164,6 @@ const createTailwindStyles = async (fullPath) => {
   --color-navbar: #222831;
   --color-background: #f8fafc;
 
-  --ease-fluid: cubic-bezier(0.3, 0, 0, 1);
-  --ease-snappy: cubic-bezier(0.2, 0, 0, 1);
 } 
 
 
