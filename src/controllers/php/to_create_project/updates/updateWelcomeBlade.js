@@ -24,6 +24,8 @@ export const updateWelcomeBlade = async (fullPath) => {
 
         <title>{{ env('APP_NAME') }}</title>
 
+        <link rel="icon" href="{{ asset('brand/images/company_logos/favicon.svg') }}" type="image/svg+xml">
+
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
