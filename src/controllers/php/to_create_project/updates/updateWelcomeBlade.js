@@ -35,15 +35,15 @@ export const updateWelcomeBlade = async (fullPath) => {
     </head>
 
     <body class="bg-[#e6e6e6] min-h-screen flex flex-col justify-between">
-        <div class="flex flex-1 items-center justify-center px-4 animate__animated animate__zoomIn">
+        <div class="flex flex-1 items-center justify-center px-4">
             <img
                 src="{{ asset('brand/images/company_logos/logo.svg') }}"
                 alt="logo"
-                class="max-w-[70%] w-full h-auto mx-auto"
+                class="w-40 sm:w-48 md:w-56 lg:w-64 xl:w-72 h-auto mx-auto animate__animated animate__zoomIn"
             />
         </div>
         <footer class="w-full text-md text-left text-black px-8 mb-5 animate__animated animate__slideInLeft">
-            ©<span id="year"></span> GlobalFleet.es - Developed by <strong>GlobalDevelopers</strong>.
+            ©<span id="year"></span> Splytin.com - Developed by <strong>SplytinDevelopers</strong>.
         </footer>
         <script>
             document.getElementById("year").textContent = new Date().getFullYear();
