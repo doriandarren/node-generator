@@ -9,7 +9,7 @@ export const updateUserStatusSeeder = async(fullPath ) => {
     const folderPath = path.join(fullPath, 'database', 'seeders');
     
     // File
-    const filePath = path.join(folderPath, 'UserStatusSeeder');
+    const filePath = path.join(folderPath, 'UserStatusSeeder.php');
 
     // Asegurar que la carpeta exista
     createFolder(folderPath);

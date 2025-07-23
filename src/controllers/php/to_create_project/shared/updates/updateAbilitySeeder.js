@@ -24,7 +24,7 @@ namespace Database\\Seeders;
 use App\\Enums\\Dev\\EnumExcludeTable;
 use App\\Enums\\EnumAbilitySuffix;
 use App\\Models\\Abilities\\Ability;
-use App\\Models\AbilityGroups\\AbilityGroup;
+use App\\Models\\AbilityGroups\\AbilityGroup;
 use Illuminate\\Database\\Seeder;
 use Illuminate\\Support\\Facades\\DB;
 

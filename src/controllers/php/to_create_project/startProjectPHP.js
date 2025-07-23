@@ -20,6 +20,7 @@ import { generateCompanyLogos } from "./generateCompanyLogos.js";
 import { updateWelcomeBlade } from "./updates/updateWelcomeBlade.js";
 import { updateRouteApiPhp } from "./updates/updateRouteApiPhp.js";
 import { generatePostman } from "./generatePostman.js";
+import { updateUserMigration } from "./updates/updateUserMigration.js";
 
 
 
@@ -84,5 +85,6 @@ export const startProjectPHP = async() => {
     await generatePostman(fullPath);
     
 
+    await updateUserMigration(fullPath);
 
 }

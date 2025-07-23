@@ -28,7 +28,7 @@ use App\\Enums\\Roles\\EnumRole;
 use App\\Enums\\UserStatuses\\EnumUserStatus;
 use App\\Models\\Abilities\\Ability;
 use App\\Models\\Roles\\Role;
-use App\\Models\User;
+use App\\Models\\User;
 use App\\Models\\UserStatuses\\UserStatus;
 use Illuminate\\Database\\Seeder;
 
