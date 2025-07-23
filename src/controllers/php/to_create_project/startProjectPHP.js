@@ -19,6 +19,7 @@ import { updateGitignore } from "./updates/updateGitignore.js";
 import { generateCompanyLogos } from "./generateCompanyLogos.js";
 import { updateWelcomeBlade } from "./updates/updateWelcomeBlade.js";
 import { updateRouteApiPhp } from "./updates/updateRouteApiPhp.js";
+import { generatePostman } from "./generatePostman.js";
 
 
 
@@ -78,6 +79,9 @@ export const startProjectPHP = async() => {
     await updateWelcomeBlade(fullPath);
 
     await updateRouteApiPhp(fullPath);
+
+
+    await generatePostman(fullPath);
     
 
 

@@ -29,7 +29,10 @@ export const generateMigrationPHP = async (
   
   const folderPath = path.join(fullPath, 'database', 'migrations');
   const now = new Date();
-  const formattedDate = now.toISOString().replace(/[-:T]/g, '_').split('.')[0]; // yyyy_MM_dd_HH_MM_SS
+  const formattedDate = now.toISOString()
+                            .replace(/[-:T]/g, '_')   // Reemplaza - : y T por _
+                            .split('.')[0]            // Elimina los milisegundos
+                            .replace(/^(\d{4}_\d{2}_\d{2})_(\d{2})_(\d{2})_(\d{2})$/, '$1_$2$3$4'); // Une HHMMSS
   const fileName = `${formattedDate}_create_${pluralNameSnake}_table.php`;
   const filePath = path.join(folderPath, fileName);
 
