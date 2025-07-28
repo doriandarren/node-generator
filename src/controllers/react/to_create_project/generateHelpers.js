@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { createFolder } from '../../../helpers/helperFile.js';
+import { printMessage } from '../../../helpers/inquirer.js';
 
 
 export const generateHelpers = async(fullPath) => {    
@@ -12,7 +13,7 @@ export const generateHelpers = async(fullPath) => {
 
 
 
-export const createSweetalert2 = (fullPath) => {
+const createSweetalert2 = (fullPath) => {
   const helpersDir = path.join(fullPath, "src", "helpers");
 
   // Crear la carpeta si no existe
@@ -75,10 +76,10 @@ export const showConfirmDialog = async (message) => {
   } catch (error) {
     printMessage(`❌ Error al generar el archivo: ${error.message}`, "\x1b[31m");
   }
-};
+}
 
 
-export const createDataFake = (fullPath) => {
+const createDataFake = (fullPath) => {
   const helpersDir = path.join(fullPath, "src", "helpers");
 
   // Crear carpeta si no existe
@@ -111,10 +112,10 @@ export const dataBodyFake = [
   } catch (error) {
     console.error(`❌ Error al generar el archivo: ${error.message}`);
   }
-};
+}
 
 
-export const createToast = (fullPath) => {
+const createToast = (fullPath) => {
   const helpersDir = path.join(fullPath, "src", "helpers");
 
   // Crear carpeta si no existe
@@ -149,4 +150,52 @@ export const Toast = async (text, icon = 'success') => {
   } catch (error) {
     console.error(`❌ Error al generar el archivo: ${error.message}`);
   }
+}
+
+
+
+const createVariantClass = async (fullPath) => {
+  const helpersDir = path.join(fullPath, 'src', 'helpers');
+  const filePath = path.join(helpersDir, 'helperVariantClass.js');
+
+  // Crear carpeta si no existe
+  createFolder(helpersDir);
+
+  const content = `export const getVariantTextClass = (variant = "neutral") => {
+  return (
+    {
+      neutral: "text-neutral",
+      special_price: "text-special-price",
+      danger: "text-danger",
+      warning: "text-warning",
+      success: "text-success",
+      info: "text-info",
+      primary: "text-primary",
+      secondary: "text-secondary",
+    }[variant] || "text-neutral"
+  );
 };
+
+export const getVariantBgClass = (variant = "neutral") => {
+  return (
+    {
+      neutral: "bg-neutral",
+      special_price: "bg-special-price",
+      danger: "bg-danger",
+      warning: "bg-warning",
+      success: "bg-success",
+      info: "bg-info",
+      primary: "bg-primary",
+      secondary: "bg-secondary",
+    }[variant] || "bg-neutral"
+  );
+};
+`;
+
+  try {
+    fs.writeFileSync(filePath, content, 'utf-8');
+    printMessage(`✅ Archivo generado: ${filePath}`, 'green');
+  } catch (error) {
+    printMessage(`❌ Error al generar el archivo ${filePath}: ${error.message}`, 'red');
+  }
+}

@@ -378,7 +378,7 @@ const createAuthIndex = async(fullPath) => {
   // Importación de módulos necesarios (fs y path ya deben estar importados en el archivo principal)
   
   // Define la ruta del archivo
-  const pagesDir = path.join(projectPath, "src", "modules", "auth", "pages");
+  const pagesDir = path.join(fullPath, "src", "modules", "auth", "pages");
   const filePath = path.join(pagesDir, "index.js");
 
   // Crear la carpeta pages si no existe
@@ -404,7 +404,7 @@ export * from './RegisterPage';
  */
 const createFileAuthSlice = async(fullPath) => {
   // Define la ruta del archivo
-  const routesDir = path.join(projectPath, "src", "store", "auth");
+  const routesDir = path.join(fullPath, "src", "store", "auth");
   const filePath = path.join(routesDir, "authSlice.js");
 
   // Crear la carpeta auth si no existe
@@ -476,7 +476,7 @@ export const { login, logout, checkingCredentials, setErrorMessage } = authSlice
 
 const createBarrelFileSlice = async(fullPath) => {
   // Define la ruta del archivo
-  const routesDir = path.join(projectPath, "src", "store", "auth");
+  const routesDir = path.join(fullPath, "src", "store", "auth");
   const filePath = path.join(routesDir, "index.js");
 
   // Crear la carpeta auth si no existe
@@ -498,7 +498,7 @@ export * from './thunks';`;
 // Genera el archivo thunks.js dentro de src/store/auth
 const createFileThunksAuth = async(fullPath) => {
   // 1) Definir la ruta del archivo
-  const routesDir = path.join(projectPath, "src", "store", "auth");
+  const routesDir = path.join(fullPath, "src", "store", "auth");
   const filePath  = path.join(routesDir, "thunks.js");
 
   // 2) Crear la carpeta auth si no existe

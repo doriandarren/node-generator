@@ -11,7 +11,7 @@ export const generateModuleProfile = async (fullPath) => {
 
 
 export const createRoutes = async (fullPath) => {
-  const routesDir = path.join(projectPath, 'src', 'modules', 'profile', 'routes');
+  const routesDir = path.join(fullPath, 'src', 'modules', 'profile', 'routes');
   const filePath = path.join(routesDir, 'ProfileRoutes.jsx');
 
   // Crear carpeta si no existe
@@ -42,7 +42,7 @@ export const ProfileRoutes = () => {
 
 
 export const createProfilePage = async (fullPath) => {
-  const pagesDir = path.join(projectPath, 'src', 'modules', 'profile', 'pages');
+  const pagesDir = path.join(fullPath, 'src', 'modules', 'profile', 'pages');
   createFolder(pagesDir);
 
   const filePath = path.join(pagesDir, 'ProfilePage.jsx');

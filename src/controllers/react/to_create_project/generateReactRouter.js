@@ -1,40 +1,33 @@
 import fs from 'fs';
 import path from 'path';
 import { createFolder } from '../../../helpers/helperFile.js';
+import { printMessage } from '../../../helpers/inquirer.js';
 
 
 export const generateReactRouter = async(fullPath) => {    
     await setupReactRouter(fullPath)
     await setupAppJsx(fullPath)
     await updateMainJsx(fullPath)
-    await generateAppRouter(fullPath)
-    await generatePrivateRoute(fullPath)
-    await generatePublicRoute(fullPath)    
+    await createAppRouter(fullPath)
+    await createPrivateRoute(fullPath)
+    await createPublicRoute(fullPath)    
 }
 
 
 
 const setupReactRouter = async(fullPath) => {
-  const CYAN  = chalk.cyan;
-  const GREEN = chalk.green;
-  const RED   = chalk.red;
-
-  const printMessage = (msg, color) => console.log(color(msg));
-
+  
   try {
-    printMessage('Instalando React Router...', CYAN);
+    printMessage('Instalando React Router...', 'cyan');
     execSync('npm install react-router-dom', { cwd: fullPath, stdio: 'inherit' });
-    printMessage('React Router instalado correctamente.', GREEN);
+    printMessage('React Router instalado correctamente.', 'green');
   } catch (err) {
-    printMessage(`❌ Error instalando React Router: ${err.message}`, RED);
+    printMessage(`❌ Error instalando React Router: ${err.message}`, 'red');
   }
 }
 
 const setupAppJsx = async(fullPath) => {
-  const GREEN = chalk.green;
-  const RED   = chalk.red;
-
-  const printMessage = (msg, color) => console.log(color(msg));
+  
 
   const appJsxContent = `import { AppRouter } from './router/AppRouter';
 
@@ -50,13 +43,13 @@ export const App = () => {
   try {
     const appJsxPath = path.join(fullPath, 'src', 'App.jsx');
     fs.writeFileSync(appJsxPath, appJsxContent);
-    printMessage('App.jsx configurado correctamente.', GREEN);
+    printMessage('App.jsx configurado correctamente.', 'green');
   } catch (err) {
-    printMessage(`Error al escribir App.jsx: ${err.message}`, RED);
+    printMessage(`Error al escribir App.jsx: ${err.message}`, 'red');
   }
 }
 
-const generateAppRouter = async(fullPath) => {
+const createAppRouter = async(fullPath) => {
   const routesDir = path.join(fullPath, 'src', 'router');
   const filePath  = path.join(routesDir, 'AppRouter.jsx');
 
@@ -119,7 +112,7 @@ export const AppRouter = () => {
   }
 }
 
-const generatePrivateRoute = async(fullPath) => {
+const createPrivateRoute = async(fullPath) => {
   const routesDir = path.join(fullPath, 'src', 'router');
   const filePath  = path.join(routesDir, 'PrivateRoute.jsx');
 
@@ -140,7 +133,7 @@ export const PrivateRoute = ({ isAuthenticated }) => {
   }
 }
 
-const generatePublicRoute = async(fullPath) => {
+const createPublicRoute = async(fullPath) => {
   const routesDir = path.join(fullPath, 'src', 'router');
   const filePath  = path.join(routesDir, 'PublicRoute.jsx');
 
@@ -161,3 +154,44 @@ export const PublicRoute = ({ isAuthenticated }) => {
   }
 }
 
+
+const updateMainJsx = async (fullPath) => {
+  const mainJsxPath = path.join(fullPath, 'src', 'main.jsx');
+
+  // Verificar si el archivo existe
+  if (!fs.existsSync(mainJsxPath)) {
+    printMessage(`Error: ${mainJsxPath} no existe.`, 'cyan');
+    return;
+  }
+
+  try {
+    // Leer el contenido original
+    const content = fs.readFileSync(mainJsxPath, 'utf-8');
+
+    // Reemplazos
+    let updatedContent = content.replace(
+      `import App from './App.jsx'`,
+      `import { App } from './App.jsx';
+import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { store } from './store';
+import 'animate.css';`
+    );
+
+    updatedContent = updatedContent.replace(
+      `<App />`,
+      `<Provider store={store}>
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>
+</Provider>`
+    );
+
+    // Escribir de nuevo el archivo
+    fs.writeFileSync(mainJsxPath, updatedContent, 'utf-8');
+
+    printMessage('main.jsx configurado correctamente.', 'green');
+  } catch (err) {
+    printMessage(`Error al actualizar ${mainJsxPath}: ${err.message}`, 'red');
+  }
+};

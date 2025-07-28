@@ -332,7 +332,7 @@ export const ContactPage = () => {
 
 
 
-export const generateAboutPage = async (fullPath) => {
+const createAbout = async (fullPath) => {
   const pagesDir = path.join(fullPath, 'src', 'modules', 'public', 'pages');
   const filePath = path.join(pagesDir, 'AboutPage.jsx');
 

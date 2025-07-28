@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { createFolder } from '../../../helpers/helperFile.js';
+import { printMessage } from '../../../helpers/inquirer.js';
 
 
 
@@ -408,9 +409,9 @@ export const PreloaderButton = () => {
 
   try {
     await fs.promises.writeFile(filePath, content);
-    printMessage(`✅ Archivo generado: ${filePath}`, GREEN);
+    printMessage(`✅ Archivo generado: ${filePath}`, 'green');
   } catch (e) {
-    printMessage(`❌ Error al generar el archivo ${filePath}: ${e}`, CYAN);
+    printMessage(`❌ Error al generar el archivo ${filePath}: ${e}`, 'cyan');
   }
 }
 

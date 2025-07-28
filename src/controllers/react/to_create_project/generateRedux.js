@@ -1,35 +1,23 @@
 import fs from 'fs';
 import path from 'path';
-import { createFolder } from '../../../helpers/helperFile.js';
+import { printMessage } from '../../../helpers/inquirer.js';
+import { createFolder, runExec } from '../../../helpers/helperFile.js';
 
-
-export const generateRedux = async(fullPath) => {    
-    reduxInstall(fullPath)
-    createFileStorejs(fullPath)
-    createBarrelFileStorejs(fullPath)
-}
-
-
-export const reduxInstall = (fullPath) => {
-  console.log("🔧 Instalando redux...");
-
-  exec("npm install @reduxjs/toolkit react-redux", { cwd: fullPath }, (error, stdout, stderr) => {
-    if (error) {
-      console.error(`❌ Error al instalar Redux: ${error.message}`);
-      return;
-    }
-    if (stderr) {
-      console.error(`⚠️ Advertencia: ${stderr}`);
-    }
-    console.log("✅ Redux instalado correctamente");
-    console.log(stdout);
-  });
+export const generateRedux = async (fullPath) => {
+  await reduxInstall(fullPath);
+  await createFileStoreJs(fullPath);
+  await createBarrelFileStoreJs(fullPath);
 };
 
+const reduxInstall = async (fullPath) => {
+  printMessage('🔧 Instalando Redux Toolkit y React Redux...', 'cyan');
+  await runExec('npm install @reduxjs/toolkit react-redux', fullPath);
+  printMessage('✅ Redux instalado correctamente.', 'green');
+};
 
-export const createFileStoreJs = (fullPath) => {
-  const storeDir = path.join(fullPath, "src", "store");
-  const filePath = path.join(storeDir, "store.js");
+const createFileStoreJs = async (fullPath) => {
+  const storeDir = path.join(fullPath, 'src', 'store');
+  const filePath = path.join(storeDir, 'store.js');
 
   const content = `import { configureStore } from "@reduxjs/toolkit";
 import { authSlice } from "./auth";
@@ -41,37 +29,28 @@ export const store = configureStore({
 });
 `;
 
-  // Crear la carpeta si no existe
-  if (!fs.existsSync(storeDir)) {
-    fs.mkdirSync(storeDir, { recursive: true });
-  }
+  createFolder(storeDir);
 
-  // Crear y escribir el archivo
   try {
-    fs.writeFileSync(filePath, content);
-    console.log(`✅ Archivo creado: ${filePath}`);
+    fs.writeFileSync(filePath, content, 'utf-8');
+    printMessage(`✅ Archivo creado: ${filePath}`, 'green');
   } catch (error) {
-    console.error(`❌ Error al crear el archivo ${filePath}: ${error.message}`);
+    printMessage(`❌ Error al crear el archivo ${filePath}: ${error.message}`, 'red');
   }
 };
 
-
-export const createBarrelFileStoreJs = (fullPath) => {
-  const storeDir = path.join(fullPath, "src", "store");
-  const filePath = path.join(storeDir, "index.js");
+const createBarrelFileStoreJs = async (fullPath) => {
+  const storeDir = path.join(fullPath, 'src', 'store');
+  const filePath = path.join(storeDir, 'index.js');
 
   const content = `export * from './store';`;
 
-  // Crear la carpeta si no existe
-  if (!fs.existsSync(storeDir)) {
-    fs.mkdirSync(storeDir, { recursive: true });
-  }
+  createFolder(storeDir);
 
-  // Crear y escribir el archivo
   try {
-    fs.writeFileSync(filePath, content);
-    console.log(`✅ Archivo creado: ${filePath}`);
+    fs.writeFileSync(filePath, content, 'utf-8');
+    printMessage(`✅ Archivo creado: ${filePath}`, 'green');
   } catch (error) {
-    console.error(`❌ Error al crear el archivo ${filePath}: ${error.message}`);
+    printMessage(`❌ Error al crear el archivo ${filePath}: ${error.message}`, 'red');
   }
 };

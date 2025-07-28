@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { createFolder } from '../../../helpers/helperFile.js';
+import { printMessage } from '../../../helpers/inquirer.js';
 
 
 export const generateModuleDashboard = async(fullPath) => {    
@@ -13,18 +14,14 @@ export const generateModuleDashboard = async(fullPath) => {
 }
 
 const installRecharts = async(fullPath) => {
-  const CYAN  = chalk.cyan;
-  const GREEN = chalk.green;
-  const RED   = chalk.red;
-
-  const printMessage = (msg, color) => console.log(color(msg));
+  
 
   try {
-    printMessage('Instalando Recharts...', CYAN);
+    printMessage('Instalando Recharts...', 'cyan');
     execSync('npm install recharts', { cwd: fullPath, stdio: 'inherit' });
-    printMessage('Recharts instalado correctamente.', GREEN);
+    printMessage('Recharts instalado correctamente.', 'green');
   } catch (error) {
-    printMessage(`❌ Error al instalar Recharts: ${error.message}`, RED);
+    printMessage(`❌ Error al instalar Recharts: ${error.message}`, 'red');
   }
 }
 
