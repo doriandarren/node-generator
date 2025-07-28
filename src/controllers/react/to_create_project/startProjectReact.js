@@ -1,7 +1,11 @@
 import { readInput } from "../../../helpers/inquirer.js";
 import { generateImages } from "./generate_images/generateImages.js";
 import { generateComponents } from "./generateComponents.js";
+import { generateEnv } from "./generateEnv.js";
+import { generateFolderApi } from "./generateFolderApi.js";
+import { generateGitingore } from "./generateGitignore.js";
 import { generateHelpers } from "./generateHelpers.js";
+import { generateIndexHtml } from "./generateIndexHtml.js";
 import { generateModuleAuth } from "./generateModuleAuth.js";
 import { generateModuleDashboard } from "./generateModuleDashboard.js";
 import { generateModuleProfile } from "./generateModuleProfile.js";
@@ -11,8 +15,10 @@ import { generatePrivateLayout } from "./generatePrivateLayout.js";
 import { generatePublicHeader } from "./generatePublicHeader.js";
 import { generateReactCommandLine } from "./generateReactCommandLine.js";
 import { generateReactRouter } from "./generateReactRouter.js";
+import { generateReadme } from "./generateReadme.js";
 import { generateRedux } from "./generateRedux.js";
 import { generateStyle } from "./generateStyles.js";
+import { generateTranslate } from "./generateTranslate.js";
 
 
 
@@ -65,25 +71,23 @@ export const startProjectReact = async() => {
     await generateModuleTeams(fullPath);
 
     // Redux
-     await generateRedux(fullPath);
+    await generateRedux(fullPath);
 
     // Helpers
     await generateHelpers(fullPath);
 
-    // // Translate
-    // await generateTranslate(fullPath);
+    // Translate
+    await generateTranslate(fullPath);
 
-    // await generateEnv(fullPath);
+    await generateEnv(fullPath);
 
-    // await generateGitignore(fullPath);
+    await generateGitingore(fullPath);
 
-    // await generateReadme(fullPath);
+    await generateReadme(fullPath);
 
-    // // index.html
-    // await generateIndexHtml(fullPath);
+    // index.html
+    await generateIndexHtml(fullPath);
 
-    // await generateFolderApi(fullPath);
-
-
+    await generateFolderApi(fullPath);
 
 }

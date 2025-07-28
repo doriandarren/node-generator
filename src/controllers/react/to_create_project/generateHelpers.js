@@ -5,15 +5,15 @@ import { printMessage } from '../../../helpers/inquirer.js';
 
 
 export const generateHelpers = async(fullPath) => {    
-    createSweetalert2(fullPath)
-    createDataFake(fullPath)
-    createToast(fullPath)
-    createVariantClass(fullPath)
+    await createSweetalert2(fullPath)
+    await createDataFake(fullPath)
+    await createToast(fullPath)
+    await createVariantClass(fullPath)
 }
 
 
 
-const createSweetalert2 = (fullPath) => {
+const createSweetalert2 = async (fullPath) => {
   const helpersDir = path.join(fullPath, "src", "helpers");
 
   // Crear la carpeta si no existe
@@ -79,7 +79,7 @@ export const showConfirmDialog = async (message) => {
 }
 
 
-const createDataFake = (fullPath) => {
+const createDataFake = async (fullPath) => {
   const helpersDir = path.join(fullPath, "src", "helpers");
 
   // Crear carpeta si no existe
@@ -115,7 +115,7 @@ export const dataBodyFake = [
 }
 
 
-const createToast = (fullPath) => {
+const createToast = async (fullPath) => {
   const helpersDir = path.join(fullPath, "src", "helpers");
 
   // Crear carpeta si no existe

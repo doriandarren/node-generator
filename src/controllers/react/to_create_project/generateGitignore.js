@@ -1,14 +1,14 @@
 import fs from 'fs';
 import path from 'path';
-import { createFolder } from '../../../helpers/helperFile.js';
+import { printMessage } from '../../../helpers/inquirer.js';
 
 
 export const generateGitingore = async(fullPath) => {    
-    createGitignore(fullPath)
+    await createGitignore(fullPath)
 }
 
 
-export const createGitignore = (projectPath) => {
+const createGitignore = async (projectPath) => {
   const filePath = path.join(projectPath, ".gitignore");
 
   const content = `# dependencies
@@ -60,8 +60,8 @@ next-env.d.ts
 
   try {
     fs.writeFileSync(filePath, content);
-    printMessage(`Archivo creado: ${filePath}`, GREEN);
+    printMessage(`Archivo creado: ${filePath}`, 'green');
   } catch (error) {
-    printMessage(`Error al crear el archivo ${filePath}: ${error.message}`, CYAN);
+    printMessage(`Error al crear el archivo ${filePath}: ${error.message}`, 'cyan');
   }
 };

@@ -1,15 +1,15 @@
 import fs from 'fs';
 import path from 'path';
-import { createFolder } from '../../../helpers/helperFile.js';
+import { printMessage } from '../../../helpers/inquirer.js';
 
 
 export const generateEnv = async(fullPath) => {    
-    createEnvFile(fullPath)
-    createEnvExampleFile(fullPath)
+    await createEnvFile(fullPath)
+    await createEnvExampleFile(fullPath)
 }
 
 
-export const createEnvFile = (fullPath) => {
+const createEnvFile = async (fullPath) => {
   const filePath = path.join(fullPath, ".env");
 
   const content = `VITE_APP_NAME=SiteLocal
@@ -25,16 +25,16 @@ VITE_SWEETALERT_COLOR_BTN_INFO='#3B82F6'     # Azul (Tailwind "blue-500")
 
   try {
     fs.writeFileSync(filePath, content);
-    printMessage(`Archivo creado: ${filePath}`, GREEN);
+    printMessage(`Archivo creado: ${filePath}`, 'green');
   } catch (error) {
-    printMessage(`Error al crear el archivo ${filePath}: ${error.message}`, CYAN);
+    printMessage(`Error al crear el archivo ${filePath}: ${error.message}`, 'cyan');
   }
-};
+}
 
 
 
-export const createEnvExampleFile = (projectPath) => {
-  const filePath = path.join(projectPath, ".env.example");
+const createEnvExampleFile = async (fullPath) => {
+  const filePath = path.join(fullPath, ".env.example");
 
   const content = `VITE_APP_NAME=SiteLocal
 VITE_APP_ENV=local
@@ -49,8 +49,8 @@ VITE_SWEETALERT_COLOR_BTN_INFO='#3B82F6'     # Azul (Tailwind "blue-500")
 
   try {
     fs.writeFileSync(filePath, content);
-    printMessage(`Archivo creado: ${filePath}`, GREEN);
+    printMessage(`Archivo creado: ${filePath}`, 'green');
   } catch (error) {
-    printMessage(`Error al crear el archivo ${filePath}: ${error.message}`, CYAN);
+    printMessage(`Error al crear el archivo ${filePath}: ${error.message}`, 'cyan');
   }
-};
+}

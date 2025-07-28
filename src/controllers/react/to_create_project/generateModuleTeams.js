@@ -5,14 +5,14 @@ import { printMessage } from '../../../helpers/inquirer.js';
 
 
 export const generateModuleTeams = async(fullPath) => {    
-    createRoutes(fullPath)
-    createListPage(fullPath)
-    createCreatePage(fullPath)
-    createEditPage(fullPath) /// Edit Page TODO hacer
-    createBarrelFile(fullPath)
+    await createRoutes(fullPath)
+    await createListPage(fullPath)
+    await createCreatePage(fullPath)
+    await createEditPage(fullPath) /// Edit Page TODO hacer
+    await createBarrelFile(fullPath)
 
     // Service
-    createServiceFile(fullPath)
+    await createServiceFile(fullPath)
 }
 
 

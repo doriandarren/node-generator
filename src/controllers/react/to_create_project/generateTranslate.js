@@ -1,50 +1,37 @@
 import fs from "fs";
 import path from "path";
-import { fileURLToPath } from "url";
-import { createFolder } from '../../../helpers/helperFile.js';
+import { printMessage } from '../../../helpers/inquirer.js';
+import { createFolder, runExec } from '../../../helpers/helperFile.js';
 
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 export const generateTranslate = async(fullPath) => {    
-    setupI18n(fullPath)
-    createI18n(fullPath)
-    createLocalesEn(fullPath)
-    createLocalesEs(fullPath)
-    updateFileMain(fullPath)
+    await setupI18n(fullPath)
+    await createI18n(fullPath)
+    await createLocalesEn(fullPath)
+    await createLocalesEs(fullPath)
+    await updateFileMain(fullPath)
 }
 
 
 
-export const setupI18n = (fullPath) => {
-  console.log("\x1b[36m%s\x1b[0m", "Instalando i18n..."); // Cyan
+const setupI18n = async (fullPath) => {
+  printMessage('🌐 Instalando i18n...', 'cyan');
 
-  exec(
-    "npm install i18next react-i18next i18next-http-backend i18next-browser-languagedetector",
-    { cwd: fullPath },
-    (error, stdout, stderr) => {
-      if (error) {
-        console.error(`❌ Error al instalar i18n: ${error.message}`);
-        return;
-      }
-      if (stderr) {
-        console.warn(`⚠️ Advertencia: ${stderr}`);
-      }
-
-      console.log(stdout);
-      console.log("\x1b[32m%s\x1b[0m", "✅ i18n instalado correctamente."); // Green
-    }
+  await runExec(
+    'npm install i18next react-i18next i18next-http-backend i18next-browser-languagedetector',
+    fullPath
   );
-};
+
+  printMessage('✅ i18n instalado correctamente.', 'green');
+}
 
 
 
-export const createI18n = (fullPath) => {
-  const srcDir = path.join(fullPath, "src");
-  const filePath = path.join(srcDir, "i18n.js");
+const createI18n = async (fullPath) => {
+  const srcDir = path.join(fullPath, 'src');
+  const filePath = path.join(srcDir, 'i18n.js');
 
-  // Asegurar carpeta
+  // Crear carpeta src si no existe
   createFolder(srcDir);
 
   const content = `import i18n from "i18next";
@@ -75,19 +62,20 @@ export default i18n;
 `;
 
   try {
-    fs.writeFileSync(filePath, content);
-    console.log(`✅ Archivo creado: ${filePath}`);
+    fs.writeFileSync(filePath, content, 'utf-8');
+    printMessage(`✅ Archivo creado: ${filePath}`, 'green');
   } catch (error) {
-    console.error(`❌ Error al crear el archivo i18n.js: ${error.message}`);
+    printMessage(`❌ Error al crear el archivo ${filePath}: ${error.message}`, 'red');
   }
-};
+}
 
 
-export const createLocalesEs = (fullPath) => {
-  const localesDir = path.join(fullPath, "public", "locales", "es");
-  const filePath = path.join(localesDir, "translation.json");
+const createLocalesEs = async (fullPath) => {
+  const esDir = path.join(fullPath, 'public', 'locales', 'es');
+  const filePath = path.join(esDir, 'translation.json');
 
-  createFolder(localesDir);
+  // Crear la carpeta si no existe
+  createFolder(esDir);
 
   const content = `{
   "welcome": "Bievendido!",
@@ -294,26 +282,30 @@ export const createLocalesEs = (fullPath) => {
 }`;
 
   try {
-    fs.writeFileSync(filePath, content);
-    console.log(`✅ Archivo creado: ${filePath}`);
+    fs.writeFileSync(filePath, content, 'utf-8');
+    printMessage(`✅ Archivo creado: ${filePath}`, 'green');
   } catch (error) {
-    console.error(`❌ Error al crear el archivo translation.json: ${error.message}`);
+    printMessage(`❌ Error al crear el archivo ${filePath}: ${error.message}`, 'red');
   }
-};
+}
 
 
-export const createLocalesEn = (fullPath) => {
-  const localesDir = path.join(fullPath, "public", "locales", "en");
-  const filePath = path.join(localesDir, "translation.json");
 
-  // Asegura la carpeta
-  createFolder(localesDir);
+const createLocalesEn = async (fullPath) => {
+  const enDir = path.join(fullPath, 'public', 'locales', 'en');
+  const filePath = path.join(enDir, 'translation.json');
 
-  // Contenido del archivo JSON (sin escapes innecesarios)
+  createFolder(enDir);
+
   const content = `{
   "welcome": "Welcome!",
-  "languages": { "en": "English", "es": "Spanish" },
-  "title": { "config": "Settings" },
+  "languages": {
+    "en": "English",
+    "es": "Spanish"
+  },
+  "title": {
+    "config": "Settings"
+  },
   "message": {
     "are_you_sure": "Are you sure?",
     "record_saved": "Record saved",
@@ -321,7 +313,10 @@ export const createLocalesEn = (fullPath) => {
     "record_updated": "Record updated",
     "ok": "Ok"
   },
-  "menu": { "contact": "Contact", "about": "About" },
+  "menu": {
+    "contact": "Contact",
+    "about": "About"
+  },
   "login_page": {
     "title": "Welcome to GlobalFleet",
     "subtitle": "GlobalFleet Invoices Platform.",
@@ -506,42 +501,41 @@ export const createLocalesEn = (fullPath) => {
   "countries": "Countries"
 }`;
 
-  // Escribir el archivo
   try {
-    fs.writeFileSync(filePath, content);
-    console.log(`✅ Archivo creado: ${filePath}`);
+    fs.writeFileSync(filePath, content, 'utf-8');
+    printMessage(`✅ Archivo creado: ${filePath}`, 'green');
   } catch (error) {
-    console.error(`❌ Error al crear translation.json: ${error.message}`);
+    printMessage(`❌ Error al crear el archivo ${filePath}: ${error.message}`, 'red');
   }
-};
+}
 
 
-export const updateFileMain = (fullPath) => {
-  const mainJsxPath = path.join(fullPath, "src", "main.jsx");
 
-  // Verificar si el archivo existe
+const updateFileMain = async (fullPath) => {
+  const mainJsxPath = path.join(fullPath, 'src', 'main.jsx');
+
+  // Verifica si el archivo existe
   if (!fs.existsSync(mainJsxPath)) {
-    printMessage(`Error: ${mainJsxPath} no existe.`, CYAN);
+    printMessage(`❌ Error: ${mainJsxPath} no existe.`, 'red');
     return;
   }
 
   try {
-    // Leer contenido
-    const content = fs.readFileSync(mainJsxPath, "utf-8");
+    let content = fs.readFileSync(mainJsxPath, 'utf-8');
 
-    // Reemplazo
-    const updatedContent = content.replace(
-      "import { createRoot } from 'react-dom/client'",
-      "import { createRoot } from 'react-dom/client';\nimport './i18n';"
-    );
+    // Solo actualiza si no está ya importado
+    if (!content.includes("import './i18n';")) {
+      content = content.replace(
+        "import { createRoot } from 'react-dom/client'",
+        "import { createRoot } from 'react-dom/client';\nimport './i18n';"
+      );
 
-    // Escribir nuevo contenido
-    fs.writeFileSync(mainJsxPath, updatedContent);
-
-    printMessage("main.jsx configurado correctamente.", GREEN);
+      fs.writeFileSync(mainJsxPath, content, 'utf-8');
+      printMessage('✅ main.jsx configurado correctamente.', 'green');
+    } else {
+      printMessage('ℹ️ main.jsx ya contiene la importación de i18n.', 'yellow');
+    }
   } catch (error) {
-    printMessage(`Error al actualizar ${mainJsxPath}: ${error.message}`, CYAN);
+    printMessage(`❌ Error al actualizar ${mainJsxPath}: ${error.message}`, 'red');
   }
-};
-
-
+}

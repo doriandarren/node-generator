@@ -1,19 +1,16 @@
 import fs from 'fs';
 import path from 'path';
-import { createFolder } from '../../../helpers/helperFile.js';
+import { printMessage } from '../../../helpers/inquirer.js';
 
 
-export const generate = async(fullPath) => {    
-    updateMainJsx(fullPath)
-}
 
-
-export const updateMainHtml = (fullPath) => {
+export const generateIndexHtml = async(fullPath) => {    
+    
   const filePath = path.join(fullPath, "index.html");
 
   // Verificar si el archivo existe
   if (!fs.existsSync(filePath)) {
-    printMessage(`Error: ${filePath} no existe.`, CYAN);
+    printMessage(`Error: ${filePath} no existe.`, 'cyan');
     return;
   }
 
@@ -27,8 +24,8 @@ export const updateMainHtml = (fullPath) => {
 
     // Escribir el archivo
     fs.writeFileSync(filePath, content);
-    printMessage("index.html configurado correctamente.", GREEN);
+    printMessage("index.html configurado correctamente.", 'green');
   } catch (error) {
-    printMessage(`Error al actualizar ${filePath}: ${error.message}`, CYAN);
+    printMessage(`Error al actualizar ${filePath}: ${error.message}`, 'cyan');
   }
 };

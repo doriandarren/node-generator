@@ -1,15 +1,16 @@
 import fs from 'fs';
 import path from 'path';
 import { createFolder } from '../../../helpers/helperFile.js';
+import { printMessage } from '../../../helpers/inquirer.js';
 
 
 export const generateFolderApi = async(fullPath) => {    
-    createApiFile(fullPath)
+    await createApiFile(fullPath)
 }
 
 
 
-export const createApiFile = (fullPath) => {
+export const createApiFile = async(fullPath) => {
   const pagesDir = path.join(fullPath, "src", "api");
   const filePath = path.join(pagesDir, "api.js");
 
@@ -50,8 +51,8 @@ export const api = async (endpoint, method = "GET", body = null, token = null) =
   // Crear archivo
   try {
     fs.writeFileSync(filePath, content);
-    printMessage(`Archivo creado: ${filePath}`, GREEN);
+    printMessage(`Archivo creado: ${filePath}`, 'green');
   } catch (error) {
-    printMessage(`Error al crear el archivo ${filePath}: ${error.message}`, GREEN);
+    printMessage(`Error al crear el archivo ${filePath}: ${error.message}`, 'cyan');
   }
 };

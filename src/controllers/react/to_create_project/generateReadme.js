@@ -1,15 +1,15 @@
 import fs from 'fs';
 import path from 'path';
-import { createFolder } from '../../../helpers/helperFile.js';
+import { printMessage } from '../../../helpers/inquirer.js';
 
 
 export const generateReadme = async(fullPath) => {    
-    createReadme(fullPath)
+    await createReadme(fullPath)
 }
 
 
 
-export const createReadme = (fullPath) => {
+const createReadme = async (fullPath) => {
   const filePath = path.join(fullPath, "README.md");
 
   const content = `# Project
@@ -35,8 +35,8 @@ npm run build
 
   try {
     fs.writeFileSync(filePath, content);
-    printMessage(`Archivo creado: ${filePath}`, GREEN);
+    printMessage(`Archivo creado: ${filePath}`, 'green');
   } catch (error) {
-    printMessage(`Error al crear el archivo ${filePath}: ${error.message}`, CYAN);
+    printMessage(`Error al crear el archivo ${filePath}: ${error.message}`, 'cyan');
   }
-};
+}
