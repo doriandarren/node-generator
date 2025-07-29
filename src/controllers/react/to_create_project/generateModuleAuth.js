@@ -112,14 +112,14 @@ export const LoginPage = () => {
   };
 
   return (
-    <div className="container bg-primary">
+    <div className="container bg-navbar">
       <div className="block xl:grid grid-cols-2 gap-4">
         {/* Lado izquierdo con branding */}
         <div className="hidden xl:flex flex-col min-h-screen pl-24 animate__animated animate__bounceInLeft form-section">
           <div className="my-auto p-10">
-            <img alt="GlobalFleet - Office" src={ImgLogo} />
+            <img alt="Site - Office" src={ImgLogo} />
             <div className="-intro-x font-light text-4xl leading-tight mt-10 text-white">
-              The driver’s fellow
+              Sistema de Gestión Empresarial
             </div>
             <div className="-intro-x font-light text-2xl leading-tight text-white">
               ERP Edition

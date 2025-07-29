@@ -98,8 +98,8 @@ const createLocalesEs = async (fullPath) => {
     "about": "¿Quienes somos?"
   },
   "login_page": {
-    "title": "Bienvend@ Globalfleet",
-    "subtitle": "Plataforma GlobalFleet Facturas.",
+    "title": "Bienvend@ Site",
+    "subtitle": "Plataforma Site Facturas.",
     "email_placeholder": "Correo electrónico",
     "password_placeholder": "Contraseña",
     "remember": "Recuérdame",
@@ -318,8 +318,8 @@ const createLocalesEn = async (fullPath) => {
     "about": "About"
   },
   "login_page": {
-    "title": "Welcome to GlobalFleet",
-    "subtitle": "GlobalFleet Invoices Platform.",
+    "title": "Welcome to Site",
+    "subtitle": "Site Invoices Platform.",
     "email_placeholder": "Email",
     "password_placeholder": "Password",
     "remember": "Remember me",
