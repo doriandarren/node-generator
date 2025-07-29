@@ -80,8 +80,8 @@ const createLocalesEs = async (fullPath) => {
   const content = `{
   "welcome": "Bievendido!",
   "languages": {
-    "en": "Inglés",
-    "es": "Español"
+    "en": "EN",
+    "es": "ES"
   },
   "title": {
     "config": "Configuración"
@@ -98,7 +98,7 @@ const createLocalesEs = async (fullPath) => {
     "about": "¿Quienes somos?"
   },
   "login_page": {
-    "title": "Bienvend@ Site",
+    "title": "Bienvend@ a Site",
     "subtitle": "Plataforma Site Facturas.",
     "email_placeholder": "Correo electrónico",
     "password_placeholder": "Contraseña",
@@ -300,8 +300,8 @@ const createLocalesEn = async (fullPath) => {
   const content = `{
   "welcome": "Welcome!",
   "languages": {
-    "en": "English",
-    "es": "Spanish"
+    "en": "EN",
+    "es": "ES"
   },
   "title": {
     "config": "Settings"

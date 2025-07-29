@@ -54,7 +54,7 @@ export const SessionLayout = ({ children }) => {
   const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { status, displayName } = useSelector((state) => state.auth);
+  const { displayName } = useSelector((state) => state.auth);
 
   const onLogout = (e) => {
     e.preventDefault();
@@ -141,7 +141,7 @@ export const SessionLayout = ({ children }) => {
               </div>
             </TransitionChild>
 
-            <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-primary px-6 pb-4 ring-1 ring-white/10">
+            <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-navbar px-6 pb-4 ring-1 ring-white/10">
               <div className="flex h-16 shrink-0 items-center">
                 <img
                   alt={import.meta.env.VITE_APP_NAME}
@@ -215,7 +215,7 @@ export const SessionLayout = ({ children }) => {
 
       {/* Desktop sidebar */}
       <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
-        <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-primary px-6 pb-4">
+        <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-navbar px-6 pb-4">
           <div className="flex h-16 shrink-0 items-center">
             <img alt={import.meta.env.VITE_APP_NAME} src={Logo} className="h-8 w-auto" />
             <span className="text-white text-2xl ml-3 font-bold">
@@ -297,9 +297,6 @@ export const SessionLayout = ({ children }) => {
 
           <div className="flex flex-1 gap-x-4 self-stretch lg:gap-x-6">
             <div className="grid flex-1 grid-cols-1 mt-5">
-              <div>
-                <h2 style={{ color: 'red' }}>{status}</h2>
-              </div>
             </div>
 
             <div className="flex items-center gap-x-4 lg:gap-x-6">

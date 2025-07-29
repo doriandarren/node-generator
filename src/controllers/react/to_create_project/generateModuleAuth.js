@@ -72,8 +72,8 @@ const createLogin = async(fullPath) => {
   const content = `import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import ImgLogo from "../../../assets/images/logo.svg";
-import EyeOff from '../../../assets/images/eye_off.svg';
-import EyeOn from '../../../assets/images/eye_on.svg';
+import { EyeOffIcon } from "../../../components/Icons/EyeOffIcon";
+import { EyeOnIcon } from "../../../components/Icons/EyeOnIcon";
 import { useTranslation } from "react-i18next";
 import { Button } from "../../../components/Buttons/Button";
 import { startLoginWithEmailPassword } from "../../../store/auth/thunks";
@@ -158,8 +158,17 @@ export const LoginPage = () => {
                     required
                   />
                   <div className="absolute inset-y-0 right-0 flex items-center px-2">
-                    <button type="button" onClick={() => setShowPassword(!showPassword)}>
-                      <img className="w-6 h-6" src={showPassword ? EyeOff : EyeOn} alt="Show/Hide password" />
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword((prev) => !prev)}
+                      className="absolute right-3 top-2.5 text-gray-500 hover:text-gray-700"
+                      aria-label="Toggle password visibility"
+                    >
+                      {showPassword ? (
+                        <EyeOffIcon className="w-5 h-5" />
+                      ) : (
+                        <EyeOnIcon className="w-5 h-5" />
+                      )}
                     </button>
                   </div>
                 </div>
