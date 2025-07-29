@@ -57,12 +57,12 @@ class UserRolesAbilitiesSeeder extends Seeder
          */
 
 
-        $this->createUser('Info', 'info@truckwashvilamalla.eu', 'Truck2020',EnumRole::MANAGER);
+        $this->createUser('Info', 'info@site.com', EnumDefaultCompany::PASSWORD, EnumRole::MANAGER);
 
         /**
          * Create User
          */
-        $this->createUser('Operator', 'operator@truckwashvilamalla.eu', 'Oper2020',EnumRole::USER);
+        $this->createUser('Operator', 'operator@site.com', EnumDefaultCompany::PASSWORD, EnumRole::USER);
 
 
 
