@@ -12,7 +12,7 @@ import { generateModuleProfile } from "./generateModuleProfile.js";
 import { generateModulePublic } from "./generateModulePublic.js";
 import { generateModuleTeams } from "./generateModuleTeams.js";
 import { generatePrivateLayout } from "./generatePrivateLayout.js";
-import { generatePublicHeader } from "./generatePublicHeader.js";
+import { generatePublicLayout } from "./generatePublicLayouts.js";
 import { generateReactCommandLine } from "./generateReactCommandLine.js";
 import { generateReactRouter } from "./generateReactRouter.js";
 import { generateReadme } from "./generateReadme.js";
@@ -45,8 +45,8 @@ export const startProjectReact = async() => {
 
 
 
-    await generatePublicHeader(fullPath);
     await generatePrivateLayout(fullPath);
+    await generatePublicLayout(fullPath);
 
     // generate Public
     await generateModulePublic(fullPath);

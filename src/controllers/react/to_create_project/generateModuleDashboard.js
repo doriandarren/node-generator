@@ -1,29 +1,25 @@
 import fs from 'fs';
 import path from 'path';
-import { createFolder } from '../../../helpers/helperFile.js';
+import { createFolder, runExec } from '../../../helpers/helperFile.js';
 import { printMessage } from '../../../helpers/inquirer.js';
 
 
 export const generateModuleDashboard = async(fullPath) => {    
 
-    await installRecharts(fullPath)
+    await setupRecharts(fullPath)
     await createRoutes(fullPath)
     await createDashboard(fullPath)
     await createProfile(fullPath)
 
 }
 
-const installRecharts = async(fullPath) => {
-  
 
-  try {
-    printMessage('Instalando Recharts...', 'cyan');
-    execSync('npm install recharts', { cwd: fullPath, stdio: 'inherit' });
-    printMessage('Recharts instalado correctamente.', 'green');
-  } catch (error) {
-    printMessage(`❌ Error al instalar Recharts: ${error.message}`, 'red');
-  }
-}
+const setupRecharts = async (fullPath) => {
+    printMessage("Instalando Recharts...", 'cyan');
+    await runExec("npm install recharts", fullPath);
+    printMessage("Recharts instalado correctamente.", 'green');
+};
+
 
 const createRoutes = async(fullPath) => {
   const routesDir = path.join(fullPath, 'src', 'modules', 'dashboard', 'routes');

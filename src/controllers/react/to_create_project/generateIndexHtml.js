@@ -20,6 +20,7 @@ export const generateIndexHtml = async(fullPath) => {
 
     // Reemplazos
     content = content.replace('<html lang="en">', '<html lang="es">');
+    content = content.replace('/vite.svg', '/favicon.svg');
     content = content.replace('<title>Vite + React</title>', '<title>Site</title>');
 
     // Escribir el archivo

@@ -40,7 +40,8 @@ export const generateComponents = async(fullPath) => {
 
   await createInvoiceIcon(fullPath);
 
-
+  await createEyeOffIcon(fullPath);
+  await createEyeOnIcon(fullPath);
 
 }
 
@@ -721,24 +722,85 @@ const createInvoiceIcon = async (fullPath) => {
   const filePath = path.join(stylesPath, 'InvoiceIcon.jsx');
 
   const content = `import classNames from "classnames";
+import { getVariantTextClass } from "../../helpers/helperVariantClass";
 
-export const ImageInvoiceIcon = ({ variant = "neutral", className = "w-6 h-6" }) => {
+export const InvoiceIcon = ({ variant = "neutral", className = "w-6 h-6" }) => {
   return (
     <svg
-      className={classNames(className, {
-        "text-neutral": variant === "neutral",
-        "text-danger": variant === "danger",
-        "text-warning": variant === "warning",
-        "text-success": variant === "success",
-        "text-info": variant === "info",
-        "text-primary": variant === "primary",
-        "text-secondary": variant === "secondary",
-      })}
+      className={classNames(className, getVariantTextClass(variant))}
       fill="currentColor"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path d="M6 2a2 2 0 0 0-2 2v16l4-2 4 2 4-2 4 2V4a2 2 0 0 0-2-2H6zm2 4h8v2H8V6zm0 4h8v2H8v-2zm0 4h5v2H8v-2z" />
+    </svg>
+  );
+};
+`;
+
+  try {
+    fs.writeFileSync(filePath, content);
+    console.log(`✅ Archivo generado: ${filePath}`.green);
+  } catch (error) {
+    console.error(`❌ Error al generar el archivo ${filePath}: ${error.message}`);
+  }
+}
+
+
+
+
+
+const createEyeOffIcon = async (fullPath) => {
+  const stylesPath = path.join(fullPath, 'src', 'components', 'Icons');
+  createFolder(stylesPath);
+
+  const filePath = path.join(stylesPath, 'EyeOffIcon.jsx');
+
+  const content = `import classNames from "classnames";
+import { getVariantTextClass } from "../../helpers/helperVariantClass";
+
+export const EyeOffIcon = ({ variant = "neutral", className = "w-5 h-5" }) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className={classNames(className, getVariantTextClass(variant))}
+      viewBox="0 0 20 20"
+      fill="currentColor"
+    >
+      <path d="M2.854 2.146a.5.5 0 1 0-.708.708l3.5 3.498a8.1 8.1 0 0 0-3.366 5.046a.5.5 0 1 0 .98.204a7.1 7.1 0 0 1 3.107-4.528L7.953 8.66a3.5 3.5 0 1 0 4.886 4.886l4.307 4.308a.5.5 0 0 0 .708-.708zm9.265 10.68A2.5 2.5 0 1 1 8.673 9.38zm-1.995-4.824l3.374 3.374a3.5 3.5 0 0 0-3.374-3.374M10 6c-.57 0-1.129.074-1.666.213l-.803-.803A7.7 7.7 0 0 1 10 5c3.693 0 6.942 2.673 7.72 6.398a.5.5 0 0 1-.98.204C16.058 8.327 13.207 6 10 6"/>
+    </svg>
+  );
+};
+`;
+
+  try {
+    fs.writeFileSync(filePath, content);
+    console.log(`✅ Archivo generado: ${filePath}`.green);
+  } catch (error) {
+    console.error(`❌ Error al generar el archivo ${filePath}: ${error.message}`);
+  }
+}
+
+
+
+const createEyeOnIcon = async (fullPath) => {
+  const stylesPath = path.join(fullPath, 'src', 'components', 'Icons');
+  createFolder(stylesPath);
+
+  const filePath = path.join(stylesPath, 'EyeOnIcon.jsx');
+
+  const content = `import classNames from "classnames";
+import { getVariantTextClass } from "../../helpers/helperVariantClass";
+
+export const EyeOnIcon = ({ variant = "neutral", className = "w-5 h-5" }) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className={classNames(className, getVariantTextClass(variant))}
+      viewBox="0 0 16 16"
+      fill="currentColor"
+    >
+      <path d="M2.984 8.625v.003a.5.5 0 0 1-.612.355c-.431-.114-.355-.611-.355-.611l.018-.062s.026-.084.047-.145a6.7 6.7 0 0 1 1.117-1.982C4.096 5.089 5.605 4 8 4s3.904 1.089 4.802 2.183a6.7 6.7 0 0 1 1.117 1.982a4 4 0 0 1 .06.187l.003.013v.004l.001.002a.5.5 0 0 1-.966.258l-.001-.004l-.008-.025l-.035-.109a5.7 5.7 0 0 0-.945-1.674C11.286 5.912 10.045 5 8 5s-3.285.912-4.028 1.817a5.7 5.7 0 0 0-.945 1.674l-.035.109zM5.5 9.5a2.5 2.5 0 1 1 5 0a2.5 2.5 0 0 1-5 0"/>
     </svg>
   );
 };

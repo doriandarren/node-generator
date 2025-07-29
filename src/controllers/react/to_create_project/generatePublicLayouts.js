@@ -5,8 +5,8 @@ import { createFolder } from '../../../helpers/helperFile.js';
 
 export const generatePublicLayout = async(fullPath) => {    
     await createPublicLayout(fullPath);
-    await createPublicHeaderLayout(fullPath);
-    await createPublicFooterLayout(fullPath);
+    await createPublicHeader(fullPath);
+    await createPublicFooter(fullPath);
 }
 
 
@@ -442,7 +442,7 @@ export const HeaderLayout = () => {
 
 
 
-const createPublicHeaderLayout = async (fullPath) => {
+const createPublicHeader = async (fullPath) => {
   const layoutsDir = path.join(fullPath, 'src', 'layouts', 'public');
   const filePath   = path.join(layoutsDir, 'PublicLayout.jsx');
 
@@ -472,13 +472,20 @@ export const PublicLayout = ({ children }) => {
 
 
 
-const createPublicFooterLayout = async (fullPath) => {
-  const layoutsDir = path.join(fullPath, 'src', 'layouts', 'public');
-  const filePath   = path.join(layoutsDir, 'FooterLayout.jsx');
+const createPublicFooter = async(fullPath) => {    
 
-  createFolder(layoutsDir);
+    // Folder
+    const folderPath = path.join(fullPath, 'src', 'layouts', 'public');
+    
+    // File
+    const filePath = path.join(folderPath, 'FooterLayout.jsx');
 
-  const content = `const footerNavigation = {
+    // Asegurar que la carpeta exista
+    createFolder(folderPath);
+
+
+    // Code
+    const code = `const footerNavigation = {
   shop: [
     { name: "Bags", href: "#" },
     { name: "Tees", href: "#" },
@@ -619,12 +626,14 @@ export const FooterLayout = () => {
     </footer>
   );
 };
-`;
+`.trimStart();
 
   try {
-    await fs.promises.writeFile(filePath, content);
-    console.log(`✅ Archivo creado: ${filePath}`);
+    fs.writeFileSync(filePath, code);
+    console.log(`✅ Archivo creado: ${filePath}`.green);
   } catch (error) {
-    console.error(`❌ Error al crear el archivo ${filePath}: ${error}`);
+    console.error(`❌ Error al crear archivo: ${error.message}`.red);
   }
+
 }
+

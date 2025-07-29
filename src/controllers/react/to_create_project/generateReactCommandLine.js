@@ -6,13 +6,13 @@ import { printMessage } from '../../../helpers/inquirer.js';
 
 export const generateReactCommandLine = async(fullPath) => {
     
-
     await createProjectReact(fullPath);
     await installDependencies(fullPath);
     await setupClassNames(fullPath);
     await setupHeadlessUI(fullPath);
     await setupHeroIcons(fullPath);
     await setupLucideReact(fullPath);
+    await setupProtypes(fullPath);
     await setupAnimateCss(fullPath);
     await setupSweetAlert2(fullPath);
     await setupClsx(fullPath);
@@ -20,7 +20,6 @@ export const generateReactCommandLine = async(fullPath) => {
     await setupValidationForm(fullPath);
     await setupUUID(fullPath);
     await deleteAppAndIndexCss(fullPath);
-
 
 }
 
@@ -77,6 +76,14 @@ const setupLucideReact = async (fullPath) => {
     await runExec("npm install lucide-react", fullPath);
     printMessage("LucideReact instalado correctamente.", 'green');
 };
+
+
+const setupProtypes = async (fullPath) => {
+    printMessage("Instalando Prop-types...", 'cyan');
+    await runExec("npm install prop-types", fullPath);
+    printMessage("Prop-types instalado correctamente.", 'green');
+};
+
 
 const setupAnimateCss = async (fullPath) => {
     printMessage("Instalando AnimateCss...", 'cyan');

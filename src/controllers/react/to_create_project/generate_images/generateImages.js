@@ -5,46 +5,68 @@ import { createFolder } from '../../../../helpers/helperFile.js';
 
 export const generateImages = async(fullPath) => {
     
-    await createViteSVG(fullPath);
+	// Favicon
+	await removeViteLogo(fullPath);
+	await createFavicon(fullPath);
+
+
+
     await createHeaderBgImage(fullPath);
     await createLogoSVG(fullPath);
     await createImageApp1(fullPath);
     await createImageLogoBlanco(fullPath);
-
-    // Logo
     await createLogoWhite(fullPath);
-    await createEyeOff(fullPath);
-    await createEyeOn(fullPath);
-
+	
 }
 
 
-const createViteSVG = async(fullPath) => {    
+const removeViteLogo = async (fullPath) => {
+  // Ruta al archivo vite.svg
+  const filePath = path.join(fullPath, 'public', 'vite.svg');
 
-    // Folder
-    const folderPath = path.join(fullPath, 'src', 'public');
-    
-    // File
-    const filePath = path.join(folderPath, 'vite.svg');
+  try {
+    // Verifica si el archivo existe
+    if (fs.existsSync(filePath)) {
+      fs.unlinkSync(filePath);
+      console.log(`🗑️ Archivo eliminado: ${filePath}`.yellow);
+    } else {
+      console.log(`⚠️ Archivo no encontrado: ${filePath}`.gray);
+    }
+  } catch (error) {
+    console.error(`❌ Error al eliminar archivo: ${error.message}`);
+  }
+};
 
-    // Asegurar que la carpeta exista
-    createFolder(folderPath);
+
+const createFavicon = async(fullPath) => {    
+
+	// Folder
+	const folderPath = path.join(fullPath, 'public');
+	
+	// File
+	const filePath = path.join(folderPath, 'favicon.svg');
+
+	// Asegurar que la carpeta exista
+	createFolder(folderPath);
 
 
-
-    // Code
-    const code = `
-<?xml version="1.0" ?><!DOCTYPE svg  PUBLIC '-//W3C//DTD SVG 1.1//EN'  'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'><svg enable-background="new 0 0 50 50" id="Layer_1" version="1.1" viewBox="0 0 50 50" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g><path d="M46.8942,5.31252H3.10575c-1.16296,0-2.10577,0.94275-2.10577,2.10571V34.6894   c0,1.16296,0.94281,2.10571,2.10577,2.10571H46.8942c1.16302,0,2.10577-0.94275,2.10577-2.10571V7.41823   C48.99997,6.25526,48.05722,5.31252,46.8942,5.31252z" fill="#E7E3E6"/><rect fill="#656766" height="23.74885" width="42.6767" x="3.66171" y="7.83474"/><g><rect fill="#806292" height="11.87442" width="21.33945" x="24.99903" y="7.83476"/></g><g><rect fill="#4E4C4D" height="11.87442" width="21.33945" x="24.99903" y="19.70918"/></g><g><rect fill="#656766" height="11.87442" width="21.33945" x="3.66179" y="7.83476"/></g><g><rect fill="#656766" height="11.87442" width="21.33945" x="3.66179" y="19.70918"/></g><g><path d="M39.7464,13.51671l-1.22293-1.22293c-0.14081-0.14081-0.36892-0.14081-0.50973,0    c-0.14081,0.14081-0.14081,0.36892,0,0.50973l0.96806,0.96806l-0.96806,0.96806c-0.14081,0.14081-0.14081,0.36892,0,0.50973    c0.0704,0.07041,0.16263,0.10561,0.25486,0.10561c0.09223,0,0.18446-0.0352,0.25486-0.10561l1.22293-1.22293    C39.88721,13.88563,39.88721,13.65752,39.7464,13.51671z" fill="#FFFFFF"/></g><g><path d="M33.56346,12.29378c-0.14081-0.14081-0.36892-0.14081-0.50973,0l-1.22363,1.22293    c-0.06759,0.06759-0.10561,0.15911-0.10561,0.25486c0,0.09575,0.03802,0.18728,0.10561,0.25486l1.22363,1.22293    c0.0704,0.07041,0.16263,0.10561,0.25486,0.10561c0.09223,0,0.18446-0.0352,0.25486-0.10561    c0.14081-0.14081,0.14081-0.36892,0-0.50973l-0.96877-0.96806l0.96877-0.96806    C33.70427,12.6627,33.70427,12.43459,33.56346,12.29378z" fill="#FFFFFF"/></g><g><path d="M37.14424,11.12788c-0.17742-0.09012-0.39427-0.02042-0.48579,0.1563l-2.38179,4.64601    c-0.09082,0.17742-0.02042,0.39497,0.1563,0.48579c0.0528,0.02675,0.10913,0.03943,0.16475,0.03943    c0.13095,0,0.25698-0.07181,0.32104-0.19572l2.38179-4.64601C37.39136,11.43625,37.32096,11.2187,37.14424,11.12788z" fill="#FFFFFF"/></g><g><path d="M36.62082,22.39944h-6.43956c-0.19925,0-0.36047-0.16123-0.36047-0.36047s0.16123-0.36047,0.36047-0.36047    h6.43956c0.19925,0,0.36047,0.16123,0.36047,0.36047S36.82007,22.39944,36.62082,22.39944z" fill="#85BD57"/></g><g><path d="M41.39532,22.39944h-2.88694c-0.19925,0-0.36047-0.16123-0.36047-0.36047s0.16122-0.36047,0.36047-0.36047    h2.88694c0.19925,0,0.36047,0.16123,0.36047,0.36047S41.59456,22.39944,41.39532,22.39944z" fill="#E7E3E6"/></g><g><path d="M33.14917,24.20321h-2.96791c-0.19925,0-0.36047-0.16123-0.36047-0.36047s0.16123-0.36047,0.36047-0.36047    h2.96791c0.19925,0,0.36047,0.16123,0.36047,0.36047S33.34842,24.20321,33.14917,24.20321z" fill="#E7E3E6"/></g><g><path d="M41.39532,24.20321h-6.35895c-0.19925,0-0.36047-0.16123-0.36047-0.36047s0.16122-0.36047,0.36047-0.36047    h6.35895c0.19925,0,0.36047,0.16123,0.36047,0.36047S41.59456,24.20321,41.39532,24.20321z" fill="#53B1E2"/></g><g><path d="M31.26162,26.00698h-1.08036c-0.19925,0-0.36047-0.16123-0.36047-0.36047    c0-0.19924,0.16123-0.36047,0.36047-0.36047h1.08036c0.19925,0,0.36047,0.16123,0.36047,0.36047    C31.62209,25.84575,31.46087,26.00698,31.26162,26.00698z" fill="#BA8C5C"/></g><g><path d="M41.39532,26.00698h-8.24615c-0.19925,0-0.36047-0.16123-0.36047-0.36047    c0-0.19924,0.16123-0.36047,0.36047-0.36047h8.24615c0.19925,0,0.36047,0.16123,0.36047,0.36047    C41.75579,25.84575,41.59456,26.00698,41.39532,26.00698z" fill="#E7E3E6"/></g><g><path d="M36.32829,27.81075h-6.14703c-0.19925,0-0.36047-0.16123-0.36047-0.36047    c0-0.19924,0.16123-0.36047,0.36047-0.36047h6.14703c0.19925,0,0.36047,0.16123,0.36047,0.36047    C36.68877,27.64952,36.52754,27.81075,36.32829,27.81075z" fill="#FFC966"/></g><g><path d="M41.39532,27.81075h-3.17947c-0.19925,0-0.36047-0.16123-0.36047-0.36047    c0-0.19924,0.16123-0.36047,0.36047-0.36047h3.17947c0.19925,0,0.36047,0.16123,0.36047,0.36047    C41.75579,27.64952,41.59456,27.81075,41.39532,27.81075z" fill="#9A7CA8"/></g><g><path d="M33.40122,29.61381h-3.21996c-0.19925,0-0.36047-0.16123-0.36047-0.36047s0.16123-0.36047,0.36047-0.36047    h3.21996c0.19925,0,0.36047,0.16123,0.36047,0.36047S33.60046,29.61381,33.40122,29.61381z" fill="#E7E3E6"/></g><g><path d="M41.39532,29.61381h-6.10655c-0.19925,0-0.36047-0.16123-0.36047-0.36047s0.16123-0.36047,0.36047-0.36047    h6.10655c0.19925,0,0.36047,0.16123,0.36047,0.36047S41.59456,29.61381,41.39532,29.61381z" fill="#E7E3E6"/></g><g><path d="M7.38695,9.40017H5.81158c-0.6698,0-1.21283,0.54303-1.21283,1.21283v18.19232    c0,0.66986,0.54303,1.21283,1.21283,1.21283h1.57538c0.66986,0,1.21283-0.54297,1.21283-1.21283V10.613    C8.59978,9.9432,8.05681,9.40017,7.38695,9.40017z" fill="#4E4C4D"/><path d="M7.24993,10.2795H5.9486c-0.30511,0-0.55249,0.24738-0.55249,0.55249v1.30127    c0,0.30518,0.24738,0.55255,0.55249,0.55255h1.30133c0.30511,0,0.55249-0.24738,0.55249-0.55255v-1.30127    C7.80242,10.52688,7.55504,10.2795,7.24993,10.2795z" fill="#D2D2D2"/><path d="M7.24993,13.57009H5.9486c-0.30511,0-0.55249,0.24738-0.55249,0.55249v1.30127    c0,0.30518,0.24738,0.55261,0.55255,0.55261h1.30127c0.30511,0,0.55249-0.24738,0.55249-0.55255v-1.30133    C7.80242,13.81746,7.55504,13.57009,7.24993,13.57009z" fill="#D2D2D2"/><path d="M7.24987,16.86068H5.9486c-0.30511,0-0.55249,0.24738-0.55249,0.55249v1.30133    c0,0.30518,0.24738,0.55255,0.55249,0.55255h1.30133c0.30511,0,0.55249-0.24738,0.55249-0.55255v-1.30127    C7.80242,17.10805,7.55504,16.86068,7.24987,16.86068z" fill="#D2D2D2"/><path d="M7.24993,20.15133H5.9486c-0.30511,0-0.55249,0.24738-0.55249,0.55249v1.30127    c0,0.30518,0.24738,0.55255,0.55249,0.55255h1.30133c0.30511,0,0.55249-0.24738,0.55249-0.55255v-1.30127    C7.80242,20.3987,7.55504,20.15133,7.24993,20.15133z" fill="#D2D2D2"/><path d="M7.24993,23.44191H5.9486c-0.30511,0-0.55249,0.24738-0.55249,0.55249v1.30127    c0,0.30518,0.24738,0.55261,0.55255,0.55261h1.30121c0.30518,0,0.55255-0.24744,0.55255-0.55261V23.9944    C7.80242,23.68929,7.55504,23.44191,7.24993,23.44191z" fill="#D2D2D2"/><path d="M7.24993,26.7325H5.9486c-0.30511,0-0.55249,0.24738-0.55249,0.55249v1.30133    c0,0.30518,0.24738,0.55255,0.55249,0.55255h1.30133c0.30511,0,0.55249-0.24738,0.55249-0.55255v-1.30133    C7.80242,26.97988,7.55504,26.7325,7.24993,26.7325z" fill="#D2D2D2"/></g><path d="M19.8386,28.34957l1.53751-1.53751c0.17083-0.17083,0.17083-0.4478,0-0.61863l-1.75513-1.75514   l1.58382-0.65605c0.48512-0.20094,0.42679-0.90604-0.08475-1.02453l-6.10993-1.41537   c-0.38898-0.09011-0.73776,0.25867-0.64765,0.64766l1.41606,6.11286c0.11843,0.51125,0.82297,0.56989,1.02429,0.08525   l0.66203-1.59369l1.75513,1.75514C19.3908,28.5204,19.66777,28.5204,19.8386,28.34957z" fill="#EC6E62"/><rect fill="#D2D2D2" height="4.33882" width="17.95184" x="16.02405" y="36.7951"/><path d="M35.04778,41.13393H14.95216c-0.98129,0-1.77678,0.79549-1.77678,1.77678v0   c0,0.98129,0.79549,1.77678,1.77678,1.77678h20.09562c0.98129,0,1.77678-0.79549,1.77678-1.77678v0   C36.82456,41.92942,36.02907,41.13393,35.04778,41.13393z" fill="#E7E3E6"/></g></svg>
+	// Code
+	const code = `
+<svg id="Capa_1" data-name="Capa 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 904.79 991.96"><defs><radialGradient id="Degradado_sin_nombre_8" cx="449.25" cy="516.28" r="136.76" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#fff"/><stop offset="0.57" stop-color="#1e77bc"/></radialGradient></defs><path d="M590.08,10.72" transform="translate(-59.84 -20.85)" style="fill:none;stroke:#a4e80f;stroke-miterlimit:10"/><ellipse cx="449.25" cy="516.28" rx="131.6" ry="141.72" style="fill:url(#Degradado_sin_nombre_8)"/><path d="M995,253.68" transform="translate(-59.84 -20.85)" style="fill:none;stroke:#a4e80f;stroke-miterlimit:10;stroke-width:0.5px"/><path d="M964.63,162.57" transform="translate(-59.84 -20.85)" style="fill:none;stroke:#a4e80f;stroke-miterlimit:10"/><path d="M934.26,203.06" transform="translate(-59.84 -20.85)" style="fill:none;stroke:#a4e80f;stroke-miterlimit:10;stroke-width:0.5px"/><path d="M964.63,20.85V192.94H934.26c-17.31-.2-34.21-.2-50.61,0-362,4.25-534.5,101.23-536.53,101.23-179.58,99.71-103.56,327.28-101.33,334C63.68,557.27,104.17,354.91,104.17,354.91c7.93-42.28,27.51-81.46,53.3-115.64,23.41-31,51.73-58.19,82.36-82,44.22-34.4,91.65-62.38,145.87-77.58,15.32-4.29,30.84-7.86,46.42-11.12,32.34-6.78,65-12,97.74-16.47,35.68-4.89,71.47-8.85,107.32-12.27q53.27-5.09,106.66-8.66,47.86-3.27,95.8-5.63,37.35-1.84,74.72-3.19,21.71-.77,43.43-1.34Z" transform="translate(-59.84 -20.85)" style="fill:#03aeef"/><path d="M867.31,160" transform="translate(-59.84 -20.85)" style="fill:#f9f9f9;stroke:#a4e80f;stroke-miterlimit:10;stroke-width:0.5px"/><path d="M790.89,153.6" transform="translate(-59.84 -20.85)" style="fill:#f9f9f9;stroke:lime;stroke-miterlimit:10;stroke-width:0.5px"/><path d="M778,140.73" transform="translate(-59.84 -20.85)" style="fill:#f9f9f9;stroke:lime;stroke-miterlimit:10;stroke-width:0.5px"/><path d="M929.2,53.75V160H882.51a15.08,15.08,0,1,1-.23-15.19H914V68.93H792.16a15,15,0,1,1,.23-15.18Z" transform="translate(-59.84 -20.85)" style="fill:#f9f9f9"/><path d="M905.89,98.77a15,15,0,0,1-15,15,14.66,14.66,0,0,1-12.6-6.91H805.45v45.56h-61.2a15,15,0,0,1-27.63-7.6v-.53a15,15,0,0,1,28.24-7.06h45.4V91.71h87.46a15,15,0,0,1,28.17,7.06Z" transform="translate(-59.84 -20.85)" style="fill:#f9f9f9"/><path d="M29.47,780" transform="translate(-59.84 -20.85)" style="fill:none;stroke:#a4e80f;stroke-miterlimit:10;stroke-width:0.5px"/><path d="M59.84,871.08" transform="translate(-59.84 -20.85)" style="fill:none;stroke:#a4e80f;stroke-miterlimit:10"/><path d="M90.21,830.59" transform="translate(-59.84 -20.85)" style="fill:none;stroke:#a4e80f;stroke-miterlimit:10;stroke-width:0.5px"/><path d="M59.84,1012.81V840.71H90.21c17.31.21,34.22.21,50.61,0,362-4.25,534.5-101.23,536.53-101.23,179.58-99.71,103.56-327.28,101.33-334C960.79,476.38,920.3,678.74,920.3,678.75,912.37,721,892.79,760.21,867,794.38c-23.41,31-51.73,58.19-82.36,82C740.42,910.79,693,938.77,638.77,954c-15.32,4.3-30.84,7.86-46.42,11.12-32.34,6.78-65,12-97.74,16.47-35.68,4.89-71.47,8.86-107.31,12.27q-53.28,5.08-106.67,8.66-47.87,3.27-95.8,5.63-37.35,1.85-74.72,3.19-21.7.78-43.43,1.34Z" transform="translate(-59.84 -20.85)" style="fill:#1e77bc"/><path d="M157.16,873.61" transform="translate(-59.84 -20.85)" style="fill:#f9f9f9;stroke:#a4e80f;stroke-miterlimit:10;stroke-width:0.5px"/><path d="M233.58,880.05" transform="translate(-59.84 -20.85)" style="fill:#f9f9f9;stroke:lime;stroke-miterlimit:10;stroke-width:0.5px"/><path d="M246.46,892.93" transform="translate(-59.84 -20.85)" style="fill:#f9f9f9;stroke:lime;stroke-miterlimit:10;stroke-width:0.5px"/><path d="M95.27,979.91V873.61H142a15.08,15.08,0,1,1,.23,15.19H110.46v75.92H232.31a15,15,0,1,1-.23,15.19Z" transform="translate(-59.84 -20.85)" style="fill:#f9f9f9"/><path d="M118.58,934.88a15,15,0,0,1,15-15,14.66,14.66,0,0,1,12.6,6.91H219V881.21h61.19a15,15,0,0,1,27.64,7.59v.53a15,15,0,0,1-28.25,7.06h-45.4V942H146.75a15,15,0,0,1-28.17-7.07Z" transform="translate(-59.84 -20.85)" style="fill:#f9f9f9"/></svg>
 `.trimStart();
 
   try {
-    fs.writeFileSync(filePath, code);
-    console.log(`✅ Archivo creado: ${filePath}`.green);
+	fs.writeFileSync(filePath, code);
+	console.log(`✅ Archivo creado: ${filePath}`.green);
   } catch (error) {
-    console.error(`❌ Error al crear archivo: ${error.message}`);
+	console.error(`❌ Error al crear archivo: ${error.message}`);
   }
 
 }
+
+
+
+
 
 const createHeaderBgImage = async(fullPath) => {    
 
@@ -1166,59 +1188,3 @@ const createLogoWhite = async(fullPath) => {
 
 }
 
-
-
-const createEyeOff = async(fullPath) => {    
-
-    // Folder
-    const folderPath = path.join(fullPath, 'src', 'assets', 'images');
-    
-    // File
-    const filePath = path.join(folderPath, 'eye_off.svg');
-
-    // Asegurar que la carpeta exista
-    createFolder(folderPath);
-
-
-    // Code
-    const code = `
-<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 20 20"><path fill="currentColor" d="M2.854 2.146a.5.5 0 1 0-.708.708l3.5 3.498a8.1 8.1 0 0 0-3.366 5.046a.5.5 0 1 0 .98.204a7.1 7.1 0 0 1 3.107-4.528L7.953 8.66a3.5 3.5 0 1 0 4.886 4.886l4.307 4.308a.5.5 0 0 0 .708-.708zm9.265 10.68A2.5 2.5 0 1 1 8.673 9.38zm-1.995-4.824l3.374 3.374a3.5 3.5 0 0 0-3.374-3.374M10 6c-.57 0-1.129.074-1.666.213l-.803-.803A7.7 7.7 0 0 1 10 5c3.693 0 6.942 2.673 7.72 6.398a.5.5 0 0 1-.98.204C16.058 8.327 13.207 6 10 6"/></svg>    
-`.trimStart();
-
-  try {
-    fs.writeFileSync(filePath, code);
-    console.log(`✅ Archivo creado: ${filePath}`.green);
-  } catch (error) {
-    console.error(`❌ Error al crear archivo: ${error.message}`);
-  }
-
-}
-
-
-
-
-const createEyeOn = async(fullPath) => {    
-
-    // Folder
-    const folderPath = path.join(fullPath, 'src', 'assets', 'images');
-    
-    // File
-    const filePath = path.join(folderPath, 'eye_on.svg');
-
-    // Asegurar que la carpeta exista
-    createFolder(folderPath);
-
-
-    // Code
-    const code = `
-<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16"><path fill="currentColor" d="M2.984 8.625v.003a.5.5 0 0 1-.612.355c-.431-.114-.355-.611-.355-.611l.018-.062s.026-.084.047-.145a6.7 6.7 0 0 1 1.117-1.982C4.096 5.089 5.605 4 8 4s3.904 1.089 4.802 2.183a6.7 6.7 0 0 1 1.117 1.982a4 4 0 0 1 .06.187l.003.013v.004l.001.002a.5.5 0 0 1-.966.258l-.001-.004l-.008-.025l-.035-.109a5.7 5.7 0 0 0-.945-1.674C11.286 5.912 10.045 5 8 5s-3.285.912-4.028 1.817a5.7 5.7 0 0 0-.945 1.674l-.035.109zM5.5 9.5a2.5 2.5 0 1 1 5 0a2.5 2.5 0 0 1-5 0"/></svg>    
-`.trimStart();
-
-  try {
-    fs.writeFileSync(filePath, code);
-    console.log(`✅ Archivo creado: ${filePath}`.green);
-  } catch (error) {
-    console.error(`❌ Error al crear archivo: ${error.message}`);
-  }
-
-}

@@ -1,30 +1,33 @@
 import fs from 'fs';
 import path from 'path';
-import { createFolder } from '../../../helpers/helperFile.js';
+import { createFolder, runExec } from '../../../helpers/helperFile.js';
 import { printMessage } from '../../../helpers/inquirer.js';
 
 
 export const generateReactRouter = async(fullPath) => {    
-    await setupReactRouter(fullPath)
-    await setupAppJsx(fullPath)
-    await updateMainJsx(fullPath)
-    await createAppRouter(fullPath)
-    await createPrivateRoute(fullPath)
-    await createPublicRoute(fullPath)    
+    await setupReactRouter(fullPath);
+    await setupAppJsx(fullPath);
+    await updateMainJsx(fullPath);
+    await createAppRouter(fullPath);
+    await createPrivateRoute(fullPath);
+    await createPublicRoute(fullPath);    
 }
 
 
 
-const setupReactRouter = async(fullPath) => {
-  
+
+const setupReactRouter = async (fullPath) => {
   try {
-    printMessage('Instalando React Router...', 'cyan');
-    execSync('npm install react-router-dom', { cwd: fullPath, stdio: 'inherit' });
-    printMessage('React Router instalado correctamente.', 'green');
+    printMessage("Instalando React Router...", 'cyan');
+    await runExec("npm install react-router-dom", fullPath);
+    printMessage("React Router instalado correctamente.", 'green');
   } catch (err) {
     printMessage(`❌ Error instalando React Router: ${err.message}`, 'red');
   }
-}
+};
+
+
+
 
 const setupAppJsx = async(fullPath) => {
   
