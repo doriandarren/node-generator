@@ -39,7 +39,7 @@ use Illuminate\\Support\\Facades\\Route;
 /**
 * ${pluralName}
 */
-Route::group(['prefix' => EnumApiSetup::API_VERSION . '${pluralNameKebab}/'], function () {
+Route::group(['prefix' => '${pluralNameKebab}/'], function () {
 
 	Route::group(['middleware' => 'auth:sanctum'], function() {
         

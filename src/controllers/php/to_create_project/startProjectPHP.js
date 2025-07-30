@@ -9,18 +9,19 @@ import { generatePHPCommandLine } from "./generatePHPCommandLine.js";
 import { generateSnappy } from "./generateSnappy.js";
 import { generateShared } from "./shared/generateShared.js";
 import { generateUtilities } from "./utilities/generateUtilities.js";
-import { updateModelUser } from "./updates/updateModelUser.js";
-import { updateAppPhp } from "./updates/updateAppPhp.js";
-import { updateReadme } from "./updates/updateReadme.js";
 import { generateExecuteController } from "./dev/generateExecuteController.js";
 import { generateTestController } from "./dev/generateTestController.js";
 import { generateRouteTest } from "./dev/generateRouteTest.js";
-import { updateGitignore } from "./updates/updateGitignore.js";
 import { generateCompanyLogos } from "./generateCompanyLogos.js";
+import { generatePostman } from "./generatePostman.js";
+import { updateAppPhp } from "./updates/updateAppPhp.js";
+import { updateReadme } from "./updates/updateReadme.js";
+import { updateGitignore } from "./updates/updateGitignore.js";
 import { updateWelcomeBlade } from "./updates/updateWelcomeBlade.js";
 import { updateRouteApiPhp } from "./updates/updateRouteApiPhp.js";
-import { generatePostman } from "./generatePostman.js";
 import { updateUserMigration } from "./updates/updateUserMigration.js";
+import { updateModelUser } from "./updates/updateModelUser.js";
+import { updateBootstrapAppPhp } from "./updates/updateBootstrapAppPhp.js";
 
 
 
@@ -86,5 +87,9 @@ export const startProjectPHP = async() => {
     
 
     await updateUserMigration(fullPath);
+
+    await updateBootstrapAppPhp(fullPath);
+
+
 
 }

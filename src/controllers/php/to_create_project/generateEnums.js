@@ -163,6 +163,16 @@ class EnumAbilityGroups
 {
     const ABILITIES_GROUP_BY_MANAGER = [
         [
+            'name' => 'abilities',
+            'abilities' => [
+                EnumAbilitySuffix::LIST,
+                EnumAbilitySuffix::SHOW,
+                EnumAbilitySuffix::STORE,
+                EnumAbilitySuffix::UPDATE,
+                EnumAbilitySuffix::DESTROY,
+            ]
+        ],
+        [
             'name' => 'ability_groups',
             'abilities' => [
                 EnumAbilitySuffix::LIST,
@@ -170,9 +180,68 @@ class EnumAbilityGroups
                 EnumAbilitySuffix::STORE,
                 EnumAbilitySuffix::UPDATE,
                 EnumAbilitySuffix::DESTROY,
-            ],
+            ]
         ],
-        // ... otros grupos similares (como en el original)
+        [
+            'name' => 'ability_user',
+            'abilities' => [
+                EnumAbilitySuffix::LIST,
+                EnumAbilitySuffix::SHOW,
+                EnumAbilitySuffix::STORE,
+                EnumAbilitySuffix::UPDATE,
+                EnumAbilitySuffix::DESTROY,
+            ]
+        ],
+        [
+            'name' => 'role_user',
+            'abilities' => [
+                EnumAbilitySuffix::LIST,
+                EnumAbilitySuffix::SHOW,
+                EnumAbilitySuffix::STORE,
+                EnumAbilitySuffix::UPDATE,
+                EnumAbilitySuffix::DESTROY,
+            ]
+        ],
+        [
+            'name' => 'roles',
+            'abilities' => [
+                EnumAbilitySuffix::LIST,
+                EnumAbilitySuffix::SHOW,
+                EnumAbilitySuffix::STORE,
+                EnumAbilitySuffix::UPDATE,
+                EnumAbilitySuffix::DESTROY,
+            ]
+        ],
+        [
+            'name' => 'countries',
+            'abilities' => [
+                EnumAbilitySuffix::LIST,
+                EnumAbilitySuffix::SHOW,
+                EnumAbilitySuffix::STORE,
+                EnumAbilitySuffix::UPDATE,
+                EnumAbilitySuffix::DESTROY,
+            ]
+        ],
+        [
+            'name' => 'user_statuses',
+            'abilities' => [
+                EnumAbilitySuffix::LIST,
+                EnumAbilitySuffix::SHOW,
+                EnumAbilitySuffix::STORE,
+                EnumAbilitySuffix::UPDATE,
+                EnumAbilitySuffix::DESTROY,
+            ]
+        ],
+        [
+            'name' => 'users',
+            'abilities' => [
+                EnumAbilitySuffix::LIST,
+                EnumAbilitySuffix::SHOW,
+                EnumAbilitySuffix::STORE,
+                EnumAbilitySuffix::UPDATE,
+                EnumAbilitySuffix::DESTROY,
+            ]
+        ],
     ];
     
     const ABILITIES_GROUP_BY_USER = self::ABILITIES_GROUP_BY_MANAGER;
