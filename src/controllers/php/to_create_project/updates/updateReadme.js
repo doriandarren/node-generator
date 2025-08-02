@@ -34,6 +34,10 @@ php artisan lang:publish
 
 /* Seeder */
 php artisan migrate:fresh --seed
+
+/* Start Server */
+php artisan serve
+
 \`\`\`
 
 ## Activate hablities

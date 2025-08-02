@@ -1,10 +1,12 @@
 import fs from 'fs';
 import path from 'path';
+import { createFolder } from '../../../../helpers/helperFile.js';
 
 
 
 export const updateBootstrapAppPhp = async(fullPath) => {
     await updateAbilities(fullPath);
+    await createHandlerResponse(fullPath);
 }
 
 
@@ -33,7 +35,8 @@ use App\\Exceptions\\HandlerResponse;
 use Symfony\\Component\\HttpKernel\\Exception\\AccessDeniedHttpException;
 use Symfony\\Component\\HttpKernel\\Exception\\NotFoundHttpException;
 use Symfony\\Component\\HttpKernel\\Exception\\MethodNotAllowedHttpException;
-use Illuminate\\Database\\QueryException;\n`
+use Illuminate\\Database\\QueryException;
+use App\\Exceptions\\HandlerResponse;\n`
     );
 
     // Reemplazo de ->withMiddleware
@@ -118,3 +121,61 @@ use Illuminate\\Database\\QueryException;\n`
     console.error(`❌ Error al actualizar ${appPhpPath}: ${error.message}`.cyan);
   }
 };
+
+
+
+
+
+
+const createHandlerResponse = async(fullPath) => {    
+
+    // Folder
+    const folderPath = path.join(fullPath, 'app', 'Exceptions');
+    
+    // File
+    const filePath = path.join(folderPath, 'HandlerResponse.php');
+
+    // Asegurar que la carpeta exista
+    createFolder(folderPath);
+
+
+    // Code
+    const code = `
+<?php
+
+namespace App\\Exceptions;
+
+use Illuminate\\Http\\JsonResponse;
+
+class HandlerResponse
+{
+
+    /**
+     * @param $message
+     * @param $statusCode
+     * @param null $errors
+     * @return JsonResponse
+     */
+    public static function respondWithError($message, $statusCode, $errors=null): JsonResponse
+    {
+        $data = [
+            'message' => $message,
+            'data' => null,
+            'errors' => $errors,
+            'success' => FALSE,
+            'status_code' => $statusCode
+        ];
+        return response()->json($data, $statusCode);
+    }
+
+}    
+`.trimStart();
+
+  try {
+    fs.writeFileSync(filePath, code);
+    console.log(`✅ Archivo creado: ${filePath}`.green);
+  } catch (error) {
+    console.error(`❌ Error al crear archivo: ${error.message}`);
+  }
+
+}

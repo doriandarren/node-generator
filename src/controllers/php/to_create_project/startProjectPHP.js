@@ -22,6 +22,8 @@ import { updateRouteApiPhp } from "./updates/updateRouteApiPhp.js";
 import { updateUserMigration } from "./updates/updateUserMigration.js";
 import { updateModelUser } from "./updates/updateModelUser.js";
 import { updateBootstrapAppPhp } from "./updates/updateBootstrapAppPhp.js";
+import { generateEndppints } from "./endpoints/generateEndpoints.js";
+import { updateEnv } from "./updates/updateEnv.js";
 
 
 
@@ -45,8 +47,7 @@ export const startProjectPHP = async() => {
     // Combinar la ruta y el nombre del proyecto
     const fullPath = `${projectPath}/${projectName}`;
 
-
-
+    
     await generatePHPCommandLine(fullPath);
     await generateSnappy(fullPath);
     await generateFpdfMerge(fullPath);
@@ -63,33 +64,27 @@ export const startProjectPHP = async() => {
 
     await generateUtilities(fullPath);
 
-    // Updates
-    await updateModelUser(fullPath);
-    await updateAppPhp(fullPath);
-    await updateReadme(fullPath, projectName);
-    await updateGitignore(fullPath);
-
-
-
+   
     // Dev
     await generateExecuteController(fullPath);
     await generateTestController(fullPath);
     await generateRouteTest(fullPath);
 
+    await generateEndppints(fullPath);
     await generateCompanyLogos(fullPath);
-
-    await updateWelcomeBlade(fullPath);
-
-    await updateRouteApiPhp(fullPath);
-
-
     await generatePostman(fullPath);
-    
 
+
+
+     // Updates
+    await updateModelUser(fullPath);
+    await updateAppPhp(fullPath);
+    await updateReadme(fullPath, projectName);
+    await updateGitignore(fullPath);
+    await updateWelcomeBlade(fullPath);
+    await updateRouteApiPhp(fullPath);
     await updateUserMigration(fullPath);
-
     await updateBootstrapAppPhp(fullPath);
-
-
+    await updateEnv(fullPath);
 
 }

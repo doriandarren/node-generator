@@ -12,9 +12,12 @@ splytin_api
 
 # TODO Tareas Pendientes NODE:
 
-- PHP: bootstrap -> app -> abilities: ->withMiddleware(function (Middleware $middleware): void {...
-- PHP: tb -> Carpeta Exceptions/HandlerResponse.php
-- Crear relaciones de tablas
+- PHP crear carpeta "Endpoints" y sus clases EndponitXX y EndponitXXConst
+
+
+
+
+- FRONTEND: Crear relaciones de tablas, mejorar a la hora de crear los ID, tema "select" ya que todos los _id son relaciones de tablas
 
 
 - Agregar selector de la ruta de: C:\Users\miled\Desktop\WorkSpaceNode\PROYECTOS
