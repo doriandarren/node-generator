@@ -1,18 +1,19 @@
 import fs from 'fs';
 import path from 'path';
 import { createFolder } from '../../../helpers/helperFile.js';
+import { convertNameProject } from '../../../helpers/helperString.js';
 
 
 export const generateModuleAuth = async(fullPath) => {    
-    await createRoutes(fullPath)
-    await createLogin(fullPath)
-    await createRegister(fullPath)
-    await createAuthIndex(fullPath)
+    await createRoutes(fullPath);
+    await createLogin(fullPath);
+    await createRegister(fullPath);
+    await createAuthIndex(fullPath);
 
     // Redux
-    await createFileAuthSlice(fullPath)
-    await createBarrelFileSlice(fullPath)
-    await createFileThunksAuth(fullPath)
+    await createFileAuthSlice(fullPath);
+    await createBarrelFileSlice(fullPath);
+    await createFileThunksAuth(fullPath);
 }
 
 
@@ -416,6 +417,9 @@ const createFileAuthSlice = async(fullPath) => {
   const routesDir = path.join(fullPath, "src", "store", "auth");
   const filePath = path.join(routesDir, "authSlice.js");
 
+  const projectName = convertNameProject(fullPath);
+
+
   // Crear la carpeta auth si no existe
   createFolder(routesDir);
 
@@ -444,7 +448,7 @@ export const authSlice = createSlice({
       state.errorMessage = null;
 
       // Guardar en localStorage para que persista
-      localStorage.setItem("token_portuarios", payload.token);
+      localStorage.setItem("token_${projectName}", payload.token);
     },
 
     logout: (state, payload) => {
@@ -456,7 +460,7 @@ export const authSlice = createSlice({
       state.errorMessage = payload?.errorMessage;
 
       // Eliminar de localStorage
-      localStorage.removeItem("token_portuarios");
+      localStorage.removeItem("token_${projectName}");
     },
 
     setErrorMessage: (state, action) => {

@@ -4,6 +4,7 @@ import { createFolder } from '../../../helpers/helperFile.js';
 
 export const generateService = async (
   projectPath,
+  projectName,
   singularName,
   pluralName,
   singularNameKebab,
@@ -29,7 +30,7 @@ import { api } from "../../../api/api";
  */
 export const get${pluralName} = async () => {
   try {
-    const token = localStorage.getItem("token_portuarios");
+    const token = localStorage.getItem("token_${projectName}");
     if (!token) {
       console.warn("No hay token disponible en localStorage");
       return [];
@@ -54,7 +55,7 @@ export const get${pluralName} = async () => {
  */
 export const get${singularName}ById = async (id) => {
   try {
-    const token = localStorage.getItem("token_portuarios");
+    const token = localStorage.getItem("token_${projectName}");
     if (!token) return null;
 
     const response = await api(\`${pluralNameKebab}/show/\${id}\`, "GET", null, token);
@@ -70,7 +71,7 @@ export const get${singularName}ById = async (id) => {
  */
 export const create${singularName} = async (data) => {
   try {
-    const token = localStorage.getItem("token_portuarios");
+    const token = localStorage.getItem("token_${projectName}");
     if (!token) {
       console.warn("No hay token disponible en localStorage");
       return null;
@@ -95,7 +96,7 @@ export const create${singularName} = async (data) => {
  */
 export const update${singularName} = async (id, data) => {
   try {
-    const token = localStorage.getItem("token_portuarios");
+    const token = localStorage.getItem("token_${projectName}");
     if (!token) return null;
 
     const response = await api(\`${pluralNameKebab}/update/\${id}\`, "PUT", data, token);
@@ -111,7 +112,7 @@ export const update${singularName} = async (id, data) => {
  */
 export const delete${singularName} = async (id) => {
   try {
-    const token = localStorage.getItem("token_portuarios");
+    const token = localStorage.getItem("token_${projectName}");
     if (!token) return null;
 
     const response = await api(\`${pluralNameKebab}/delete/\${id}\`, "DELETE", null, token);

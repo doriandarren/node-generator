@@ -1,5 +1,5 @@
 import pluralize from 'pluralize';
-
+import path from "path";
 
 
 /**
@@ -72,4 +72,31 @@ export const convertSnakeCaseToPascalSingularCase = (str) => {
   });
 
   return pascalWords.join('');
+};
+
+
+
+
+/**
+ * Convert name project
+ * Ex:  /Users/dorian/ReactProjects/app-1 -> app_1
+ * Ex:  C:\Users\dorian\ReactProjects\app-1 -> app_1
+ */
+export const convertNameProject = (fullPath) => {
+  // Dividir por "/" o "\" y tomar el último segmento
+  const folderName = fullPath.split(/[/\\]/).pop();
+  // Limpiar el nombre
+  return sanitizeNameWithUnderscore(folderName);
+};
+
+/**
+ * Sanitize
+ * Ex. erp.splytin.com -> erp_splytin_com
+ */
+export const sanitizeNameWithUnderscore = (name) => {
+  return name
+    .toLowerCase()
+    .replace(/[^a-z0-9_]/gi, "_") // reemplaza cualquier cosa que no sea letra, número o "_"
+    .replace(/_+/g, "_")          // colapsa múltiples "_"
+    .replace(/^_+|_+$/g, "");     // elimina "_" al inicio o final
 };

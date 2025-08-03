@@ -3,7 +3,6 @@ import { clearScreen, readInput } from "../../../helpers/inquirer.js";
 import { generateModuleStandardReact } from "./generateModuleStandardReact.js";
 
 
-
 export const startModuleReact = async() => {
     
     await clearScreen();
@@ -67,6 +66,7 @@ export const startModuleReact = async() => {
         allowNull: true,
         }));
 
+    
 
     await generateModuleStandardReact(
         fullPath,

@@ -1,4 +1,4 @@
-import { pascalToCamelCase, pascalToKebab, pascalToSnake } from "../../../helpers/helperString.js";
+import { convertNameProject, pascalToCamelCase, pascalToKebab, pascalToSnake } from "../../../helpers/helperString.js";
 import { generateBarrel } from "./generateBarrel.js";
 import { generateCreate } from "./generateCreate.js";
 import { generateEdit } from "./generateEdit.js";
@@ -8,15 +8,13 @@ import { generateService } from "./generateService.js";
 
 
 export const generateModuleStandardReact = async (
-  projectPath,
+  fullPath,
   selectedComponents,
-  namespace,
+  namespace = 'api',
   singularName,
   pluralName,
   columns
 ) => {
-
-
 
   const singularNameKebab = pascalToKebab(singularName); // invoice-header
   const pluralNameKebab = pascalToKebab(pluralName); // invoice-headers
@@ -26,30 +24,31 @@ export const generateModuleStandardReact = async (
   const pluralNameCamel = pascalToCamelCase(pluralName); // invoiceHeaders
 
 
+  const projectName = convertNameProject(fullPath);
 
 
   if (selectedComponents.includes("route")) {
-    await generateRoutes(projectPath, singularName, pluralNameSnake);
+    await generateRoutes(fullPath, singularName, pluralNameSnake);
   }
 
   if (selectedComponents.includes("list")) {
-    await generateList(projectPath, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCamel, columns);
+    await generateList(fullPath, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCamel, columns);
   }
 
   if (selectedComponents.includes("create")) {
-    await generateCreate(projectPath, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCamel, columns);
+    await generateCreate(fullPath, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCamel, columns);
   }
 
   if (selectedComponents.includes("edit")) {
-    await generateEdit(projectPath, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCamel, columns);
+    await generateEdit(fullPath, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCamel, columns);
   }
 
   if (selectedComponents.includes("barrel")) {
-    await generateBarrel(projectPath, singularName, pluralNameSnake);
+    await generateBarrel(fullPath, singularName, pluralNameSnake);
   }
 
   if (selectedComponents.includes("service")) {
-    await generateService(projectPath, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCamel, columns);
+    await generateService(fullPath, projectName, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCamel, columns);
   }
 
 };

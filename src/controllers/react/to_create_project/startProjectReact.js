@@ -8,9 +8,8 @@ import { generateHelpers } from "./generateHelpers.js";
 import { generateIndexHtml } from "./generateIndexHtml.js";
 import { generateModuleAuth } from "./generateModuleAuth.js";
 import { generateModuleDashboard } from "./generateModuleDashboard.js";
-import { generateModuleProfile } from "./generateModuleProfile.js";
+import { generateModules } from "./generateModules.js";
 import { generateModulePublic } from "./generateModulePublic.js";
-import { generateModuleTeams } from "./generateModuleTeams.js";
 import { generatePrivateLayout } from "./generatePrivateLayout.js";
 import { generatePublicLayout } from "./generatePublicLayouts.js";
 import { generateReactCommandLine } from "./generateReactCommandLine.js";
@@ -38,6 +37,7 @@ export const startProjectReact = async() => {
     // Combinar la ruta y el nombre del proyecto
     const fullPath = `${projectPath}/${projectName}`;
 
+
     //
     await generateReactCommandLine(fullPath);
     await generateStyle(fullPath);
@@ -56,19 +56,16 @@ export const startProjectReact = async() => {
 
     await generateComponents(fullPath);
 
+    
+    // Auth
+    await generateModuleAuth(fullPath);
 
     // Dashboard
     await generateModuleDashboard(fullPath);
 
-    // Auth
-    await generateModuleAuth(fullPath);
 
+    await generateModules(fullPath);
 
-    // Profile
-    await generateModuleProfile(fullPath);
-
-    // Teams
-    await generateModuleTeams(fullPath);
 
     // Redux
     await generateRedux(fullPath);
