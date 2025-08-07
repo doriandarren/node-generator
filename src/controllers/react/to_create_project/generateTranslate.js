@@ -83,9 +83,8 @@ const createLocalesEs = async (fullPath) => {
     "en": "EN",
     "es": "ES"
   },
-  "title": {
-    "config": "Configuración"
-  },
+  "title": "Título",
+  "config": "Configuración",
   "message": {
     "are_you_sure": "¿Estás seguro?",
     "record_saved": "Registro guardado",
@@ -278,7 +277,11 @@ const createLocalesEs = async (fullPath) => {
   "service_activated": "Servicio activado",
   "services_activated": "Servicios activados",
   "country": "País",
-  "countries": "Paises"
+  "countries": "Paises",
+  "system": "Sistema",
+  "systems": "Sistemas",
+  "quote": "Cuota",
+  "quotes": "Cuotas"
 }`;
 
   try {
@@ -303,9 +306,8 @@ const createLocalesEn = async (fullPath) => {
     "en": "EN",
     "es": "ES"
   },
-  "title": {
-    "config": "Settings"
-  },
+  "title": "Title",
+  "config": "Settings",
   "message": {
     "are_you_sure": "Are you sure?",
     "record_saved": "Record saved",
@@ -498,7 +500,11 @@ const createLocalesEn = async (fullPath) => {
   "service_activated": "Service activated",
   "services_activated": "Activated Services",
   "country": "Country",
-  "countries": "Countries"
+  "countries": "Countries",
+  "system": "System",
+  "systems": "Systems",
+  "quote": "Quote",
+  "quotes": "Quotes"
 }`;
 
   try {

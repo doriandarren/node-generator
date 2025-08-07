@@ -33,4 +33,34 @@ export const generateModules = async(fullPath) => {
     ]
   );
 
+
+
+  await generateModuleStandardReact(
+    fullPath,
+    [ 'route', 'list', 'create', 'edit', 'barrel', 'service' ],
+    'api',
+    'System',
+    'Systems',
+    [
+      { name: 'name', type: 'STRING', allowNull: true },
+      { name: 'status', type: 'STRING', allowNull: true },
+      { name: 'version', type: 'STRING', allowNull: true },
+    ]
+  );
+  
+  
+  await generateModuleStandardReact(
+    fullPath,
+    [ 'route', 'list', 'create', 'edit', 'barrel', 'service' ],
+    'api',
+    'Quote',
+    'Quotes',
+    [
+      { name: 'author', type: 'STRING', allowNull: true },
+      { name: 'feedback', type: 'STRING', allowNull: true },
+      { name: 'title', type: 'STRING', allowNull: true },
+    ]
+  );
+
+
 }

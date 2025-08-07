@@ -79,8 +79,8 @@ export const SessionLayout = ({ children }) => {
       icon: CogIcon,
       current: false,
       children: [
-        { name: t("menu_a"), href: "/admin/dashboard" },
-        { name: t("menu_a"), href: "/admin/teams" },
+        { name: t("systems"), href: "/admin/systems" },
+        { name: t("quotes"), href: "/admin/quotes" },
       ],
     },
   ];

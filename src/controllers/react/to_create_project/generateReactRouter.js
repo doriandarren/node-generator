@@ -69,6 +69,8 @@ import { PrivateRoute } from "./PrivateRoute";
 import { TeamRoutes } from "../modules/teams/routes/TeamRoutes";
 import { ProfileRoutes } from "../modules/profile/routes/ProfileRoutes";
 import { PreloaderMain } from "../components/Preloader/PreloaderMain";
+import { SystemRoutes } from "../modules/systems/routes/SystemRoutes";
+import { QuoteRoutes } from "../modules/quotes/routes/QuoteRoutes";
 
 export const AppRouter = () => {
   const dispatch = useDispatch();
@@ -98,6 +100,8 @@ export const AppRouter = () => {
         <Route path="dashboard/*" element={<DashboardRoutes />} />
         <Route path="profile/*" element={<ProfileRoutes />} />
         <Route path="teams/*" element={<TeamRoutes />} />
+        <Route path="systems/*" element={<SystemRoutes />} />
+        <Route path="quotes/*" element={<QuoteRoutes />} />
       </Route>
 
       {/* Global Redirection */}
