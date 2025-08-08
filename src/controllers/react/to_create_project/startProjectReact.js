@@ -87,4 +87,5 @@ export const startProjectReact = async() => {
 
     await generateFolderApi(fullPath);
 
+
 }
