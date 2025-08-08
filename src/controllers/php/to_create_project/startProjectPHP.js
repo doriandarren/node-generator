@@ -25,6 +25,7 @@ import { updateBootstrapAppPhp } from "./updates/updateBootstrapAppPhp.js";
 import { generateEndppints } from "./endpoints/generateEndpoints.js";
 import { updateEnv } from "./updates/updateEnv.js";
 import { generatelTestMail } from "./generateTestEmail.js";
+import { generateTODOFile } from "./generateTODOFile.js";
 
 
 
@@ -80,7 +81,7 @@ export const startProjectPHP = async() => {
 
     await generatelTestMail(fullPath);
     
-
+    await generateTODOFile(fullPath);
 
 
      // Updates
