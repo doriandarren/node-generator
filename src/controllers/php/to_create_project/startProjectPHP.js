@@ -76,9 +76,6 @@ export const startProjectPHP = async() => {
     await generateCompanyLogos(fullPath);
     await generatePostman(fullPath);
 
-
-    //TODO crear Email TEst
-
     await generatelTestMail(fullPath);
     
     await generateTODOFile(fullPath);
