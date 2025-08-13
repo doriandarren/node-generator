@@ -34,6 +34,8 @@ php artisan lang:publish
 
 /* Seeder */
 php artisan migrate:fresh --seed
+php artisan db:seed
+php artisan db:seed --class=UserSeeder
 
 /* Start Server */
 php artisan serve

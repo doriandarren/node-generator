@@ -35,7 +35,8 @@ export const startModulePHP = async () => {
   const fullPath = await readInput(
     "Ruta Proyecto: ",
     false,
-    "/Users/dorian/PhpstormProjects81/app-1"
+    //"/Users/dorian/PhpstormProjects81/app-1"
+    "/Users/dorian/PhpstormProjects81/docker-laravel-84/projects/api.truckwashvilamalla.eu"
   );
   const namespace = await readInput(
     "Namespace (API / SHARED / ERP): ",
