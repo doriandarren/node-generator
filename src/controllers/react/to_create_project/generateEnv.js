@@ -38,7 +38,22 @@ const createEnvExampleFile = async (fullPath) => {
 
   const content = `VITE_APP_NAME=SiteLocal
 VITE_APP_ENV=local
+
+# --------------
+# PROD
+# --------------
+# VITE_API_URL=https://project.com/api/v1/
+
+# --------------
+# DEV - DOCKER
+# --------------
 VITE_API_URL=http://project.test/api/v1/
+
+# --------------
+# Php server
+# --------------
+#VITE_API_URL=http://localhost:8010/api/v1/  
+
 
 ## SWEETALERT2
 VITE_SWEETALERT_COLOR_BTN_SUCCESS='#10B981'  # Verde (Tailwind "emerald-500")
