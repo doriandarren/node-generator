@@ -161,7 +161,7 @@ namespace App\\Enums;
 
 class EnumAbilityGroups
 {
-    const ABILITIES_GROUP_BY_MANAGER = [
+    const ABILITIES_GROUP_DEFAULT = [
         [
             'name' => 'abilities',
             'abilities' => [
@@ -243,9 +243,23 @@ class EnumAbilityGroups
             ]
         ],
     ];
+
+
+    /**
+     * Role Manager
+     */
+    const ABILITIES_GROUP_BY_MANAGER = self::ABILITIES_GROUP_DEFAULT;
+
+    /**
+     * Role User
+     */
+    const ABILITIES_GROUP_BY_USER = self::ABILITIES_GROUP_DEFAULT;
+
+    /**
+     * ERP
+     */
+    const ABILITIES_GROUP_BY_ERP = self::ABILITIES_GROUP_DEFAULT;
     
-    const ABILITIES_GROUP_BY_USER = self::ABILITIES_GROUP_BY_MANAGER;
-    const ABILITIES_GROUP_BY_ERP = self::ABILITIES_GROUP_BY_MANAGER;
 }
 `;
   await createFile(filePath, content);

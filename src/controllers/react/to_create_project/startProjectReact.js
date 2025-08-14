@@ -18,6 +18,9 @@ import { generateReadme } from "./generateReadme.js";
 import { generateRedux } from "./generateRedux.js";
 import { generateStyle } from "./generateStyles.js";
 import { generateTranslate } from "./generateTranslate.js";
+import { generateHelperAllowedPaths } from "./role_permission/generateHelperAllowedPaths.js";
+import { generateHelperBuildAccessibleNav } from "./role_permission/generateHelperBuildAccessibleNav.js";
+import { generateHelperRoleMenuAccess } from "./role_permission/generateHelperRoleMenuAccess.js";
 
 
 
@@ -86,6 +89,13 @@ export const startProjectReact = async() => {
     await generateIndexHtml(fullPath);
 
     await generateFolderApi(fullPath);
+
+
+    
+    // Roles and Permission
+    await generateHelperAllowedPaths(fullPath);
+    await generateHelperBuildAccessibleNav(fullPath);
+    await generateHelperRoleMenuAccess(fullPath);
 
 
 }

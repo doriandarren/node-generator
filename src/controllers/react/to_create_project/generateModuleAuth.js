@@ -5,15 +5,18 @@ import { convertNameProject } from '../../../helpers/helperString.js';
 
 
 export const generateModuleAuth = async(fullPath) => {    
+
+    const projectName = convertNameProject(fullPath);
+
     await createRoutes(fullPath);
     await createLogin(fullPath);
     await createRegister(fullPath);
     await createAuthIndex(fullPath);
 
     // Redux
-    await createFileAuthSlice(fullPath);
+    await createFileAuthSlice(fullPath, projectName);
     await createBarrelFileSlice(fullPath);
-    await createFileThunksAuth(fullPath);
+    await createFileThunksAuth(fullPath, projectName);
 }
 
 
@@ -412,13 +415,10 @@ export * from './RegisterPage';
  * ## Redux
  * Genera el archivo authSlice.js dentro de la carpeta store/auth
  */
-const createFileAuthSlice = async(fullPath) => {
+const createFileAuthSlice = async(fullPath, projectName) => {
   // Define la ruta del archivo
   const routesDir = path.join(fullPath, "src", "store", "auth");
   const filePath = path.join(routesDir, "authSlice.js");
-
-  const projectName = convertNameProject(fullPath);
-
 
   // Crear la carpeta auth si no existe
   createFolder(routesDir);
@@ -432,6 +432,7 @@ const initialState = {
   email: null,
   displayName: null,
   image_url: null,
+  roles: [],
   errorMessage: null,
 };
 
@@ -445,6 +446,7 @@ export const authSlice = createSlice({
       state.email = payload.email;
       state.displayName = payload.displayName;
       state.image_url = payload.image_url;
+      state.roles = payload.roles || [];
       state.errorMessage = null;
 
       // Guardar en localStorage para que persista
@@ -457,6 +459,7 @@ export const authSlice = createSlice({
       state.email = null;
       state.displayName = null;
       state.image_url = null;
+      state.roles = [];
       state.errorMessage = payload?.errorMessage;
 
       // Eliminar de localStorage
@@ -509,7 +512,7 @@ export * from './thunks';`;
 }
 
 // Genera el archivo thunks.js dentro de src/store/auth
-const createFileThunksAuth = async(fullPath) => {
+const createFileThunksAuth = async(fullPath, projectName) => {
   // 1) Definir la ruta del archivo
   const routesDir = path.join(fullPath, "src", "store", "auth");
   const filePath  = path.join(routesDir, "thunks.js");
@@ -550,7 +553,7 @@ export const startLoginWithEmailPassword = ({ email, password }) => {
 
       // Obtener datos del usuario autenticado
       const userResponse = await api("auth/user", "GET", null, token);
-      const { email: emailApi, name: nameApi } = userResponse.data;
+      const { email: emailApi, name: nameApi, roles } = userResponse.data;
 
       const user = {
         status: "authenticated",
@@ -558,6 +561,7 @@ export const startLoginWithEmailPassword = ({ email, password }) => {
         email: emailApi,
         displayName: nameApi,
         image_url: "",
+        roles,
         errorMessage: null,
       };
 
@@ -584,7 +588,7 @@ export const startRestoreSession = () => {
   return async (dispatch) => {
     dispatch(checkingCredentials());
 
-    const token = localStorage.getItem("token_portuarios");
+    const token = localStorage.getItem("token_${projectName}");
 
     // Si no hay token ⇒ cerrar sesión
     if (!token) {
@@ -594,7 +598,7 @@ export const startRestoreSession = () => {
 
     try {
       const userResponse = await api("auth/user", "GET", null, token);
-      const { email: emailApi, name: nameApi } = userResponse.data;
+      const { email: emailApi, name: nameApi, roles = [] } = userResponse.data;
 
       const user = {
         status: "authenticated",
@@ -602,6 +606,7 @@ export const startRestoreSession = () => {
         email: emailApi,
         displayName: nameApi,
         image_url: "",
+        roles,
         errorMessage: null,
       };
 

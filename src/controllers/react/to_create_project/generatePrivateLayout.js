@@ -18,7 +18,7 @@ const createSessionLayout = async (fullPath) => {
 
   const content = `"use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import {
   Dialog,
   DialogBackdrop,
@@ -43,6 +43,8 @@ import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { startLogout } from "../../store/auth/thunks";
 import Logo from "../../assets/images/logo.svg";
+import { buildAccessibleNav } from "../../helpers/helperBuildAccessibleNav";
+
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -54,7 +56,7 @@ export const SessionLayout = ({ children }) => {
   const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { displayName } = useSelector((state) => state.auth);
+  const { displayName, roles } = useSelector((state) => state.auth);
 
   const onLogout = (e) => {
     e.preventDefault();
@@ -67,14 +69,10 @@ export const SessionLayout = ({ children }) => {
   };
 
   const navigation = [
+    { id: 'dashboard', name: t("dashboard"), href: "/admin/dashboard", icon: HomeIcon, current: true, },
+    { id: 'teams', name: t("teams"), href: "/admin/teams", icon: UsersIcon, current: false },
     {
-      name: t("dashboard"),
-      href: "/admin/dashboard",
-      icon: HomeIcon,
-      current: true,
-    },
-    { name: t("teams"), href: "/admin/teams", icon: UsersIcon, current: false },
-    {
+      id: 'settings', 
       name: t("settings"),
       icon: CogIcon,
       current: false,
@@ -85,22 +83,29 @@ export const SessionLayout = ({ children }) => {
     },
   ];
 
+
+  const filteredNavigation = useMemo(
+    () => buildAccessibleNav(navigation, roles),
+    [navigation, roles, t]
+  );
+
+
   const userNavigation = [
     { name: t("profile"), onClick: onProfile },
     { name: t("logout"), onClick: onLogout },
   ];
 
-  const updatedNavigation = navigation.map((item) => {
+  const updatedNavigation = filteredNavigation.map((item) => {
     const isCurrent =
       location.pathname.startsWith(item.href) ||
       (item.children &&
         item.children.some((child) =>
           location.pathname.startsWith(child.href)
         ));
-
+  
     return {
       ...item,
-      current: isCurrent,
+      current: isCurrent
     };
   });
 
