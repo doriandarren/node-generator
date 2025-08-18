@@ -27,7 +27,13 @@ use stdClass;
 
 class HelperDate
 {
-    public static function formatStringToTimestamp(\$strDate)
+
+    /**
+     * Convert String to timestamp
+     *
+     * Ex. 20190429234640   ->   2019-04-29 23:46:40
+     */
+    public static function formatStringToTimestamp(\$strDate): string
     {
         \$year = substr(\$strDate, 0, 4);
         \$month = substr(\$strDate, 4, 2);
@@ -38,7 +44,13 @@ class HelperDate
         return "\$year-\$month-\$day \$hour:\$min:\$seg";
     }
 
-    public static function formatStringToDate(\$strDate)
+
+    /**
+     * Convert String to timestamp
+     *
+     * Ex. 20190429   ->   2019-04-29
+     */    
+    public static function formatStringToDate(\$strDate): string
     {
         \$year = substr(\$strDate, 0, 4);
         \$month = substr(\$strDate, 4, 2);
@@ -46,7 +58,17 @@ class HelperDate
         return "\$year-\$month-\$day";
     }
 
-    public static function formatReverseDate(\$str)
+
+
+    /**
+     * Convert and reverse date
+     *
+     * Ex. 2019-04-29   ->   29-04-2019
+     * 
+     * @param $str
+     * @return string
+     */
+    public static function formatReverseDate(\$str): string
     {
         \$year = substr(\$str, 0, 4);
         \$month = substr(\$str, 5, 2);
@@ -54,7 +76,17 @@ class HelperDate
         return "\$day-\$month-\$year";
     }
 
-    public static function formatDateForDB(\$str)
+
+
+    /**
+     * Convert date format for database Mysql
+     *
+     * Ex. 29-04-2019  ->  2019-04-29
+     *
+     * @param $str
+     * @return string
+     */
+    public static function formatDateForDB(\$str): string
     {
         \$day = substr(\$str, 0, 2);
         \$month = substr(\$str, 3, 2);
@@ -62,7 +94,18 @@ class HelperDate
         return "\$year-\$month-\$day";
     }
 
-    public static function formatDateByDBShort(\$str)
+
+
+    /**
+     * Convert date format for database Mysql
+     *
+     * Ex. 1/4/22  ->  2022-04-01
+     *
+     *
+     * @param $str
+     * @return string
+     */
+    public static function formatDateByDBShort(\$str): string
     {
         \$date = explode("/", \$str);
         \$day = str_pad(\$date[0], 2, '0', STR_PAD_LEFT);
@@ -71,17 +114,38 @@ class HelperDate
         return "\$year-\$month-\$day";
     }
 
-    public static function calculateDaysBeforeOrAfter(\$date, \$days, \$before = false)
+
+
+    /**
+     * Calculate days before of date
+     * Ex. calculate 20 day's
+     *      2019-04-10   ->   20-04-2019
+     */
+    public static function calculateDaysBeforeOrAfter(\$date, \$days, \$before = false): string
     {
         return date('d-m-Y', strtotime((\$before ? '-' : '') . "\$days day", strtotime(\$date)));
     }
 
-    public static function calculateDaysBeforeOrAfterSenseFormat(\$date, \$days, \$before = false, \$dateTime = false)
+
+
+    /**
+     * Calculate days SENSE FORMAT before of date
+     * Ex. calculate 20 day's
+     *      2019-04-10   ->   2019-04-20
+     */
+    public static function calculateDaysBeforeOrAfterSenseFormat(\$date, \$days, \$before = false, \$dateTime = false): string
     {
         \$format = \$dateTime ? 'Y-m-d H:i:s' : 'Y-m-d';
         return date(\$format, strtotime((\$before ? '-' : '') . "\$days day", strtotime(\$date)));
     }
 
+
+
+    /**
+     * @param $startDate
+     * @param $days
+     * @return string
+     */
     public static function calculateDueDate(\$startDate, \$days): string
     {
         try {
@@ -94,6 +158,13 @@ class HelperDate
         }
     }
 
+
+
+    /**
+     * Order Array years until today Ex. [2021,2020,2019...]
+     * @param $start_year
+     * @return array
+     */
     public static function getYearsList(\$start_year): array
     {
         \$start_year = intval(\$start_year);
@@ -106,31 +177,70 @@ class HelperDate
         return \$arr;
     }
 
+
+
+    /**
+     * Return only the month.  Ex. 6  --> June
+     * @return false|string
+     */
     public static function getLastMonth()
     {
         \$exd_new = strtotime('-1 month', strtotime(date('Y-m-d')));
         return date('n', \$exd_new);
     }
 
-    public static function monthName(\$thisMonth, \$type)
+
+    /**
+     * @param $thisMonth :int
+     * @param $type // short or long
+     * @return string
+     */
+    public static function monthName($thisMonth, $type): string 
     {
-        \$map = [
-            '01' => ['Ene', 'Enero'], '02' => ['Feb', 'Febrero'], '03' => ['Mar', 'Marzo'],
-            '04' => ['Abr', 'Abril'], '05' => ['May', 'Mayo'], '06' => ['Jun', 'Junio'],
-            '07' => ['Jul', 'Julio'], '08' => ['Ago', 'Agosto'], '09' => ['Sep', 'Septiembre'],
-            '10' => ['Oct', 'Octubre'], '11' => ['Nov', 'Noviembre'], '12' => ['Dic', 'Diciembre'],
-        ];
-        \$key = str_pad(\$thisMonth, 2, '0', STR_PAD_LEFT);
-        return \$map[\$key][\$type === 'short' ? 0 : 1] ?? '';
+        $string = '';
+
+        switch ($thisMonth) {
+            case 1:     if($type == 'short') { $string = "Ene"; } elseif ($type == 'long') { $string = "Enero"; }      break;
+            case '01':     if($type == 'short') { $string = "Ene"; } elseif ($type == 'long') { $string = "Enero"; }      break;
+            case 2:     if($type == 'short') { $string = "Feb"; } elseif ($type == 'long') { $string = "Febrero"; }    break;
+            case '02':     if($type == 'short') { $string = "Feb"; } elseif ($type == 'long') { $string = "Febrero"; }    break;
+            case 3:     if($type == 'short') { $string = "Mar"; } elseif ($type == 'long') { $string = "Marzo"; }      break;
+            case '03':     if($type == 'short') { $string = "Mar"; } elseif ($type == 'long') { $string = "Marzo"; }      break;
+            case 4:     if($type == 'short') { $string = "Abr"; } elseif ($type == 'long') { $string = "Abril"; }      break;
+            case '04':     if($type == 'short') { $string = "Abr"; } elseif ($type == 'long') { $string = "Abril"; }      break;
+            case 5:     if($type == 'short') { $string = "May"; } elseif ($type == 'long') { $string = "Mayo"; }       break;
+            case '05':     if($type == 'short') { $string = "May"; } elseif ($type == 'long') { $string = "Mayo"; }       break;
+            case 6:     if($type == 'short') { $string = "Jun"; } elseif ($type == 'long') { $string = "Junio"; }      break;
+            case '06':     if($type == 'short') { $string = "Jun"; } elseif ($type == 'long') { $string = "Junio"; }      break;
+            case 7:     if($type == 'short') { $string = "Jul"; } elseif ($type == 'long') { $string = "Julio"; }      break;
+            case '07':     if($type == 'short') { $string = "Jul"; } elseif ($type == 'long') { $string = "Julio"; }      break;
+            case 8:     if($type == 'short') { $string = "Ago"; } elseif ($type == 'long') { $string = "Agosto"; }     break;
+            case '08':     if($type == 'short') { $string = "Ago"; } elseif ($type == 'long') { $string = "Agosto"; }     break;
+            case 9:     if($type == 'short') { $string = "Sep"; } elseif ($type == 'long') { $string = "Septiembre"; } break;
+            case '09':     if($type == 'short') { $string = "Sep"; } elseif ($type == 'long') { $string = "Septiembre"; } break;
+            case 10:    if($type == 'short') { $string = "Oct"; } elseif ($type == 'long') { $string = "Octubre"; }    break;
+            case 11:    if($type == 'short') { $string = "Nov"; } elseif ($type == 'long') { $string = "Noviembre"; }  break;
+            case 12:    if($type == 'short') { $string = "Dic"; } elseif ($type == 'long') { $string = "Diciembre"; }  break;
+        }
+        return $string;
     }
 
-    public static function uniqueFormat()
+
+
+    /**
+     * @return string
+     */
+    public static function uniqueFormat(): string
     {
         \$date = DateTime::createFromFormat('U.u', microtime(true));
         return \$date->format('YmdHisu');
     }
 
-    public static function getMonthlist()
+
+    /**
+     * @return array
+     */
+    public static function getMonthlist(): array
     {
         \$months = ['ENERO','FEBRERO','MARZO','ABRIL','MAYO','JUNIO','JULIO','AGOSTO','SEPTIEMBRE','OCTUBRE','NOVIEMBRE','DICIEMBRE'];
         \$arr = [];
@@ -143,7 +253,22 @@ class HelperDate
         return \$arr;
     }
 
-    public static function findArrMonths(\$date, \$monthCount, \$isNameMonth = false)
+
+
+
+    /**
+     * Ex. '2018-01-01', 3
+     * return ['2018-01-01', '2018-02-02', '2018-03-03']
+     *
+     * Ex. '2018-01-01', 3, TRUE
+     * return ['Enero', 'Febrero', 'Marzo']
+     *
+     * @param $date
+     * @param $monthCount
+     * @param boolean $isNameMonth
+     * @return array
+     */
+    public static function findArrMonths(\$date, \$monthCount, bool \$isNameMonth = false): array
     {
         \$arr = [\$date];
         \$aux = \$date;
@@ -158,7 +283,21 @@ class HelperDate
         return \$arr;
     }
 
-    public static function findArrMonthsByStartDate(\$startDate, \$month)
+
+
+
+
+    /**
+     * Find Months
+     *
+     * Ex. $startDate = '2018-04-01' and $months = '3'
+     * -> return ['01', '04', '07', '10']
+     *
+     * @param $month
+     * @param $starDate
+     * @return array
+     */
+    public static function findArrMonthsByStartDate(\$startDate, \$month): array
     {
         \$arrDates = [];
         \$finalDate = date("Y-m-d", strtotime("\$startDate +1 year"));
