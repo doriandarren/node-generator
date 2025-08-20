@@ -100,3 +100,5 @@ export const sanitizeNameWithUnderscore = (name) => {
     .replace(/_+/g, "_")          // colapsa múltiples "_"
     .replace(/^_+|_+$/g, "");     // elimina "_" al inicio o final
 };
+
+

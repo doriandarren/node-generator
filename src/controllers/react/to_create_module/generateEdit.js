@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { createFolder } from '../../../helpers/helperFile.js';
+import { pascalToCamelCase } from '../../../helpers/helperString.js';
 
 export const generateEdit = async (
   projectPath,
@@ -15,6 +16,10 @@ export const generateEdit = async (
 ) => {
   const pagesDir = path.join(projectPath, 'src', 'modules', pluralNameSnake, 'pages');
   createFolder(pagesDir);
+
+
+  const lowerFirst = pascalToCamelCase(singularName);
+
 
   const filePath = path.join(pagesDir, `${singularName}EditPage.jsx`);
   const columnNames = columns.map(col => col.name);
@@ -41,6 +46,8 @@ export const generateEdit = async (
           </div>`;
     })
     .join('\n');
+
+
 
   const content = `
 import { useEffect, useState } from "react";
@@ -78,12 +85,18 @@ export const ${singularName}EditPage = () => {
     const fetchData = async () => {
       try {
         setDataLoading(true);
-        const response = await get${singularName}ById(id);
-        const data = response.data;
 
-        if (response.success) {
-            ${setValues}
+        const [ ${lowerFirst}Res ] = await Promise.all([
+          get${singularName}ById(id),
+        ]);
+
+        if (${lowerFirst}Res.success) {
+
+          const {data} = ${lowerFirst}Res;
+          ${setValues}
+
         } else {
+
           Swal.fire({
             title: t("error"),
             icon: "error",
@@ -91,8 +104,10 @@ export const ${singularName}EditPage = () => {
             confirmButtonColor: import.meta.env.VITE_SWEETALERT_COLOR_BTN_DANGER
           });
           navigate("/admin/${pluralNameKebab}");
+
         }
       } catch (error) {
+
         console.error("Error al obtener los datos:", error);
         Swal.fire({
           title: t("errors.error_process"),
@@ -101,8 +116,11 @@ export const ${singularName}EditPage = () => {
           confirmButtonColor: import.meta.env.VITE_SWEETALERT_COLOR_BTN_DANGER
         });
         navigate("/admin/${pluralNameKebab}");
+
       } finally {
+
         setDataLoading(false);
+
       }
     };
 
