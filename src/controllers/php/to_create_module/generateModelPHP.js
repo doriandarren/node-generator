@@ -44,10 +44,10 @@ class ${singularName} extends Model
     ***********************/
 
     // TODO add relation tables
-    // public function classrelacion()
-    // {
-    //     return \$this->hasMany(ClassRelacion::class, 'classrelacion_id', 'id');
-    // }
+//    public function classrelacion()
+//    {
+//        return $this->hasMany(ClassRelacion::class, 'classrelacion_id', 'id');
+//    }
 }
 `.trimStart();
 
