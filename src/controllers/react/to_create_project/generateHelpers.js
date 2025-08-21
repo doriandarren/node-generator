@@ -205,7 +205,7 @@ export const getVariantBgClass = (variant = "neutral") => {
 
 
 
-const generate = async(fullPath) => {    
+const createHelperDate = async(fullPath) => {    
 
     // Folder
     const folderPath = path.join(fullPath, 'src', 'helpers');
