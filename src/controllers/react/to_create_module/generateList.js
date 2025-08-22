@@ -20,8 +20,8 @@ export const generateList = async(
 
   const columnNames = columns.map(col => col.name);
   const dataHeaders = columnNames
-    .map(col => `    { key: "${col}", label: t("${col}") }`)
-    .join(',\n');
+    .map(col => `    { key: "${col}", label: t("${col}") },`)
+    .join('\n');
 
   const content = `import { SessionLayout } from "../../../layouts/private/SessionLayout";
 import { Datatable } from "../../../components/DataTables/DataTable";
