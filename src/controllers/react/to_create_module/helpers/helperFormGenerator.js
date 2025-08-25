@@ -1,0 +1,218 @@
+// helpers/helperReactFormGenerator.js
+
+
+const baseFromField = (fieldName) => (fieldName || "").replace(/_?id$/i, "");
+
+const toPascal = (s) =>
+  s.replace(/[-_\s]+/g, " ")
+   .replace(/\w+/g, w => w[0].toUpperCase() + w.slice(1).toLowerCase())
+   .replace(/\s+/g, "");
+
+const toCamel = (s) => { const p = toPascal(s); return p ? p[0].toLowerCase() + p.slice(1) : ""; };
+
+const pluralize = (s) => {
+  if (!s) return "";
+  if (/[sxz]$/i.test(s) || /(sh|ch)$/i.test(s)) return s + "es";
+  if (/y$/i.test(s)) return s.replace(/y$/i, "ies");
+  return s + "s";
+};
+
+
+
+// Devuelve el encadenado de Yup como string (p.ej. "yup.number().integer().required(...)")
+export const toYupSchemaFor = (type, required) => {
+  const T = (type || "STRING").toUpperCase();
+
+  let base =
+    T === "BOOLEAN" ? 'yup.boolean()' :
+    (T === "INTEGER" || T === "INT" || T === "BIGINT") ? 'yup.number().typeError(t("form.number")).integer()' :
+    (T === "FLOAT" || T === "DOUBLE" || T === "DECIMAL" || T === "NUMERIC") ? 'yup.number().typeError(t("form.number"))' :
+    T === "DATE" ? 'yup.date().typeError(t("form.date"))' :
+    (T === "DATETIME" || T === "TIMESTAMP") ? 'yup.date().typeError(t("form.datetime"))' :
+    T === "EMAIL" ? 'yup.string().email(t("form.email"))' :
+    T === "UUID" ? 'yup.string()' :
+    T === "JSON" ? 'yup.mixed()' :
+    T === "FK" ? 'yup.mixed()' :
+    'yup.string()';
+
+    
+    base += required ? '.required(t("form.required"))' : '.nullable()';
+
+  return base;
+};
+
+// Devuelve el bloque JSX como string para un campo concreto
+export const inputFor = (col) => {
+  const name = col.name;
+  const T = (col.type || "STRING").toUpperCase();
+  const label = `<label className="block text-gray-700">{t("${name}")}</label>`;
+  const errorMsg = `{errors["${name}"] && <p className="text-danger text-sm">{errors["${name}"].message}</p>}`;
+
+
+
+  // ====== NUEVO: caso FK con tu CustomCombobox ======
+  if (T === "FK") {
+    const base = baseFromField(name);         // "customer_id" -> "customer"
+    const pascal = toPascal(base);            // "Customer"
+    const optionsVar = toCamel(pluralize(base));       // "customers"
+    const selectedVar = `selected${pascal}`;           // "selectedCustomer"
+    const setSelectedVar = `setSelected${pascal}`;     // "setSelectedCustomer"
+    const onChangeVar = `onChange${pascal}`;           // "onChangeCustomer"
+    const requiredStar = col.allowNull === false ? ' + " *"' : '';
+
+    return `
+
+        {/* ${name} */}
+        <div className="col-span-12 md:col-span-6 lg:col-span-6">
+          <CustomCombobox
+            label={t("${base}")${requiredStar}}
+            options={${optionsVar}}
+            selected={${selectedVar}}
+            setSelected={(item) => {
+              ${setSelectedVar}(item);
+              setValue("${name}", item?.id, { shouldValidate: true });
+            }}
+            error={errors["${name}"]?.message}
+            getLabel={(item) =>
+              \`\${item?.company?.name ?? ""} \${item?.code ?? ""}\`.trim()
+            }
+            onChange={(value) => ${onChangeVar}(value)}
+          />
+        </div>`;
+  }
+  // ====== FIN caso FK ======
+
+
+
+
+
+  if (T === "BOOLEAN") {
+    return `
+        {/* ${name} */}
+        <div className="col-span-12 md:col-span-6 lg:col-span-4">
+          <label className="inline-flex items-center gap-2 text-gray-700">
+            <input
+              type="checkbox"
+              {...register("${name}")}
+              className="h-4 w-4 border-gray-300 rounded"
+            />
+            {t("${name}")}
+          </label>
+          ${errorMsg}
+        </div>`;
+  }
+
+  if (T === "TEXT" || T === "JSON") {
+    return `
+        {/* ${name} */}
+        <div className="col-span-12 md:col-span-6 lg:col-span-4">
+          ${label}
+          <textarea
+            rows={4}
+            {...register("${name}")}
+            className={\`w-full p-2 border \${errors["${name}"] ? "border-danger" : "border-gray-300"} rounded-md\`}
+          />
+          ${errorMsg}
+        </div>`;
+  }
+
+  if (T === "INTEGER" || T === "INT" || T === "BIGINT") {
+    return `
+        {/* ${name} */}
+        <div className="col-span-12 md:col-span-6 lg:col-span-4">
+          ${label}
+          <input
+            type="number"
+            step="1"
+            {...register("${name}", { valueAsNumber: true })}
+            className={\`w-full p-2 border \${errors["${name}"] ? "border-danger" : "border-gray-300"} rounded-md\`}
+          />
+          ${errorMsg}
+        </div>`;
+  }
+
+  if (T === "FLOAT" || T === "DOUBLE" || T === "DECIMAL" || T === "NUMERIC") {
+    return `
+        {/* ${name} */}
+        <div className="col-span-12 md:col-span-6 lg:col-span-4">
+          ${label}
+          <input
+            type="number"
+            step="any"
+            {...register("${name}", { valueAsNumber: true })}
+            className={\`w-full p-2 border \${errors["${name}"] ? "border-danger" : "border-gray-300"} rounded-md\`}
+          />
+          ${errorMsg}
+        </div>`;
+  }
+
+  if (T === "DATE") {
+    return `
+        {/* ${name} */}
+        <div className="col-span-12 md:col-span-6 lg:col-span-4">
+          ${label}
+          <input
+            type="date"
+            {...register("${name}")}
+            className={\`w-full p-2 border \${errors["${name}"] ? "border-danger" : "border-gray-300"} rounded-md\`}
+          />
+          ${errorMsg}
+        </div>`;
+  }
+
+  if (T === "DATETIME" || T === "TIMESTAMP") {
+    return `
+        {/* ${name} */}
+        <div className="col-span-12 md:col-span-6 lg:col-span-4">
+          ${label}
+          <input
+            type="datetime-local"
+            {...register("${name}")}
+            className={\`w-full p-2 border \${errors["${name}"] ? "border-danger" : "border-gray-300"} rounded-md\`}
+          />
+          ${errorMsg}
+        </div>`;
+  }
+
+  if (T === "EMAIL") {
+    return `
+        {/* ${name} */}
+        <div className="col-span-12 md:col-span-6 lg:col-span-4">
+          ${label}
+          <input
+            type="email"
+            {...register("${name}")}
+            className={\`w-full p-2 border \${errors["${name}"] ? "border-danger" : "border-gray-300"} rounded-md\`}
+          />
+          ${errorMsg}
+        </div>`;
+  }
+
+  // default STRING/UUID/otros → text
+  return `
+        {/* ${name} */}
+        <div className="col-span-12 md:col-span-6 lg:col-span-4">
+          ${label}
+          <input
+            type="text"
+            {...register("${name}")}
+            className={\`w-full p-2 border \${errors["${name}"] ? "border-danger" : "border-gray-300"} rounded-md\`}
+          />
+          ${errorMsg}
+        </div>`;
+};
+
+
+
+// Builders de bloques completos
+export const buildYupSchemaFields = (columns) =>
+  columns.map(col => {
+    const required = col.allowNull === false;
+    return `${col.name}: ${toYupSchemaFor(col.type, required)}`;
+  }).join(',\n    ');
+
+
+
+
+export const buildInputFields = (columns) =>
+  columns.map(col => inputFor(col)).join('\n');

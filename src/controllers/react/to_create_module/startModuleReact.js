@@ -3,6 +3,33 @@ import { clearScreen, readInput } from "../../../helpers/inquirer.js";
 import { generateModuleStandardReact } from "./generateModuleStandardReact.js";
 
 
+
+
+/* --------------------------- Parser de columnas --------------------------- */
+// Sintaxis soportada: nombre[:TIPO][!]
+//   - ! => requerido (allowNull: false)
+//   - TIPO por defecto: STRING
+//   - Ej: "name! amount:DECIMAL description:TEXT"
+const parseColumns = (raw) => {
+  if (!raw?.trim()) return [];
+
+  // Reemplaza separadores comunes por espacio, **sin tocar los dos puntos** (:)
+  const cleaned = raw.replace(/[.,;]+/g, " ");
+  const tokens = cleaned.split(/\s+/).filter(Boolean);
+
+  return tokens.map((token) => {
+    // nombre[:tipo]
+    const [name, type] = token.split(":", 2);
+    return {
+      name: name.trim(),
+      type: (type ? type.trim() : "STRING").toUpperCase(),
+      allowNull: false,
+    };
+  });
+};
+
+
+
 export const startModuleReact = async() => {
     
     await clearScreen();
@@ -42,34 +69,24 @@ export const startModuleReact = async() => {
     const singularName = await readInput(
         "Nombre singular:",
         false,
-        "AgendaUnloading"
+        //"AgendaUnloading",
+        "Team"
     );
     const pluralName = await readInput(
         "Nombre plural:",
         false,
-        "AgendaUnloadings"
+        // "AgendaUnloadings",
+        "Teams"
     );
     const inputColumns = await readInput(
         "Columnas (separadas por espacio):",
         false,
-        "name amount description"
+        //"name amount description"
+        "name amount:integer description"
     );
 
 
-    const cleanedInput = inputColumns.replace(/[.,;:]+/g, ' '); // reemplaza comas, puntos, punto y coma, dos puntos por espacio
-
-    const columns = cleanedInput
-        .split(/\s+/) // divide por uno o más espacios
-        .filter(Boolean) // elimina vacíos
-        .map((col) => ({
-        name: col.trim(),
-        type: "STRING",
-        allowNull: true,
-        }));
-
-    
-
-
+    const columns = parseColumns(inputColumns);
 
 
     await generateModuleStandardReact(

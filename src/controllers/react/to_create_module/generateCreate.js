@@ -1,6 +1,9 @@
 import fs from 'fs';
 import path from 'path';
 import { createFolder } from '../../../helpers/helperFile.js';
+import { buildInputFields, buildYupSchemaFields } from './helpers/helperFormGenerator.js';
+import { buildComboboxImport, buildVariables, hasFk, buildComboboxUseEffect } from './helpers/helperReactRelations.js';
+
 
 export const generateCreate = async(
   projectPath,
@@ -18,24 +21,22 @@ export const generateCreate = async(
 
   createFolder(pagesDir);
 
-  const columnNames = columns.map(col => col.name);
 
-  const schemaFields = columnNames
-    .map(col => `${col}: yup.string().required(t("form.required"))`)
-    .join(',\n    ');
 
-  const inputFields = columnNames.map(col => `
-        <div className="col-span-12 md:col-span-6 lg:col-span-4">
-            <label className="block text-gray-700">{t("${col}")}</label>
-            <input
-              type="text"
-              {...register("${col}")}
-              className={\`w-full p-2 border \${errors.${col} ? "border-danger" : "border-gray-300"} rounded-md\`}
-            />
-            {errors.${col} && <p className="text-danger text-sm">{errors.${col}.message}</p>}
-        </div>`).join('\n\n');
+  const schemaFields = buildYupSchemaFields(columns);
+  const inputFields  = buildInputFields(columns);
 
-  const content = `import { useState } from "react";
+
+  // Combobox
+  const createVariables = buildVariables(columns);
+  const comboboxImport  = buildComboboxImport(columns);
+  const hasInputFK = hasFk(columns);
+  const comboboxUseEffect = buildComboboxUseEffect(columns);
+
+
+
+
+  const content = `import {${ hasInputFK ? ' useEffect, ' : ' '}useState } from "react";
 import { useTranslation } from "react-i18next";
 import { SessionLayout } from "../../../layouts/private/SessionLayout";
 import { Button } from "../../../components/Buttons/Button";
@@ -45,12 +46,14 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { create${singularName} } from "../services/${singularFirstCamel}Service";
-import { PreloaderButton } from "../../../components/Preloader/PreloaderButton";
+import { PreloaderButton } from "../../../components/Preloader/PreloaderButton";${comboboxImport}
 
 export const ${singularName}CreatePage = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
+
+  ${createVariables}
 
   const schema = yup.object().shape({
     ${schemaFields}
@@ -58,9 +61,11 @@ export const ${singularName}CreatePage = () => {
 
   const {
     register,
-    handleSubmit,
+    handleSubmit,${ hasInputFK ? '\n    setValue,' : ''}
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
+
+  ${comboboxUseEffect}
 
   const onSubmit = async(data) => {
     try {
