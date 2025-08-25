@@ -127,3 +127,58 @@ ${perFkAssign}
     fetchData();
   }, [t]);`;
 };
+
+
+
+
+
+
+/**
+ * Para EDIT:
+ * - resNames: "customersRes, suppliersRes"
+ * - promiseCalls: "getCustomers(), getSuppliers()"
+ * - fkLoadBlocks: if (...) setOptions(...); else Swal(ERROR)
+ * - fkSelectBlocks: setSelectedX(res.data.find(... por data.<fk_id>))
+ */
+export const buildEditFetchPieces = (columns = []) => {
+  const fks = columns.filter(isFk);
+  if (!fks.length) {
+    return { resNames: "", promiseCalls: "", fkLoadBlocks: "", fkSelectBlocks: "" };
+  }
+
+  const items = fks.map(({ name }) => {
+    const base = baseFromField(name);                 // "customer"
+    const plural = pluralize(base);                   // "customers"
+    const getter = `get${toPascal(plural)}`;          // "getCustomers"
+    const optionsVar = toCamel(plural);               // "customers"
+    const setOptions = `set${toPascal(optionsVar)}`;  // "setCustomers"
+    const pascal = toPascal(base);                    // "Customer"
+    const selectedSetter = `setSelected${pascal}`;    // "setSelectedCustomer"
+    const resName = `${optionsVar}Res`;               // "customersRes"
+
+    return { name, getter, optionsVar, setOptions, selectedSetter, resName };
+  });
+
+  const resNames = items.map(i => i.resName).join(", ");
+  const promiseCalls = items.map(i => `${i.getter}()`).join(", ");
+
+  const fkLoadBlocks = items.map(i => `
+        if (${i.resName}?.success) {
+
+          ${i.setOptions}(${i.resName}.data);
+          
+        } else {
+          Swal.fire({
+            title: t("error"),
+            icon: "error",
+            confirmButtonText: t("message.ok"),
+            confirmButtonColor: import.meta.env.VITE_SWEETALERT_COLOR_BTN_ERROR,
+          });
+        }`).join("\n");
+
+  const fkSelectBlocks = items.map(i => `
+          // name
+          ${i.selectedSetter}(${i.resName}.data?.find(x => x?.id === data.${i.name}) ?? null);`).join("\n");
+
+  return { resNames, promiseCalls, fkLoadBlocks, fkSelectBlocks };
+};

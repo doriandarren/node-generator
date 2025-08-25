@@ -35,7 +35,6 @@ export const generateCreate = async(
 
 
 
-
   const content = `import {${ hasInputFK ? ' useEffect, ' : ' '}useState } from "react";
 import { useTranslation } from "react-i18next";
 import { SessionLayout } from "../../../layouts/private/SessionLayout";

@@ -2,6 +2,8 @@ import fs from 'fs';
 import path from 'path';
 import { createFolder } from '../../../helpers/helperFile.js';
 import { pascalToCamelCase } from '../../../helpers/helperString.js';
+import { buildInputFields, buildYupSchemaFields } from './helpers/helperFormGenerator.js';
+import { buildComboboxImport, buildVariables, hasFk, buildEditFetchPieces } from './helpers/helperReactRelations.js';
 
 export const generateEdit = async (
   projectPath,
@@ -22,30 +24,50 @@ export const generateEdit = async (
 
 
   const filePath = path.join(pagesDir, `${singularName}EditPage.jsx`);
-  const columnNames = columns.map(col => col.name);
 
-  const schemaFields = columnNames
-    .map(col => `${col}: yup.string().required(t("form.required"))`)
-    .join(',\n    ');
+
+   const columnNames = columns.map(col => col.name);
+  
+  // const schemaFields = columnNames
+  //   .map(col => `${col}: yup.string().required(t("form.required"))`)
+  //   .join(',\n    ');
 
   const setValues = columnNames
     .map(col => `setValue("${col}", data.${col});`)
-    .join('\n            ');
+    .join('\n          ');
 
-  const inputFields = columnNames
-    .map(col => {
-      return `
-          <div className="col-span-12 md:col-span-6 lg:col-span-4">
-            <label className="block text-gray-700">{t("${col}")}</label>
-            <input
-              type="text"
-              {...register("${col}")}
-              className={\`w-full p-2 border \${errors.${col} ? "border-danger" : "border-gray-300"} rounded-md\`}
-            />
-            {errors.${col} && <p className="text-danger text-sm">{errors.${col}.message}</p>}
-          </div>`;
-    })
-    .join('\n');
+
+
+
+
+  // const inputFields = columnNames
+  //   .map(col => {
+  //     return `
+  //         <div className="col-span-12 md:col-span-6 lg:col-span-4">
+  //           <label className="block text-gray-700">{t("${col}")}</label>
+  //           <input
+  //             type="text"
+  //             {...register("${col}")}
+  //             className={\`w-full p-2 border \${errors.${col} ? "border-danger" : "border-gray-300"} rounded-md\`}
+  //           />
+  //           {errors.${col} && <p className="text-danger text-sm">{errors.${col}.message}</p>}
+  //         </div>`;
+  //   })
+  //   .join('\n');
+
+
+
+  const schemaFields = buildYupSchemaFields(columns);
+  const inputFields  = buildInputFields(columns);
+
+
+  // Combobox
+  const createVariables = buildVariables(columns);
+  const comboboxImport  = buildComboboxImport(columns);
+  const hasAnyFk        = hasFk(columns);
+
+  // Piezas para Promise.all y asignaciones FK en EDIT
+  const { resNames, promiseCalls, fkLoadBlocks, fkSelectBlocks } = buildEditFetchPieces(columns);
 
 
 
@@ -61,7 +83,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { get${singularName}ById, update${singularName} } from "../services/${singularFirstCamel}Service";
 import { Preloader } from "../../../components/Preloader/Preloader";
-import { PreloaderButton } from "../../../components/Preloader/PreloaderButton";
+import { PreloaderButton } from "../../../components/Preloader/PreloaderButton";${comboboxImport}
 
 export const ${singularName}EditPage = () => {
   const { t } = useTranslation();
@@ -69,6 +91,8 @@ export const ${singularName}EditPage = () => {
   const { id } = useParams();
   const [dataLoading, setDataLoading] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
+
+  ${createVariables}
 
   const schema = yup.object().shape({
     ${schemaFields}
@@ -86,14 +110,19 @@ export const ${singularName}EditPage = () => {
       try {
         setDataLoading(true);
 
-        const [ ${lowerFirst}Res ] = await Promise.all([
-          get${singularName}ById(id),
+        const [ ${lowerFirst}Res${resNames ? `, ${resNames}` : ""} ] = await Promise.all([
+          get${singularName}ById(id), 
+          ${promiseCalls ? `${promiseCalls},` : ""}
         ]);
+
+        ${fkLoadBlocks}
 
         if (${lowerFirst}Res.success) {
 
           const {data} = ${lowerFirst}Res;
-          ${setValues}
+          ${setValues} 
+
+          ${fkSelectBlocks}
 
         } else {
 

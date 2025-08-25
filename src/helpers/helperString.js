@@ -102,3 +102,33 @@ export const sanitizeNameWithUnderscore = (name) => {
 };
 
 
+
+
+
+
+
+
+
+
+/* --------------------------- Parser de columnas --------------------------- */
+// Sintaxis soportada: nombre[:TIPO][!]
+//   - ! => requerido (allowNull: false)
+//   - TIPO por defecto: STRING
+//   - Ej: "name! amount:DECIMAL description:TEXT"
+export const parseColumns = (raw) => {
+  if (!raw?.trim()) return [];
+
+  // Reemplaza separadores comunes por espacio, **sin tocar los dos puntos** (:)
+  const cleaned = raw.replace(/[.,;]+/g, " ");
+  const tokens = cleaned.split(/\s+/).filter(Boolean);
+
+  return tokens.map((token) => {
+    // nombre[:tipo]
+    const [name, type] = token.split(":", 2);
+    return {
+      name: name.trim(),
+      type: (type ? type.trim() : "STRING").toUpperCase(),
+      allowNull: false,
+    };
+  });
+};
