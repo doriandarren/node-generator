@@ -446,13 +446,13 @@ export const Datatable = ({
 
       <div className="overflow-x-auto rounded-xl">
         <table className="min-w-full w-full table-fixed divide-y divide-gray-300">
-          <thead className="bg-gray-100">
+          <thead className="bg-primary">
             <tr>
               {columns.map((column) => (
                 <th
                   key={column.key}
                   className={classNames(
-                    "px-4 py-3 text-sm font-semibold text-gray-900 cursor-pointer",
+                    "px-4 py-3 text-sm font-semibold text-white cursor-pointer",
                     column.width || "w-40",
                     {
                       "text-left": !column.align_col || column.align_col === "left",

@@ -30,8 +30,8 @@ export const startModuleReact = async() => {
     const fullPath = await readInput(
         "Ruta Proyecto:",
         false,
-        //"/Users/dorian/ReactProjects/app-1"
-        "/Users/dorian/ReactProjects/office.truckwashvilamalla.eu"
+        "/Users/dorian/ReactProjects/app-1"
+        //"/Users/dorian/ReactProjects/office.truckwashvilamalla.eu"
     );
 
     const namespace = await readInput(
@@ -68,6 +68,9 @@ export const startModuleReact = async() => {
         }));
 
     
+
+
+
 
     await generateModuleStandardReact(
         fullPath,
