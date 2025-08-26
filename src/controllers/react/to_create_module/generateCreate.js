@@ -14,17 +14,18 @@ import {
 
 
 export const generateCreate = async(
-  projectPath,
-  singularName,
-  pluralName,
-  singularNameKebab,
-  pluralNameKebab,
-  singularNameSnake,
-  pluralNameSnake,
-  singularFirstCamel,
+  fullPath, 
+  singularName, 
+  pluralName, 
+  singularNameKebab, 
+  pluralNameKebab, 
+  singularNameSnake, 
+  pluralNameSnake, 
+  singularNameCamel, 
+  pluralNameCamel,
   columns
 ) => {
-  const pagesDir = path.join(projectPath, 'src', 'modules', pluralNameSnake, 'pages');
+  const pagesDir = path.join(fullPath, 'src', 'modules', pluralNameSnake, 'pages');
   const filePath = path.join(pagesDir, `${singularName}CreatePage.jsx`);
 
   createFolder(pagesDir);
@@ -57,7 +58,7 @@ import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { create${singularName} } from "../services/${singularFirstCamel}Service";
+import { create${singularName} } from "../services/${singularName}Service";
 import { PreloaderButton } from "../../../components/Preloader/PreloaderButton";${booleanImport}${comboboxImport}
 
 export const ${singularName}CreatePage = () => {

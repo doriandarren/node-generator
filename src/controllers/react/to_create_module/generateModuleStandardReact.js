@@ -36,11 +36,33 @@ export const generateModuleStandardReact = async (
   }
 
   if (selectedComponents.includes("create")) {
-    await generateCreate(fullPath, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCamel, columns);
+    await generateCreate(
+      fullPath, 
+      singularName, 
+      pluralName, 
+      singularNameKebab, 
+      pluralNameKebab, 
+      singularNameSnake, 
+      pluralNameSnake, 
+      singularNameCamel, 
+      pluralNameCamel,
+      columns
+    );
   }
 
   if (selectedComponents.includes("edit")) {
-    await generateEdit(fullPath, singularName, pluralName, singularNameKebab, pluralNameKebab, singularNameSnake, pluralNameSnake, singularNameCamel, columns);
+    await generateEdit(
+      fullPath, 
+      singularName, 
+      pluralName, 
+      singularNameKebab, 
+      pluralNameKebab, 
+      singularNameSnake, 
+      pluralNameSnake, 
+      singularNameCamel, 
+      pluralNameCamel,
+      columns
+    );
   }
 
   if (selectedComponents.includes("barrel")) {

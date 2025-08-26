@@ -73,7 +73,7 @@ export const inputFor = (col) => {
                 }}
                 error={errors["${name}"]?.message}
                 getLabel={(item) =>
-                  \`\${item?.company?.name ?? ""} \${item?.code ?? ""}\`.trim()
+                  \`\${item?.name ?? ""}\`.trim()
                 }
                 onChange={(value) => ${onChangeVar}(value)}
               />

@@ -14,17 +14,18 @@ import {
 } from './helpers/helperReactRelations.js';
 
 export const generateEdit = async (
-  projectPath,
-  singularName,
-  pluralName,
-  singularNameKebab,
-  pluralNameKebab,
-  singularNameSnake,
-  pluralNameSnake,
-  singularFirstCamel,
+  fullPath, 
+  singularName, 
+  pluralName, 
+  singularNameKebab, 
+  pluralNameKebab, 
+  singularNameSnake, 
+  pluralNameSnake, 
+  singularNameCamel, 
+  pluralNameCamel,
   columns
 ) => {
-  const pagesDir = path.join(projectPath, 'src', 'modules', pluralNameSnake, 'pages');
+  const pagesDir = path.join(fullPath, 'src', 'modules', pluralNameSnake, 'pages');
   createFolder(pagesDir);
 
   const filePath = path.join(pagesDir, `${singularName}EditPage.jsx`);
@@ -68,7 +69,7 @@ import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { get${singularName}ById, update${singularName} } from "../services/${singularFirstCamel}Service";
+import { get${singularName}ById, update${singularName} } from "../services/${singularName}Service";
 import { Preloader } from "../../../components/Preloader/Preloader";
 import { PreloaderButton } from "../../../components/Preloader/PreloaderButton";${booleanImport}${comboboxImport}
 

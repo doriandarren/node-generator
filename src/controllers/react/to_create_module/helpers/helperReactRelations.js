@@ -67,8 +67,10 @@ export const buildComboboxImport = (columns = []) => {
     const base = baseFromField(name);        // "customer"
     const plural = pluralize(base);          // "customers"
     const getter = `get${toPascal(plural)}`; // "getCustomers"
+    const firstLetterBase = toPascal(base);           // "Customer"
+
     // Ruta: ../../customers/services/customerService
-    const servicePath = `../../${plural}/services/${base}Service`;
+    const servicePath = `../../${plural}/services/${firstLetterBase}Service`;
     lines.add(`import { ${getter} } from "${servicePath}";`);
   });
 
