@@ -10,6 +10,7 @@ const toCamel = (s = "") => {
   const p = toPascal(s);
   return p ? p[0].toLowerCase() + p.slice(1) : "";
 };
+
 const pluralize = (s = "") => {
   if (!s) return "";
   if (/[sxz]$/i.test(s) || /(sh|ch)$/i.test(s)) return s + "es";
@@ -67,10 +68,10 @@ export const buildComboboxImport = (columns = []) => {
     const base = baseFromField(name);        // "customer"
     const plural = pluralize(base);          // "customers"
     const getter = `get${toPascal(plural)}`; // "getCustomers"
-    const firstLetterBase = toPascal(base);  // "Customer"
+    const formatURL = toCamel(base);         // "customerPrepaidStatus"
 
     // Ruta: ../../customers/services/customerService
-    const servicePath = `../../${plural}/services/${base}Service`;
+    const servicePath = `../../${plural}/services/${formatURL}Service`;
     lines.add(`import { ${getter} } from "${servicePath}";`);
   });
 
