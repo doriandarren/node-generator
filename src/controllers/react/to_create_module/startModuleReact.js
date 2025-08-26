@@ -35,8 +35,8 @@ export const startModuleReact = async() => {
     const fullPath = await readInput(
         "Ruta Proyecto:",
         false,
-        "/Users/dorian/ReactProjects/app-1"
-        //"/Users/dorian/ReactProjects/office.truckwashvilamalla.eu"
+        //"/Users/dorian/ReactProjects/app-1"
+        "/Users/dorian/ReactProjects/office.truckwashvilamalla.eu"
     );
 
     const namespace = await readInput(
@@ -47,20 +47,20 @@ export const startModuleReact = async() => {
     const singularName = await readInput(
         "Nombre singular:",
         false,
-        //"AgendaUnloading",
-        "Team"
+        "AgendaUnloading",
+        //"Team"
     );
     const pluralName = await readInput(
         "Nombre plural:",
         false,
-        // "AgendaUnloadings",
-        "Teams"
+        "AgendaUnloadings",
+        //"Teams"
     );
     const inputColumns = await readInput(
         "Columnas (separadas por espacio):",
         false,
-        //"name amount description"
-        "customer_id:fk name amount:integer description is_active:boolean"
+        "name amount description"
+        //"customer_id:fk name amount:integer description is_active:boolean"
     );
 
 
