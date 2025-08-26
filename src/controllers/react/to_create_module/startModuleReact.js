@@ -60,7 +60,7 @@ export const startModuleReact = async() => {
         "Columnas (separadas por espacio):",
         false,
         //"name amount description"
-        "name amount:integer description"
+        "customer_id:fk name amount:integer description is_active:boolean"
     );
 
 

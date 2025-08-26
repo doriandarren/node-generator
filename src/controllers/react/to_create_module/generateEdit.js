@@ -3,7 +3,15 @@ import path from 'path';
 import { createFolder } from '../../../helpers/helperFile.js';
 import { pascalToCamelCase } from '../../../helpers/helperString.js';
 import { buildInputFields, buildYupSchemaFields } from './helpers/helperFormGenerator.js';
-import { buildComboboxImport, buildVariables, hasFk, buildEditFetchPieces } from './helpers/helperReactRelations.js';
+import { 
+  buildComboboxImport, 
+  buildVariables, 
+  hasFk, 
+  buildEditFetchPieces,
+  buildBooleanImport,
+  hasBoolean,
+  buildBooleanEditSetValues,
+} from './helpers/helperReactRelations.js';
 
 export const generateEdit = async (
   projectPath,
@@ -19,42 +27,15 @@ export const generateEdit = async (
   const pagesDir = path.join(projectPath, 'src', 'modules', pluralNameSnake, 'pages');
   createFolder(pagesDir);
 
-
-  const lowerFirst = pascalToCamelCase(singularName);
-
-
   const filePath = path.join(pagesDir, `${singularName}EditPage.jsx`);
 
 
-   const columnNames = columns.map(col => col.name);
+  const lowerFirst = pascalToCamelCase(singularName);
+  const columnNames = columns.map(col => col.name);
   
-  // const schemaFields = columnNames
-  //   .map(col => `${col}: yup.string().required(t("form.required"))`)
-  //   .join(',\n    ');
-
   const setValues = columnNames
     .map(col => `setValue("${col}", data.${col});`)
     .join('\n          ');
-
-
-
-
-
-  // const inputFields = columnNames
-  //   .map(col => {
-  //     return `
-  //         <div className="col-span-12 md:col-span-6 lg:col-span-4">
-  //           <label className="block text-gray-700">{t("${col}")}</label>
-  //           <input
-  //             type="text"
-  //             {...register("${col}")}
-  //             className={\`w-full p-2 border \${errors.${col} ? "border-danger" : "border-gray-300"} rounded-md\`}
-  //           />
-  //           {errors.${col} && <p className="text-danger text-sm">{errors.${col}.message}</p>}
-  //         </div>`;
-  //   })
-  //   .join('\n');
-
 
 
   const schemaFields = buildYupSchemaFields(columns);
@@ -70,6 +51,12 @@ export const generateEdit = async (
   const { resNames, promiseCalls, fkLoadBlocks, fkSelectBlocks } = buildEditFetchPieces(columns);
 
 
+  // Boolean
+  const booleanImport  = buildBooleanImport(columns);
+  const needsWatch     = hasBoolean(columns);
+  const booleanEditSetValues = buildBooleanEditSetValues(columns);
+
+
 
   const content = `
 import { useEffect, useState } from "react";
@@ -83,7 +70,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { get${singularName}ById, update${singularName} } from "../services/${singularFirstCamel}Service";
 import { Preloader } from "../../../components/Preloader/Preloader";
-import { PreloaderButton } from "../../../components/Preloader/PreloaderButton";${comboboxImport}
+import { PreloaderButton } from "../../../components/Preloader/PreloaderButton";${booleanImport}${comboboxImport}
 
 export const ${singularName}EditPage = () => {
   const { t } = useTranslation();
@@ -101,7 +88,7 @@ export const ${singularName}EditPage = () => {
   const {
     register,
     handleSubmit,
-    setValue,
+    setValue,${needsWatch ? '\n    watch,' : ''}
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
@@ -123,6 +110,8 @@ export const ${singularName}EditPage = () => {
           ${setValues} 
 
           ${fkSelectBlocks}
+
+          ${booleanEditSetValues}
 
         } else {
 

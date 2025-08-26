@@ -2,7 +2,15 @@ import fs from 'fs';
 import path from 'path';
 import { createFolder } from '../../../helpers/helperFile.js';
 import { buildInputFields, buildYupSchemaFields } from './helpers/helperFormGenerator.js';
-import { buildComboboxImport, buildVariables, hasFk, buildComboboxUseEffect } from './helpers/helperReactRelations.js';
+import { 
+  buildComboboxImport, 
+  buildVariables, 
+  hasFk, 
+  buildComboboxUseEffect,
+  buildBooleanImport,
+  hasBoolean,
+  buildBooleanDefaultValuesProp,
+} from './helpers/helperReactRelations.js';
 
 
 export const generateCreate = async(
@@ -33,6 +41,11 @@ export const generateCreate = async(
   const hasInputFK = hasFk(columns);
   const comboboxUseEffect = buildComboboxUseEffect(columns);
 
+  // Boolean
+  const booleanImport  = buildBooleanImport(columns);
+  const hasInputBoolean     = hasBoolean(columns);
+  const booleanDefaultsProp  = buildBooleanDefaultValuesProp(columns);
+
 
 
   const content = `import {${ hasInputFK ? ' useEffect, ' : ' '}useState } from "react";
@@ -45,7 +58,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { create${singularName} } from "../services/${singularFirstCamel}Service";
-import { PreloaderButton } from "../../../components/Preloader/PreloaderButton";${comboboxImport}
+import { PreloaderButton } from "../../../components/Preloader/PreloaderButton";${booleanImport}${comboboxImport}
 
 export const ${singularName}CreatePage = () => {
   const { t } = useTranslation();
@@ -60,9 +73,13 @@ export const ${singularName}CreatePage = () => {
 
   const {
     register,
-    handleSubmit,${ hasInputFK ? '\n    setValue,' : ''}
+    handleSubmit,${ hasInputFK ? '\n    setValue,' : ''}${hasInputBoolean ? '\n    watch,' : ''}
     formState: { errors },
-  } = useForm({ resolver: yupResolver(schema) });
+  } = useForm({
+    resolver: yupResolver(schema),${
+      booleanDefaultsProp ? `\n    ${booleanDefaultsProp}` : ""
+    }
+  });
 
   ${comboboxUseEffect}
 

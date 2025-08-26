@@ -24,7 +24,7 @@ export const toYupSchemaFor = (type, required) => {
   const T = (type || "STRING").toUpperCase();
 
   let base =
-    T === "BOOLEAN" ? 'yup.boolean()' :
+    T === "BOOLEAN" ? 'yup.number().oneOf([0,1])' :
     (T === "INTEGER" || T === "INT" || T === "BIGINT") ? 'yup.number().typeError(t("form.number")).integer()' :
     (T === "FLOAT" || T === "DOUBLE" || T === "DECIMAL" || T === "NUMERIC") ? 'yup.number().typeError(t("form.number"))' :
     T === "DATE" ? 'yup.date().typeError(t("form.date"))' :
@@ -61,145 +61,144 @@ export const inputFor = (col) => {
     const requiredStar = col.allowNull === false ? ' + " *"' : '';
 
     return `
-
-        {/* ${name} */}
-        <div className="col-span-12 md:col-span-6 lg:col-span-6">
-          <CustomCombobox
-            label={t("${base}")${requiredStar}}
-            options={${optionsVar}}
-            selected={${selectedVar}}
-            setSelected={(item) => {
-              ${setSelectedVar}(item);
-              setValue("${name}", item?.id, { shouldValidate: true });
-            }}
-            error={errors["${name}"]?.message}
-            getLabel={(item) =>
-              \`\${item?.company?.name ?? ""} \${item?.code ?? ""}\`.trim()
-            }
-            onChange={(value) => ${onChangeVar}(value)}
-          />
-        </div>`;
+            {/* ${name} */}
+            <div className="col-span-12 md:col-span-6 lg:col-span-6">
+              <CustomCombobox
+                label={t("${base}")${requiredStar}}
+                options={${optionsVar}}
+                selected={${selectedVar}}
+                setSelected={(item) => {
+                  ${setSelectedVar}(item);
+                  setValue("${name}", item?.id, { shouldValidate: true });
+                }}
+                error={errors["${name}"]?.message}
+                getLabel={(item) =>
+                  \`\${item?.company?.name ?? ""} \${item?.code ?? ""}\`.trim()
+                }
+                onChange={(value) => ${onChangeVar}(value)}
+              />
+            </div>`;
   }
   // ====== FIN caso FK ======
 
 
 
-
-
+  // === NUEVO: BOOLEAN con ToggleButton (1/0) ===
   if (T === "BOOLEAN") {
     return `
-        {/* ${name} */}
-        <div className="col-span-12 md:col-span-6 lg:col-span-4">
-          <label className="inline-flex items-center gap-2 text-gray-700">
-            <input
-              type="checkbox"
-              {...register("${name}")}
-              className="h-4 w-4 border-gray-300 rounded"
-            />
-            {t("${name}")}
-          </label>
-          ${errorMsg}
-        </div>`;
+            {/* ${name} */}
+            <div className="col-span-12 md:col-span-3 lg:col-span-3">
+              <ToggleButton
+                label={t("${name}")}
+                enabled={watch("${name}") === 1}
+                setEnabled={(value) =>
+                  setValue("${name}", value ? 1 : 0, { shouldValidate: true })
+                }
+                error={errors["${name}"]?.message}
+              />
+              <input type="hidden" {...register("${name}")} />
+            </div>`;
   }
+
 
   if (T === "TEXT" || T === "JSON") {
     return `
-        {/* ${name} */}
-        <div className="col-span-12 md:col-span-6 lg:col-span-4">
-          ${label}
-          <textarea
-            rows={4}
-            {...register("${name}")}
-            className={\`w-full p-2 border \${errors["${name}"] ? "border-danger" : "border-gray-300"} rounded-md\`}
-          />
-          ${errorMsg}
-        </div>`;
+            {/* ${name} */}
+            <div className="col-span-12 md:col-span-6 lg:col-span-4">
+              ${label}
+              <textarea
+                rows={4}
+                {...register("${name}")}
+                className={\`w-full p-2 border \${errors["${name}"] ? "border-danger" : "border-gray-300"} rounded-md\`}
+              />
+              ${errorMsg}
+            </div>`;
   }
 
   if (T === "INTEGER" || T === "INT" || T === "BIGINT") {
     return `
-        {/* ${name} */}
-        <div className="col-span-12 md:col-span-6 lg:col-span-4">
-          ${label}
-          <input
-            type="number"
-            step="1"
-            {...register("${name}", { valueAsNumber: true })}
-            className={\`w-full p-2 border \${errors["${name}"] ? "border-danger" : "border-gray-300"} rounded-md\`}
-          />
-          ${errorMsg}
-        </div>`;
+            {/* ${name} */}
+            <div className="col-span-12 md:col-span-6 lg:col-span-4">
+              ${label}
+              <input
+                type="number"
+                step="1"
+                {...register("${name}", { valueAsNumber: true })}
+                className={\`w-full p-2 border \${errors["${name}"] ? "border-danger" : "border-gray-300"} rounded-md\`}
+              />
+              ${errorMsg}
+            </div>`;
   }
 
   if (T === "FLOAT" || T === "DOUBLE" || T === "DECIMAL" || T === "NUMERIC") {
     return `
-        {/* ${name} */}
-        <div className="col-span-12 md:col-span-6 lg:col-span-4">
-          ${label}
-          <input
-            type="number"
-            step="any"
-            {...register("${name}", { valueAsNumber: true })}
-            className={\`w-full p-2 border \${errors["${name}"] ? "border-danger" : "border-gray-300"} rounded-md\`}
-          />
-          ${errorMsg}
-        </div>`;
+            {/* ${name} */}
+            <div className="col-span-12 md:col-span-6 lg:col-span-4">
+              ${label}
+              <input
+                type="number"
+                step="any"
+                {...register("${name}", { valueAsNumber: true })}
+                className={\`w-full p-2 border \${errors["${name}"] ? "border-danger" : "border-gray-300"} rounded-md\`}
+              />
+              ${errorMsg}
+            </div>`;
   }
 
   if (T === "DATE") {
     return `
-        {/* ${name} */}
-        <div className="col-span-12 md:col-span-6 lg:col-span-4">
-          ${label}
-          <input
-            type="date"
-            {...register("${name}")}
-            className={\`w-full p-2 border \${errors["${name}"] ? "border-danger" : "border-gray-300"} rounded-md\`}
-          />
-          ${errorMsg}
-        </div>`;
+            {/* ${name} */}
+            <div className="col-span-12 md:col-span-6 lg:col-span-4">
+              ${label}
+              <input
+                type="date"
+                {...register("${name}")}
+                className={\`w-full p-2 border \${errors["${name}"] ? "border-danger" : "border-gray-300"} rounded-md\`}
+              />
+              ${errorMsg}
+            </div>`;
   }
 
   if (T === "DATETIME" || T === "TIMESTAMP") {
     return `
-        {/* ${name} */}
-        <div className="col-span-12 md:col-span-6 lg:col-span-4">
-          ${label}
-          <input
-            type="datetime-local"
-            {...register("${name}")}
-            className={\`w-full p-2 border \${errors["${name}"] ? "border-danger" : "border-gray-300"} rounded-md\`}
-          />
-          ${errorMsg}
-        </div>`;
+            {/* ${name} */}
+            <div className="col-span-12 md:col-span-6 lg:col-span-4">
+              ${label}
+              <input
+                type="datetime-local"
+                {...register("${name}")}
+                className={\`w-full p-2 border \${errors["${name}"] ? "border-danger" : "border-gray-300"} rounded-md\`}
+              />
+              ${errorMsg}
+            </div>`;
   }
 
   if (T === "EMAIL") {
     return `
-        {/* ${name} */}
-        <div className="col-span-12 md:col-span-6 lg:col-span-4">
-          ${label}
-          <input
-            type="email"
-            {...register("${name}")}
-            className={\`w-full p-2 border \${errors["${name}"] ? "border-danger" : "border-gray-300"} rounded-md\`}
-          />
-          ${errorMsg}
-        </div>`;
+            {/* ${name} */}
+            <div className="col-span-12 md:col-span-6 lg:col-span-4">
+              ${label}
+              <input
+                type="email"
+                {...register("${name}")}
+                className={\`w-full p-2 border \${errors["${name}"] ? "border-danger" : "border-gray-300"} rounded-md\`}
+              />
+              ${errorMsg}
+            </div>`;
   }
 
   // default STRING/UUID/otros → text
   return `
-        {/* ${name} */}
-        <div className="col-span-12 md:col-span-6 lg:col-span-4">
-          ${label}
-          <input
-            type="text"
-            {...register("${name}")}
-            className={\`w-full p-2 border \${errors["${name}"] ? "border-danger" : "border-gray-300"} rounded-md\`}
-          />
-          ${errorMsg}
-        </div>`;
+            {/* ${name} */}
+            <div className="col-span-12 md:col-span-6 lg:col-span-4">
+              ${label}
+              <input
+                type="text"
+                {...register("${name}")}
+                className={\`w-full p-2 border \${errors["${name}"] ? "border-danger" : "border-gray-300"} rounded-md\`}
+              />
+              ${errorMsg}
+            </div>`;
 };
 
 

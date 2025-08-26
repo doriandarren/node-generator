@@ -22,6 +22,8 @@ const isFk = (c) => (c.type || "").toUpperCase() === "FK";
 export const hasFk = (columns = []) => columns.some(isFk);
 
 
+
+
 // ---------- builder de variables ----------
 // Devuelve un string listo para inyectar tras isLoading (uno por cada FK)
 export const buildVariables = (columns = []) => {
@@ -45,7 +47,13 @@ export const buildVariables = (columns = []) => {
 
 
 
-// --- NUEVO: arma import de ComboBox + imports de servicios por cada FK ---
+
+/* =========================
+   Helpers para ComboBox
+============================ */
+/**
+ * buildComboboxImport
+ */
 export const buildComboboxImport = (columns = []) => {
   const fks = columns.filter(isFk);
   if (!fks.length) return "";
@@ -69,7 +77,9 @@ export const buildComboboxImport = (columns = []) => {
 };
 
 
-// --- NUEVO: useEffect de carga para todas las FKs detectadas ---
+/**
+ * useEffect de carga para todas las FKs detectadas
+ */
 export const buildComboboxUseEffect = (columns = []) => {
   const fks = columns.filter(isFk);
   if (!fks.length) return "";
@@ -181,4 +191,51 @@ export const buildEditFetchPieces = (columns = []) => {
           ${i.selectedSetter}(${i.resName}.data?.find(x => x?.id === data.${i.name}) ?? null);`).join("\n");
 
   return { resNames, promiseCalls, fkLoadBlocks, fkSelectBlocks };
+};
+
+
+
+
+
+
+
+
+
+
+/* =========================
+   Helpers para BOOLEAN
+============================ */
+const isBoolean = (c) => (c.type || "").toUpperCase() === "BOOLEAN";
+
+export const hasBoolean = (columns = []) =>
+  columns.some(c => (c.type || "").toUpperCase() === "BOOLEAN");
+
+export const buildBooleanImport = (columns = []) =>
+  hasBoolean(columns)
+    ? `\nimport ToggleButton from "../../../components/Toggles/ToggleButton";`
+    : "";
+
+
+/**
+ * Devuelve un string para pegar dentro de defaultValues: { "a": 0, "b": 0, ... }
+ * Ej.:  buildBooleanDefaultValuesSnippet([{name:'courtesy',type:'BOOLEAN'}])
+ *       -> '      "courtesy": 0'
+ */
+export const buildBooleanDefaultValuesProp = (columns = []) => {
+  const names = columns.filter(isBoolean).map(c => c.name);
+  if (!names.length) return ""; // no booleans => no agregues nada
+  const inner = names.map(n => `${JSON.stringify(n)}: 0`).join(", ");
+  return `defaultValues: { ${inner} },`; // una sola línea, sin espacios extra
+};
+
+/**
+ * Genera líneas setValue para todos los BOOLEAN:
+ * setValue("<field>", Number(data.<field> ?? 0));
+ */
+export const buildBooleanEditSetValues = (columns = [], dataVar = "data") => {
+  const names = columns.filter(isBoolean).map(c => c.name);
+  if (!names.length) return "";
+  return names
+    .map(n => `setValue("${n}", Number(${dataVar}.${n} ?? 0));`)
+    .join('\n          ');
 };
