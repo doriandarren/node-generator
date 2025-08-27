@@ -7,7 +7,6 @@ splytin_api
 
 # TODOLIST Tareas Pendientes NODE:
 
-- Agregar en PHP 
 
 - REACT tema de "perfil" hacer que funcione.
 - PHP generar / virificar de crear un email de prueba. Mail/TestMail y en la vista: test/email_test.blade.php

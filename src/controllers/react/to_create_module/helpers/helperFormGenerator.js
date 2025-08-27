@@ -1,6 +1,5 @@
 // helpers/helperReactFormGenerator.js
 
-
 const baseFromField = (fieldName) => (fieldName || "").replace(/_?id$/i, "");
 
 const toPascal = (s) =>
@@ -45,8 +44,10 @@ export const toYupSchemaFor = (type, required) => {
 export const inputFor = (col) => {
   const name = col.name;
   const T = (col.type || "STRING").toUpperCase();
-  const label = `<label className="block text-gray-700">{t("${name}")}</label>`;
+  //const label = `<label className="block text-gray-700">{t("${name}")}</label>`;
   const errorMsg = `{errors["${name}"] && <p className="text-danger text-sm">{errors["${name}"].message}</p>}`;
+  
+  const requiredStar = col.allowNull === false ? ' + " *"' : '';
 
 
 
@@ -58,7 +59,6 @@ export const inputFor = (col) => {
     const selectedVar = `selected${pascal}`;           // "selectedCustomer"
     const setSelectedVar = `setSelected${pascal}`;     // "setSelectedCustomer"
     const onChangeVar = `onChange${pascal}`;           // "onChangeCustomer"
-    const requiredStar = col.allowNull === false ? ' + " *"' : '';
 
     return `
             {/* ${name} */}
@@ -89,7 +89,7 @@ export const inputFor = (col) => {
             {/* ${name} */}
             <div className="col-span-12 md:col-span-3 lg:col-span-3">
               <ToggleButton
-                label={t("${name}")}
+                <label className="block text-gray-700">{t("${name}")${requiredStar}}</label>
                 enabled={watch("${name}") === 1}
                 setEnabled={(value) =>
                   setValue("${name}", value ? 1 : 0, { shouldValidate: true })
@@ -105,7 +105,7 @@ export const inputFor = (col) => {
     return `
             {/* ${name} */}
             <div className="col-span-12 md:col-span-6 lg:col-span-4">
-              ${label}
+              <label className="block text-gray-700">{t("${name}")${requiredStar}}</label>
               <textarea
                 rows={4}
                 {...register("${name}")}
@@ -119,7 +119,7 @@ export const inputFor = (col) => {
     return `
             {/* ${name} */}
             <div className="col-span-12 md:col-span-6 lg:col-span-4">
-              ${label}
+              <label className="block text-gray-700">{t("${name}")${requiredStar}}</label>
               <input
                 type="number"
                 step="1"
@@ -134,7 +134,7 @@ export const inputFor = (col) => {
     return `
             {/* ${name} */}
             <div className="col-span-12 md:col-span-6 lg:col-span-4">
-              ${label}
+              <label className="block text-gray-700">{t("${name}")${requiredStar}}</label>
               <input
                 type="number"
                 step="any"
@@ -149,7 +149,7 @@ export const inputFor = (col) => {
     return `
             {/* ${name} */}
             <div className="col-span-12 md:col-span-6 lg:col-span-4">
-              ${label}
+              <label className="block text-gray-700">{t("${name}")${requiredStar}}</label>
               <input
                 type="date"
                 {...register("${name}")}
@@ -163,7 +163,7 @@ export const inputFor = (col) => {
     return `
             {/* ${name} */}
             <div className="col-span-12 md:col-span-6 lg:col-span-4">
-              ${label}
+              <label className="block text-gray-700">{t("${name}")${requiredStar}}</label>
               <input
                 type="datetime-local"
                 {...register("${name}")}
@@ -177,7 +177,7 @@ export const inputFor = (col) => {
     return `
             {/* ${name} */}
             <div className="col-span-12 md:col-span-6 lg:col-span-4">
-              ${label}
+              <label className="block text-gray-700">{t("${name}")${requiredStar}}</label>
               <input
                 type="email"
                 {...register("${name}")}
@@ -191,7 +191,7 @@ export const inputFor = (col) => {
   return `
             {/* ${name} */}
             <div className="col-span-12 md:col-span-6 lg:col-span-4">
-              ${label}
+              <label className="block text-gray-700">{t("${name}")${requiredStar}}</label>
               <input
                 type="text"
                 {...register("${name}")}
