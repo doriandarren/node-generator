@@ -169,7 +169,7 @@ const createLocalesEs = async (fullPath) => {
   "form": {
     "required": "Requerido",
     "select": "Seleccione",
-    "must_be_number": "Número",
+    "number": "Número",
     "must_be_positive": "Mayor a cero"
   },
   "errors": {
@@ -394,7 +394,7 @@ const createLocalesEn = async (fullPath) => {
   "form": {
     "required": "Required",
     "select": "Select",
-    "must_be_number": "Number",
+    "number": "Number",
     "must_be_positive": "Must be positive"
   },
   "errors": {

@@ -26,8 +26,8 @@ export const toYupSchemaFor = (type, required) => {
     T === "BOOLEAN" ? 'yup.number().oneOf([0,1])' :
     (T === "INTEGER" || T === "INT" || T === "BIGINT") ? 'yup.number().typeError(t("form.number")).integer()' :
     (T === "FLOAT" || T === "DOUBLE" || T === "DECIMAL" || T === "NUMERIC") ? 'yup.number().typeError(t("form.number"))' :
-    T === "DATE" ? 'yup.date().typeError(t("form.date"))' :
-    (T === "DATETIME" || T === "TIMESTAMP") ? 'yup.date().typeError(t("form.datetime"))' :
+    T === "DATE" ? 'yup.string().required(t("form.required"))' :
+    (T === "DATETIME" || T === "TIMESTAMP") ? 'yup.string().required(t("form.required"))' :
     T === "EMAIL" ? 'yup.string().email(t("form.email"))' :
     T === "UUID" ? 'yup.string()' :
     T === "JSON" ? 'yup.mixed()' :
