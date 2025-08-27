@@ -4,10 +4,6 @@ import { generateModuleStandardReact } from "./generateModuleStandardReact.js";
 import { parseColumns } from '../../../helpers/helperString.js'
 
 
-
-
-
-
 export const startModuleReact = async() => {
     
     await clearScreen();
