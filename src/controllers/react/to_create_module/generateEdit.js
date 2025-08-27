@@ -69,7 +69,7 @@ import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { get${singularName}ById, update${singularName} } from "../services/${singularName}Service";
+import { get${singularName}ById, update${singularName} } from "../services/${singularNameCamel}Service";
 import { Preloader } from "../../../components/Preloader/Preloader";
 import { PreloaderButton } from "../../../components/Preloader/PreloaderButton";${booleanImport}${comboboxImport}
 

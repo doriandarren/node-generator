@@ -58,7 +58,7 @@ import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { create${singularName} } from "../services/${singularName}Service";
+import { create${singularName} } from "../services/${singularNameCamel}Service";
 import { PreloaderButton } from "../../../components/Preloader/PreloaderButton";${booleanImport}${comboboxImport}
 
 export const ${singularName}CreatePage = () => {

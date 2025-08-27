@@ -9,6 +9,7 @@ import { createFolder } from '../../../helpers/helperFile.js';
 export const generateBatchProcesses = async (fullPath) => {
   await createAbilityAndGroup(fullPath);
   await createReloadDatabase(fullPath);
+  await createBatchDeleteAbilityGroupsRepository(fullPath);
 };
 
 
@@ -218,3 +219,84 @@ class BatchReloadDatabaseAbilitiesRepository
     console.error(`❌ Error al crear archivo: ${error.message}`);
   }
 };
+
+
+
+
+
+export const createBatchDeleteAbilityGroupsRepository = async(fullPath) => {    
+
+    // Folder
+    const folderPath = path.join(fullPath, 'app', 'Repositories', 'BatchProcesses', 'Abilities');
+    
+    // File
+    const filePath = path.join(folderPath, 'BatchDeleteAbilityGroupsRepository.php');
+
+    
+
+    // Asegurar que la carpeta exista
+    createFolder(folderPath);
+
+
+    // Code
+    const code = `
+<?php
+
+namespace App\\Repositories\\BatchProcesses\\Abilities;
+
+use App\\Models\\AbilityGroups\\AbilityGroup;
+use App\\Models\\AbilityUsers\\AbilityUser;
+
+class BatchDeleteAbilityGroupsRepository
+{
+
+    /**
+     * @param string \$groupName
+     * @return void
+     */
+    public function __invoke(string \$groupName)
+    {
+
+        $abilityGroup = AbilityGroup::with(['abilities'])
+                                    ->where('name', $groupName)
+                                    ->first();
+
+        if($abilityGroup){
+
+            foreach($abilityGroup->abilities as $ability){
+
+                $abilityUser = AbilityUser::where('ability_id', $ability->id)->get();
+
+                foreach($abilityUser as $aUser){
+                    
+                    $aUser->delete();
+                    
+                }
+
+                $ability->delete();
+
+            }
+
+            $abilityGroup->delete();
+
+            echo "El grupo de ability : " . $groupName . ' se elimino correctamente.<br>';
+
+        }else{
+            echo "El Grupo no se encuentra: " . $groupName . '<br>';
+
+        }
+        
+    }
+
+
+}    
+`.trimStart();
+
+  try {
+    fs.writeFileSync(filePath, code);
+    console.log(`✅ Archivo creado: ${filePath}`.green);
+  } catch (error) {
+    console.error(`❌ Error al crear archivo: ${error.message}`);
+  }
+
+}

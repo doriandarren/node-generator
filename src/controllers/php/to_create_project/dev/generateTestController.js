@@ -61,7 +61,7 @@ class TestController extends Controller
      ******************************************/
 
 
-    public function __invokeDISCORR()
+    public function __invokeDISCORD()
     {
 
         // ini_set('memory_limit', '-1');
@@ -97,7 +97,7 @@ class TestController extends Controller
     /**
      * Snappy
      */
-    public function __invokeSnappy()
+    public function __invokeSNAPPY()
     {
         $snappy = new Pdf();
 
@@ -201,7 +201,7 @@ class TestController extends Controller
     /**
      * Read Products
      */
-    public function __invokeEEEWWWW()
+    public function __invokeREADFILE()
     {
 
         $helper = new HelperFile();
@@ -252,7 +252,7 @@ class TestController extends Controller
      *
      * @return void
      */
-    public function __invokeABBB()
+    public function __invokeABILITIES()
     {
 
         // No borrar sirve para actualizar las Abilities de la DB
@@ -261,6 +261,10 @@ class TestController extends Controller
 
         // Recarga las abilidades de los usuarios
         (new BatchReloadDatabaseAbilitiesRepository())->__invoke();
+
+
+        // Solamente para borrar abilities que no existan
+        // (new BatchDeleteAbilityGroupsRepository())->__invoke('prepaid_contract_companies'); // nombre del grupo
 
         echo "OK Bash Abilities";
 
@@ -469,7 +473,7 @@ class TestController extends Controller
      *********************************************************/
 
     // Crear para abstract class UserPermissions
-    public function __invokeABILITIES(Request $request)
+    public function __invokeABILITIESPERMISION(Request $request)
     {
 
         $excludeTable = EnumExcludeTable::EXCLUDE_TABLE;
