@@ -17,10 +17,10 @@ import { generateReactRouter } from "./generateReactRouter.js";
 import { generateReadme } from "./generateReadme.js";
 import { generateRedux } from "./generateRedux.js";
 import { generateStyle } from "./generateStyles.js";
-import { generateTranslate } from "./generateTranslate.js";
 import { generateHelperAllowedPaths } from "./role_permission/generateHelperAllowedPaths.js";
 import { generateHelperBuildAccessibleNav } from "./role_permission/generateHelperBuildAccessibleNav.js";
 import { generateHelperRoleMenuAccess } from "./role_permission/generateHelperRoleMenuAccess.js";
+import { generateTranslate } from "./translate/generateTranslate.js";
 
 
 
