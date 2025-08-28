@@ -62,8 +62,6 @@ export const startProjectPHP = async() => {
 
     //Shared Module
     await generateShared(fullPath);
-    
-
     await generateUtilities(fullPath);
 
    
