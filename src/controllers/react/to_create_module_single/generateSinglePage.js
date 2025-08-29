@@ -58,7 +58,7 @@ import * as yup from "yup";
 import Swal from "sweetalert2";
 import { SessionLayout } from "../../../layouts/private/SessionLayout";
 import { Button } from "../../../components/Buttons/Button";
-import { get${singularPlural} } from "../services/${singularNameCamel}Service";
+import { get${pluralName} } from "../services/${singularNameCamel}Service";
 import { PreloaderButton } from "../../../components/Preloader/PreloaderButton";${booleanImport}${comboboxImport}
 
 export const ${singularName}Page = () => {
@@ -87,7 +87,7 @@ export const ${singularName}Page = () => {
   const onSubmit = async(data) => {
     try {
       setIsLoading(true);
-      const { success } = await get${singularPlural}();
+      const { success } = await get${pluralName}();
 
       if (success) {
         Swal.fire({
