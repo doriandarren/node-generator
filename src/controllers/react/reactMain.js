@@ -1,5 +1,6 @@
 import { clearScreen, menuMain, pause } from "../../helpers/inquirer.js";
-import { startModuleReact } from "./to_create_module/startModuleReact.js";
+import { startModuleReact } from "./to_create_module_crud/startModuleReact.js";
+import { startModuleSingleReact } from "./to_create_module_single/startModuleSingleReact.js";
 import { startProjectReact } from "./to_create_project/startProjectReact.js";
 
 
@@ -13,7 +14,8 @@ export const reactMain = async () => {
 
     opt = await menuMain([
       { name: "Proyecto", value: "proyect" },
-      { name: "Módulo", value: "module" },
+      { name: "Módulo - CRUD", value: "module_crud" },
+      { name: "Módulo - SINGLE", value: "module_single" },
       { name: "Atrás", value: "back" },
     ], 'REACT');
 
@@ -23,8 +25,13 @@ export const reactMain = async () => {
         await startProjectReact();
         break;
 
-      case "module":
+      case "module_crud":
         await startModuleReact();
+        break;
+      
+        
+      case "module_single":
+        await startModuleSingleReact();
         break;
 
       default:

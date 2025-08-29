@@ -1,4 +1,4 @@
-import { generateModuleStandardReact } from '../to_create_module/generateModuleStandardReact.js';
+import { generateModuleStandardReact } from '../to_create_module_crud/generateModuleStandardReact.js';
 
 
 export const generateModules = async(fullPath) => {    
