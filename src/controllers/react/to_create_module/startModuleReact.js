@@ -32,8 +32,8 @@ export const startModuleReact = async() => {
         "Ruta Proyecto:",
         false,
         //"/Users/dorian/ReactProjects/app-1"
-        "/Users/dorian/ReactProjects/office.truckwashvilamalla.eu"
-        // "/Users/milena/Desktop/WorkspaceJS/PROYECTOS/erp.splytin.com"
+        //"/Users/dorian/ReactProjects/office.truckwashvilamalla.eu"
+        "/Users/milena/Desktop/WorkspaceJS/PROYECTOS/erp.splytin.com"
     );
 
     const namespace = await readInput(
