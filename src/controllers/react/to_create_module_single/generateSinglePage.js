@@ -26,7 +26,7 @@ export const generateSinglePage = async(
   columns
 ) => {
   const pagesDir = path.join(fullPath, 'src', 'modules', pluralNameSnake, 'pages');
-  const filePath = path.join(pagesDir, `${singularName}CreatePage.jsx`);
+  const filePath = path.join(pagesDir, `${singularName}Page.jsx`);
 
   createFolder(pagesDir);
 
