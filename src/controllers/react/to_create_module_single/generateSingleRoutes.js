@@ -12,14 +12,12 @@ export const generateSingleRoutes = async(projectPath, singularName, pluralNameS
 
   // Contenido del archivo JSX
   const content = `import { Route, Routes } from "react-router";
-import { ${singularName}Page, ${singularName}CreatePage, ${singularName}EditPage } from "../pages";
+import { ${singularName}Page } from "../pages";
 
 export const ${singularName}Routes = () => {
   return (
     <Routes>
       <Route path="/" element={<${singularName}Page />} />
-      <Route path="create" element={<${singularName}CreatePage />} />
-      <Route path="edit/:id" element={<${singularName}EditPage />} />
     </Routes>
   );
 };
