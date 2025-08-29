@@ -58,10 +58,10 @@ import * as yup from "yup";
 import Swal from "sweetalert2";
 import { SessionLayout } from "../../../layouts/private/SessionLayout";
 import { Button } from "../../../components/Buttons/Button";
-import { create${singularName} } from "../services/${singularNameCamel}Service";
+import { get${singularPlural} } from "../services/${singularNameCamel}Service";
 import { PreloaderButton } from "../../../components/Preloader/PreloaderButton";${booleanImport}${comboboxImport}
 
-export const ${singularName}CreatePage = () => {
+export const ${singularName}Page = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
@@ -87,7 +87,7 @@ export const ${singularName}CreatePage = () => {
   const onSubmit = async(data) => {
     try {
       setIsLoading(true);
-      const { success } = await create${singularName}(data);
+      const { success } = await get${singularPlural}();
 
       if (success) {
         Swal.fire({
@@ -119,16 +119,11 @@ export const ${singularName}CreatePage = () => {
     }
   };
 
-  const onClickCancel = (e) => {
-    e.preventDefault();
-    navigate("/admin/${pluralNameKebab}");
-  };
-
   return (
     <SessionLayout>
       <div>
         <h2 className="text-2xl font-semibold text-gray-700 mb-4">
-          { t("add") }
+          {t("replace")}
         </h2>
       </div>
 
@@ -148,9 +143,6 @@ export const ${singularName}CreatePage = () => {
                 ? <PreloaderButton /> 
                 : t("save")
               }
-            </Button>
-            <Button variant="danger" onClick={onClickCancel}>
-              { t("cancel") }
             </Button>
           </div>
 
