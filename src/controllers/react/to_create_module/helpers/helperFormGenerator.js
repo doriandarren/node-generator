@@ -45,7 +45,7 @@ export const inputFor = (col) => {
   const name = col.name;
   const T = (col.type || "STRING").toUpperCase();
   //const label = `<label className="block text-gray-700">{t("${name}")}</label>`;
-  const errorMsg = `{errors["${name}"] && <p className="text-danger text-sm">{errors["${name}"].message}</p>}`;
+  const errorMsg = `{errors.${name} && <p className="text-danger text-sm">{errors${name}?.message}</p>}`;
   
   const requiredStar = col.allowNull === false ? ' + " *"' : '';
 
@@ -71,7 +71,7 @@ export const inputFor = (col) => {
                   ${setSelectedVar}(item);
                   setValue("${name}", item?.id, { shouldValidate: true });
                 }}
-                error={errors["${name}"]?.message}
+                error={errors.${name}?.message}
                 getLabel={(item) =>
                   \`\${item?.name ?? ""}\`.trim()
                 }
@@ -94,7 +94,7 @@ export const inputFor = (col) => {
                 setEnabled={(value) =>
                   setValue("${name}", value ? 1 : 0, { shouldValidate: true })
                 }
-                error={errors["${name}"]?.message}
+                error={errors.${name}?.message}
               />
               <input type="hidden" {...register("${name}")} />
             </div>`;
