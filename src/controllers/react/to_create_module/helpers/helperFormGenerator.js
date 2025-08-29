@@ -45,7 +45,7 @@ export const inputFor = (col) => {
   const name = col.name;
   const T = (col.type || "STRING").toUpperCase();
   //const label = `<label className="block text-gray-700">{t("${name}")}</label>`;
-  const errorMsg = `{errors.${name} && <p className="text-danger text-sm">{errors${name}?.message}</p>}`;
+  const errorMsg = `{errors.${name} && <p className="text-danger text-sm">{errors.${name}?.message}</p>}`;
   
   const requiredStar = col.allowNull === false ? ' + " *"' : '';
 
