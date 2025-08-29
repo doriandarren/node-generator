@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { createFolder } from '../../../helpers/helperFile.js';
-import { buildInputFields, buildYupSchemaFields } from './helpers/helperFormGenerator.js';
+import { buildInputFields, buildYupSchemaFields } from '../helpers/helperFormGenerator.js';
 import { 
   buildComboboxImport, 
   buildVariables, 
@@ -10,7 +10,7 @@ import {
   buildBooleanImport,
   hasBoolean,
   buildBooleanDefaultValuesProp,
-} from './helpers/helperReactRelations.js';
+} from '../helpers/helperReactRelations.js';
 
 
 export const generateSinglePage = async(

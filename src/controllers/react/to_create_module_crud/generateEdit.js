@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { createFolder } from '../../../helpers/helperFile.js';
 import { pascalToCamelCase } from '../../../helpers/helperString.js';
-import { buildInputFields, buildYupSchemaFields } from './helpers/helperFormGenerator.js';
+import { buildInputFields, buildYupSchemaFields } from '../helpers/helperFormGenerator.js';
 import { 
   buildComboboxImport, 
   buildVariables, 
@@ -11,7 +11,7 @@ import {
   buildBooleanImport,
   hasBoolean,
   buildBooleanEditSetValues,
-} from './helpers/helperReactRelations.js';
+} from '../helpers/helperReactRelations.js';
 
 export const generateEdit = async (
   fullPath, 

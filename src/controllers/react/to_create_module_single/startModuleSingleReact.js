@@ -9,7 +9,6 @@ export const startModuleSingleReact = async() => {
 
      await clearScreen();
 
-    // route list create edit barrel service
 
     const opt = [
         { name: "Route", value: "route", checked: true },
