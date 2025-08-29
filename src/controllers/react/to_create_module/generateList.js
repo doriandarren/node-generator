@@ -24,15 +24,16 @@ export const generateList = async(
     .join('\n');
 
   const content = `import { SessionLayout } from "../../../layouts/private/SessionLayout";
-import { Datatable } from "../../../components/DataTables/DataTable";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { Button } from "../../../components/Buttons/Button";
 import { useEffect, useState } from "react";
-import { delete${singularName}, get${pluralName} } from "../services/${singularFirstCamel}Service";
 import Swal from "sweetalert2";
+import { Datatable } from "../../../components/DataTables/DataTable";
+import { Button } from "../../../components/Buttons/Button";
 import { Toast } from "../../../helpers/helperToast";
 import { Preloader } from "../../../components/Preloader/Preloader";
+import { delete${singularName}, get${pluralName} } from "../services/${singularFirstCamel}Service";
+
 
 export const ${singularName}Page = () => {
   const navigate = useNavigate();

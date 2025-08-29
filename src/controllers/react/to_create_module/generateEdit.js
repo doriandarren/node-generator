@@ -63,12 +63,12 @@ export const generateEdit = async (
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate, useParams } from "react-router-dom";
-import { SessionLayout } from "../../../layouts/private/SessionLayout";
-import { Button } from "../../../components/Buttons/Button";
-import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import Swal from "sweetalert2";
+import { SessionLayout } from "../../../layouts/private/SessionLayout";
+import { Button } from "../../../components/Buttons/Button";
 import { get${singularName}ById, update${singularName} } from "../services/${singularNameCamel}Service";
 import { Preloader } from "../../../components/Preloader/Preloader";
 import { PreloaderButton } from "../../../components/Preloader/PreloaderButton";${booleanImport}${comboboxImport}

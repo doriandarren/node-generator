@@ -51,13 +51,13 @@ export const generateCreate = async(
 
   const content = `import {${ hasInputFK ? ' useEffect, ' : ' '}useState } from "react";
 import { useTranslation } from "react-i18next";
-import { SessionLayout } from "../../../layouts/private/SessionLayout";
-import { Button } from "../../../components/Buttons/Button";
-import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import Swal from "sweetalert2";
+import { SessionLayout } from "../../../layouts/private/SessionLayout";
+import { Button } from "../../../components/Buttons/Button";
 import { create${singularName} } from "../services/${singularNameCamel}Service";
 import { PreloaderButton } from "../../../components/Preloader/PreloaderButton";${booleanImport}${comboboxImport}
 
