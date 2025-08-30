@@ -19,7 +19,7 @@ export const updateEnv = async (fullPath) => {
     // Reemplazar APP_URL por dos líneas
     envContent = envContent.replace(
       /^APP_URL=.*$/m,
-      `APP_URL=http://localhost\nBASE_API_STANDARD=http://api.site.test/api/v1/`
+      `APP_URL=http://localhost\nBASE_API_STANDARD=http://api.site.test/api/v1/\nMESSAGE_CHANNEL=https://discord.com/api/webhooks/1411446452105773107/OJOCYAsBok1-x7N5IUo83BOE00bqmadYWhc8SxiRIAErMj0JHN9yGF_jV-rkKDNOZYRM`
     );
 
     // Reemplazar BASE_API_GLOBALAPP

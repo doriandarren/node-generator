@@ -18,8 +18,6 @@ use stdClass;
 
 class MessageChannel
 {
-    // Discord
-    const URL = 'https://discord.com/api/webhooks/1227264474621411509/pPLiLLoDwTx51Z9s5DBtqYaZ7juMaHZayu-QkJdhTLwCvXZdWT9dmFi85ssHdgMRakA6';
 
     /**
      * @param \$text
@@ -29,6 +27,8 @@ class MessageChannel
      */
     public static function send(\$text, string \$title = 'Title', bool \$isError = false): void
     {
+        \$url = env('MESSAGE_CHANNEL');
+
         \$title .= ' ' . env('APP_NAME') . ' ' . env('APP_ENV');
 
         // Limitar \$text a 500 caracteres
