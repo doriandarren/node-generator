@@ -28,7 +28,7 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
-import { ThemedDatatable } from "../../../components/DataTables/ThemedDataTable";
+import { ThemedDataTable } from "../../../components/DataTables/ThemedDataTable";
 import { ThemedButton } from "../../../components/Buttons/ThemedButton";
 import { Toast } from "../../../helpers/helperToast";
 import { Preloader } from "../../../components/Preloader/Preloader";
@@ -120,7 +120,7 @@ ${dataHeaders}
       {loading ? (
         <Preloader />
       ) : (
-        <ThemedDatatable
+        <ThemedDataTable
           columns={dataHeader}
           data={data}
           editPath="/admin/${pluralNameKebab}"

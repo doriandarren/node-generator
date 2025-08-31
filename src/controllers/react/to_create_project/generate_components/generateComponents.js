@@ -14,6 +14,7 @@ import { generateTooltip } from './generateTooltip.js';
 import { generateInvoiceIcon } from './generateInvoiceIcon.js';
 import { generateEyeOffIcon } from './generateEyeOffIcon.js';
 import { generateEyeOnIcon } from './generateEyeOnIcon.js';
+import { generateDatatable } from './generateDatatable.js';
 
 
 

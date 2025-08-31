@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { createFolder } from '../../../helpers/helperFile.js';
+import { createFolder } from '../../../../helpers/helperFile.js';
 
 
 
@@ -17,7 +17,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { Pencil, Trash2, ChevronUp, ChevronDown, Search } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import { Tooltip } from "../Tooltips/Tooltip";
+import { ThemedTooltip } from "../Tooltips/ThemedTooltip";
 
 export const ThemedDataTable = ({
   columns,
@@ -203,18 +203,18 @@ export const ThemedDataTable = ({
                         <div className="flex flex-wrap justify-center items-center gap-2">
                           {customActions(item)}
                           {editPath && !hasCustomActions(item) && (
-                            <Tooltip text={t("edit")}>
+                            <ThemedTooltip text={t("edit")}>
                               <Link to={\`\${editPath}/edit/\${item.id}\`} onClick={() => onEdit(item.id)} className="p-1 rounded hover:bg-gray-100 transition">
                                 <Pencil className="w-5 h-5 shrink-0 text-primary" />
                               </Link>
-                            </Tooltip>
+                            </ThemedTooltip>
                           )}
                           {typeof onDelete === "function" && (
-                            <Tooltip text={t("delete")}>
+                            <ThemedTooltip text={t("delete")}>
                               <button onClick={() => onDelete(item.id)} className="p-1 rounded hover:bg-gray-100 transition">
                                 <Trash2 className="w-5 h-5 shrink-0 text-danger" />
                               </button>
-                            </Tooltip>
+                            </ThemedTooltip>
                           )}
                         </div>
                       </td>

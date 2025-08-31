@@ -23,7 +23,7 @@ export const PreloaderButton = () => {
 
   try {
     await fs.promises.writeFile(filePath, content);
-    printMessage(`✅ Archivo generado: ${filePath}`, 'green');
+    console.log(`✅ Archivo generado: ${filePath}`.green);
   } catch (e) {
     printMessage(`❌ Error al generar el archivo ${filePath}: ${e}`, 'cyan');
   }
