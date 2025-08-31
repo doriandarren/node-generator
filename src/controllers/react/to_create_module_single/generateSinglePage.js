@@ -57,7 +57,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import Swal from "sweetalert2";
 import { SessionLayout } from "../../../layouts/private/SessionLayout";
-import { Button } from "../../../components/Buttons/Button";
+import { ThemedButton } from "../../../components/Buttons/ThemedButton";
 import { get${pluralName} } from "../services/${singularNameCamel}Service";
 import { PreloaderButton } from "../../../components/Preloader/PreloaderButton";${booleanImport}${comboboxImport}
 
@@ -133,7 +133,7 @@ export const ${singularName}Page = () => {
           ${inputFields}
 
           <div className="col-span-12 flex justify-center items-center mt-7 gap-4 flex-wrap">
-            <Button 
+            <ThemedButton 
               type="submit"
               disabled={isLoading}
               className="w-32 h-10 flex items-center justify-center"
@@ -143,7 +143,7 @@ export const ${singularName}Page = () => {
                 ? <PreloaderButton /> 
                 : t("save")
               }
-            </Button>
+            </ThemedButton>
           </div>
 
         </form>

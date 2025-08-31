@@ -1,6 +1,6 @@
 import { readInput } from "../../../helpers/inquirer.js";
 import { generateImages } from "./generate_images/generateImages.js";
-import { generateComponents } from "./generateComponents.js";
+import { generateComponents } from "./generate_components/generateComponents.js";
 import { generateEnv } from "./generateEnv.js";
 import { generateFolderApi } from "./generateFolderApi.js";
 import { generateGitingore } from "./generateGitignore.js";
@@ -20,7 +20,7 @@ import { generateStyle } from "./generateStyles.js";
 import { generateHelperAllowedPaths } from "./role_permission/generateHelperAllowedPaths.js";
 import { generateHelperBuildAccessibleNav } from "./role_permission/generateHelperBuildAccessibleNav.js";
 import { generateHelperRoleMenuAccess } from "./role_permission/generateHelperRoleMenuAccess.js";
-import { generateTranslate } from "./translate/generateTranslate.js";
+import { generateTranslate } from "./generate_translates/generateTranslate.js";
 
 
 
