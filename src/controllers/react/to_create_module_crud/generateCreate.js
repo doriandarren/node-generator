@@ -57,9 +57,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import Swal from "sweetalert2";
 import { SessionLayout } from "../../../layouts/private/SessionLayout";
-import { Button } from "../../../components/Buttons/Button";
-import { create${singularName} } from "../services/${singularNameCamel}Service";
-import { PreloaderButton } from "../../../components/Preloader/PreloaderButton";${booleanImport}${comboboxImport}
+import { PreloaderButton } from "../../../components/Preloader/PreloaderButton";
+import { ThemedButton } from "../../../components/Buttons/ThemedButton";
+import { create${singularName} } from "../services/${singularNameCamel}Service";${booleanImport}${comboboxImport}
 
 export const ${singularName}CreatePage = () => {
   const { t } = useTranslation();
@@ -138,7 +138,7 @@ export const ${singularName}CreatePage = () => {
           ${inputFields}
 
           <div className="col-span-12 flex justify-center items-center mt-7 gap-4 flex-wrap">
-            <Button 
+            <ThemedButton 
               type="submit"
               disabled={isLoading}
               className="w-32 h-10 flex items-center justify-center"
@@ -148,10 +148,10 @@ export const ${singularName}CreatePage = () => {
                 ? <PreloaderButton /> 
                 : t("save")
               }
-            </Button>
-            <Button variant="danger" onClick={onClickCancel}>
+            </ThemedButton>
+            <ThemedButton variant="danger" onClick={onClickCancel}>
               { t("cancel") }
-            </Button>
+            </ThemedButton>
           </div>
 
         </form>

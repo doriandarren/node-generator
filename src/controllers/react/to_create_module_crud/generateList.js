@@ -28,8 +28,8 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
-import { Datatable } from "../../../components/DataTables/DataTable";
-import { Button } from "../../../components/Buttons/Button";
+import { ThemedDatatable } from "../../../components/DataTables/ThemedDataTable";
+import { ThemedButton } from "../../../components/Buttons/ThemedButton";
 import { Toast } from "../../../helpers/helperToast";
 import { Preloader } from "../../../components/Preloader/Preloader";
 import { delete${singularName}, get${pluralName} } from "../services/${singularFirstCamel}Service";
@@ -110,9 +110,9 @@ ${dataHeaders}
 
         <div className="sm:flex sm:items-center">
           <div className="mt-4 sm:mt-0 sm:flex-none">
-            <Button type="button" onClick={onAddClick}>
+            <ThemedButton type="button" onClick={onAddClick}>
               {t("add")}
-            </Button>
+            </ThemedButton>
           </div>
         </div>
       </div>
@@ -120,7 +120,7 @@ ${dataHeaders}
       {loading ? (
         <Preloader />
       ) : (
-        <Datatable
+        <ThemedDatatable
           columns={dataHeader}
           data={data}
           editPath="/admin/${pluralNameKebab}"
