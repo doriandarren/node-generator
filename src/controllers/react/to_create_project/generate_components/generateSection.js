@@ -15,7 +15,7 @@ export const generateSection = async (fullPath) => {
   // Contenido del componente
   const content = `import classNames from "classnames";
 
-export const Section = ({ title, subtitle, className, children }) => {
+export const ThemedSection = ({ title, subtitle, className, children }) => {
   return (
     <section className={classNames("section", className)}>
       <div className="section__container">

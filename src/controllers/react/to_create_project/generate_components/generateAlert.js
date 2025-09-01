@@ -12,7 +12,7 @@ export const generateAlert = async (fullPath) => {
   const content = `import classNames from "classnames";
 import { getVariantBgClass, getVariantTextClass } from "../../helpers/helperVariantClass";
 
-export const Alert = ({ text, variant = "info", icon = null, className = "" }) => {
+export const ThemedAlert = ({ text, variant = "info", icon = null, className = "" }) => {
   return (
     <div
       role="alert"
