@@ -69,6 +69,7 @@ import * as yup from "yup";
 import Swal from "sweetalert2";
 import { SessionLayout } from "../../../layouts/private/SessionLayout";
 import { ThemedButton } from "../../../components/Buttons/ThemedButton";
+import { ThemedText } from "../../../components/Text/ThemedText";
 import { Preloader } from "../../../components/Preloader/Preloader";
 import { PreloaderButton } from "../../../components/Preloader/PreloaderButton";
 import { get${singularName}ById, update${singularName} } from "../services/${singularNameCamel}Service";${booleanImport}${comboboxImport}
@@ -188,11 +189,8 @@ export const ${singularName}EditPage = () => {
 
   return (
     <SessionLayout>
-      <div>
-        <h2 className="text-2xl font-semibold text-gray-700 mb-4">
-          {t("edit")}
-        </h2>
-      </div>
+      
+      <ThemedText type="h2">{t("edit")}</ThemedText>
 
       <div className="mx-auto p-6 bg-white rounded-lg shadow-lg">
         {dataLoading ? (

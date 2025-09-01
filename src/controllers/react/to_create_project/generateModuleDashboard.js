@@ -59,6 +59,7 @@ const createDashboard = async(fullPath) => {
 
   const content = `import { useTranslation } from "react-i18next";
 import { SessionLayout } from "../../../layouts/private/SessionLayout";
+import { ThemedText } from "../../../components/Text/ThemedText";
 
 import {
   XAxis,
@@ -85,11 +86,8 @@ export const DashboardPage = () => {
 
   return (
     <SessionLayout>
-      <div>
-        <h2 className="text-2xl font-bold text-gray-800 mb-4">
-          { t("dashboard") }
-        </h2>
-      </div>
+      
+      <ThemedText type="h2">{t("dashboard")}</ThemedText>
 
       {/* Contenedor de las 3 Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
@@ -171,7 +169,8 @@ const createProfile = async(fullPath) => {
   const content = `import { useTranslation } from "react-i18next";
 import { SessionLayout } from "../../../layouts/private/SessionLayout";
 import { useState } from "react";
-import { Button } from "../../../components/Buttons/Button";
+import { ThemedButton } from "../../../components/Buttons/ThemedButton";
+import { ThemedText } from "../../../components/Text/ThemedText";
 import { useNavigate } from "react-router-dom";
 
 export const ProfilePage = () => {
@@ -207,9 +206,10 @@ export const ProfilePage = () => {
   return (
     <SessionLayout>
       <div className="max-w-3xl mx-auto mt-10 p-6 bg-white rounded-lg shadow-lg">
-        <h2 className="text-2xl font-semibold text-gray-700 mb-4">
-          {t("add")}
-        </h2>
+        
+        <ThemedText type="h2">{t("profile")}</ThemedText>
+
+
         <form onSubmit={onSubmit} className="space-y-4">
           {/* Nombre */}
           <div>
@@ -268,11 +268,11 @@ export const ProfilePage = () => {
           </div>
 
           {/* Botones */}
-          <div className="flex justify-end gap-4">
-            <Button type="submit">{t("save")}</Button>
-            <Button variant="danger" onClick={onClickCancel}>
+          <div className="flex justify-center items-center gap-4">
+            <ThemedButton type="submit">{t("save")}</ThemedButton>
+            <ThemedButton variant="danger" onClick={onClickCancel}>
               {t("cancel")}
-            </Button>
+            </ThemedButton>
           </div>
         </form>
       </div>

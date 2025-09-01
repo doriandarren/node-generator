@@ -15,6 +15,8 @@ import { generateInvoiceIcon } from './generateInvoiceIcon.js';
 import { generateEyeOffIcon } from './generateEyeOffIcon.js';
 import { generateEyeOnIcon } from './generateEyeOnIcon.js';
 import { generateDatatable } from './generateDatatable.js';
+import { generateText } from './generateText.js';
+import { generateCard } from './generateCard.js';
 
 
 
@@ -63,6 +65,13 @@ export const generateComponents = async(fullPath) => {
   await generateInvoiceIcon(fullPath);
   await generateEyeOffIcon(fullPath);
   await generateEyeOnIcon(fullPath);
+
+  // Text
+  await generateText(fullPath);
+
+
+  // Card
+  await generateCard(fullPath);
 
 
 }

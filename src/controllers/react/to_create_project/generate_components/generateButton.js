@@ -15,7 +15,7 @@ export const generateButton = async(fullPath) => {
   // Contenido del componente Button
   const content = `import classNames from "classnames";
 
-export const Button = ({ children, type = "button", variant = "primary", onClick, className, disabled = false }) => {
+export const ThemedButton = ({ children, type = "button", variant = "primary", onClick, className, disabled = false }) => {
   return (
     <button
       type={type}

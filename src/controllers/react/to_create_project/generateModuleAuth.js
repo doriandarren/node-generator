@@ -76,10 +76,10 @@ const createLogin = async(fullPath) => {
   const content = `import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import ImgLogo from "../../../assets/images/logo.svg";
-import { EyeOffIcon } from "../../../components/Icons/EyeOffIcon";
-import { EyeOnIcon } from "../../../components/Icons/EyeOnIcon";
+import { ThemedEyeOffIcon } from "../../../components/Icons/ThemedEyeOffIcon";
+import { ThemedEyeOnIcon } from "../../../components/Icons/ThemedEyeOnIcon";
 import { useTranslation } from "react-i18next";
-import { Button } from "../../../components/Buttons/Button";
+import { ThemedButton } from "../../../components/Buttons/ThemedButton";
 import { startLoginWithEmailPassword } from "../../../store/auth/thunks";
 import { Toast } from "../../../helpers/helperToast";
 import { PreloaderButton } from "../../../components/Preloader/PreloaderButton";
@@ -169,9 +169,9 @@ export const LoginPage = () => {
                       aria-label="Toggle password visibility"
                     >
                       {showPassword ? (
-                        <EyeOffIcon className="w-5 h-5" />
+                        <ThemedEyeOffIcon className="w-5 h-5" />
                       ) : (
-                        <EyeOnIcon className="w-5 h-5" />
+                        <ThemedEyeOnIcon className="w-5 h-5" />
                       )}
                     </button>
                   </div>
@@ -191,13 +191,13 @@ export const LoginPage = () => {
 
               {/* Botón login */}
               <div className="intro-x mt-5 xl:mt-8 text-center xl:text-left">
-                <Button
+                <ThemedButton
                   type="submit"
                   disabled={status !== "not-authenticated"}
                   className="w-32 h-12 flex items-center justify-center"
                 >
                   {status === "checking" ? <PreloaderButton /> : t("login_page.btn_login")}
-                </Button>
+                </ThemedButton>
               </div>
             </form>
 

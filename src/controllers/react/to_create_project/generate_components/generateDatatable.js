@@ -284,7 +284,7 @@ export const ThemedDataTable = ({
   );
 };
 
-Datatable.propTypes = {
+ThemedDataTable.propTypes = {
   columns: PropTypes.arrayOf(
     PropTypes.shape({
       key: PropTypes.string.isRequired,

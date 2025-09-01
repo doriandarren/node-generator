@@ -30,6 +30,7 @@ import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { ThemedDataTable } from "../../../components/DataTables/ThemedDataTable";
 import { ThemedButton } from "../../../components/Buttons/ThemedButton";
+import { ThemedText } from "../../../components/Text/ThemedText";
 import { Toast } from "../../../helpers/helperToast";
 import { Preloader } from "../../../components/Preloader/Preloader";
 import { delete${singularName}, get${pluralName} } from "../services/${singularFirstCamel}Service";
@@ -104,9 +105,8 @@ ${dataHeaders}
   return (
     <SessionLayout>
       <div className="flex items-center justify-between mb-5">
-        <div className="mt-1">
-          <h2 className="text-2xl font-bold text-gray-800 mb-4">{t("${pluralNameSnake}")}</h2>
-        </div>
+        
+        <ThemedText type="h2">{t("${pluralNameSnake}")}</ThemedText>
 
         <div className="sm:flex sm:items-center">
           <div className="mt-4 sm:mt-0 sm:flex-none">
