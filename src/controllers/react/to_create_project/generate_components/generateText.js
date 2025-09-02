@@ -20,6 +20,7 @@ export const generateText = async(fullPath) => {
 export const ThemedText = ({
   className = "",
   type = "normal",
+  children,
   ...rest
 }) => {
   const baseClasses = "text-gray-700 mb-4";
@@ -35,9 +36,11 @@ export const ThemedText = ({
     <span
       className={[baseClasses, typeClasses[type], className].join(" ")}
       {...rest}
-    />
+    >
+      {children}
+    </span>
   );
-};    
+};   
 `.trimStart();
 
   try {

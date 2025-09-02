@@ -59,6 +59,7 @@ import Swal from "sweetalert2";
 import { SessionLayout } from "../../../layouts/private/SessionLayout";
 import { PreloaderButton } from "../../../components/Preloader/PreloaderButton";
 import { ThemedButton } from "../../../components/Buttons/ThemedButton";
+import { ThemedCard } from "../../../components/Cards/ThemedCard";
 import { ThemedText } from "../../../components/Text/ThemedText";
 import { create${singularName} } from "../services/${singularNameCamel}Service";${booleanImport}${comboboxImport}
 
@@ -130,7 +131,7 @@ export const ${singularName}CreatePage = () => {
       
       <ThemedText type="h2">{t("add")}</ThemedText>
 
-      <div className="mx-auto p-6 bg-white rounded-lg shadow-lg">
+      <ThemedCard>
         <form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-12 gap-6">
 
           ${inputFields}
@@ -153,7 +154,7 @@ export const ${singularName}CreatePage = () => {
           </div>
 
         </form>
-      </div>
+      </ThemedCard>
     </SessionLayout>
   );
 };

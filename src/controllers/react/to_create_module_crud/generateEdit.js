@@ -70,6 +70,7 @@ import Swal from "sweetalert2";
 import { SessionLayout } from "../../../layouts/private/SessionLayout";
 import { ThemedButton } from "../../../components/Buttons/ThemedButton";
 import { ThemedText } from "../../../components/Text/ThemedText";
+import { ThemedCard } from "../../../components/Cards/ThemedCard";
 import { Preloader } from "../../../components/Preloader/Preloader";
 import { PreloaderButton } from "../../../components/Preloader/PreloaderButton";
 import { get${singularName}ById, update${singularName} } from "../services/${singularNameCamel}Service";${booleanImport}${comboboxImport}
@@ -192,7 +193,7 @@ export const ${singularName}EditPage = () => {
       
       <ThemedText type="h2">{t("edit")}</ThemedText>
 
-      <div className="mx-auto p-6 bg-white rounded-lg shadow-lg">
+      <ThemedCard>
         {dataLoading ? (
           <Preloader />
         ) : (
@@ -217,7 +218,7 @@ export const ${singularName}EditPage = () => {
             </div>
           </form>
         )}
-      </div>
+      </ThemedCard>
     </SessionLayout>
   );
 };

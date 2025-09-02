@@ -17,7 +17,22 @@ export const generateCard = async(fullPath) => {
 
     // Code
     const code = `
-    
+export const ThemedCard = ({ className = "", variant = "default", children }) => {
+  const baseClasses = "mx-auto bg-white rounded-lg shadow-lg p-6";
+
+  const variantClasses = {
+    default: "",
+    form: "max-w-4xl",       // para create/edit
+    info: "border border-gray-200",
+    stats: "bg-gradient-to-r from-indigo-500 to-purple-500 text-white",
+  };
+
+  return (
+    <div className={[baseClasses, variantClasses[variant], className].join(" ")}>
+      {children}
+    </div>
+  );
+};
 `.trimStart();
 
   try {
