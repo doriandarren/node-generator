@@ -9,7 +9,7 @@ export const generateModuleDashboard = async(fullPath) => {
     await setupRecharts(fullPath)
     await createRoutes(fullPath)
     await createDashboard(fullPath)
-    await createProfile(fullPath)
+    //await createProfile(fullPath)
 
 }
 

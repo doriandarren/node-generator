@@ -23,16 +23,16 @@ export const generateList = async(
     .map(col => `    { key: "${col}", label: t("${col}") },`)
     .join('\n');
 
-  const content = `import { SessionLayout } from "../../../layouts/private/SessionLayout";
+  const content = `import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
+import { SessionLayout } from "../../../layouts/private/SessionLayout";
+import { Toast } from "../../../helpers/helperToast";
+import { Preloader } from "../../../components/Preloader/Preloader";
 import { ThemedDataTable } from "../../../components/DataTables/ThemedDataTable";
 import { ThemedButton } from "../../../components/Buttons/ThemedButton";
 import { ThemedText } from "../../../components/Text/ThemedText";
-import { Toast } from "../../../helpers/helperToast";
-import { Preloader } from "../../../components/Preloader/Preloader";
 import { delete${singularName}, get${pluralName} } from "../services/${singularFirstCamel}Service";
 
 
