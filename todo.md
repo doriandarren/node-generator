@@ -186,3 +186,26 @@ Columns: summary_date washes_count washes_price_estimated cash_washes_count card
 📄 Table: movement_credit_types - MovementCreditType - MovementCreditTypes
 Columns: name 
  
+
+📄 Table: password_resets - PasswordReset - PasswordResets
+ 
+📄 Table: failed_jobs - FailedJob - FailedJobs
+ 
+📄 Table: personal_access_tokens - PersonalAccessToken - PersonalAccessTokens
+ 
+📄 Table: user_statuses - UserStatus - UserStatuses
+ 
+📄 Table: ability_user - AbilityUser - AbilityUser
+ 
+📄 Table: abilities - Ability - Abilities
+Columns: ability_group_id name label 
+ 
+📄 Table: role_user - RoleUser - RoleUser
+ 
+📄 Table: roles - Role - Roles
+ 
+📄 Table: ability_groups - AbilityGroup - AbilityGroups
+Columns: name 
+ 
+📄 Table: users - User - Users
+Columns: user_status_id name email email_verified_at password remember_token image_url last_session 
