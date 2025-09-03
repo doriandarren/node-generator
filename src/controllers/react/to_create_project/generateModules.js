@@ -11,7 +11,7 @@ export const generateModules = async(fullPath) => {
     'Profile',
     'Profiles',
     [
-      { name: 'user_status_id', type: 'STRING', allowNull: true },
+      { name: 'user_status_id', type: 'fk', allowNull: true },
       { name: 'name', type: 'STRING', allowNull: true },
       { name: 'email', type: 'STRING', allowNull: true },
       { name: 'password', type: 'STRING', allowNull: true },
