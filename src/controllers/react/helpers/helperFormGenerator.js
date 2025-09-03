@@ -63,7 +63,7 @@ export const inputFor = (col) => {
     return `
             {/* ${name} */}
             <div className="col-span-12 md:col-span-6 lg:col-span-6">
-              <CustomCombobox
+              <ThemedCombobox
                 label={t("${base}")${requiredStar}}
                 options={${optionsVar}}
                 selected={${selectedVar}}
@@ -88,7 +88,7 @@ export const inputFor = (col) => {
     return `
             {/* ${name} */}
             <div className="col-span-12 md:col-span-3 lg:col-span-3">
-              <ToggleButton
+              <ThemedToggle
                 <label className="block text-gray-700">{t("${name}")${requiredStar}}</label>
                 enabled={watch("${name}") === 1}
                 setEnabled={(value) =>
