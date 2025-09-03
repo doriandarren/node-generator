@@ -61,7 +61,7 @@ export const buildComboboxImport = (columns = []) => {
 
   const lines = new Set();
   // Import del ComboBox (una sola vez)
-  lines.add(`import CustomCombobox from "../../../components/ComboBoxes/ComboBox";`);
+  lines.add(`import ThemedCombobox from "../../../components/ComboBoxes/ThemedComboBox";`);
 
   // Un import de servicio por cada FK
   fks.forEach(({ name }) => {

@@ -18,7 +18,8 @@ export const updateUserMigration = async (fullPath) => {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_status_id');
-            $table->foreign('user_status_id')->references('id')->on('user_statuses')->onDelete("cascade");`;
+            $table->foreign('user_status_id')->references('id')->on('user_statuses')->onDelete("cascade");
+            $table->string('image_url')->nullable();`;
 
   for (const file of files) {
     const filePath = path.join(migrationsPath, file);

@@ -4,6 +4,38 @@ import { generateModuleStandardReact } from '../to_create_module_crud/generateMo
 export const generateModules = async(fullPath) => {    
 
 
+  // User Status
+  await generateModuleStandardReact(
+    fullPath,
+    [ 'route', 'list', 'create', 'edit', 'barrel', 'service' ],
+    'api',
+    'UserStatus',
+    'UserStatuses',
+    [
+      { name: 'name', type: 'STRING', allowNull: true },
+    ]
+  );
+
+  // User
+  await generateModuleStandardReact(
+    fullPath,
+    [ 'route', 'list', 'create', 'edit', 'barrel', 'service' ],
+    'api',
+    'User',
+    'Users',
+    [
+      { name: 'user_status_id', type: 'fk', allowNull: true },
+      { name: 'name', type: 'STRING', allowNull: true },
+      { name: 'email', type: 'STRING', allowNull: true },
+      { name: 'password', type: 'STRING', allowNull: true },
+      { name: 'email_verfied_at', type: 'STRING', allowNull: true },
+      { name: 'image_url', type: 'STRING', allowNull: true },
+    ]
+  );
+
+
+
+  // Profile (Igual que User la diferencia que el usaurio gestionará algunos datos) 
   await generateModuleStandardReact(
     fullPath,
     [ 'route', 'list', 'create', 'edit', 'barrel', 'service' ],
@@ -11,7 +43,6 @@ export const generateModules = async(fullPath) => {
     'Profile',
     'Profiles',
     [
-      { name: 'user_status_id', type: 'fk', allowNull: true },
       { name: 'name', type: 'STRING', allowNull: true },
       { name: 'email', type: 'STRING', allowNull: true },
       { name: 'password', type: 'STRING', allowNull: true },
@@ -21,6 +52,8 @@ export const generateModules = async(fullPath) => {
 
 
 
+
+  // Teams
   await generateModuleStandardReact(
     fullPath,
     [ 'route', 'list', 'create', 'edit', 'barrel', 'service' ],
@@ -35,6 +68,7 @@ export const generateModules = async(fullPath) => {
 
 
 
+  // System
   await generateModuleStandardReact(
     fullPath,
     [ 'route', 'list', 'create', 'edit', 'barrel', 'service' ],
@@ -49,6 +83,7 @@ export const generateModules = async(fullPath) => {
   );
   
   
+  // Quotes
   await generateModuleStandardReact(
     fullPath,
     [ 'route', 'list', 'create', 'edit', 'barrel', 'service' ],
