@@ -145,8 +145,8 @@ class EnumUserStatus
     const STATUS_ACTIVE_ID = 1;
     const STATUS_INACTIVE_ID = 2;
 
-    const STATUS_ACTIVE_NAME = 'Active';
-    const STATUS_INACTIVE_NAME = 'Inactive';
+    const STATUS_ACTIVE_NAME = 'ACTIVE';
+    const STATUS_INACTIVE_NAME = 'INACTIVE';
 }
 `;
   await createFile(filePath, content);

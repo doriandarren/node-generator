@@ -25,6 +25,7 @@ export const generateShared = async(fullPath) => {
     await createModule(fullPath, 'SHARED', 'RoleUser', 'RoleUsers', 'user_id role_id');                 // role_users
     await createModule(fullPath, 'SHARED', 'Country', 'Countries', 'common_name iso_name code_alpha_2 code_alpha_3 numerical_code phone_code'); // countries
     await createModule(fullPath, 'SHARED', 'UserStatus', 'UserStatuses', 'name');                       // user_statuses
+    await createModule(fullPath, 'SHARED', 'User', 'Users', 'user_status_id:fk name email email_verified_at password remember_token image_url last_session');                       // user_statuses
     
     // all migrations
     await generateAllMigrations(fullPath);
