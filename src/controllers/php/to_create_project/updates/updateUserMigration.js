@@ -19,7 +19,8 @@ export const updateUserMigration = async (fullPath) => {
             $table->id();
             $table->unsignedBigInteger('user_status_id');
             $table->foreign('user_status_id')->references('id')->on('user_statuses')->onDelete("cascade");
-            $table->string('image_url')->nullable();`;
+            $table->string('image_url')->nullable();
+            $table->timestamp('last_session')->nullable();`;
 
   for (const file of files) {
     const filePath = path.join(migrationsPath, file);
