@@ -35,23 +35,6 @@ export const generateModules = async(fullPath) => {
 
 
 
-  // Profile (Igual que User la diferencia que el usaurio gestionará algunos datos) 
-  await generateModuleStandardReact(
-    fullPath,
-    [ 'route', 'list', 'create', 'edit', 'barrel', 'service' ],
-    'api',
-    'Profile',
-    'Profiles',
-    [
-      { name: 'name', type: 'STRING', allowNull: true },
-      { name: 'email', type: 'STRING', allowNull: true },
-      { name: 'password', type: 'STRING', allowNull: true },
-      { name: 'image_url', type: 'STRING', allowNull: true },
-    ]
-  );
-
-
-
 
   // Teams
   await generateModuleStandardReact(

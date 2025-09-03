@@ -7,9 +7,12 @@ splytin_api
 
 # TODOLIST Tareas Pendientes NODE:
 
-- Temas h2 "ThemedText" y repasar los "div" de todos para crear Themed components
+- Revisar PHP al generar el proyecto
+- Revisar REACT al generar el proyecto
 - REACT tema de "perfil" hacer que funcione.
-- PHP generar / virificar de crear un email de prueba. Mail/TestMail y en la vista: test/email_test.blade.php
+
+
+- PHP generar / verificar de crear un email de prueba. Mail/TestMail y en la vista: test/email_test.blade.php
 - Cron y tareas programadas
 - Terminar con la llamada a callGenerate
 
