@@ -17,8 +17,6 @@ export const generateSingleBarrel = async (
   // Contenido del barrel file
   const content = `
 export * from './${singularName}Page';
-export * from './${singularName}CreatePage';
-export * from './${singularName}EditPage';
 `.trimStart();
 
   try {

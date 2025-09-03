@@ -65,7 +65,7 @@ export const SessionLayout = ({ children }) => {
 
   const onProfile = (e) => {
     e.preventDefault();
-    navigate("/admin/profile");
+    navigate("/admin/profiles");
   };
 
   const navigation = [

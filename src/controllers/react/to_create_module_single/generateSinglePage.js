@@ -86,6 +86,11 @@ export const ${singularName}Page = () => {
 
   ${comboboxUseEffect}
 
+  const onClickCancel = (e) => {
+    e.preventDefault();
+    navigate("/admin/dashboard");
+  };
+
   const onSubmit = async(data) => {
     try {
       setIsLoading(true);
@@ -124,7 +129,7 @@ export const ${singularName}Page = () => {
   return (
     <SessionLayout>
       
-      <ThemedText type="h2">{t("replace")}</ThemedText>
+      <ThemedText type="h2">{t("${pluralNameSnake}")}</ThemedText>
 
       <ThemedCard>
         <form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-12 gap-6">
@@ -142,6 +147,9 @@ export const ${singularName}Page = () => {
                 ? <PreloaderButton /> 
                 : t("save")
               }
+            </ThemedButton>
+            <ThemedButton variant="danger" onClick={onClickCancel}>
+              {t("cancel")}
             </ThemedButton>
           </div>
 

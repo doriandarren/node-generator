@@ -69,6 +69,7 @@ import { PrivateRoute } from "./PrivateRoute";
 import { PreloaderMain } from "../components/Preloader/PreloaderMain";
 import { TeamRoutes } from "../modules/teams/routes/TeamRoutes";
 import { UserRoutes } from "../modules/users/routes/UserRoutes";
+import { ProfileRoutes } from "../modules/profiles/routes/ProfileRoutes";
 import { SystemRoutes } from "../modules/systems/routes/SystemRoutes";
 import { QuoteRoutes } from "../modules/quotes/routes/QuoteRoutes";
 
@@ -100,6 +101,7 @@ export const AppRouter = () => {
         <Route path="dashboard/*" element={<DashboardRoutes />} />
         <Route path="users/*" element={<UserRoutes />} />
         <Route path="teams/*" element={<TeamRoutes />} />
+        <Route path="profiles/*" element={<ProfileRoutes />} />
         <Route path="systems/*" element={<SystemRoutes />} />
         <Route path="quotes/*" element={<QuoteRoutes />} />
       </Route>

@@ -1,7 +1,25 @@
 import { generateModuleStandardReact } from '../to_create_module_crud/generateModuleStandardReact.js';
+import { generateModuleSingleReact } from '../to_create_module_single/generateModuleSingleReact.js';
 
 
 export const generateModules = async(fullPath) => {    
+
+
+  // Profile
+  await generateModuleSingleReact(
+    fullPath,
+    [ 'route', 'single_page', 'barrel', 'service' ],
+    'api',
+    'Profile',
+    'Profiles',
+    [
+      { name: 'name', type: 'STRING', allowNull: true },
+      { name: 'email', type: 'STRING', allowNull: true },
+      { name: 'password', type: 'STRING', allowNull: true },
+      { name: 'image_url', type: 'STRING', allowNull: true },
+    ]
+  );
+
 
 
   // User Status
