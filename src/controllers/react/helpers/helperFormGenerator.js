@@ -88,14 +88,14 @@ export const inputFor = (col) => {
     return `
             {/* ${name} */}
             <div className="col-span-12 md:col-span-3 lg:col-span-3">
-              <ThemedToggle>
+              <ThemedToggle
                 label={t("${name}")${requiredStar}}
                 enabled={watch("${name}") === 1}
                 setEnabled={(value) =>
                   setValue("${name}", value ? 1 : 0, { shouldValidate: true })
                 }
                 error={errors.${name}?.message}
-              </ThemedToggle>
+              />
               <input type="hidden" {...register("${name}")} />
             </div>`;
   }
