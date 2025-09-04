@@ -12,15 +12,14 @@ export const generateToggle = async (fullPath) => {
 
   const content = `'use client'
 
-import { Switch } from '@headlessui/react';
+import { Switch } from '@headlessui/react'
 
-export default function ThemedToggle({
+export const ThemedToggle = ({
   label,
   enabled,
   setEnabled,
   error,
-  disabled = false,
-}) {
+}) => {
   return (
     <div>
       {label && (
@@ -29,22 +28,20 @@ export default function ThemedToggle({
       <Switch
         checked={enabled}
         onChange={setEnabled}
-        disabled={disabled} // 👈 pasa aquí la prop
-        className={\`group relative inline-flex h-6 w-11 shrink-0 rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-hidden
-          \${enabled ? 'bg-primary' : 'bg-gray-200'}
-          \${disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}
-        \`}
+        className={\`group relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2 focus:outline-hidden ${
+          enabled ? 'bg-indigo-600' : 'bg-gray-200'
+        }\`}
       >
         <span className="sr-only">{label ?? 'Toggle setting'}</span>
         <span
-          className={\`pointer-events-none relative inline-block size-5 transform rounded-full bg-white ring-0 shadow-sm transition duration-200 ease-in-out \${
+          className={\`pointer-events-none relative inline-block size-5 transform rounded-full bg-white ring-0 shadow-sm transition duration-200 ease-in-out ${
             enabled ? 'translate-x-5' : 'translate-x-0'
           }\`}
         >
           {/* Iconos */}
           <span
             aria-hidden="true"
-            className={\`absolute inset-0 flex size-full items-center justify-center transition-opacity duration-200 ease-in \${
+            className={\`absolute inset-0 flex size-full items-center justify-center transition-opacity duration-200 ease-in ${
               enabled ? 'opacity-0 duration-100 ease-out' : 'opacity-100'
             }\`}
           >
@@ -60,11 +57,11 @@ export default function ThemedToggle({
           </span>
           <span
             aria-hidden="true"
-            className={\`absolute inset-0 flex size-full items-center justify-center transition-opacity duration-200 ease-in \${
+            className={\`absolute inset-0 flex size-full items-center justify-center transition-opacity duration-200 ease-in ${
               enabled ? 'opacity-100' : 'opacity-0'
             }\`}
           >
-            <svg fill="currentColor" viewBox="0 0 12 12" className="size-3 text-primary">
+            <svg fill="currentColor" viewBox="0 0 12 12" className="size-3 text-indigo-600">
               <path d="M3.707 5.293a1 1 0 00-1.414 1.414l1.414-1.414zM5 8l-.707.707a1 1 0 001.414 0L5 8zm4.707-3.293a1 1 0 00-1.414-1.414l1.414 1.414zm-7.414 2l2 2 1.414-1.414-2-2-1.414 1.414zm3.414 2l4-4-1.414-1.414-4 4 1.414 1.414z" />
             </svg>
           </span>

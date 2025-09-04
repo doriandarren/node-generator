@@ -215,7 +215,7 @@ export const hasBoolean = (columns = []) =>
 
 export const buildBooleanImport = (columns = []) =>
   hasBoolean(columns)
-    ? `\nimport ToggleButton from "../../../components/Toggles/ToggleButton";`
+    ? `\nimport { ThemedToggle } from "../../../components/Toggles/ThemedToggle";`
     : "";
 
 
