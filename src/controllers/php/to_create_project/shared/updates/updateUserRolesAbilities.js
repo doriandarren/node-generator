@@ -95,7 +95,7 @@ class UserRolesAbilitiesSeeder extends Seeder
     {
 
         // Create User
-        $userActiveId = UserStatus::where('name', EnumUserStatus::STATUS_ACTIVE_NAME)->first()->id;
+        $userActiveId = UserStatus::where('name', EnumUserStatus::ACTIVE)->first()->id;
 
 
         $user = User::where('email', $email)->first();

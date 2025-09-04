@@ -142,11 +142,14 @@ namespace App\\Enums\\UserStatuses;
 
 class EnumUserStatus
 {
-    const STATUS_ACTIVE_ID = 1;
-    const STATUS_INACTIVE_ID = 2;
+    const ACTIVE_ID = 1;
+    const ACTIVE = 'ACTIVO';
 
-    const STATUS_ACTIVE_NAME = 'ACTIVE';
-    const STATUS_INACTIVE_NAME = 'INACTIVE';
+    const BlOCKED_ID = 2;
+    const BlOCKED = 'BLOQUEADO';
+
+    const INACTIVE_ID = 3;
+    const INACTIVE = 'BAJA';
 }
 `;
   await createFile(filePath, content);
