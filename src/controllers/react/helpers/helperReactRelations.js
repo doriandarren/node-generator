@@ -108,8 +108,10 @@ export const buildComboboxUseEffect = (columns = []) => {
         ${it.setOptions}(${it.optionsVar}Res.data);
         
         // TODO default:
-        // setSelected${it.pascal}(${it.optionsVar}Res.data?.[0] ?? null);
-        // setValue("${it.name}", ${it.optionsVar}Res.data?.[0]?.id, { shouldValidate: true });
+        // const x = ${it.optionsVar}Res.data.find( x => x.id === 64 );
+        // setSelected${it.pascal}(x);
+        // setValue("${it.name}", x?.id, {shouldValidate: true,});
+
       } else {
         Swal.fire({
           title: t("error"),
@@ -190,7 +192,7 @@ export const buildEditFetchPieces = (columns = []) => {
         }`).join("\n");
 
   const fkSelectBlocks = items.map(i => `
-          // name
+          // ${i.name}
           ${i.selectedSetter}(${i.resName}.data?.find(x => x?.id === data.${i.name}) ?? null);`).join("\n");
 
   return { resNames, promiseCalls, fkLoadBlocks, fkSelectBlocks };
