@@ -19,9 +19,18 @@ export const generateList = async(
   createFolder(pagesDir);
 
   const columnNames = columns.map(col => col.name);
+
+
+  // 🔑 función helper para limpiar el sufijo "_id"
+  const cleanName = (name) => name.replace(/_id$/, "");
+
   const dataHeaders = columnNames
-    .map(col => `    { key: "${col}", label: t("${col}") },`)
-    .join('\n');
+    .map(col => {
+      const cleanCol = cleanName(col);
+      return `    { key: "${col}", label: t("${cleanCol}") },`;
+    })
+    .join("\n");
+
 
   const content = `import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
