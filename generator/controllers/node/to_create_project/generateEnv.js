@@ -1,17 +1,21 @@
 import fs from 'fs';
 import path from 'path';
 import { createFolder } from '../../../helpers/helperFile.js';
+import { convertNameProject } from '../../../helpers/helperString.js';
 
 
 
-export const generateEnv = async(fullPath) => {
-    await createEnv(fullPath);
-    await createEnvExample(fullPath);
+export const generateEnv = async(fullPath, projectName) => {
+
+    const projectNameNew = convertNameProject(projectName);
+
+    await createEnv(fullPath, projectNameNew);
+    await createEnvExample(fullPath, projectNameNew);
 }
 
 
 
-const createEnv = async(fullPath) => {    
+const createEnv = async(fullPath, projectName) => {    
 
     // Folder
     const folderPath = path.join(fullPath);
@@ -27,7 +31,7 @@ const createEnv = async(fullPath) => {
     const code = `
 PORT=8080
 DB_HOST=localhost
-DB_DATABASE=node_test
+DB_DATABASE=${projectName}_api
 DB_USER=root
 DB_PASSWORD=123456
 SECRETORPRIVATEKEY=Est03sMyPub1cK3y23@
@@ -39,7 +43,7 @@ SECRETORPRIVATEKEY=Est03sMyPub1cK3y23@
 }
 
 
-const createEnvExample = async(fullPath) => {    
+const createEnvExample = async(fullPath, projectName) => {    
 
     // Folder
     const folderPath = path.join(fullPath,);
@@ -55,7 +59,7 @@ const createEnvExample = async(fullPath) => {
     const code = `
 PORT=8080
 DB_HOST=localhost
-DB_DATABASE=example
+DB_DATABASE=${projectName}_api
 DB_USER=root
 DB_PASSWORD=123456
 SECRETORPRIVATEKEY=ABC1234

@@ -44,7 +44,7 @@ export const startProjectNodeJS = async() => {
     await generateCommandLine(fullPath, projectName);
     await generateReadme(fullPath);
     await generateApp(fullPath);
-    await generateEnv(fullPath);
+    await generateEnv(fullPath, projectName);
     await generateGitignore(fullPath);
     await generateServer(fullPath);
     await generateScripts(fullPath);
