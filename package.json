@@ -1,25 +1,35 @@
 {
-  "name": "generator",
+  "name": "app-1",
   "version": "1.0.0",
   "main": "app.js",
-  "type": "module",
   "scripts": {
-    "dev": "nodemon app.js"
+    "dev": "nodemon app.js",
+    "db:connection": "node src/scripts/dbTestConnection.js",
+    "db:migration": "node src/scripts/dbMigration.js",
+    "db:reset": "node src/scripts/dbReset.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@faker-js/faker": "^10.0.0",
     "adbkit": "^2.11.1",
+    "bcryptjs": "^3.0.2",
     "colors": "^1.4.0",
-    "dotenv": "^16.5.0",
-    "inquirer": "^12.6.0",
-    "mysql2": "^3.14.1",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.2",
+    "express": "^5.1.0",
+    "express-validator": "^7.2.1",
+    "inquirer": "^12.9.4",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^2.0.2",
+    "mysql2": "^3.14.4",
     "ora": "^8.2.0",
     "pluralize": "^8.0.0",
     "sequelize": "^6.37.7",
-    "uuid": "^11.1.0",
+    "uuid": "^12.0.0",
     "xmlbuilder2": "^3.1.1"
-  }
+  },
+  "type": "module"
 }

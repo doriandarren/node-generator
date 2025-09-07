@@ -1,0 +1,1579 @@
+{
+	"info": {
+		"_postman_id": "6cbcf824-8138-4f71-bf36-cc81bd11ffcf",
+		"name": "API",
+		"description": "Api Rest Full para Project\n\nApi URL:\n\n[https://apistaging.globaltank.eu/api/](https://apistaging.globaltank.eu/api/)\n\nEstructura principales de ENDPOINT para la gestión:\n\n- base_url/list\n- base_url/list-paginate\n- base_url/list/paginate?filter=cosoltrans\n- base_url/show/id\n- base_url/store\n- base_url/update\n- base_url/destroy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5599797",
+		"_collection_link": "https://warped-satellite-11290.postman.co/workspace/Splytin~bac4189f-178f-4428-8a25-dabd0d5190ca/collection/5599797-6cbcf824-8138-4f71-bf36-cc81bd11ffcf?action=share&source=collection_link&creator=5599797"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Restore Password",
+					"item": [
+						{
+							"name": "forgot Password",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "email",
+											"value": "doriandarren1@gmail.com",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base_url}}auth/password/email",
+									"host": [
+										"{{base_url}}auth"
+									],
+									"path": [
+										"password",
+										"email"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Restore Password",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "token",
+											"value": "o3T8UOouVBmNYe48QEGgE7AGYycgxHlKA5ySHitAnaGa50bHtVdu57Pp2Kv6",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "pepepe",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base_url}}auth/password/restore",
+									"host": [
+										"{{base_url}}auth"
+									],
+									"path": [
+										"password",
+										"restore"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = JSON.parse(pm.response.text());",
+									"pm.collectionVariables.set(\"token_api\", response.token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "webmaster@globalfleet.es",
+									"description": "Email usuario demo",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "Tailandia2024",
+									"description": "Password de usuario demo",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}auth/login",
+							"host": [
+								"{{base_url}}auth"
+							],
+							"path": [
+								"login"
+							]
+						},
+						"description": "This HTTP POST request is used to authenticate and login a user. The request is sent to the endpoint `{{base_url}}auth/login`.\n\nThe request does not require any specific parameters to be passed in the body or as query parameters.\n\nThe response received after a successful login has a status code of 201. The response body contains the following properties:\n\n- `message`: A string that may contain additional information or a success message.\n- `token`: A string representing the authentication token for the logged-in user.\n- `token_type`: A string representing the type of the authentication token.\n- `success`: A boolean value indicating whether the login was successful or not.\n- `status_code`: An integer representing the status code of the response.\n    \n\nPlease note that the actual values of the `message`, `token`, and `token_type` properties may vary based on the specific implementation of the authentication system.\n\nTo use this endpoint, send an HTTP POST request to `{{base_url}}auth/login` without any request parameters. The response will contain the authentication token if the login is successful.\n\nExample:\n\n```\nPOST {{base_url}}auth/login\n\n ```\n\nResponse:\n\n```\nStatus: 201\n{\n  \"message\": \"\",\n  \"token\": \"\",\n  \"token_type\": \"\",\n  \"success\": true,\n  \"status_code\": 0\n}\n\n ```"
+					},
+					"response": []
+				},
+				{
+					"name": "show",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token_api}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base_url}}auth/user",
+							"host": [
+								"{{base_url}}auth"
+							],
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer  {{token_api}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base_url}}auth/logout",
+							"host": [
+								"{{base_url}}auth"
+							],
+							"path": [
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Dev",
+			"item": [
+				{
+					"name": "Test",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{base_url}}dev/test",
+							"host": [
+								"{{base_url}}dev"
+							],
+							"path": [
+								"test"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "UserStatuses",
+			"item": [
+				{
+					"name": "List",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token_api}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base_url}}user-statuses/list",
+							"host": [
+								"{{base_url}}user-statuses"
+							],
+							"path": [
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token_api}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base_url}}user-statuses/show/1",
+							"host": [
+								"{{base_url}}user-statuses"
+							],
+							"path": [
+								"show",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Store",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token_api}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "New name",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}user-statuses/store",
+							"host": [
+								"{{base_url}}user-statuses"
+							],
+							"path": [
+								"store"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token_api}}"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Update name",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}user-statuses/update/1",
+							"host": [
+								"{{base_url}}user-statuses"
+							],
+							"path": [
+								"update",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token_api}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}user-statuses/delete/1",
+							"host": [
+								"{{base_url}}user-statuses"
+							],
+							"path": [
+								"delete",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Abilities",
+			"item": [
+				{
+					"name": "List",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token_api}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base_url}}abilities/list",
+							"host": [
+								"{{base_url}}abilities"
+							],
+							"path": [
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token_api}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base_url}}abilities/show/1",
+							"host": [
+								"{{base_url}}abilities"
+							],
+							"path": [
+								"show",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Store",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token_api}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "New name",
+									"type": "text"
+								},
+								{
+									"key": "label",
+									"value": "New label",
+									"type": "text"
+								},
+								{
+									"key": "ability_group_id",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}abilities/store",
+							"host": [
+								"{{base_url}}abilities"
+							],
+							"path": [
+								"store"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token_api}}"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Update name",
+									"type": "text"
+								},
+								{
+									"key": "label",
+									"value": "Update label",
+									"type": "text"
+								},
+								{
+									"key": "ability_group_id",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}abilities/update/1",
+							"host": [
+								"{{base_url}}abilities"
+							],
+							"path": [
+								"update",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token_api}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}abilities/delete/1",
+							"host": [
+								"{{base_url}}abilities"
+							],
+							"path": [
+								"delete",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "AbilityGroups",
+			"item": [
+				{
+					"name": "List",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token_api}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base_url}}ability-groups/list",
+							"host": [
+								"{{base_url}}ability-groups"
+							],
+							"path": [
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token_api}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base_url}}ability-groups/show/1",
+							"host": [
+								"{{base_url}}ability-groups"
+							],
+							"path": [
+								"show",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Store",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token_api}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "New name",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}ability-groups/store",
+							"host": [
+								"{{base_url}}ability-groups"
+							],
+							"path": [
+								"store"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token_api}}"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Update name",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}ability-groups/update/1",
+							"host": [
+								"{{base_url}}ability-groups"
+							],
+							"path": [
+								"update",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token_api}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}ability-groups/delete/1",
+							"host": [
+								"{{base_url}}ability-groups"
+							],
+							"path": [
+								"delete",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "AbilityUsers",
+			"item": [
+				{
+					"name": "List",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token_api}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base_url}}ability-users/list",
+							"host": [
+								"{{base_url}}ability-users"
+							],
+							"path": [
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token_api}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base_url}}ability-users/show/1",
+							"host": [
+								"{{base_url}}ability-users"
+							],
+							"path": [
+								"show",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Store",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token_api}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "user_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "ability_id",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}ability-users/store",
+							"host": [
+								"{{base_url}}ability-users"
+							],
+							"path": [
+								"store"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token_api}}"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "user_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "ability_id",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}ability-users/update/1",
+							"host": [
+								"{{base_url}}ability-users"
+							],
+							"path": [
+								"update",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token_api}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}ability-users/delete/1",
+							"host": [
+								"{{base_url}}ability-users"
+							],
+							"path": [
+								"delete",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "RoleUsers",
+			"item": [
+				{
+					"name": "List",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token_api}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base_url}}role-users/list",
+							"host": [
+								"{{base_url}}role-users"
+							],
+							"path": [
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token_api}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base_url}}role-users/show/1",
+							"host": [
+								"{{base_url}}role-users"
+							],
+							"path": [
+								"show",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Store",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token_api}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "role_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "user_id",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}role-users/store",
+							"host": [
+								"{{base_url}}role-users"
+							],
+							"path": [
+								"store"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token_api}}"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "role_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "user_id",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}role-users/update/1",
+							"host": [
+								"{{base_url}}role-users"
+							],
+							"path": [
+								"update",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token_api}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}role-users/delete/1",
+							"host": [
+								"{{base_url}}role-users"
+							],
+							"path": [
+								"delete",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Roles",
+			"item": [
+				{
+					"name": "List",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token_api}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base_url}}roles/list",
+							"host": [
+								"{{base_url}}roles"
+							],
+							"path": [
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token_api}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base_url}}roles/show/1",
+							"host": [
+								"{{base_url}}roles"
+							],
+							"path": [
+								"show",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Store",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token_api}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "New name",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "New description",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}roles/store",
+							"host": [
+								"{{base_url}}roles"
+							],
+							"path": [
+								"store"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token_api}}"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Update name",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Update description",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}roles/update/1",
+							"host": [
+								"{{base_url}}roles"
+							],
+							"path": [
+								"update",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token_api}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}roles/delete/1",
+							"host": [
+								"{{base_url}}roles"
+							],
+							"path": [
+								"delete",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Countries",
+			"item": [
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token_api}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}countries/list",
+							"host": [
+								"{{base_url}}countries"
+							],
+							"path": [
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token_api}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}countries/show/1",
+							"host": [
+								"{{base_url}}countries"
+							],
+							"path": [
+								"show",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Store",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token_api}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "common_name",
+									"value": "New common_name",
+									"type": "text"
+								},
+								{
+									"key": "iso_name",
+									"value": "New iso_name",
+									"type": "text"
+								},
+								{
+									"key": "code_alpha_2",
+									"value": "New code_alpha_2",
+									"type": "text"
+								},
+								{
+									"key": "code_alpha_3",
+									"value": "New code_alpha_3",
+									"type": "text"
+								},
+								{
+									"key": "numerical_code",
+									"value": "New numerical_code",
+									"type": "text"
+								},
+								{
+									"key": "phone_code",
+									"value": "New phone_code",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}countries/store",
+							"host": [
+								"{{base_url}}countries"
+							],
+							"path": [
+								"store"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token_api}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "common_name",
+									"value": "Update common_name",
+									"type": "text"
+								},
+								{
+									"key": "iso_name",
+									"value": "Update iso_name",
+									"type": "text"
+								},
+								{
+									"key": "code_alpha_2",
+									"value": "Update code_alpha_2",
+									"type": "text"
+								},
+								{
+									"key": "code_alpha_3",
+									"value": "Update code_alpha_3",
+									"type": "text"
+								},
+								{
+									"key": "numerical_code",
+									"value": "Update numerical_code",
+									"type": "text"
+								},
+								{
+									"key": "phone_code",
+									"value": "Update phone_code",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}countries/update/1",
+							"host": [
+								"{{base_url}}countries"
+							],
+							"path": [
+								"update",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token_api}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}countries/delete/1",
+							"host": [
+								"{{base_url}}countries"
+							],
+							"path": [
+								"delete",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "https://splytin.com/api/v1/",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"key": "base_url",
+			"value": "https://splytin.com/api/v1/",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"key": "base_url",
+			"value": "http://splytin.test/api/v1/",
+			"type": "string"
+		},
+		{
+			"key": "token_api",
+			"value": ""
+		}
+	]
+}

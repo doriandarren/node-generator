@@ -1,0 +1,184 @@
+{
+    "info": {
+        "_postman_id": "503493b7-da74-4723-a643-0398a22b5b21",
+        "name": "AbilityGroup",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "_exporter_id": "5599797"
+    },
+    "item": [
+        {
+            "name": "AbilityGroups",
+            "item": [
+                {
+                    "name": "List",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token_api}}",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}ability-groups/list",
+                            "host": [
+                                "{{base_url}}ability-groups"
+                            ],
+                            "path": [
+                                "list"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Show",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token_api}}",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}ability-groups/show/1",
+                            "host": [
+                                "{{base_url}}ability-groups"
+                            ],
+                            "path": [
+                                "show",
+                                "1"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Store",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token_api}}",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "formdata",
+                            "formdata": [
+                                {
+                                    "key": "name",
+                                    "value": "New name",
+                                    "type": "text"
+                                }
+                            ]
+                        },
+                        "url": {
+                            "raw": "{{base_url}}ability-groups/store",
+                            "host": [
+                                "{{base_url}}ability-groups"
+                            ],
+                            "path": [
+                                "store"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token_api}}",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "urlencoded",
+                            "urlencoded": [
+                                {
+                                    "key": "name",
+                                    "value": "Update name",
+                                    "type": "text"
+                                }
+                            ]
+                        },
+                        "url": {
+                            "raw": "{{base_url}}ability-groups/update/1",
+                            "host": [
+                                "{{base_url}}ability-groups"
+                            ],
+                            "path": [
+                                "update",
+                                "1"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Delete",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token_api}}",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}ability-groups/delete/1",
+                            "host": [
+                                "{{base_url}}ability-groups"
+                            ],
+                            "path": [
+                                "delete",
+                                "1"
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        }
+    ]
+}

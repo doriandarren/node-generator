@@ -1,4 +1,18 @@
-# Project Generator Code
+# Project TODO
+
+## Run Server
+
+```sh
+
+## Generator
+node cli.js
+
+## Web Service
+npm run dev 
+npm run db:connection           // Test DB connection
+
+```
+
 
 
 ## Installation
@@ -7,48 +21,32 @@
 
 npm init -y
 
-node app.js
+npm i express                           // Express
+npm i express-validator                 // Validator fields
+npm i bcryptjs                          // Encriptar password
+npm i dotenv                            // DotEnv
+npm i cors                              // Cors
+npm install sequelize mysql2            // ORM Sequelize
+npm i jsonwebtoken                      // JSON webtoken
+npm install multer                      // Para parse form-data
 
-```
 
-
-## Packages
-
-```sh
 
 npm i colors                            // Colors
 npm i inquirer                          // Inquirer
 npm install ora                         // Preloader
-npm i dotenv                            // DotEnv
-
-npm install sequelize mysql2            // ORM Sequelize
-npm i jsonwebtoken                      // JSON webtoken
 npm i uuid                              // UUID
-npm install mysql2                      // Para lectura de DB
 npm install pluralize                   // Para convertir String a singular
-
 npm install xmlbuilder2                 // XML
-
-
-
 npm install adbkit                      // Control del movil
 
 
 ```
 
 
-## Run Server
-
-```sh
-
-npm run dev
-npm run db:connection                   // Test DB connection
 
 
-node src/scripts/dbTestConnection.js
-node src/scripts/dbAlter.js
 
-```
 
 
 ## Opcional Handlebars
@@ -60,3 +58,7 @@ Fuente: https://github.com/pillarjs/hbs
 npm install hbs
 
 ```
+
+
+
+

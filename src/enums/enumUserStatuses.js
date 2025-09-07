@@ -1,0 +1,8 @@
+export const EnumUserStatus = {
+  STATUS_ACTIVE_ID: 1,
+  STATUS_INACTIVE_ID: 2,
+
+  STATUS_ACTIVE_NAME: "ACTIVE",
+  STATUS_INACTIVE_NAME: "INACTIVE",
+};
+

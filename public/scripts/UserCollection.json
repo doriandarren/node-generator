@@ -1,0 +1,234 @@
+{
+    "info": {
+        "_postman_id": "49769532-e429-49c8-a374-3c7dc22954e0",
+        "name": "User",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "_exporter_id": "5599797"
+    },
+    "item": [
+        {
+            "name": "Users",
+            "item": [
+                {
+                    "name": "List",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token_api}}",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}users/list",
+                            "host": [
+                                "{{base_url}}users"
+                            ],
+                            "path": [
+                                "list"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Show",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token_api}}",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}users/show/1",
+                            "host": [
+                                "{{base_url}}users"
+                            ],
+                            "path": [
+                                "show",
+                                "1"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Store",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token_api}}",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "formdata",
+                            "formdata": [
+                                {
+                                    "key": "user_status_id",
+                                    "value": "New user_status_id",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "name",
+                                    "value": "New name",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "email",
+                                    "value": "New email",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "email_verified_at",
+                                    "value": "New email_verified_at",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "password",
+                                    "value": "New password",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "image_url",
+                                    "value": "New image_url",
+                                    "type": "text"
+                                }
+                            ]
+                        },
+                        "url": {
+                            "raw": "{{base_url}}users/store",
+                            "host": [
+                                "{{base_url}}users"
+                            ],
+                            "path": [
+                                "store"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token_api}}",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "urlencoded",
+                            "urlencoded": [
+                                {
+                                    "key": "user_status_id",
+                                    "value": "Update user_status_id",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "name",
+                                    "value": "Update name",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "email",
+                                    "value": "Update email",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "email_verified_at",
+                                    "value": "Update email_verified_at",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "password",
+                                    "value": "Update password",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "image_url",
+                                    "value": "Update image_url",
+                                    "type": "text"
+                                }
+                            ]
+                        },
+                        "url": {
+                            "raw": "{{base_url}}users/update/1",
+                            "host": [
+                                "{{base_url}}users"
+                            ],
+                            "path": [
+                                "update",
+                                "1"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Delete",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token_api}}",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}users/delete/1",
+                            "host": [
+                                "{{base_url}}users"
+                            ],
+                            "path": [
+                                "delete",
+                                "1"
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        }
+    ]
+}

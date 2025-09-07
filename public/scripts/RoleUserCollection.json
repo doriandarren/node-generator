@@ -1,0 +1,194 @@
+{
+    "info": {
+        "_postman_id": "981fa633-f56b-4fd4-a827-78487ffc3cc2",
+        "name": "RoleUser",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "_exporter_id": "5599797"
+    },
+    "item": [
+        {
+            "name": "RoleUsers",
+            "item": [
+                {
+                    "name": "List",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token_api}}",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}role-users/list",
+                            "host": [
+                                "{{base_url}}role-users"
+                            ],
+                            "path": [
+                                "list"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Show",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token_api}}",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}role-users/show/1",
+                            "host": [
+                                "{{base_url}}role-users"
+                            ],
+                            "path": [
+                                "show",
+                                "1"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Store",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token_api}}",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "formdata",
+                            "formdata": [
+                                {
+                                    "key": "user_id",
+                                    "value": "New user_id",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "role_id",
+                                    "value": "New role_id",
+                                    "type": "text"
+                                }
+                            ]
+                        },
+                        "url": {
+                            "raw": "{{base_url}}role-users/store",
+                            "host": [
+                                "{{base_url}}role-users"
+                            ],
+                            "path": [
+                                "store"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token_api}}",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "urlencoded",
+                            "urlencoded": [
+                                {
+                                    "key": "user_id",
+                                    "value": "Update user_id",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "role_id",
+                                    "value": "Update role_id",
+                                    "type": "text"
+                                }
+                            ]
+                        },
+                        "url": {
+                            "raw": "{{base_url}}role-users/update/1",
+                            "host": [
+                                "{{base_url}}role-users"
+                            ],
+                            "path": [
+                                "update",
+                                "1"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Delete",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token_api}}",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}role-users/delete/1",
+                            "host": [
+                                "{{base_url}}role-users"
+                            ],
+                            "path": [
+                                "delete",
+                                "1"
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        }
+    ]
+}

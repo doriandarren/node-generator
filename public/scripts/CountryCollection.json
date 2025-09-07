@@ -1,0 +1,234 @@
+{
+    "info": {
+        "_postman_id": "af4970ef-46bc-4c61-9d79-1d5fe60cbdd6",
+        "name": "Country",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "_exporter_id": "5599797"
+    },
+    "item": [
+        {
+            "name": "Countries",
+            "item": [
+                {
+                    "name": "List",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token_api}}",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}countries/list",
+                            "host": [
+                                "{{base_url}}countries"
+                            ],
+                            "path": [
+                                "list"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Show",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token_api}}",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}countries/show/1",
+                            "host": [
+                                "{{base_url}}countries"
+                            ],
+                            "path": [
+                                "show",
+                                "1"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Store",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token_api}}",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "formdata",
+                            "formdata": [
+                                {
+                                    "key": "common_name",
+                                    "value": "New common_name",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "iso_name",
+                                    "value": "New iso_name",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "code_alpha_2",
+                                    "value": "New code_alpha_2",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "code_alpha_3",
+                                    "value": "New code_alpha_3",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "numerical_code",
+                                    "value": "New numerical_code",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "phone_code",
+                                    "value": "New phone_code",
+                                    "type": "text"
+                                }
+                            ]
+                        },
+                        "url": {
+                            "raw": "{{base_url}}countries/store",
+                            "host": [
+                                "{{base_url}}countries"
+                            ],
+                            "path": [
+                                "store"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token_api}}",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "urlencoded",
+                            "urlencoded": [
+                                {
+                                    "key": "common_name",
+                                    "value": "Update common_name",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "iso_name",
+                                    "value": "Update iso_name",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "code_alpha_2",
+                                    "value": "Update code_alpha_2",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "code_alpha_3",
+                                    "value": "Update code_alpha_3",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "numerical_code",
+                                    "value": "Update numerical_code",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "phone_code",
+                                    "value": "Update phone_code",
+                                    "type": "text"
+                                }
+                            ]
+                        },
+                        "url": {
+                            "raw": "{{base_url}}countries/update/1",
+                            "host": [
+                                "{{base_url}}countries"
+                            ],
+                            "path": [
+                                "update",
+                                "1"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Delete",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token_api}}",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}countries/delete/1",
+                            "host": [
+                                "{{base_url}}countries"
+                            ],
+                            "path": [
+                                "delete",
+                                "1"
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        }
+    ]
+}
