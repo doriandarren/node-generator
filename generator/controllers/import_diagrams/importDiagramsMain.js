@@ -13,7 +13,7 @@ export const importDiagramsMain = async () => {
   console.log('    Seleccione un opción IMPORT DIAGRAMS'.white);
   console.log('========================================\n'.green);
 
-  const folderPath = path.join(process.cwd(), 'src', 'assets', 'diagrams');
+  const folderPath = path.join(process.cwd(), 'generator', 'assets', 'diagrams');
 
   // Obtener todos los archivos .xml o .drawio.xml
   const allFiles = fs.readdirSync(folderPath);

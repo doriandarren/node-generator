@@ -14,6 +14,7 @@ export const generateCommandLine = async(fullPath, projectName) => {
     await installSequalize(fullPath);
     await installJsonwebtoken(fullPath);
     await installFaker(fullPath);
+    await installNodemon(fullPath);
 
     await updatePackageJSON(fullPath, projectName);
 
@@ -108,6 +109,17 @@ const installJsonwebtoken = async(fullPath) => {
 const installFaker = async(fullPath) => {
     createFolder(fullPath);
     const cmd = `npm install @faker-js/faker`;
+    await runExec(cmd, fullPath);
+}
+
+
+/**
+ * Install Faker
+ * @param {*} fullPath 
+ */
+const installNodemon = async(fullPath) => {
+    createFolder(fullPath);
+    const cmd = `npm i -D nodemon`;
     await runExec(cmd, fullPath);
 }
 
