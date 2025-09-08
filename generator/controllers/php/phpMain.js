@@ -14,7 +14,7 @@ export const phpMain = async () => {
   do {
     opt = await menuMain([
       { name: "Proyecto", value: "proyect" },
-      { name: "Módulo", value: "module" },
+      { name: "Módulo - CRUD", value: "module_crud" },
       { name: "Módulo - Eliminar", value: "module_delete" },
       { name: "Atrás", value: "back" },
     ], 'PHP');
@@ -24,12 +24,12 @@ export const phpMain = async () => {
         await startProjectPHP();
         break;
 
-      case "module":
+      case "module_crud":
         await startModulePHP();
         break;
       
       case "module_delete":
-        await startModuleDeletePHP();
+        await deleteModulePHP();
         break;
 
       default:
