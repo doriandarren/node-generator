@@ -5,7 +5,7 @@ import { generateEnums } from "./generateEnums.js";
 import { generateFpdfMerge } from "./generateFpdfMerge.js";
 import { generateMaatwebsiteExcel } from "./generateMaatwebsiteExcel.js";
 import { generateModuleAuth } from "./generateModuleAuth.js";
-import { generatePHPCommandLine } from "./generatePHPCommandLine.js";
+import { generateCommandLine } from "./generateCommandLine.js";
 import { generateSnappy } from "./generateSnappy.js";
 import { generateShared } from "./shared/generateShared.js";
 import { generateUtilities } from "./utilities/generateUtilities.js";
@@ -28,11 +28,6 @@ import { generatelTestMail } from "./generateTestEmail.js";
 import { generateTODOFile } from "./generateTODOFile.js";
 
 
-
-
-
-
-
 export const startProjectPHP = async() => {
     
     // Ruta predeterminada
@@ -50,7 +45,7 @@ export const startProjectPHP = async() => {
     const fullPath = `${projectPath}/${projectName}`;
 
     
-    await generatePHPCommandLine(fullPath);
+    await generateCommandLine(fullPath);
     await generateSnappy(fullPath);
     await generateFpdfMerge(fullPath);
     await generateMaatwebsiteExcel(fullPath);

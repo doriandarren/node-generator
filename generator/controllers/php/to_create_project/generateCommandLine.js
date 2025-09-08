@@ -5,7 +5,7 @@ import { printMessage } from '../../../helpers/inquirer.js';
 
 
 
-export const generatePHPCommandLine = async(fullPath) => {    
+export const generateCommandLine = async(fullPath) => {    
 
     await createProject(fullPath);
     await createInstallSanctum(fullPath);

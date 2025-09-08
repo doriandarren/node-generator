@@ -1,8 +1,7 @@
 import inquirer from "inquirer";
 import { clearScreen, pause, readInput } from "../../../helpers/inquirer.js";
-import { generateModuleStandardPHP } from "./generateModuleStandardPHP.js";
 import { parseColumns } from "../../../helpers/helperString.js";
-
+import { generateModuleStandardPHP } from "./generateModuleStandardPHP.js";
 
 
 export const startModulePHP = async () => {
@@ -61,23 +60,8 @@ export const startModulePHP = async () => {
     "name amount description"
   );
 
-
-  // const cleanedInput = inputColumns.replace(/[.,;:]+/g, ' '); // reemplaza comas, puntos, punto y coma, dos puntos por espacio
-
-  // const columns = cleanedInput
-  //   .split(/\s+/) // divide por uno o más espacios
-  //   .filter(Boolean) // elimina vacíos
-  //   .map((col) => ({
-  //     name: col.trim(),
-  //     type: "STRING",
-  //     allowNull: true,
-  //   }));
-
-
   const columns = parseColumns(inputColumns);
   
-
-
   await generateModuleStandardPHP(
     fullPath,
     selectedComponents,

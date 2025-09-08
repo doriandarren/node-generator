@@ -1,11 +1,20 @@
 import { readInput } from "../../../helpers/inquirer.js";
+//import { generateCommandLine } from "./generateCommandLine.js";
 
+export const startProjectReactNative = async () => {
+    // Ruta predeterminada
+    const defaultPath = "/Users/dorian/ReactProjects"; // TODO OPendiente por modificar
 
+    const projectName = await readInput("Nombre del proyecto: ");
+    let projectPath = await readInput(`Ruta para crear el proyecto (por defecto: ${defaultPath}): `, true);
 
+    // Si no se introduce una ruta, usar la predeterminada
+    if (!projectPath) {
+        projectPath = defaultPath;
+    }
 
+    // Combinar la ruta y el nombre del proyecto
+    const fullPath = `projectPath/projectName`;
 
-export const startProjectReactNative = async() => {
-    console.log("Start project....");
-}
-
-
+    //await generateCommandLine(fullPath);
+};

@@ -1,8 +1,4 @@
 import { clearScreen, menuMain, pause } from "../../helpers/inquirer.js";
-import { startModulePHP } from "./to_create_module/startModulePHP.js";
-import { startProjectPHP } from "./to_create_project/startProjectPHP.js";
-
-
 
 export const phpMain = async () => {
   let opt = "";
@@ -38,6 +34,5 @@ export const phpMain = async () => {
 
     await pause();
     
-  } while (opt != "back");ç
-
+  } while (opt != "back");
 };
