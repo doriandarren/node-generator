@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import { clearScreen, exitScreen, menuMain, pause } from "./generator/helpers/inquirer.js";
 import { nodeMain } from './generator/controllers/node/nodeMain.js';
 import { databaseMain } from './generator/controllers/database/databaseMain.js';
@@ -5,8 +6,8 @@ import { phpMain } from './generator/controllers/php/phpMain.js';
 import { reactMain } from './generator/controllers/react/reactMain.js';
 import { exportDiagramsMain } from './generator/controllers/export_diagrams/exportDigramsMain.js';
 import { importDiagramsMain } from './generator/controllers/import_diagrams/importDiagramsMain.js';
-import 'dotenv/config';
 import { aiMain } from "./generator/controllers/ai/aiMain.js";
+import { reactNativeMain } from "./generator/controllers/react_native/reactNativeMain.js";
 
 
 const main = async() => {
@@ -23,6 +24,7 @@ const main = async() => {
             { name: "Export Diagrams", value: "export_diagrams" },
             { name: "Import Diagrams", value: "import_diagrams" },
             { name: "React", value: "react" },
+            { name: "React Native", value: "react_native" },
             { name: "NodeJS", value: "nodejs" },
             { name: "PHP", value: "php" },
             { name: "Ollama", value: "ollama" },
@@ -45,6 +47,10 @@ const main = async() => {
         
             case 'react':
                 await reactMain();
+                break;
+
+            case 'react_native':
+                await reactNativeMain();
                 break;
             
             case 'export_diagrams':

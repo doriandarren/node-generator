@@ -1,6 +1,7 @@
 import { clearScreen, menuMain, pause } from "../../helpers/inquirer.js";
-import { startModuleReactNative } from "./to_create_module_crud/startModuleReactNative";
-import { startProjectReactNative } from "./to_create_project/startProjectReactNative";
+import { startProjectReactNative } from "./to_create_project/startProjectReactNative.js";
+
+//import { startModuleReactNative } from "./to_create_module_crud/startModuleReactNative.js";
 
 
 export const reactNativeMain = async () => {
@@ -22,9 +23,9 @@ export const reactNativeMain = async () => {
         await startProjectReactNative();
         break;
 
-      case "module_crud":
-        await startModuleReactNative();
-        break;
+      // case "module_crud":
+      //   await startModuleReactNative();
+      //   break;
       
         
       default:

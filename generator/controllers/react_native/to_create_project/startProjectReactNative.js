@@ -1,5 +1,5 @@
 import { readInput } from "../../../helpers/inquirer.js";
-//import { generateCommandLine } from "./generateCommandLine.js";
+import { generateCommandLine } from "./generateCommandLine.js";
 
 export const startProjectReactNative = async () => {
     // Ruta predeterminada
@@ -12,9 +12,9 @@ export const startProjectReactNative = async () => {
     if (!projectPath) {
         projectPath = defaultPath;
     }
-
+    
     // Combinar la ruta y el nombre del proyecto
-    const fullPath = `projectPath/projectName`;
+    const fullPath = `${projectPath}/${projectName}`;
 
-    //await generateCommandLine(fullPath);
+    await generateCommandLine(fullPath);
 };
