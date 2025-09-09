@@ -33,12 +33,12 @@ export const ThemedText = ({
   };
 
   return (
-    <span
+    <div
       className={[baseClasses, typeClasses[type], className].join(" ")}
       {...rest}
     >
       {children}
-    </span>
+    </div>
   );
 };   
 `.trimStart();

@@ -23,8 +23,8 @@ export const ThemedAlert = ({ text, variant = "info", icon = null, className = "
         className
       )}
     >
-      {icon && <span className="shrink-0">{icon}</span>}
-      <span>{text}</span>
+      {icon && <span className="shrink-0 text-white">{icon}</span>}
+      <span className="text-white">{text}</span>
     </div>
   );
 };
