@@ -345,15 +345,32 @@ namespace App\\Utilities\\Helpers;
 
 class HelperFile
 {
-    public function createFile(\$path)
+    /**
+     * @param string \$relativePath
+     * @param bool \$inFolderPublic
+     * @return resource
+     */
+    public function createFile(string \$relativePath, bool \$inFolderPublic = true)
     {
-        try {
-            return fopen(public_path(\$path), 'x+');
-        } catch (\\Exception \$e) {
-            echo \$e->getMessage();
-            return null;
+
+        \$basePath = \$inFolderPublic ? public_path() : storage_path('app');
+        \$fullPath = \$basePath . DIRECTORY_SEPARATOR . ltrim(\$relativePath, DIRECTORY_SEPARATOR);
+
+        // Asegurar carpeta
+        \$dir = dirname(\$fullPath);
+        if (!File::exists(\$dir)) {
+            File::makeDirectory(\$dir, 0755, true);
         }
+
+
+        \$fh = @fopen(\$fullPath, 'x+');
+        if (\$fh === false) {
+            throw new \\RuntimeException("No se pudo abrir/crear el archivo: {\$fullPath}");
+        }
+
+        return \$fh;
     }
+
 
     public function createFieldLine(\$str, \$length)
     {
