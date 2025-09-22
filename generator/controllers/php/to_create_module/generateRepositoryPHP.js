@@ -4,6 +4,51 @@ import { createFolder } from '../../../helpers/helperFile.js';
 
 
 
+
+
+/**
+ * Genera bloques PHP de filtros LIKE a partir de columns[]
+ * @param {Array<{name:string,type?:string,allowNull?:boolean}>} columns
+ * @returns {string} Código PHP concatenado con los filtros
+ */
+export const buildPhpLikeFilters = (columns = []) => {
+  // 1) Extraer y limpiar nombres (quita sufijos como ":fk")
+  const names = [...new Set(
+    columns
+      .map(c => (typeof c === 'string' ? c : c?.name))
+      .filter(Boolean)
+      .map(n => String(n).split(':')[0].trim())
+  )];
+
+  // 2) Construir bloques PHP estilo:
+  // // Filtro por plate
+  // if (!empty($filters['plate'])) {
+  //     $plate = trim($filters['plate']);
+  //     $q->where('plate', 'LIKE', '%' . $plate . '%');
+  // }
+  const blocks = names.map((name) => {
+    const label = name.replace(/_/g, ' '); // Comentario legible
+    return (
+`        // Filter by ${label}
+        if (!empty($filters['${name}'])) {
+            $${name} = trim($filters['${name}']);
+            $q->where('${name}', 'LIKE', '%' . $${name} . '%');
+        }`
+    );
+  });
+
+  return blocks.join('\n\n');
+};
+
+
+
+
+
+
+
+
+
+
 export const generateRepositoryPHP = async (
   fullPath,
   namespace,
@@ -17,6 +62,8 @@ export const generateRepositoryPHP = async (
   pluralNameCamel,
   columns
 ) => {
+
+
   // Carpeta: app/Repositories/{pluralName}
   const folderPath = path.join(fullPath, 'app', 'Repositories', pluralName);
   const filePath = path.join(folderPath, `${singularName}Repository.php`);
@@ -64,9 +111,15 @@ class ${singularName}Repository
     */
     public function list(): mixed
     {
-        return ${singularName}::latest()
-                            ->limit(EnumApiSetup::QUERY_LIMIT)
-                            ->get();
+
+        $q = ${singularName}::with(self::WITH);
+
+${buildPhpLikeFilters(columns)}
+
+        return $q->latest()
+            ->limit(EnumApiSetup::QUERY_LIMIT)
+            ->get();
+        
     }
     
     
@@ -76,9 +129,13 @@ class ${singularName}Repository
     */
     public function listByRoleManager(): mixed
     {
-        return ${singularName}::latest()
-                            ->limit(EnumApiSetup::QUERY_LIMIT)
-                            ->get();
+        $q = ${singularName}::with(self::WITH);
+
+${buildPhpLikeFilters(columns)}
+
+        return $q->latest()
+            ->limit(EnumApiSetup::QUERY_LIMIT)
+            ->get();
     }
     
     
@@ -88,9 +145,14 @@ class ${singularName}Repository
     */
     public function listByRoleUser(): mixed
     {
-        return ${singularName}::latest()
-                            ->limit(EnumApiSetup::QUERY_LIMIT)
-                            ->get();
+        $q = ${singularName}::with(self::WITH);
+
+${buildPhpLikeFilters(columns)}
+
+        return $q->latest()
+            ->limit(EnumApiSetup::QUERY_LIMIT)
+            ->get();
+            
     }
 
 
