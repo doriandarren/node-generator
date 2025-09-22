@@ -4,7 +4,7 @@ import { createFolder } from '../../../helpers/helperFile.js';
 
 
 export const generateControllerListPHP = async (
-   fullPath,
+  fullPath,
   namespace,
   singularName,
   pluralName,
@@ -24,7 +24,17 @@ export const generateControllerListPHP = async (
 
   createFolder(folderPath);
 
+
+  // Generar bloque de filtros desde columns
+  const filterLines =
+    (Array.isArray(columns) ? columns : [])
+      .filter(Boolean)
+      .map((name) => `            '${name}' => $request->query('${name}'),`)
+      .join('\n');
+
   
+
+
   const code = `<?php
 
 namespace App\\Http\\Controllers\\${namespace}\\${pluralName};
@@ -51,12 +61,19 @@ class ${singularName}ListController extends Controller
     */
     public function __invoke(Request \$request): JsonResponse
     {
+       \\$filters = [
+${filterLines}
+            // opcional paginación:
+            'per_page' => \\$request->integer('per_page'), // ej. 25
+        ];
+
+
         if (\$this->isAdmin(auth()->user()->roles)) {
-            \$data = \$this->repository->list();
+            \$data = \$this->repository->list(\\$filters);
         } elseif (\$this->isManager(auth()->user()->roles)) {
-            \$data = \$this->repository->listByRoleManager();
+            \$data = \$this->repository->listByRoleManager(\\$filters);
         } else {
-            \$data = \$this->repository->listByRoleUser();
+            \$data = \$this->repository->listByRoleUser(\\$filters);
         }
         
         return \$this->respondWithData('${pluralName} list', \$data);
