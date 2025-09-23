@@ -1,48 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { createFolder } from '../../../helpers/helperFile.js';
-
-
-
-
-
-/**
- * Genera bloques PHP de filtros LIKE a partir de columns[]
- * @param {Array<{name:string,type?:string,allowNull?:boolean}>} columns
- * @returns {string} Código PHP concatenado con los filtros
- */
-export const buildPhpLikeFilters = (columns = []) => {
-  // 1) Extraer y limpiar nombres (quita sufijos como ":fk")
-  const names = [...new Set(
-    columns
-      .map(c => (typeof c === 'string' ? c : c?.name))
-      .filter(Boolean)
-      .map(n => String(n).split(':')[0].trim())
-  )];
-
-  // 2) Construir bloques PHP estilo:
-  // // Filtro por plate
-  // if (!empty($filters['plate'])) {
-  //     $plate = trim($filters['plate']);
-  //     $q->where('plate', 'LIKE', '%' . $plate . '%');
-  // }
-  const blocks = names.map((name) => {
-    const label = name.replace(/_/g, ' '); // Comentario legible
-    return (
-`        // Filter by ${label}
-        if (!empty($filters['${name}'])) {
-            $${name} = trim($filters['${name}']);
-            $q->where('${name}', 'LIKE', '%' . $${name} . '%');
-        }`
-    );
-  });
-
-  return blocks.join('\n\n');
-};
-
-
-
-
+import { buildPhpLikeFilters, buildUpdateAssignments } from '../helpers/helperPHPRepository.js';
 
 
 
@@ -77,13 +36,6 @@ export const generateRepositoryPHP = async (
     `        $model->${col} = $data->${col};`
   ).join('\n');
 
-  const updateAssignments = columnNames.map(col =>
-    `        if (isset($payload->${col})) {
-            if ($payload->${col} != '' && !empty($payload->${col})) {
-                $model->${col} = $payload->${col};
-            }
-        }`
-  ).join('\n\n');
 
   const setParams = columnNames.map(col => `\n        $${col},`).join('');
 
@@ -92,6 +44,41 @@ export const generateRepositoryPHP = async (
   ).join('\n');
 
   const paramDoc = columnNames.map(col => `    * @param $${col}`).join('\n');
+
+
+
+
+  // columns puede ser: ["name","amount","..."] o
+  // [{ name: "has_active", type: "BOOLEAN" }, ...]
+  const toName = (c) => (typeof c === "string" ? c : c.name);
+  const toType = (c) => (typeof c === "string" ? "" : String(c.type || "").toUpperCase());
+
+  const updateAssignments = columns
+    .map((col) => {
+      const name = toName(col);
+      const type = toType(col);
+
+      if (type === "BOOLEAN") {
+        // para booleans: conserva false/null -> no uses isset/empty
+        return `        if (property_exists($payload, '${name}')) {
+            $model->${name} = $payload->${name};
+        }`;
+      }
+
+      // default (tu lógica actual)
+      return `        if (isset($payload->${name})) {
+            if ($payload->${name} != '' && !empty($payload->${name})) {
+                $model->${name} = $payload->${name};
+            }
+        }`;
+    })
+    .join("\n\n");
+
+
+
+
+
+
 
   // Contenido del archivo PHP
   const code = `<?php
