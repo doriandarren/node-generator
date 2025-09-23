@@ -33,11 +33,11 @@ export const generateControllerStorePHP = async (
 
   // Reglas de validación
   const validations = columns.map(col =>
-    `                '${col.name}'=>'required',`
+    `                '${col.name}' => 'required',`
   ).join('\n');
 
   // Parámetros para el set
-  const parameters = columns.map(col => `$request->${col.name}`).join(', ');
+  const parameters = columns.map(col => `\n                $request->${col.name},`).join('');
 
   // Contenido del archivo
   const code = `<?php
@@ -77,8 +77,11 @@ ${validations}
                 return $this->respondWithError('Error', $validator->errors());
             }
 
-            $${singularNameCamel} = $this->repository->set${singularName}(${parameters});
+            $${singularNameCamel} = $this->repository->set${singularName}(${parameters}
+            );
+
             $data = $this->repository->store($${singularNameCamel});
+            
             return $this->respondWithData('${singularName} created', $data);
 
         } else if ($this->isManager(auth()->user()->roles)) {
@@ -90,8 +93,11 @@ ${validations}
                 return $this->respondWithError('Error', $validator->errors());
             }
 
-            $${singularNameCamel} = $this->repository->set${singularName}(${parameters});
+            $${singularNameCamel} = $this->repository->set${singularName}(${parameters}
+            );
+
             $data = $this->repository->store($${singularNameCamel});
+
             return $this->respondWithData('${singularName} created', $data);
 
         } else {
@@ -103,9 +109,13 @@ ${validations}
                 return $this->respondWithError('Error', $validator->errors());
             }
 
-            $${singularNameCamel} = $this->repository->set${singularName}(${parameters});
+            $${singularNameCamel} = $this->repository->set${singularName}(${parameters}
+            );
+
             $data = $this->repository->store($${singularNameCamel});
+
             return $this->respondWithData('${singularName} created', $data);
+            
         }
     }
 }

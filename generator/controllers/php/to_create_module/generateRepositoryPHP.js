@@ -74,21 +74,21 @@ export const generateRepositoryPHP = async (
   const columnNames = columns.map(col => col.name);
 
   const storeAssignments = columnNames.map(col =>
-    `        $objNew->${col} = $data->${col};`
+    `        $model->${col} = $data->${col};`
   ).join('\n');
 
   const updateAssignments = columnNames.map(col =>
-    `        if (isset($obj->${col})) {
-            if ($obj->${col} != '' && !empty($obj->${col})) {
-                $objOld->${col} = $obj->${col};
+    `        if (isset($payload->${col})) {
+            if ($payload->${col} != '' && !empty($payload->${col})) {
+                $model->${col} = $payload->${col};
             }
         }`
   ).join('\n\n');
 
-  const setParams = columnNames.map(col => `$${col}`).join(', ');
+  const setParams = columnNames.map(col => `\n        $${col},`).join('');
 
   const setAssignments = columnNames.map(col =>
-    `        $obj->${col} = $${col};`
+    `        $model->${col} = $${col};`
   ).join('\n');
 
   const paramDoc = columnNames.map(col => `    * @param $${col}`).join('\n');
@@ -107,9 +107,10 @@ class ${singularName}Repository
 
     /**
     * List by Admin
+    * @param $filters
     * @return mixed
     */
-    public function list(): mixed
+    public function list($filters): mixed
     {
 
         $q = ${singularName}::with(self::WITH);
@@ -125,9 +126,10 @@ ${buildPhpLikeFilters(columns)}
     
     /**
     * List by Manager
+    * @param $filters
     * @return mixed
     */
-    public function listByRoleManager(): mixed
+    public function listByRoleManager($filters): mixed
     {
         $q = ${singularName}::with(self::WITH);
 
@@ -141,9 +143,10 @@ ${buildPhpLikeFilters(columns)}
     
     /**
     * List by User
+    * @param $filters
     * @return mixed
     */
-    public function listByRoleUser(): mixed
+    public function listByRoleUser($filters): mixed
     {
         $q = ${singularName}::with(self::WITH);
 
@@ -199,10 +202,10 @@ ${buildPhpLikeFilters(columns)}
     */
     public function store($data): ${singularName}
     {
-        $objNew = new ${singularName}();
+        $model = new ${singularName}();
 ${storeAssignments}
-        $objNew->save();
-        return $objNew;
+        $model->save();
+        return $model;
     }
     
 
@@ -214,18 +217,14 @@ ${storeAssignments}
     */
     public function update($id, $data): mixed
     {
-        if (is_array($data)) {
-            $obj = json_decode(json_encode($data), FALSE);
-        } else {
-            $obj = $data;
-        }
+        $payload = is_array($data) ? json_decode(json_encode($data), FALSE) : $data;
         
-        $objOld = ${singularName}::where('id', $id)->first();
+        $model = ${singularName}::where('id', $id)->first();
 
 ${updateAssignments}
 
-        $objOld->save();
-        return $objOld;
+        $model->save();
+        return $model;
     }
 
 
@@ -236,8 +235,8 @@ ${updateAssignments}
     */
     public function destroy($id): bool
     {
-        $obj = ${singularName}::find($id);
-        $obj->delete();
+        $model = ${singularName}::find($id);
+        $model->delete();
         return true;
     }
 
@@ -247,11 +246,12 @@ ${updateAssignments}
 ${paramDoc}
     * @return ${singularName}
     */
-    public function set${singularName}(${setParams}): ${singularName}
+    public function set${singularName}(${setParams}
+    ): ${singularName}
     {
-        $obj = new ${singularName}();
+        $model = new ${singularName}();
 ${setAssignments}
-        return $obj;
+        return $model;
     }
 }
 `.trimStart();
