@@ -1,6 +1,8 @@
 import fs from 'fs';
 import path from 'path';
 import { createFolder } from '../../../helpers/helperFile.js';
+import { buildPHPRelations } from '../helpers/helperPHPRelations.js';
+
 
 export const generateModelPHP = async (
   fullPath,
@@ -15,6 +17,9 @@ export const generateModelPHP = async (
   pluralNameCamel,
   columns
 ) => {
+
+
+
   // Carpeta: app/Models/{pluralName}
   const folderPath = path.join(fullPath, 'app', 'Models', pluralName);
   const filePath = path.join(folderPath, `${singularName}.php`);
@@ -22,18 +27,30 @@ export const generateModelPHP = async (
   // Crear carpeta si no existe
   createFolder(folderPath);
 
+
+
+
+  const phpMethods = await buildPHPRelations(columns);
+
+
+  const belongsToImport =
+  phpMethods.trim().length > 0
+    ? `\nuse Illuminate\\Database\\Eloquent\\Relations\\BelongsTo;`
+    : '';
+
+
+
   // Contenido del archivo
   const code = `<?php
 
 namespace App\\Models\\${pluralName};
 
-use Illuminate\\Database\\Eloquent\\Factories\\HasFactory;
+use Illuminate\\Database\\Eloquent\\Factories\\HasFactory;${belongsToImport}
 use Illuminate\\Database\\Eloquent\\Model;
 
 class ${singularName} extends Model
 {
     use HasFactory;
-
     // use SoftDeletes;
 
     protected \$connection = 'api';
@@ -48,6 +65,10 @@ class ${singularName} extends Model
 //    {
 //        return $this->hasMany(ClassRelacion::class, 'classrelacion_id', 'id');
 //    }
+
+    ${phpMethods}
+
+
 }
 `.trimStart();
 

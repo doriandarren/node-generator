@@ -57,7 +57,7 @@ export const startModulePHP = async () => {
   const inputColumns = await readInput(
     "Columnas (separadas por espacio): ",
     false,
-    "name amount description"
+    "customer_id:fk name:string amount description has_active:boolean"
   );
 
   const columns = parseColumns(inputColumns);
