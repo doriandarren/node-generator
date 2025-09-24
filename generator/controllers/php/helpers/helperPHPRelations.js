@@ -35,7 +35,7 @@ export const buildPHPRelations = async (columns = []) => {
       const related = toPascal(base);       // "CustomerStatus"
       return `
     /**
-     * @return \\Illuminate\\Database\\Eloquent\\Relations\\BelongsTo
+     * @return BelongsTo
      */
     public function ${method}(): BelongsTo
     {

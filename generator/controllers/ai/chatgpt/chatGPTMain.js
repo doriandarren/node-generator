@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import fs from 'fs';
 import path from 'path';
 //import { createFolder } from '../../../helpers/helperFile.js';
@@ -15,11 +16,11 @@ export const chatGPTMain = async() => {
 
     
     const response = await client.responses.create({
-        model: "gpt-4",
-        message: [{role: "user", content: "Hola, ¿cómo estás?"}],
+        model: "gpt-4.1-mini",
+        input: "Hola, ¿cómo estás?",
     });
-    
-    console.log(response.choices[0].message.content);
+
+    console.log(response.output_text);
 
 
 }
