@@ -97,6 +97,7 @@ export const generateLocaleES = async(fullPath) => {
   "show": "Mostrar",
   "no_results_found": "No se encontraron resultados.",
   "loading": "Cargando...",
+  "clear_filters": "Limpiar",
   "save": "Guardar",
   "add": "Nuevo",
   "edit": "Editar",
