@@ -94,10 +94,10 @@ class ${singularName}Repository
 
     /**
     * List by Admin
-    * @param $filters
+    * @param array $filters
     * @return mixed
     */
-    public function list($filters): mixed
+    public function list(array $filters = []): mixed
     {
 
         $q = ${singularName}::with(self::WITH);
@@ -113,10 +113,10 @@ ${buildPhpLikeFilters(columns)}
     
     /**
     * List by Manager
-    * @param $filters
+    * @param array $filters
     * @return mixed
     */
-    public function listByRoleManager($filters): mixed
+    public function listByRoleManager(array $filters = []): mixed
     {
         $q = ${singularName}::with(self::WITH);
 
@@ -130,10 +130,10 @@ ${buildPhpLikeFilters(columns)}
     
     /**
     * List by User
-    * @param $filters
+    * @param array $filters
     * @return mixed
     */
-    public function listByRoleUser($filters): mixed
+    public function listByRoleUser(array $filters = []): mixed
     {
         $q = ${singularName}::with(self::WITH);
 
