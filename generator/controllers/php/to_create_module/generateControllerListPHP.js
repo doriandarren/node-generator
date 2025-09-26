@@ -67,12 +67,13 @@ ${filterLines}
             'per_page' => \\$request->integer('per_page'), // ej. 25
         ];
 
+        $data = [];
 
         if (\$this->isAdmin(auth()->user()->roles)) {
             \$data = \$this->repository->list(\\$filters);
         } elseif (\$this->isManager(auth()->user()->roles)) {
             \$data = \$this->repository->listByRoleManager(\\$filters);
-        } else {
+        } elseif (\$this->isUser(auth()->user()->roles))  {
             \$data = \$this->repository->listByRoleUser(\\$filters);
         }
         
