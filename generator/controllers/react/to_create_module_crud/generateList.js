@@ -79,7 +79,7 @@ export const ${singularName}Page = () => {
 
   const resetFilters = useCallback(() => {
 ${resetFiltersBody}
-});
+  }, []);
 
   const dataHeader = [
 ${dataHeaders}

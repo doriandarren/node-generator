@@ -10,6 +10,7 @@ export const generateHelpers = async(fullPath) => {
     await createToast(fullPath);
     await createVariantClass(fullPath);
     await createHelperDate(fullPath);
+    await createhelperURL(fullPath);
 }
 
 
@@ -310,4 +311,48 @@ export function formatDateTimeToDDMMYYYYHHmm(dateStr) {
     console.error(`❌ Error al crear archivo: ${error.message}`);
   }
 
+}
+
+
+
+const createhelperURL = async (fullPath) => {
+  const helpersDir = path.join(fullPath, 'src', 'helpers');
+  const filePath = path.join(helpersDir, 'helperURL.js');
+
+  // Crear carpeta si no existe
+  createFolder(helpersDir);
+
+  const content = `
+// utils/url.js
+/**
+ * Crea el query string ignorando valores vacíos (null/undefined/"").
+ */
+export const buildQuery = (filters = {}, allowed = []) => {
+  const qs = new URLSearchParams();
+  const keys = allowed.length ? allowed : Object.keys(filters);
+
+  for (const k of keys) {
+    const v = filters[k];
+    if (v !== undefined && v !== null) {
+      const s = String(v).trim();
+      if (s !== "") qs.set(k, s);
+    }
+  }
+  const s = qs.toString();
+  return s ? \`?${s}\` : "";
+};
+
+/**
+ * Devuelve basePath + query ya montado.
+ */
+export const buildURL = (basePath, filters = {}, allowed = []) =>
+  \`${basePath}${buildQuery(filters, allowed)}\`;
+`;
+
+  try {
+    fs.writeFileSync(filePath, content, 'utf-8');
+    printMessage(`✅ Archivo generado: ${filePath}`, 'green');
+  } catch (error) {
+    printMessage(`❌ Error al generar el archivo ${filePath}: ${error.message}`, 'red');
+  }
 }

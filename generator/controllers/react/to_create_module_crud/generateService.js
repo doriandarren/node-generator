@@ -24,11 +24,12 @@ export const generateService = async (
   // Contenido del servicio
   const content = `
 import { api } from "../../../api/api";
+import { buildURL } from "../../../helpers/helperURL";
 
 /**
  * List
  */
-export const get${pluralName} = async () => {
+export const get${pluralName} = async (filters = {}) => {
   try {
     const token = localStorage.getItem("token_${projectName}");
     if (!token) {
@@ -36,7 +37,9 @@ export const get${pluralName} = async () => {
       return [];
     }
 
-    const response = await api("${pluralNameKebab}/list", "GET", null, token);
+    const url = buildURL("${pluralNameKebab}/list", filters);
+
+    const response = await api(url, "GET", null, token);
 
     if (!response || typeof response !== "object") {
       console.error("Respuesta no válida de la API:", response);
