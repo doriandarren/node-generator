@@ -1,15 +1,12 @@
-import fs from 'fs';
-import path from 'path';
-import { createFolder } from '../../../../helpers/helperFile.js';
-
-
-
+import fs from "fs";
+import path from "path";
+import { createFolder } from "../../../../helpers/helperFile.js";
 
 export const generateDatatable = async (fullPath) => {
-  const datatableDir = path.join(fullPath, 'src', 'components', 'DataTables');
+  const datatableDir = path.join(fullPath, "src", "components", "DataTables");
   createFolder(datatableDir);
 
-  const filePath = path.join(datatableDir, 'ThemedDataTable.jsx');
+  const filePath = path.join(datatableDir, "ThemedDataTable.jsx");
 
   const content = `import { useEffect, useState } from "react";
 import classNames from "classnames";
@@ -134,7 +131,7 @@ export const ThemedDataTable = ({
         </div>
       )}
 
-      <div className="overflow-x-auto rounded-xl">
+      <div className="overflow-x-auto rounded-t-xl">
         <table className="min-w-full w-full table-fixed divide-y divide-gray-300">
           <thead className="bg-primary">
             <tr>
@@ -306,6 +303,8 @@ ThemedDataTable.propTypes = {
     fs.writeFileSync(filePath, content);
     console.log(`✅ Archivo generado: ${filePath}`.green);
   } catch (error) {
-    console.error(`❌ Error al generar el archivo ${filePath}: ${error.message}`);
+    console.error(
+      `❌ Error al generar el archivo ${filePath}: ${error.message}`
+    );
   }
-}
+};
