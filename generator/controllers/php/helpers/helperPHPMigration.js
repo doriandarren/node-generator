@@ -41,7 +41,7 @@ export const normalizeColumns = (columns = []) =>
         allowNull:
           c?.allowNull === undefined ? true : Boolean(c.allowNull),
         length: c?.length ?? undefined,              // para STRING
-        precision: c?.precision ?? 10,               // DECIMAL/FLOAT/DOUBLE
+        precision: c?.precision ?? 13,               // DECIMAL/FLOAT/DOUBLE
         scale: c?.scale ?? 2,                        // DECIMAL/FLOAT/DOUBLE
         unsigned: Boolean(c?.unsigned),              // numéricos
         default: c?.default,                         // valor por defecto (auto-render)
@@ -118,17 +118,17 @@ const buildNonFkColumnLine = (c) => {
     return `${indent}$table->tinyInteger('${name}')${numMods};`;
   }
   if (t === "DECIMAL" || t === "NUMERIC") {
-    const p = Number(c.precision ?? 10);
+    const p = Number(c.precision ?? 13);
     const s = Number(c.scale ?? 2);
     return `${indent}$table->decimal('${name}', ${p}, ${s})${numMods};`;
   }
   if (t === "FLOAT") {
-    const p = Number(c.precision ?? 10);
+    const p = Number(c.precision ?? 13);
     const s = Number(c.scale ?? 2);
     return `${indent}$table->decimal('${name}', ${p}, ${s})${numMods};`;
   }
   if (t === "DOUBLE") {
-    const p = Number(c.precision ?? 10);
+    const p = Number(c.precision ?? 13);
     const s = Number(c.scale ?? 2);
     return `${indent}$table->double('${name}', ${p}, ${s})${numMods};`;
   }

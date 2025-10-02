@@ -3,9 +3,7 @@ import { clearScreen, pause, readInput } from "../../../helpers/inquirer.js";
 import { parseColumns } from "../../../helpers/helperString.js";
 import { generateModuleStandardPHP } from "./generateModuleStandardPHP.js";
 
-
 export const startModulePHP = async () => {
-  
   await clearScreen();
 
   const opt = [
@@ -14,7 +12,11 @@ export const startModulePHP = async () => {
     { name: "Controlador - Show", value: "controller_show", checked: true },
     { name: "Controlador - Store", value: "controller_store", checked: true },
     { name: "Controlador - Update", value: "controller_update", checked: true },
-    { name: "Controlador - Destroy", value: "controller_destroy", checked: true, },
+    {
+      name: "Controlador - Destroy",
+      value: "controller_destroy",
+      checked: true,
+    },
     { name: "Repositorio", value: "repository", checked: true },
     { name: "Rutas", value: "route", checked: true },
     { name: "Migración", value: "migration", checked: true },
@@ -35,8 +37,8 @@ export const startModulePHP = async () => {
   const fullPath = await readInput(
     "Ruta Proyecto: ",
     false,
-    "/Users/dorian/PhpstormProjects81/app-1"
-    //"/Users/dorian/PhpstormProjects81/docker-laravel-84/projects/api.truckwashvilamalla.eu",
+    //"/Users/dorian/PhpstormProjects81/app-1"
+    "/Users/dorian/PhpstormProjects81/docker-laravel-84/projects/api.truckwashvilamalla.eu"
     //"/Users/dorian/PhpstormProjects81/docker-laravel-84/projects/api.splytin.com"
   );
   const namespace = await readInput(
@@ -61,7 +63,7 @@ export const startModulePHP = async () => {
   );
 
   const columns = parseColumns(inputColumns);
-  
+
   await generateModuleStandardPHP(
     fullPath,
     selectedComponents,
@@ -72,5 +74,4 @@ export const startModulePHP = async () => {
   );
 
   //await pause();
-
 };

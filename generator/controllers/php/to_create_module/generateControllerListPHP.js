@@ -29,7 +29,7 @@ export const generateControllerListPHP = async (
   const filterLines =
     (Array.isArray(columns) ? columns : [])
       .filter(Boolean)
-      .map((name) => `            '${name}' => $request->query('${name}'),`)
+      .map((elem) => `            '${elem.name}' => $request->query('${elem.name}'),`)
       .join('\n');
 
   
@@ -61,20 +61,20 @@ class ${singularName}ListController extends Controller
     */
     public function __invoke(Request \$request): JsonResponse
     {
-       \\$filters = [
+       \$filters = [
 ${filterLines}
             // opcional paginación:
-            'per_page' => \\$request->integer('per_page'), // ej. 25
+            'per_page' => \$request->integer('per_page'), // ej. 25
         ];
 
         $data = [];
 
         if (\$this->isAdmin(auth()->user()->roles)) {
-            \$data = \$this->repository->list(\\$filters);
+            \$data = \$this->repository->list(\$filters);
         } elseif (\$this->isManager(auth()->user()->roles)) {
-            \$data = \$this->repository->listByRoleManager(\\$filters);
+            \$data = \$this->repository->listByRoleManager(\$filters);
         } elseif (\$this->isUser(auth()->user()->roles))  {
-            \$data = \$this->repository->listByRoleUser(\\$filters);
+            \$data = \$this->repository->listByRoleUser(\$filters);
         }
         
         return \$this->respondWithData('${pluralName} list', \$data);

@@ -31,8 +31,8 @@ export const startModuleReact = async() => {
     const fullPath = await readInput(
         "Ruta Proyecto:",
         false,
-        "/Users/dorian/ReactProjects/app-1"
-        //"/Users/dorian/ReactProjects/office.truckwashvilamalla.eu"
+        //"/Users/dorian/ReactProjects/app-1"
+        "/Users/dorian/ReactProjects/office.truckwashvilamalla.eu"
         //"/Users/milena/Desktop/WorkspaceJS/PROYECTOS/erp.splytin.com"
         // "/Users/milena/Desktop/WorkspaceJS/PROYECTOS/app-1"
     );

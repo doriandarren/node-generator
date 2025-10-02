@@ -2,8 +2,6 @@ import { clearScreen, menuMain, pause } from "../../helpers/inquirer.js";
 import { startModulePHP } from "./to_create_module/startModulePHP.js";
 import { startProjectPHP } from "./to_create_project/startProjectPHP.js";
 
-
-
 export const phpMain = async () => {
   let opt = "";
 
@@ -12,12 +10,15 @@ export const phpMain = async () => {
   console.log("PHP");
 
   do {
-    opt = await menuMain([
-      { name: "Proyecto", value: "proyect" },
-      { name: "Módulo - CRUD", value: "module_crud" },
-      { name: "Módulo - Eliminar", value: "module_delete" },
-      { name: "Atrás", value: "back" },
-    ], 'PHP');
+    opt = await menuMain(
+      [
+        { name: "Proyecto", value: "proyect" },
+        { name: "Módulo - CRUD", value: "module_crud" },
+        { name: "Módulo - Eliminar", value: "module_delete" },
+        { name: "Atrás", value: "back" },
+      ],
+      "PHP"
+    );
 
     switch (opt) {
       case "proyect":
@@ -27,7 +28,7 @@ export const phpMain = async () => {
       case "module_crud":
         await startModulePHP();
         break;
-      
+
       case "module_delete":
         await deleteModulePHP();
         break;
@@ -37,7 +38,5 @@ export const phpMain = async () => {
     }
 
     await pause();
-    
-  } while (opt != "back");ç
-
+  } while (opt != "back");
 };

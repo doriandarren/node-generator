@@ -39,6 +39,16 @@ export const generatePostmanPHP = async (
     type: 'text'
   }));
 
+
+
+  const queryList =  columnNames.map(column => ({
+    key: column,
+    value: "",
+    disabled: true
+  }));
+
+
+
   const postmanContent = {
     info: {
       _postman_id: uuid(),
@@ -62,7 +72,8 @@ export const generatePostmanPHP = async (
               url: {
                 raw: `{{base_url}}${pluralNameKebab}/list`,
                 host: [`{{base_url}}${pluralNameKebab}`],
-                path: ['list']
+                path: ['list'],
+                query: queryList,
               }
             },
             response: []
