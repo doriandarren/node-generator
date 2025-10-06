@@ -1,19 +1,18 @@
-import fs from 'fs';
-import path from 'path';
-import { createFolder } from '../../../../../helpers/helperFile.js';
+import fs from "fs";
+import path from "path";
+import { createFolder } from "../../../../../helpers/helperFile.js";
 
-
-
-
-export const generateHelpers = async(fullPath) => {
-    await createHelperDate(fullPath);
-    await createHelperFile(fullPath);
-}
-
+export const generateHelpers = async (fullPath) => {
+  await createHelperDate(fullPath);
+  await createHelperFile(fullPath);
+  await createHelperAmount(fullPath);
+  await createHelperArray(fullPath);
+  await createHelperString(fullPath);
+};
 
 const createHelperDate = async (fullPath) => {
-  const folderPath = path.join(fullPath, 'app', 'Utilities', 'Helpers');
-  const filePath = path.join(folderPath, 'HelperDate.php');
+  const folderPath = path.join(fullPath, "app", "Utilities", "Helpers");
+  const filePath = path.join(folderPath, "HelperDate.php");
 
   createFolder(folderPath);
 
@@ -329,13 +328,9 @@ class HelperDate
   }
 };
 
-
-
-
 const createHelperFile = async (fullPath) => {
-    
-  const folderPath = path.join(fullPath, 'app', 'Utilities', 'Helpers');
-  const filePath = path.join(folderPath, 'HelperFile.php');
+  const folderPath = path.join(fullPath, "app", "Utilities", "Helpers");
+  const filePath = path.join(folderPath, "HelperFile.php");
 
   createFolder(folderPath);
 
@@ -501,3 +496,260 @@ class HelperFile
   }
 };
 
+const createHelperAmount = async (fullPath) => {
+  const folderPath = path.join(fullPath, "app", "Utilities", "Helpers");
+  const filePath = path.join(folderPath, "HelperAmount.php");
+
+  createFolder(folderPath);
+
+  const code = `
+<?php
+
+namespace App\\Utilities\\Helpers;
+
+class HelperAmount
+{
+    /**
+     * Calculate VAT (iva)
+     * @param $amount
+     * @param int $vat
+     * @return float
+     */
+    public static function getVat($amount, $vat)
+    {
+        $vatConvert = 1 + ($vat/100);
+        $amountWithVat = round(($amount / $vatConvert), 2);
+        return round(($amount - $amountWithVat), 2);
+    }
+
+
+    /**     
+     * Remove original VAT (iva)
+     * 
+     * @param $amount
+     * @param $vat_type
+     * @param int $precision
+     * @return float
+     */
+    public static function removeVat($amount, $vat_type, $precision = 2)
+    {
+        $vatConvert = 1 + ($vat_type/100);
+        return round($amount / $vatConvert, $precision);
+    }
+
+
+    /**     
+     * Add original VAT (IVA)
+     * 
+     * @param $amount
+     * @param $vat_type
+     * @return float
+     */
+    public static function addVat($amount, $vat_type)
+    {
+        $vatConvert = 1 + ($vat_type/100);
+        return round(($amount* $vatConvert),2);
+    }
+
+
+    /**
+     * @param $payable_days
+     * @param $rental_price_without_vat
+     * @return float
+     */
+    public static function calculatePaymentDays($payable_days, $rental_price_without_vat): float
+    {
+        $priceDay = (floatval($rental_price_without_vat) / 30);
+        $total = $priceDay * $payable_days;
+        return round($total, 2);
+    }
+
+
+
+    /**
+     * Convert to VAT. EX: 21.00 -> 1.21
+     * @param $vat
+     * @return float
+     */
+    public static function convertToVat($vat): float
+    {
+        return round(1 + (floatval($vat) / 100), 4);
+    }
+
+
+
+    /**
+     * Convert to VAT. EX: 21.00 -> 0.21
+     * @param $vat
+     * @return float
+     */
+    public static function convertToZeroVat($vat): float
+    {
+        return round(floatval($vat) / 100, 4);
+    }
+
+
+}
+`.trimStart();
+
+  try {
+    fs.writeFileSync(filePath, code);
+    console.log(`✅ Archivo creado: ${filePath}`.green);
+  } catch (error) {
+    console.error(`❌ Error al crear archivo: ${error.message}`);
+  }
+};
+
+const createHelperArray = async (fullPath) => {
+  const folderPath = path.join(fullPath, "app", "Utilities", "Helpers");
+  const filePath = path.join(folderPath, "HelperArray.php");
+
+  createFolder(folderPath);
+
+  const code = `
+  <?php
+
+declare(strict_types=1);
+
+namespace App\\Utilities\\Helpers;
+
+class HelperArray
+{
+
+    /**
+     * Sirve principalmente para JSON en objeto de Store.
+     * 
+     * Convierte $raw en array. Acepta array o JSON string (incluye '[]').
+     * Devuelve [] si es null/escalares/JSON inválido.
+     */
+    public static function normalizeArray(mixed $raw): array
+    {
+        if (is_array($raw)) {
+            return $raw;
+        }
+
+        if (is_string($raw)) {
+            $raw = trim($raw);
+            if ($raw === '') {
+                return [];
+            }
+            try {
+                $decoded = json_decode($raw, true, 512, JSON_THROW_ON_ERROR);
+                return is_array($decoded) ? $decoded : [];
+            } catch (\\JsonException $e) {
+                return [];
+            }
+        }
+
+        return [];
+    }
+
+    /** true si el array tiene elementos */
+    public static function hasElements(?array $arr): bool
+    {
+        return is_array($arr) && count($arr) > 0;
+    }
+
+
+}
+
+`.trimStart();
+
+  try {
+    fs.writeFileSync(filePath, code);
+    console.log(`✅ Archivo creado: ${filePath}`.green);
+  } catch (error) {
+    console.error(`❌ Error al crear archivo: ${error.message}`);
+  }
+};
+
+const createHelperString = async (fullPath) => {
+  const folderPath = path.join(fullPath, "app", "Utilities", "Helpers");
+  const filePath = path.join(folderPath, "HelperString.php");
+
+  createFolder(folderPath);
+
+  const code = `
+  <?php
+
+namespace App\\Utilities\\Helpers;
+
+class HelperString
+{
+
+    /**
+     * Elimina todos los espacios en blanco de un string.
+     */
+    public static function removeWhiteSpace($value): string
+    {
+        if (is_null($value) || trim((string) $value) === '') {
+            return '';
+        }
+
+        return preg_replace('/\\s+/', '', (string) $value);
+    }
+
+
+
+
+    /**
+     * @param $string
+     * @return string
+     */
+    public static function clearStr($string)
+    {
+        // 1. Eliminar comillas simples
+        $string = str_replace("'", "", $string);
+
+        // 2. Eliminar caracteres especiales (excepto letras, números y espacios)
+        $string = preg_replace('/[^A-Za-z0-9\\s]/u', '', $string);
+
+        // 3. Opcional: quitar espacios múltiples
+        $string = preg_replace('/\\s+/', ' ', $string);
+
+        // 4. Opcional: quitar espacios al principio y final
+        return trim($string);
+    }
+
+
+
+
+    /**
+     * Replace space white
+     * EX: FERCO-TRANS&LOG S.L. (TW) -> FERCO_TRANS_LOG_SL_TW
+     *
+     * @param $string
+     * @return string
+     */
+    public static function formatForWeb($string)
+    {
+        // 1. Reemplazar & por espacio para separar palabras
+        $string = str_replace('&', ' ', $string);
+
+        // 2. Reemplazar guiones por espacio también para unificar
+        $string = str_replace('-', ' ', $string);
+
+        // 3. Eliminar caracteres que no sean letras, números o espacio
+        $string = preg_replace('/[^A-Za-z0-9 ]/', '', $string);
+
+        // 4. Reemplazar múltiples espacios por uno solo
+        $string = preg_replace('/\s+/', ' ', $string);
+
+        // 5. Reemplazar espacios por guiones bajos
+        $string = str_replace(' ', '_', trim($string));
+
+        // 6. Convertir a mayúsculas
+        return strtoupper($string);
+    }
+
+
+}
+`.trimStart();
+
+  try {
+    fs.writeFileSync(filePath, code);
+    console.log(`✅ Archivo creado: ${filePath}`.green);
+  } catch (error) {
+    console.error(`❌ Error al crear archivo: ${error.message}`);
+  }
+};

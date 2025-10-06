@@ -10,7 +10,8 @@ export const generateHelpers = async(fullPath) => {
     await createToast(fullPath);
     await createVariantClass(fullPath);
     await createHelperDate(fullPath);
-    await createhelperURL(fullPath);
+    await createHelperURL(fullPath);
+    await createHelperNumber(fullPath);
 }
 
 
@@ -315,7 +316,7 @@ export function formatDateTimeToDDMMYYYYHHmm(dateStr) {
 
 
 
-const createhelperURL = async (fullPath) => {
+const createHelperURL = async (fullPath) => {
   const helpersDir = path.join(fullPath, 'src', 'helpers');
   const filePath = path.join(helpersDir, 'helperURL.js');
 
@@ -323,7 +324,7 @@ const createhelperURL = async (fullPath) => {
   createFolder(helpersDir);
 
   const content = `
-// utils/url.js
+// helpers/helperURL.js
 /**
  * Crea el query string ignorando valores vacíos (null/undefined/"").
  */
@@ -347,6 +348,72 @@ export const buildQuery = (filters = {}, allowed = []) => {
  */
 export const buildURL = (basePath, filters = {}, allowed = []) =>
   \`${basePath}${buildQuery(filters, allowed)}\`;
+`;
+
+  try {
+    fs.writeFileSync(filePath, content, 'utf-8');
+    printMessage(`✅ Archivo generado: ${filePath}`, 'green');
+  } catch (error) {
+    printMessage(`❌ Error al generar el archivo ${filePath}: ${error.message}`, 'red');
+  }
+}
+
+
+
+const createHelperNumber = async (fullPath) => {
+  const helpersDir = path.join(fullPath, 'src', 'helpers');
+  const filePath = path.join(helpersDir, 'helperNumber.js');
+
+  // Crear carpeta si no existe
+  createFolder(helpersDir);
+
+  const content = `
+// helpers/helperNumber.js
+/**
+ * Formatea un número a formato europeo con decimales y símbolo de moneda.
+ *
+ * @param {number|string} value - El número a formatear.
+ * @param {Object} options - Opciones opcionales (mínimo de decimales, etc.).
+ * @param {boolean} withCurrency - Si se incluye el símbolo de €.
+ * @returns {string} - Número formateado.
+ */
+export const formatNumber = (
+  value,
+  withCurrency = true,
+  options = { minimumFractionDigits: 2, maximumFractionDigits: 2 }
+) => {
+  const numericValue = Number(value);
+
+  if (isNaN(numericValue)) return "";
+
+  const formatted = numericValue.toLocaleString("es-ES", options);
+
+  return withCurrency ? \`${formatted} €\` : formatted;
+};
+
+
+
+/**
+ * Agrega ceros a la izquierda hasta alcanzar la longitud deseada
+ * @param {string|number} numero - El número original
+ * @param {number} longitud - La longitud total deseada
+ * @returns {string} El número con ceros a la izquierda
+ */
+export function padLeft(numero, longitud = 0) {
+  return numero.toString().padStart(longitud, '0');
+}
+
+
+
+
+/**
+ * Retorna un UUID unico
+ * @returns {string} El número con ceros a la izquierda
+ */
+export function getUID() {
+  return \`${Date.now()}-${Math.random().toString(16).slice(2)}\`;
+}
+
 `;
 
   try {
