@@ -29,7 +29,8 @@ export const generateLocaleES = async(fullPath) => {
     "download_file": "Descargar archivo",
     "download_files": "Descargar archivos",
     "file_downloaded": "Archivo descargado",
-    "files_downloaded": "Archivos descargados"
+    "files_downloaded": "Archivos descargados",
+    "no_records_found": "No hay registros para mostrar"
   },
   "errors": {
     "error_internal": "Error Interno",

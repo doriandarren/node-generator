@@ -1,13 +1,11 @@
-import fs from 'fs';
-import path from 'path';
-import { printMessage } from '../../../../helpers/inquirer.js';
-import { createFolder } from '../../../../helpers/helperFile.js';
-
-
+import fs from "fs";
+import path from "path";
+import { printMessage } from "../../../../helpers/inquirer.js";
+import { createFolder } from "../../../../helpers/helperFile.js";
 
 export const generateLocaleEN = async (fullPath) => {
-  const enDir = path.join(fullPath, 'public', 'locales', 'en');
-  const filePath = path.join(enDir, 'translation.json');
+  const enDir = path.join(fullPath, "public", "locales", "en");
+  const filePath = path.join(enDir, "translation.json");
 
   createFolder(enDir);
 
@@ -27,7 +25,8 @@ export const generateLocaleEN = async (fullPath) => {
     "download_file": "Download file",
     "download_files": "Download files",
     "file_downloaded": "File downloaded",
-    "files_downloaded": "Files downloaded"
+    "files_downloaded": "Files downloaded",
+    "no_records_found": "No records found"
   },
   "errors": {
     "error_internal": "Internal Error",
@@ -228,9 +227,12 @@ export const generateLocaleEN = async (fullPath) => {
 }`;
 
   try {
-    fs.writeFileSync(filePath, content, 'utf-8');
-    printMessage(`✅ Archivo creado: ${filePath}`, 'green');
+    fs.writeFileSync(filePath, content, "utf-8");
+    printMessage(`✅ Archivo creado: ${filePath}`, "green");
   } catch (error) {
-    printMessage(`❌ Error al crear el archivo ${filePath}: ${error.message}`, 'red');
+    printMessage(
+      `❌ Error al crear el archivo ${filePath}: ${error.message}`,
+      "red"
+    );
   }
-}
+};
