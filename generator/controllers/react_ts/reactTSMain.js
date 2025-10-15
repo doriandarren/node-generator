@@ -1,4 +1,5 @@
 import { clearScreen, menuMain, pause } from "../../helpers/inquirer.js";
+import { startProjectREACTTS } from "./to_create_project/startProjectREACTTS.js";
 
  // Snippet: 1) Minúscula 2) Mayúcula
 export const reactTSMain = async () => {
@@ -20,13 +21,13 @@ export const reactTSMain = async () => {
         await startProjectREACTTS();
         break;
 
-      case "module_crud":
-        await startModuleCrudREACTTS();
-        break;
+      // case "module_crud":
+      //   await startModuleCrudREACTTS();
+      //   break;
       
-      case "module_single":
-        await startModuleSingleREACTTS();
-        break;
+      // case "module_single":
+      //   await startModuleSingleREACTTS();
+      //   break;
 
       default:
         break;
