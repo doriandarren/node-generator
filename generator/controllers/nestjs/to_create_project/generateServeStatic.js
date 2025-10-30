@@ -63,6 +63,8 @@ const addImports = async (fullPath) => {
   printMessage("✅ Imports añadidos correctamente a app.module.ts", "green");
 };
 
+
+
 const addServeStaticToImports = async (fullPath) => {
   const filePath = path.join(fullPath, "src", "app.module.ts");
 
@@ -75,8 +77,8 @@ const addServeStaticToImports = async (fullPath) => {
 
   // Bloque a insertar
   const serveStaticBlock = `ServeStaticModule.forRoot({
-    rootPath: join(__dirname, '..', 'public'),
-  }),`;
+      rootPath: join(__dirname, '..', 'public'),
+    })`;
 
   // 1️⃣ Si ya existe, no hacer nada
   if (content.includes("ServeStaticModule.forRoot")) {

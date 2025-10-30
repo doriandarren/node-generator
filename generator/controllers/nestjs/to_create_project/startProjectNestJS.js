@@ -1,7 +1,9 @@
 import { readInput } from "../../../helpers/inquirer.js";
 import { generateClassValidator } from "./generateClassValidator.js";
 import { generateCommandLine } from "./generateCommandLine.js";
+import { generateEnv } from "./generateEnv.js";
 import { generateServeStatic } from "./generateServeStatic.js";
+import { generateTypeORM } from "./generateTypeORM.js";
 
 export const startProjectNestJS = async () => {
   // Ruta predeterminada
@@ -22,8 +24,12 @@ export const startProjectNestJS = async () => {
   const fullPath = `${projectPath}/${projectName}`;
 
   await generateCommandLine(fullPath);
+
   await generateClassValidator(fullPath);
+
   await generateServeStatic(fullPath);
 
-  
+  await generateEnv(fullPath);
+
+  await generateTypeORM(fullPath);
 };
