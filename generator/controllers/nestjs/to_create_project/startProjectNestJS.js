@@ -1,9 +1,11 @@
 import { readInput } from "../../../helpers/inquirer.js";
+import { generateClassValidator } from "./generateClassValidator.js";
 import { generateCommandLine } from "./generateCommandLine.js";
+import { generateServeStatic } from "./generateServeStatic.js";
 
 export const startProjectNestJS = async () => {
   // Ruta predeterminada
-  const defaultPath = "/Users/dorian/NodeProjects";
+  const defaultPath = "/Users/dorian/NodejsProjects";
 
   const projectName = await readInput("Nombre del proyecto: ");
   let projectPath = await readInput(
@@ -16,8 +18,12 @@ export const startProjectNestJS = async () => {
     projectPath = defaultPath;
   }
 
-  // Combinar la ruta y el nombre del proyecto
-  const fullPath = `projectPath/projectName`;
+  //Combinar la ruta y el nombre del proyecto
+  const fullPath = `${projectPath}/${projectName}`;
 
   await generateCommandLine(fullPath);
+  await generateClassValidator(fullPath);
+  await generateServeStatic(fullPath);
+
+  
 };

@@ -37,7 +37,7 @@ export const startModuleCrudNestJS = async () => {
   const fullPath = await readInput(
     "Ruta Proyecto: ",
     false,
-    "/Users/dorian/PhpstormProjects81/docker-laravel-84/projects/api.splytin.com"
+    "/Users/dorian/NodeProjects/test-nest"
   );
   const namespace = await readInput(
     "Namespace (API / SHARED / ERP): ",
