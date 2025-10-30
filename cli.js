@@ -8,6 +8,7 @@ import { exportDiagramsMain } from './generator/controllers/export_diagrams/expo
 import { importDiagramsMain } from './generator/controllers/import_diagrams/importDiagramsMain.js';
 import { aiMain } from "./generator/controllers/ai/aiMain.js";
 import { reactNativeMain } from "./generator/controllers/react_native/reactNativeMain.js";
+import { nestJSMain } from './generator/controllers/nestjs/nestJSMain.js';
 
 
 const main = async() => {
@@ -25,6 +26,7 @@ const main = async() => {
             { name: "Import Diagrams", value: "import_diagrams" },
             { name: "React", value: "react" },
             { name: "React Native", value: "react_native" },
+            { name: "NestJS", value: "nestjs" },
             { name: "NodeJS", value: "nodejs" },
             { name: "PHP", value: "php" },
             { name: "Ollama", value: "ollama" },
@@ -43,6 +45,10 @@ const main = async() => {
 
             case 'php':
                 await phpMain();
+                break;
+
+            case 'nestjs':
+                await nestJSMain();
                 break;
         
             case 'react':
