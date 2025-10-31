@@ -25,8 +25,8 @@ services:
     ports: 
       - "5432:5432"
     environment:
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
-      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_PASSWORD: \${DB_PASSWORD}
+      POSTGRES_DB: \${DB_NAME}
     container_name: teslodb
     volumes:
       - ./postgres:/var/lib/postgresql/data

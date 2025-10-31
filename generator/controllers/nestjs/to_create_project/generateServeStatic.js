@@ -8,14 +8,28 @@ export const generateServeStatic = async (fullPath) => {
   await install(fullPath);
   await addImports(fullPath);
   await addServeStaticToImports(fullPath);
+  
 };
 
+
+/**
+ * Install
+ * 
+ * @param {*} fullPath 
+ */
 const install = async (fullPath) => {
   printMessage("Intalando serve-static...", "cyan");
   await runExec("npm i @nestjs/serve-static", fullPath);
   printMessage("serve-static instalado correctamente.", "green");
 };
 
+
+/**
+ * AddImports
+ * 
+ * @param {*} fullPath 
+ * @returns 
+ */
 const addImports = async (fullPath) => {
   const filePath = path.join(fullPath, "src", "app.module.ts");
 
@@ -65,6 +79,12 @@ const addImports = async (fullPath) => {
 
 
 
+/**
+ * addServeStaticToImports
+ * 
+ * @param {*} fullPath 
+ * @returns 
+ */
 const addServeStaticToImports = async (fullPath) => {
   const filePath = path.join(fullPath, "src", "app.module.ts");
 

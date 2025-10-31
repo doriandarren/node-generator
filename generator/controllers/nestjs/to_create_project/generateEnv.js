@@ -171,7 +171,7 @@ const addConfigModuleToImports = async (fullPath) => {
 
   const importsRegex = /imports\s*:\s*\[([\s\S]*?)\]/m;
 
-  const configBlock = `ConfigModule.forRoot(),`;
+  const configBlock = `ConfigModule.forRoot()`;
 
   let updatedInside;
 

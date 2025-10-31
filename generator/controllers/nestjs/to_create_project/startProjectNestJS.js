@@ -33,9 +33,9 @@ export const startProjectNestJS = async () => {
 
   await generateServeStatic(fullPath);
 
-  await generateTypeORM(fullPath);
-
   await generateGitignore(fullPath);
+  
+  await generateTypeORM(fullPath);
 
   await generateDockerComposeYaml(fullPath);
 };
