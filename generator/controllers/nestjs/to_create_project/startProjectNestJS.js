@@ -4,6 +4,7 @@ import { generateCommandLine } from "./generateCommandLine.js";
 import { generateDockerComposeYaml } from "./generateDockerComposeYaml.js";
 import { generateEnv } from "./generateEnv.js";
 import { generateGitignore } from "./generateGitignore.js";
+import { generateReadme } from "./generateReadme.js";
 import { generateServeStatic } from "./generateServeStatic.js";
 import { generateTypeORM } from "./generateTypeORM.js";
 
@@ -35,7 +36,13 @@ export const startProjectNestJS = async () => {
 
   await generateGitignore(fullPath);
 
+  await generateDockerComposeYaml(fullPath);
+
+  await generateReadme(fullPath);
+  
   await generateTypeORM(fullPath);
 
-  await generateDockerComposeYaml(fullPath);
+  
+
+
 };

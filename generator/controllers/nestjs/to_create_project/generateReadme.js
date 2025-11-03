@@ -4,10 +4,10 @@ import { createFolder } from "../../../helpers/helperFile.js";
 
 export const generateReadme = async (fullPath) => {
   // Folder
-  const folderPath = path.join(fullPath, "src", "");
+  const folderPath = path.join(fullPath);
 
   // File
-  const filePath = path.join(folderPath, "");
+  const filePath = path.join(folderPath, "README.md");
 
   // Asegurar que la carpeta exista
   createFolder(folderPath);

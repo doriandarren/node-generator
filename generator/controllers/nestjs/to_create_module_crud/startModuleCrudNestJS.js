@@ -1,7 +1,7 @@
 import inquirer from "inquirer";
 import { clearScreen, pause, readInput } from "../../../helpers/inquirer.js";
 import { parseColumns } from "../../../helpers/helperString.js";
-//import { generateModuleStandardNestJS } from "./generateModuleStandardNestJS.js";
+import { generateModuleStandardNestJS } from "./generateModuleStandardNestJS.js";
 
 export const startModuleCrudNestJS = async () => {
   await clearScreen();
@@ -62,14 +62,14 @@ export const startModuleCrudNestJS = async () => {
 
   const columns = parseColumns(inputColumns);
 
-  //   await generateModuleStandardNestJS(
-  //     fullPath,
-  //     selectedComponents,
-  //     namespace,
-  //     singularName,
-  //     pluralName,
-  //     columns
-  //   );
+  await generateModuleStandardNestJS(
+    fullPath,
+    selectedComponents,
+    namespace,
+    singularName,
+    pluralName,
+    columns
+  );
 
   //await pause();
 };
