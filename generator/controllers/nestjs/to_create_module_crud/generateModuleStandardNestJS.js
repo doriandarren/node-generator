@@ -12,6 +12,7 @@ import { generateDTO } from "./generateDTO.js";
 import { generateEntity } from "./generateEntity.js";
 import { generateService } from "./generateService.js";
 import { generateModule } from "./generateModule.js";
+import { addModuleIntoAppModuleTS } from "./addModuleIntoAppModuleTS.js";
 
 export const generateModuleStandardNestJS = async (
   fullPath,
@@ -52,6 +53,20 @@ export const generateModuleStandardNestJS = async (
   const pluralNameCamel = pascalToCamelCase(pluralName); // invoiceHeaders
 
   // await createModule(fullPath, namespace, pluralNameKebab);
+
+  await addModuleIntoAppModuleTS(
+    fullPath,
+    namespace,
+    singularName,
+    pluralName,
+    singularNameKebab,
+    pluralNameKebab,
+    singularNameSnake,
+    pluralNameSnake,
+    singularNameCamel,
+    pluralNameCamel,
+    columns
+  );
 
   if (selectedComponents.includes("controller")) {
     await generateController(
@@ -164,11 +179,7 @@ export const generateModuleStandardNestJS = async (
   //     columns
   //   );
   // }
-
 };
-
-
-
 
 // /**
 //  * Create Module
