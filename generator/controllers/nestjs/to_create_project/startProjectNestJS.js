@@ -6,6 +6,7 @@ import { generateEnv } from "./generateEnv.js";
 import { generateGitignore } from "./generateGitignore.js";
 import { generateReadme } from "./generateReadme.js";
 import { generateServeStatic } from "./generateServeStatic.js";
+import { generateShared } from "./generateShared.js";
 import { generateTypeORM } from "./generateTypeORM.js";
 
 export const startProjectNestJS = async () => {
@@ -42,7 +43,7 @@ export const startProjectNestJS = async () => {
   
   await generateTypeORM(fullPath);
 
-  
+  //await generateShared(fullPath);
 
 
 };

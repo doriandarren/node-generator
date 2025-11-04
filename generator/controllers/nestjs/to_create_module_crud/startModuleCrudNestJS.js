@@ -7,21 +7,12 @@ export const startModuleCrudNestJS = async () => {
   await clearScreen();
 
   const opt = [
-    { name: "Modelo", value: "model", checked: true },
-    { name: "Controlador - List", value: "controller_list", checked: true },
-    { name: "Controlador - Show", value: "controller_show", checked: true },
-    { name: "Controlador - Store", value: "controller_store", checked: true },
-    { name: "Controlador - Update", value: "controller_update", checked: true },
-    {
-      name: "Controlador - Destroy",
-      value: "controller_destroy",
-      checked: true,
-    },
-    { name: "Repositorio", value: "repository", checked: true },
-    { name: "Rutas", value: "route", checked: true },
-    { name: "Migración", value: "migration", checked: true },
+    { name: "Controlador", value: "controller", checked: true },
+    { name: "DTO", value: "dto", checked: true },
+    { name: "Entity", value: "entity", checked: true },
+    { name: "Service", value: "service", checked: true },
+    { name: "Module", value: "module", checked: true },
     { name: "Seeder", value: "seeder", checked: true },
-    { name: "Factory", value: "factory", checked: true },
     { name: "Archivo Postman", value: "postman", checked: true },
   ];
 
@@ -37,7 +28,7 @@ export const startModuleCrudNestJS = async () => {
   const fullPath = await readInput(
     "Ruta Proyecto: ",
     false,
-    "/Users/dorian/NodeProjects/test-nest"
+    "/Users/dorian/NodeProjects/app-1"
   );
   const namespace = await readInput(
     "Namespace (API / SHARED / ERP): ",
