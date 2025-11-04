@@ -10,6 +10,8 @@ import {
 import { generateController } from "./generateController.js";
 import { generateDTO } from "./generateDTO.js";
 import { generateEntity } from "./generateEntity.js";
+import { generateService } from "./generateService.js";
+import { generateModule } from "./generateModule.js";
 
 export const generateModuleStandardNestJS = async (
   fullPath,
@@ -99,37 +101,37 @@ export const generateModuleStandardNestJS = async (
     );
   }
 
-  // if (selectedComponents.includes("service")) {
-  //   await generateService(
-  //     fullPath,
-  //     namespace,
-  //     singularName,
-  //     pluralName,
-  //     singularNameKebab,
-  //     pluralNameKebab,
-  //     singularNameSnake,
-  //     pluralNameSnake,
-  //     singularNameCamel,
-  //     pluralNameCamel,
-  //     columns
-  //   );
-  // }
+  if (selectedComponents.includes("service")) {
+    await generateService(
+      fullPath,
+      namespace,
+      singularName,
+      pluralName,
+      singularNameKebab,
+      pluralNameKebab,
+      singularNameSnake,
+      pluralNameSnake,
+      singularNameCamel,
+      pluralNameCamel,
+      columns
+    );
+  }
 
-  // if (selectedComponents.includes("module")) {
-  //   await generateModule(
-  //     fullPath,
-  //     namespace,
-  //     singularName,
-  //     pluralName,
-  //     singularNameKebab,
-  //     pluralNameKebab,
-  //     singularNameSnake,
-  //     pluralNameSnake,
-  //     singularNameCamel,
-  //     pluralNameCamel,
-  //     columns
-  //   );
-  // }
+  if (selectedComponents.includes("module")) {
+    await generateModule(
+      fullPath,
+      namespace,
+      singularName,
+      pluralName,
+      singularNameKebab,
+      pluralNameKebab,
+      singularNameSnake,
+      pluralNameSnake,
+      singularNameCamel,
+      pluralNameCamel,
+      columns
+    );
+  }
 
   // if (selectedComponents.includes("seeder")) {
   //   await generateSeeder(

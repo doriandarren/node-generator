@@ -25,8 +25,8 @@ export const generateController = async (
   createFolder(folderPath);
 
   // Code
-  const code = `
-import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
+  const code =
+    `import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
 import { ${pluralName}Service } from './${pluralNameKebab}.service';
 import { Create${singularName}Dto } from './dto/create-${singularNameKebab}.dto';
 import { Update${singularName}Dto } from './dto/update-${singularNameKebab}.dto';
@@ -41,23 +41,23 @@ export class ${pluralName}Controller {
   }
 
   @Get()
-  findAll(@Query() query?: any) {
-    return this.${pluralNameCamel}Service.findAll(query);
+  findAll() {
+    return this.${pluralNameCamel}Service.findAll();
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.${pluralNameCamel}Service.findOne(id);
+    return this.${pluralNameCamel}Service.findOne(+id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() update${singularName}Dto: Update${singularName}Dto) {
-    return this.${pluralNameCamel}Service.update(id, update${singularName}Dto);
+    return this.${pluralNameCamel}Service.update(+id, update${singularName}Dto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.${pluralNameCamel}Service.remove(id);
+    return this.${pluralNameCamel}Service.remove(+id);
   }
 }
   `.trimStart();

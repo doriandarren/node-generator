@@ -42,6 +42,7 @@ export const generateEntity = async (
 
 @Entity()
 export class ${singularName} {
+
   @PrimaryGeneratedColumn('increment')
   id: number;
 
