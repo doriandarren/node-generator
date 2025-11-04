@@ -28,7 +28,7 @@ export const startModuleCrudNestJS = async () => {
   const fullPath = await readInput(
     "Ruta Proyecto: ",
     false,
-    "/Users/dorian/NodeProjects/app-1"
+    "/Users/dorian/NodejsProjects/app-1"
   );
   const namespace = await readInput(
     "Namespace (API / SHARED / ERP): ",
@@ -53,10 +53,12 @@ export const startModuleCrudNestJS = async () => {
 
   const columns = parseColumns(inputColumns);
 
+  const nameSpaceFormat = String(namespace).toLowerCase();
+
   await generateModuleStandardNestJS(
     fullPath,
     selectedComponents,
-    namespace,
+    nameSpaceFormat,
     singularName,
     pluralName,
     columns
