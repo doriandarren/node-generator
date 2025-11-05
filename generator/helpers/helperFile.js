@@ -41,3 +41,47 @@ export function createFolder(targetPath) {
 
 
 
+
+
+
+/**
+ * Busca una línea exacta en un archivo y la reemplaza por otra.
+ *
+ * @param {string} filePath - Ruta completa del archivo a modificar.
+ * @param {string} searchLine - Línea que se desea encontrar (coincidencia exacta).
+ * @param {string} newLine - Nueva línea con la que se reemplazará.
+ */
+export async function replaceLineInFile(filePath, searchLine, newLine) {
+  try {
+    if (!fs.existsSync(filePath)) {
+      console.error(`❌ Archivo no encontrado: ${filePath}`);
+      return;
+    }
+
+    const fileContent = fs.readFileSync(filePath, "utf8");
+
+    // Divide el archivo en líneas
+    const lines = fileContent.split(/\r?\n/);
+
+    // Reemplaza la línea exacta
+    let found = false;
+    const updatedLines = lines.map((line) => {
+      if (line.trim() === searchLine.trim()) {
+        found = true;
+        return newLine;
+      }
+      return line;
+    });
+
+    if (!found) {
+      console.warn(`⚠️ No se encontró la línea: "${searchLine}"`);
+      return;
+    }
+
+    // Escribir el nuevo contenido al archivo
+    fs.writeFileSync(filePath, updatedLines.join("\n"), "utf8");
+    console.log(`✅ Línea reemplazada correctamente en: ${filePath}`);
+  } catch (error) {
+    console.error(`❌ Error al reemplazar línea: ${error.message}`);
+  }
+}

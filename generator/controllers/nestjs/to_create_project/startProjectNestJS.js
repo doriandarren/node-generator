@@ -6,6 +6,7 @@ import { generateEnv } from "./generateEnv.js";
 import { generateGitignore } from "./generateGitignore.js";
 import { generateReadme } from "./generateReadme.js";
 import { generateServeStatic } from "./generateServeStatic.js";
+import { generateSetGlobalPrefix } from "./generateSetGlobalPrefix.js";
 import { generateShared } from "./generateShared.js";
 import { generateTypeORM } from "./generateTypeORM.js";
 
@@ -29,6 +30,8 @@ export const startProjectNestJS = async () => {
 
   await generateCommandLine(fullPath);
 
+  await generateSetGlobalPrefix(fullPath);
+
   await generateClassValidator(fullPath);
 
   await generateEnv(fullPath);
@@ -40,10 +43,8 @@ export const startProjectNestJS = async () => {
   await generateDockerComposeYaml(fullPath);
 
   await generateReadme(fullPath);
-  
+
   await generateTypeORM(fullPath);
 
   //await generateShared(fullPath);
-
-
 };

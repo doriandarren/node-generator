@@ -12,6 +12,7 @@ export const generateServeStatic = async (fullPath) => {
   await install(fullPath);
   await createHeaderLine(fullPath);
   await createModuleLine(fullPath);
+  await createIndexHTML(fullPath);
 };
 
 /**
@@ -50,3 +51,51 @@ const createModuleLine = async (fullPath) => {
     }),`
   );
 };
+
+
+
+
+
+
+const createIndexHTML = async(
+  fullPath,
+) => {    
+
+    // Folder
+    const folderPath = path.join(fullPath, 'public');
+    
+    // File
+    const filePath = path.join(folderPath, 'index.html');
+
+    // Asegurar que la carpeta exista
+    createFolder(folderPath);
+
+
+    // Code
+    const code = `<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/styles.css">
+    <title>Pokedex</title>
+</head>
+<body>
+
+    <h1>Sitio Web</h1>
+    
+</body>
+</html>
+`.trimStart();
+
+  try {
+    fs.writeFileSync(filePath, code);
+    console.log(`✅ Archivo creado: ${filePath}`.green);
+  } catch (error) {
+    console.error(`❌ Error al crear archivo: ${error.message}`);
+  }
+
+}
+
+
+
