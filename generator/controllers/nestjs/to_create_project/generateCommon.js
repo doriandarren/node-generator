@@ -1,0 +1,92 @@
+import fs from "fs";
+import path from "path";
+import { createFolder } from "../../../helpers/helperFile.js";
+import {
+  addHeaderLine,
+  addModuleLine,
+} from "../helpers/helperNestAppModule.js";
+
+export const generateCommon = async (fullPath) => {
+  await createCommon(fullPath);
+  await addHeader(fullPath);
+  await addBody(fullPath);
+  await createFolderDtos(fullPath);
+};
+
+const createCommon = async (fullPath) => {
+  // Folder
+  const folderPath = path.join(fullPath, "src", "common");
+
+  // File
+  const filePath = path.join(folderPath, "common.module.ts");
+
+  // Asegurar que la carpeta exista
+  createFolder(folderPath);
+
+  // Code
+  const code = `import { Module } from '@nestjs/common';
+
+@Module({})
+export class CommonModule {}
+    
+`.trimStart();
+
+  try {
+    fs.writeFileSync(filePath, code);
+    console.log(`✅ Archivo creado: ${filePath}`.green);
+  } catch (error) {
+    console.error(`❌ Error al crear archivo: ${error.message}`);
+  }
+};
+
+const addHeader = async (fullPath) => {
+  const filePath = path.join(fullPath, "src", "app.module.ts");
+  addHeaderLine(
+    filePath,
+    `import { CommonModule } from './common/common.module';`
+  );
+};
+
+const addBody = async (fullPath) => {
+  const filePath = path.join(fullPath, "src", "app.module.ts");
+
+  addModuleLine(
+    filePath,
+    `CommonModule,`
+  );
+};
+
+
+const createFolderDtos = async (fullPath) => {
+  // Folder
+  const folderPath = path.join(fullPath, "src", "common", "dtos");
+
+  // File
+  const filePath = path.join(folderPath, "pagination.dto.ts");
+
+  // Asegurar que la carpeta exista
+  createFolder(folderPath);
+
+  // Code
+  const code = `import { IsOptional, IsPositive } from "class-validator";
+
+export class PaginationDto {
+    
+    @IsOptional()
+    @IsPositive()
+    limit?: number;
+
+
+    @IsOptional()
+    @IsPositive()
+    offset?: number;
+}
+`.trimStart();
+
+  try {
+    fs.writeFileSync(filePath, code);
+    console.log(`✅ Archivo creado: ${filePath}`.green);
+  } catch (error) {
+    console.error(`❌ Error al crear archivo: ${error.message}`);
+  }
+};

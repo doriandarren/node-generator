@@ -2,6 +2,7 @@ import { readInput } from "../../../helpers/inquirer.js";
 import { addLinesMainTS } from "./addLinesMainTS.js";
 import { generateClassValidator } from "./generateClassValidator.js";
 import { generateCommandLine } from "./generateCommandLine.js";
+import { generateCommon } from "./generateCommon.js";
 import { generateDockerComposeYaml } from "./generateDockerComposeYaml.js";
 import { generateEnv } from "./generateEnv.js";
 import { generateGitignore } from "./generateGitignore.js";
@@ -45,6 +46,8 @@ export const startProjectNestJS = async () => {
   await generateReadme(fullPath);
 
   await generateTypeORM(fullPath);
+
+  await generateCommon(fullPath);
 
   //await generateShared(fullPath);
 };

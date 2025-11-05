@@ -42,7 +42,7 @@ export class ${pluralName}Controller {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.${pluralNameCamel}Service.findOne(+id);
+    return this.${pluralNameCamel}Service.findOne(id);
   }
 
   @Post()
@@ -52,15 +52,15 @@ export class ${pluralName}Controller {
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() update${singularName}Dto: Update${singularName}Dto) {
-    return this.${pluralNameCamel}Service.update(+id, update${singularName}Dto);
+    return this.${pluralNameCamel}Service.update(id, update${singularName}Dto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.${pluralNameCamel}Service.remove(+id);
+    return this.${pluralNameCamel}Service.remove(id);
   }
 }
-  `.trimStart();
+`.trimStart();
 
   try {
     fs.writeFileSync(filePath, code);

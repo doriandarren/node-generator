@@ -28,31 +28,64 @@ export const generateService = async(
 
 
     // Code
-    const code = `import { Injectable } from '@nestjs/common';
+    const code = `import { BadRequestException, Injectable, InternalServerErrorException, Logger } from '@nestjs/common';
+import { Repository } from 'typeorm';
 import { Create${singularName}Dto } from './dto/create-${singularNameKebab}.dto';
 import { Update${singularName}Dto } from './dto/update-${singularNameKebab}.dto';
+import { ${singularName} } from './entities/${singularNameKebab}.entity';
 
 @Injectable()
 export class ${pluralName}Service {
-  create(create${singularName}Dto: Create${singularName}Dto) {
-    return 'This action adds a new item';
+
+  private readonly logger = new Logger('${pluralName}Service');
+
+  constructor(
+    @InjectRepository(Product)
+    private readonly ${singularNameCamel}Repository: Repository<Product>,
+  ){}
+
+  async findAll() {
+    return await this.productRepository.find({});
   }
 
-  findAll() {
-    return \`This action returns all items\`;
+  async findOne(id: string) {
+    const data = await this.productRepository.findOneBy({ id });
+    if( !data )
+      throw new NotFoundException(\`Product with id \${id} not found\`);
+
+    return data;
   }
 
-  findOne(id: number) {
-    return \`This action returns a #\${id} items\`;
+  async create(create${singularName}Dto: Create${singularName}Dto) {
+    try {      
+      const data = this.${singularNameCamel}Repository.create(createProductDto);
+      await this.${singularNameCamel}Repository.save(data);
+      return data;
+
+    } catch (error) {
+      this.handleDBException(error);
+    }
   }
 
-  update(id: number, update${singularName}Dto: Update${singularName}Dto) {
+  async update(id: string, update${singularName}Dto: Update${singularName}Dto) {
     return \`This action updates a #\${id} item\`;
   }
 
-  remove(id: number) {
-    return \`This action removes a #\${id} item\`;
+  async remove(id: string) {
+    const data = await this.findOne(id);
+    await this.productRepository.remove(data);
+    return \`Delete #\${id}\`;
   }
+
+  // TODO cambiar a un metodo general
+  private handleDBException(error: any) {
+    if(error.code === '23505')
+      throw new BadRequestException(error.detail);
+      
+    this.logger.error(error);
+    throw new InternalServerErrorException('Unexpected error, check server logs');
+  }
+
 }
     
 `.trimStart();
