@@ -24,7 +24,8 @@ export function buildDtoFromColumns(columns = []) {
       used
     );
 
-    const block = `${decorators.join("\n  ")}
+    const block = `
+  ${decorators.join("\n  ")}
   ${name}: ${tsType};`.trimEnd();
 
     lines.push(block);
@@ -33,7 +34,7 @@ export function buildDtoFromColumns(columns = []) {
   const imports = `import { ${Array.from(used)
     .sort()
     .join(", ")} } from 'class-validator';`;
-  const fields = lines.join("\n\n");
+  const fields = lines.join("\n");
   return { imports, fields };
 }
 

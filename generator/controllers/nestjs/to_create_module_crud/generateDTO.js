@@ -78,7 +78,7 @@ const createFile = async (
   const code = `${imports}
 
 export class Create${singularName}Dto {
-${fields ? "\n" + fields + "\n" : ""}
+${fields ? fields + "\n" : ""}
 }`.trimStart();
 
   try {
