@@ -1,8 +1,7 @@
 import fs from "fs";
 import path from "path";
 import { createFolder } from "../../../helpers/helperFile.js";
-
-
+import { buildDtoFromColumns } from "../helpers/helperNestDTO.js";
 
 export const generateDTO = async (
   fullPath,
@@ -17,34 +16,33 @@ export const generateDTO = async (
   pluralNameCamel,
   columns
 ) => {
-
-    await createFile(fullPath,
-  namespace,
-  singularName,
-  pluralName,
-  singularNameKebab,
-  pluralNameKebab,
-  singularNameSnake,
-  pluralNameSnake,
-  singularNameCamel,
-  pluralNameCamel,
-  columns);
-    await updateFile(fullPath,
-  namespace,
-  singularName,
-  pluralName,
-  singularNameKebab,
-  pluralNameKebab,
-  singularNameSnake,
-  pluralNameSnake,
-  singularNameCamel,
-  pluralNameCamel,
-  columns);
-
-}
-
-
-
+  await createFile(
+    fullPath,
+    namespace,
+    singularName,
+    pluralName,
+    singularNameKebab,
+    pluralNameKebab,
+    singularNameSnake,
+    pluralNameSnake,
+    singularNameCamel,
+    pluralNameCamel,
+    columns
+  );
+  await updateFile(
+    fullPath,
+    namespace,
+    singularName,
+    pluralName,
+    singularNameKebab,
+    pluralNameKebab,
+    singularNameSnake,
+    pluralNameSnake,
+    singularNameCamel,
+    pluralNameCamel,
+    columns
+  );
+};
 
 const createFile = async (
   fullPath,
@@ -74,8 +72,14 @@ const createFile = async (
   // Asegurar que la carpeta exista
   createFolder(folderPath);
 
+  const { imports, fields } = buildDtoFromColumns(columns);
+
   // Code
-  const code = `export class Create${singularName}Dto {}`.trimStart();
+  const code = `${imports}
+
+export class Create${singularName}Dto {
+${fields ? "\n" + fields + "\n" : ""}
+}`.trimStart();
 
   try {
     fs.writeFileSync(filePath, code);
@@ -84,8 +88,6 @@ const createFile = async (
     console.error(`❌ Error al crear archivo: ${error.message}`);
   }
 };
-
-
 
 const updateFile = async (
   fullPath,

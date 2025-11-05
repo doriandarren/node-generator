@@ -35,11 +35,6 @@ import { Update${singularName}Dto } from './dto/update-${singularNameKebab}.dto'
 export class ${pluralName}Controller {
   constructor(private readonly ${pluralNameCamel}Service: ${pluralName}Service) {}
 
-  @Post()
-  create(@Body() create${singularName}Dto: Create${singularName}Dto) {
-    return this.${pluralNameCamel}Service.create(create${singularName}Dto);
-  }
-
   @Get()
   findAll() {
     return this.${pluralNameCamel}Service.findAll();
@@ -48,6 +43,11 @@ export class ${pluralName}Controller {
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.${pluralNameCamel}Service.findOne(+id);
+  }
+
+  @Post()
+  create(@Body() create${singularName}Dto: Create${singularName}Dto) {
+    return this.${pluralNameCamel}Service.create(create${singularName}Dto);
   }
 
   @Patch(':id')

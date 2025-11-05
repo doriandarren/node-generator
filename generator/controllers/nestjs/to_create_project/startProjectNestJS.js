@@ -1,4 +1,5 @@
 import { readInput } from "../../../helpers/inquirer.js";
+import { addLinesMainTS } from "./addLinesMainTS.js";
 import { generateClassValidator } from "./generateClassValidator.js";
 import { generateCommandLine } from "./generateCommandLine.js";
 import { generateDockerComposeYaml } from "./generateDockerComposeYaml.js";
@@ -6,7 +7,6 @@ import { generateEnv } from "./generateEnv.js";
 import { generateGitignore } from "./generateGitignore.js";
 import { generateReadme } from "./generateReadme.js";
 import { generateServeStatic } from "./generateServeStatic.js";
-import { generateSetGlobalPrefix } from "./generateSetGlobalPrefix.js";
 import { generateShared } from "./generateShared.js";
 import { generateTypeORM } from "./generateTypeORM.js";
 
@@ -30,7 +30,7 @@ export const startProjectNestJS = async () => {
 
   await generateCommandLine(fullPath);
 
-  await generateSetGlobalPrefix(fullPath);
+  await addLinesMainTS(fullPath);
 
   await generateClassValidator(fullPath);
 
