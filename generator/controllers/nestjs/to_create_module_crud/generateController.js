@@ -30,14 +30,15 @@ export const generateController = async (
 import { ${pluralName}Service } from './${pluralNameKebab}.service';
 import { Create${singularName}Dto } from './dto/create-${singularNameKebab}.dto';
 import { Update${singularName}Dto } from './dto/update-${singularNameKebab}.dto';
+import { PaginationDto } from 'src/common/dtos/pagination.dto';
 
 @Controller('${pluralNameKebab}')
 export class ${pluralName}Controller {
   constructor(private readonly ${pluralNameCamel}Service: ${pluralName}Service) {}
 
   @Get()
-  findAll() {
-    return this.${pluralNameCamel}Service.findAll();
+  findAll(@Query() paginationDto: PaginationDto) {
+    return this.${pluralNameCamel}Service.findAll(paginationDto);
   }
 
   @Get(':id')
@@ -51,7 +52,10 @@ export class ${pluralName}Controller {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() update${singularName}Dto: Update${singularName}Dto) {
+  update(
+    @Param('id') id: string, 
+    @Body() update${singularName}Dto: Update${singularName}Dto
+  ) {
     return this.${pluralNameCamel}Service.update(id, update${singularName}Dto);
   }
 

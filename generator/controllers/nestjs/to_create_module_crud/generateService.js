@@ -33,6 +33,7 @@ import { Repository } from 'typeorm';
 import { Create${singularName}Dto } from './dto/create-${singularNameKebab}.dto';
 import { Update${singularName}Dto } from './dto/update-${singularNameKebab}.dto';
 import { ${singularName} } from './entities/${singularNameKebab}.entity';
+import { PaginationDto } from 'src/common/dtos/pagination.dto';
 
 @Injectable()
 export class ${pluralName}Service {
@@ -44,14 +45,19 @@ export class ${pluralName}Service {
     private readonly ${singularNameCamel}Repository: Repository<Product>,
   ){}
 
-  async findAll() {
-    return await this.productRepository.find({});
+  async findAll(paginationDto: PaginationDto) {
+    const { limit=10, offset=0 } = paginationDto;
+    return await this.productRepository.find({
+      take: limit,
+      skip: offset,
+      //TODO relaciones
+    });
   }
 
   async findOne(id: string) {
     const data = await this.productRepository.findOneBy({ id });
     if( !data )
-      throw new NotFoundException(\`Product with id \${id} not found\`);
+      throw new NotFoundException(\`${singularName} with id \${id} not found\`);
 
     return data;
   }
@@ -68,7 +74,20 @@ export class ${pluralName}Service {
   }
 
   async update(id: string, update${singularName}Dto: Update${singularName}Dto) {
-    return \`This action updates a #\${id} item\`;
+    const data = await this.productRepository.preload({
+      id: id,
+      ...updateProductDto,
+    });
+
+    if( !data )
+      throw new NotFoundException(\`${singularName} with id \${id} not found\`);
+
+    try {
+      await this.productRepository.save(data);
+      return data;
+    } catch (error) {
+      this.handleDBException(error);
+    }
   }
 
   async remove(id: string) {

@@ -3,7 +3,7 @@ import path from "path";
 import { replaceLineInFile } from "../../../helpers/helperFile.js";
 import { printMessage } from "../../../helpers/inquirer.js";
 
-export const addLinesMainTS = async (fullPath) => {
+export const generateLinesMainTS = async (fullPath) => {
   await createSetGlobalPrefix(fullPath);
   await createValidationPipe(fullPath);
 };

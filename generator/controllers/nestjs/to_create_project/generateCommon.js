@@ -50,12 +50,8 @@ const addHeader = async (fullPath) => {
 const addBody = async (fullPath) => {
   const filePath = path.join(fullPath, "src", "app.module.ts");
 
-  addModuleLine(
-    filePath,
-    `CommonModule,`
-  );
+  addModuleLine(filePath, `CommonModule,`);
 };
-
 
 const createFolderDtos = async (fullPath) => {
   // Folder
@@ -68,18 +64,22 @@ const createFolderDtos = async (fullPath) => {
   createFolder(folderPath);
 
   // Code
-  const code = `import { IsOptional, IsPositive } from "class-validator";
+  const code = `import { Type } from "class-transformer";
+import { IsOptional, IsPositive, Min } from "class-validator";
 
 export class PaginationDto {
     
     @IsOptional()
     @IsPositive()
+    @Type(() => Number) // Igual a: enableImplicitConvertion: true
     limit?: number;
 
 
     @IsOptional()
-    @IsPositive()
+    @Min(0)
+    @Type(() => Number)
     offset?: number;
+
 }
 `.trimStart();
 

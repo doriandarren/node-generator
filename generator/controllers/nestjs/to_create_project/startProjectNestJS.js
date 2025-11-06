@@ -1,5 +1,5 @@
 import { readInput } from "../../../helpers/inquirer.js";
-import { addLinesMainTS } from "./addLinesMainTS.js";
+import { generateLinesMainTS } from "./generateLinesMainTS.js";
 import { generateClassValidator } from "./generateClassValidator.js";
 import { generateCommandLine } from "./generateCommandLine.js";
 import { generateCommon } from "./generateCommon.js";
@@ -10,6 +10,7 @@ import { generateReadme } from "./generateReadme.js";
 import { generateServeStatic } from "./generateServeStatic.js";
 import { generateShared } from "./generateShared.js";
 import { generateTypeORM } from "./generateTypeORM.js";
+import { generateUUID } from "./generateUUID.js";
 
 export const startProjectNestJS = async () => {
   // Ruta predeterminada
@@ -31,7 +32,9 @@ export const startProjectNestJS = async () => {
 
   await generateCommandLine(fullPath);
 
-  await addLinesMainTS(fullPath);
+  await generateUUID(fullPath);
+
+  await generateLinesMainTS(fullPath);
 
   await generateClassValidator(fullPath);
 
