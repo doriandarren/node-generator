@@ -28,7 +28,7 @@ export const generateEntity = async (
   // File
   const filePath = path.join(
     folderPath,
-    `create-${singularNameKebab}.entitiy.ts`
+    `${singularNameKebab}.entity.ts`
   );
 
   // Asegurar que la carpeta exista
@@ -43,8 +43,11 @@ export const generateEntity = async (
 @Entity()
 export class ${singularName} {
 
-  @PrimaryGeneratedColumn('increment')
-  id: number;
+  //@PrimaryGeneratedColumn('increment')
+  //id: number;
+
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
 ${columnLines}
 

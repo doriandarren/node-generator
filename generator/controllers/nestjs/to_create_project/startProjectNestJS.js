@@ -11,6 +11,7 @@ import { generateServeStatic } from "./generateServeStatic.js";
 import { generateShared } from "./generateShared.js";
 import { generateTypeORM } from "./generateTypeORM.js";
 import { generateUUID } from "./generateUUID.js";
+import { generateMappedTypes } from "./generateMappedTypes.js";
 
 export const startProjectNestJS = async () => {
   // Ruta predeterminada
@@ -33,6 +34,8 @@ export const startProjectNestJS = async () => {
   await generateCommandLine(fullPath);
 
   await generateUUID(fullPath);
+
+  await generateMappedTypes(fullPath);
 
   await generateLinesMainTS(fullPath);
 

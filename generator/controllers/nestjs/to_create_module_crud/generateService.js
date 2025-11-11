@@ -1,10 +1,9 @@
-import fs from 'fs';
-import path from 'path';
-import { createFolder } from '../../../helpers/helperFile.js';
+import fs from "fs";
+import path from "path";
+import { createFolder } from "../../../helpers/helperFile.js";
 
-
-export const generateService = async(
-  fullPath, 
+export const generateService = async (
+  fullPath,
   namespace,
   singularName,
   pluralName,
@@ -15,21 +14,21 @@ export const generateService = async(
   singularNameCamel,
   pluralNameCamel,
   columns
-) => {    
+) => {
+  // Folder
+  const folderPath = path.join(fullPath, "src", namespace, pluralNameKebab);
 
-    // Folder
-    const folderPath = path.join(fullPath, "src", namespace, pluralNameKebab);
+  // File
+  const filePath = path.join(folderPath, `${pluralNameKebab}.service.ts`);
 
-    // File
-    const filePath = path.join(folderPath, `${pluralNameKebab}.service.ts`);
+  // Asegurar que la carpeta exista
+  createFolder(folderPath);
 
-    // Asegurar que la carpeta exista
-    createFolder(folderPath);
-
-
-    // Code
-    const code = `import { BadRequestException, Injectable, InternalServerErrorException, Logger } from '@nestjs/common';
+  // Code
+  const code =
+    `import { BadRequestException, Injectable, InternalServerErrorException, Logger, NotFoundException } from '@nestjs/common';
 import { Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
 import { Create${singularName}Dto } from './dto/create-${singularNameKebab}.dto';
 import { Update${singularName}Dto } from './dto/update-${singularNameKebab}.dto';
 import { ${singularName} } from './entities/${singularNameKebab}.entity';
@@ -41,13 +40,13 @@ export class ${pluralName}Service {
   private readonly logger = new Logger('${pluralName}Service');
 
   constructor(
-    @InjectRepository(Product)
-    private readonly ${singularNameCamel}Repository: Repository<Product>,
+    @InjectRepository(${singularName})
+    private readonly ${singularNameCamel}Repository: Repository<${singularName}>,
   ){}
 
   async findAll(paginationDto: PaginationDto) {
     const { limit=10, offset=0 } = paginationDto;
-    return await this.productRepository.find({
+    return await this.${singularNameCamel}Repository.find({
       take: limit,
       skip: offset,
       //TODO relaciones
@@ -55,7 +54,7 @@ export class ${pluralName}Service {
   }
 
   async findOne(id: string) {
-    const data = await this.productRepository.findOneBy({ id });
+    const data = await this.${singularNameCamel}Repository.findOneBy({ id });
     if( !data )
       throw new NotFoundException(\`${singularName} with id \${id} not found\`);
 
@@ -64,7 +63,7 @@ export class ${pluralName}Service {
 
   async create(create${singularName}Dto: Create${singularName}Dto) {
     try {      
-      const data = this.${singularNameCamel}Repository.create(createProductDto);
+      const data = this.${singularNameCamel}Repository.create(create${singularName}Dto);
       await this.${singularNameCamel}Repository.save(data);
       return data;
 
@@ -74,16 +73,16 @@ export class ${pluralName}Service {
   }
 
   async update(id: string, update${singularName}Dto: Update${singularName}Dto) {
-    const data = await this.productRepository.preload({
+    const data = await this.${singularNameCamel}Repository.preload({
       id: id,
-      ...updateProductDto,
+      ...update${singularName}Dto,
     });
 
     if( !data )
       throw new NotFoundException(\`${singularName} with id \${id} not found\`);
 
     try {
-      await this.productRepository.save(data);
+      await this.${singularNameCamel}Repository.save(data);
       return data;
     } catch (error) {
       this.handleDBException(error);
@@ -92,7 +91,7 @@ export class ${pluralName}Service {
 
   async remove(id: string) {
     const data = await this.findOne(id);
-    await this.productRepository.remove(data);
+    await this.${singularNameCamel}Repository.remove(data);
     return \`Delete #\${id}\`;
   }
 
@@ -115,5 +114,4 @@ export class ${pluralName}Service {
   } catch (error) {
     console.error(`❌ Error al crear archivo: ${error.message}`);
   }
-
-}
+};
