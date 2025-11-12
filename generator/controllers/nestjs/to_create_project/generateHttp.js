@@ -36,30 +36,48 @@ const createAdapters = async (fullPath) => {
   createFolder(folderPath);
 
   // Code
-  const code = `import axios, { AxiosInstance } from "axios";
+  const code = `import { Injectable, HttpException } from "@nestjs/common";
+import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
 import { HttpAdapter } from "../interfaces/http-adapter.interface";
-import { Injectable } from "@nestjs/common";
 
 
 @Injectable()
 export class AxiosAdapter implements HttpAdapter {
 
-    private axios: AxiosInstance = axios;
+    
+    private readonly axios: AxiosInstance;
 
-    async get<T>(url: string): Promise<T> {
+    constructor() {
+        this.axios = axios.create({
+            //timeout: 60000, // 60 segundos de espera máximo
+        });
+    }
+
+    async get<T>(url: string, config?: AxiosRequestConfig): Promise<T> {
         try {
-            
-            const {data} = await this.axios.get<T>(url);
+            const { data } = await this.axios.get<T>(url, config);
             return data;
-
-        } catch (error) {
-            
-            throw new Error('This is an error - Check logs');
-            
+        } catch (error: any) {
+            const status = error?.response?.status ?? 500;
+            const message = error?.response?.data ?? error?.message ?? 'GET failed';
+            console.error('❌ GET error:', { url, status, message });
+            throw new HttpException(message, status);
         }
     }
 
-}   
+    async post<T>(url: string, body?: any, config?: AxiosRequestConfig): Promise<T> {
+        try {
+            const { data } = await this.axios.post<T>(url, body, config);
+            return data;
+        } catch (error: any) {
+            const status = error?.response?.status ?? 500;
+            const message = error?.response?.data ?? error?.message ?? 'POST failed';
+            console.error('❌ POST error:', { url, status, message });
+            throw new HttpException(message, status);
+        }
+    }
+
+}    
 `.trimStart();
 
   try {
@@ -82,7 +100,8 @@ const createInterfaces = async (fullPath) => {
 
   // Code
   const code = `export interface HttpAdapter {
-    get<T>(url: string): Promise<T>;
+  get<T>(url: string, config?: any): Promise<T>;
+  post<T>(url: string, body?: any, config?: any): Promise<T>;
 }
 `.trimStart();
 
