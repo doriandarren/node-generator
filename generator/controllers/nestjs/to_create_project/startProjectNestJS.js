@@ -58,5 +58,8 @@ export const startProjectNestJS = async () => {
 
   await generateHttp(fullPath);
 
+
+  await 
+
   //await generateShared(fullPath);
 };

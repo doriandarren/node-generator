@@ -28,7 +28,13 @@ The project contain NestJs and database MongoDB
 docker-compose up -d
 \`\`\`
 
-6. Levantar: \`\`\`npm run start:dev\`\`\`
+6. Ejecutar SEED
+\`\`\`
+http://localhost:3000/api/v1/seed
+\`\`\`
+
+
+7. Levantar: \`\`\`npm run start:dev\`\`\`
 
 
 
