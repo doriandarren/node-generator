@@ -12,6 +12,7 @@ import { generateTypeORM } from "./generateTypeORM.js";
 import { generateUUID } from "./generateUUID.js";
 import { generateMappedTypes } from "./generateMappedTypes.js";
 import { generateHttp } from "./generateHttp.js";
+import { generateSeeder } from "./generateSeeder.js";
 import { generateShared } from "./generateShared.js";
 
 export const startProjectNestJS = async () => {
@@ -58,8 +59,7 @@ export const startProjectNestJS = async () => {
 
   await generateHttp(fullPath);
 
-
-  await 
+  await generateSeeder(fullPath);
 
   //await generateShared(fullPath);
 };
