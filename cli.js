@@ -9,6 +9,7 @@ import { importDiagramsMain } from './generator/controllers/import_diagrams/impo
 import { aiMain } from "./generator/controllers/ai/aiMain.js";
 import { reactNativeMain } from "./generator/controllers/react_native/reactNativeMain.js";
 import { nestJSMain } from './generator/controllers/nestjs/nestJSMain.js';
+import { reactTSMain } from './generator/controllers/react_ts/reactTSMain.js';
 
 
 const main = async() => {
@@ -24,13 +25,14 @@ const main = async() => {
             { name: "Database", value: "database" },
             { name: "Export Diagrams", value: "export_diagrams" },
             { name: "Import Diagrams", value: "import_diagrams" },
+            { name: "TS - NestJS", value: "nestjs" },
+            { name: "TS - React", value: "react_ts" },
+            { name: "TS - React Native", value: "react_native" },
             { name: "React", value: "react" },
-            { name: "React Native", value: "react_native" },
-            { name: "NestJS", value: "nestjs" },
             { name: "NodeJS", value: "nodejs" },
             { name: "PHP", value: "php" },
             { name: "Ollama", value: "ollama" },
-            { name: "Salir", value: "salir" },
+            { name: "Salir [S]", value: "salir" },
         ]);
 
         switch (opt) {
@@ -39,32 +41,37 @@ const main = async() => {
                 await databaseMain();
                 break;
 
-            case 'nodejs':
-                await nodeMain();
-                break;
-
-            case 'php':
-                await phpMain();
-                break;
-
-            case 'nestjs':
-                await nestJSMain();
-                break;
-        
-            case 'react':
-                await reactMain();
-                break;
-
-            case 'react_native':
-                await reactNativeMain();
-                break;
-            
             case 'export_diagrams':
                 await exportDiagramsMain();
                 break;
             
             case 'import_diagrams':
                 await importDiagramsMain();
+                break;
+            
+
+            case 'nestjs':
+                await nestJSMain();
+                break;
+        
+            case 'react_ts':
+                await reactTSMain();
+                break;
+
+            case 'react_native':
+                await reactNativeMain();
+                break;
+            
+            case 'react':
+                await reactMain();
+                break;
+            
+            case 'nodejs':
+                await nodeMain();
+                break;
+
+            case 'php':
+                await phpMain();
                 break;
 
             case 'ollama':

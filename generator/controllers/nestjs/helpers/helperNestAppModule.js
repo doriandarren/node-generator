@@ -275,7 +275,7 @@ export function addModuleExport(filePath, exportLine) {
       const replaced = fullDecorator.replace(objectWithBracesRe, (_match, inner) => {
         const innerTrim = (inner || "").trim();
         const prefix = innerTrim ? `${innerTrim},\n` : "";
-        return `{\n  ${prefix}exports: [\n    ${exportLine}\n  ]\n}`;
+        return `{\n  ${prefix}  exports: [\n    ${exportLine}\n  ]\n}`;
       });
 
       content = content.replace(fullDecorator, replaced);

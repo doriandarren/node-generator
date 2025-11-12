@@ -1,5 +1,5 @@
 import { readInput } from "../../../helpers/inquirer.js";
-//import { generateCommandLine } from "./generateCommandLine.js";
+import { generateCommandLine } from "./generateCommandLine.js";
 
 export const startProjectREACTTS = async () => {
     // Ruta predeterminada
