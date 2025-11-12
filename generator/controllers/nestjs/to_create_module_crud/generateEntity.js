@@ -40,7 +40,7 @@ export const generateEntity = async (
   const code =
     `import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity()
+@Entity({ name: '${pluralNameSnake}'})
 export class ${singularName} {
 
   //@PrimaryGeneratedColumn('increment')

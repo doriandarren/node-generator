@@ -3,10 +3,7 @@ import path from "path";
 import { createFolder } from "../../../helpers/helperFile.js";
 import { runExec } from "../../../helpers/helperFile.js";
 import { printMessage } from "../../../helpers/inquirer.js";
-import {
-  addHeaderLine,
-  addModuleImport,
-} from "../helpers/helperFileWrite.js";
+import { addHeaderLine, addModuleImport } from "../helpers/helperFileWrite.js";
 
 export const generateTypeORM = async (fullPath) => {
   await install(fullPath);

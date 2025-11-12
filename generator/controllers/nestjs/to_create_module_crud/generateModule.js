@@ -1,10 +1,9 @@
-import fs from 'fs';
-import path from 'path';
-import { createFolder } from '../../../helpers/helperFile.js';
+import fs from "fs";
+import path from "path";
+import { createFolder } from "../../../helpers/helperFile.js";
 
-
-export const generateModule = async(
-  fullPath, 
+export const generateModule = async (
+  fullPath,
   namespace,
   singularName,
   pluralName,
@@ -15,26 +14,29 @@ export const generateModule = async(
   singularNameCamel,
   pluralNameCamel,
   columns
-) => {    
+) => {
+  // Folder
+  const folderPath = path.join(fullPath, "src", namespace, pluralNameKebab);
 
-    // Folder
-    const folderPath = path.join(fullPath, "src", namespace, pluralNameKebab);
+  // File
+  const filePath = path.join(folderPath, `${pluralNameKebab}.module.ts`);
 
-    // File
-    const filePath = path.join(folderPath, `${pluralNameKebab}.module.ts`);
+  // Asegurar que la carpeta exista
+  createFolder(folderPath);
 
-    // Asegurar que la carpeta exista
-    createFolder(folderPath);
-
-
-    // Code
-    const code = `import { Module } from '@nestjs/common';
+  // Code
+  const code = `import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { ${pluralName}Service } from './${pluralNameKebab}.service';
 import { ${pluralName}Controller } from './${pluralNameKebab}.controller';
+import { ${singularName} } from './entities/${singularNameKebab}.entity';
 
 @Module({
   controllers: [${pluralName}Controller],
   providers: [${pluralName}Service],
+  imports: [
+    TypeOrmModule.forFeature([${singularName}]),
+  ]
 })
 export class ${pluralName}Module {}
 `.trimStart();
@@ -45,5 +47,4 @@ export class ${pluralName}Module {}
   } catch (error) {
     console.error(`❌ Error al crear archivo: ${error.message}`);
   }
-
-}
+};
