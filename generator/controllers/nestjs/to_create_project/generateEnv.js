@@ -6,7 +6,7 @@ import { printMessage } from "../../../helpers/inquirer.js";
 import {
   addHeaderLine,
   addModuleImport,
-} from "../helpers/helperNestAppModule.js";
+} from "../helpers/helperFileWrite.js";
 
 export const generateEnv = async (fullPath) => {
   await install(fullPath);

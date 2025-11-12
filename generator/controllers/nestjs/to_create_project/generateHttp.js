@@ -6,7 +6,7 @@ import {
   addHeaderLine,
   addModuleProvider,
   addModuleExport,
-} from "../helpers/helperNestAppModule.js";
+} from "../helpers/helperFileWrite.js";
 
 export const generateHttp = async (fullPath) => {
   await installAxios(fullPath);

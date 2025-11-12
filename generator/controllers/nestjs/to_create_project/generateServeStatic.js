@@ -6,7 +6,7 @@ import { createFolder } from "../../../helpers/helperFile.js";
 import {
   addHeaderLine,
   addModuleImport,
-} from "../helpers/helperNestAppModule.js";
+} from "../helpers/helperFileWrite.js";
 
 export const generateServeStatic = async (fullPath) => {
   await install(fullPath);
