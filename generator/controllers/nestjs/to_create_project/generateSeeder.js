@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import { createFolder } from "../../../helpers/helperFile.js";
-import { addHeaderLine } from "../helpers/helperFileWrite.js";
+import { addHeaderLine, addModuleImport } from "../helpers/helperFileWrite.js";
 
 export const generateSeeder = async (fullPath) => {
   await updateFileAppModule(fullPath);
