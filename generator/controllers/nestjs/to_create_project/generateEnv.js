@@ -3,7 +3,10 @@ import path from "path";
 import { createFolder } from "../../../helpers/helperFile.js";
 import { runExec } from "../../../helpers/helperFile.js";
 import { printMessage } from "../../../helpers/inquirer.js";
-import { addHeaderLine, addModuleLine } from "../helpers/helperNestAppModule.js";
+import {
+  addHeaderLine,
+  addModuleImport,
+} from "../helpers/helperNestAppModule.js";
 
 export const generateEnv = async (fullPath) => {
   await install(fullPath);
@@ -99,5 +102,5 @@ const createHeaderLine = async (fullPath) => {
  */
 const createModuleLine = async (fullPath) => {
   const filePath = path.join(fullPath, "src", "app.module.ts");
-  addModuleLine(filePath, `ConfigModule.forRoot(),`);
+  addModuleImport(filePath, `ConfigModule.forRoot(),`);
 };

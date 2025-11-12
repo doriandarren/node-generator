@@ -5,7 +5,7 @@ import { runExec } from "../../../helpers/helperFile.js";
 import { printMessage } from "../../../helpers/inquirer.js";
 import {
   addHeaderLine,
-  addModuleLine,
+  addModuleImport,
 } from "../helpers/helperNestAppModule.js";
 
 export const generateTypeORM = async (fullPath) => {
@@ -19,8 +19,6 @@ const install = async (fullPath) => {
   await runExec("npm install --save @nestjs/typeorm typeorm pg", fullPath);
   printMessage("nestjs/typeorm instalado correctamente.", "green");
 };
-
-
 
 /**
  * PARTE 1: AGREGAR IMPORTS NECESARIOS
@@ -36,7 +34,7 @@ const addTypeOrmImport = async (fullPath) => {
 const addTypeOrmToImports = async (fullPath) => {
   const filePath = path.join(fullPath, "src", "app.module.ts");
 
-  addModuleLine(
+  addModuleImport(
     filePath,
     `TypeOrmModule.forRoot({
       type: 'postgres',

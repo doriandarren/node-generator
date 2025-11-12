@@ -5,7 +5,7 @@ import { printMessage } from "../../../helpers/inquirer.js";
 import { createFolder } from "../../../helpers/helperFile.js";
 import {
   addHeaderLine,
-  addModuleLine,
+  addModuleImport,
 } from "../helpers/helperNestAppModule.js";
 
 export const generateServeStatic = async (fullPath) => {
@@ -44,7 +44,7 @@ const createHeaderLine = async (fullPath) => {
 const createModuleLine = async (fullPath) => {
   const filePath = path.join(fullPath, "src", "app.module.ts");
 
-  addModuleLine(
+  addModuleImport(
     filePath,
     `ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'public'),
@@ -52,27 +52,18 @@ const createModuleLine = async (fullPath) => {
   );
 };
 
+const createIndexHTML = async (fullPath) => {
+  // Folder
+  const folderPath = path.join(fullPath, "public");
 
+  // File
+  const filePath = path.join(folderPath, "index.html");
 
+  // Asegurar que la carpeta exista
+  createFolder(folderPath);
 
-
-
-const createIndexHTML = async(
-  fullPath,
-) => {    
-
-    // Folder
-    const folderPath = path.join(fullPath, 'public');
-    
-    // File
-    const filePath = path.join(folderPath, 'index.html');
-
-    // Asegurar que la carpeta exista
-    createFolder(folderPath);
-
-
-    // Code
-    const code = `<!DOCTYPE html>
+  // Code
+  const code = `<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -94,8 +85,4 @@ const createIndexHTML = async(
   } catch (error) {
     console.error(`❌ Error al crear archivo: ${error.message}`);
   }
-
-}
-
-
-
+};

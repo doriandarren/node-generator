@@ -8,10 +8,11 @@ import { generateEnv } from "./generateEnv.js";
 import { generateGitignore } from "./generateGitignore.js";
 import { generateReadme } from "./generateReadme.js";
 import { generateServeStatic } from "./generateServeStatic.js";
-import { generateShared } from "./generateShared.js";
 import { generateTypeORM } from "./generateTypeORM.js";
 import { generateUUID } from "./generateUUID.js";
 import { generateMappedTypes } from "./generateMappedTypes.js";
+import { generateHttp } from "./generateHttp.js";
+import { generateShared } from "./generateShared.js";
 
 export const startProjectNestJS = async () => {
   // Ruta predeterminada
@@ -54,6 +55,8 @@ export const startProjectNestJS = async () => {
   await generateTypeORM(fullPath);
 
   await generateCommon(fullPath);
+
+  await generateHttp(fullPath);
 
   //await generateShared(fullPath);
 };

@@ -3,7 +3,7 @@ import path from "path";
 import { createFolder } from "../../../helpers/helperFile.js";
 import {
   addHeaderLine,
-  addModuleLine,
+  addModuleImport,
 } from "../helpers/helperNestAppModule.js";
 
 export const addModuleIntoAppModuleTS = async (
@@ -41,5 +41,5 @@ const createHeaderLine = async (fullPath, header) => {
 const createModuleLine = async (fullPath, body) => {
   const filePath = path.join(fullPath, "src", "app.module.ts");
 
-  addModuleLine(filePath, body);
+  addModuleImport(filePath, body);
 };

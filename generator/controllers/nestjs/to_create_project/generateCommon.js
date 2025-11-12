@@ -3,7 +3,7 @@ import path from "path";
 import { createFolder } from "../../../helpers/helperFile.js";
 import {
   addHeaderLine,
-  addModuleLine,
+  addModuleImport,
 } from "../helpers/helperNestAppModule.js";
 
 export const generateCommon = async (fullPath) => {
@@ -50,7 +50,7 @@ const addHeader = async (fullPath) => {
 const addBody = async (fullPath) => {
   const filePath = path.join(fullPath, "src", "app.module.ts");
 
-  addModuleLine(filePath, `CommonModule,`);
+  addModuleImport(filePath, `CommonModule,`);
 };
 
 const createFolderDtos = async (fullPath) => {
