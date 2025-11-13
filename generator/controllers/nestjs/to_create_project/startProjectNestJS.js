@@ -14,6 +14,7 @@ import { generateMappedTypes } from "./generateMappedTypes.js";
 import { generateHttp } from "./generateHttp.js";
 import { generateSeeder } from "./generateSeeder.js";
 import { generateShared } from "./generateShared.js";
+import { generateMulter } from "./generateMulter.js";
 
 export const startProjectNestJS = async () => {
   // Ruta predeterminada
@@ -60,6 +61,8 @@ export const startProjectNestJS = async () => {
   await generateHttp(fullPath);
 
   await generateSeeder(fullPath);
+
+  await generateMulter(fullPath);
 
   //await generateShared(fullPath);
 
