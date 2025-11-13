@@ -62,4 +62,8 @@ export const startProjectNestJS = async () => {
   await generateSeeder(fullPath);
 
   //await generateShared(fullPath);
+
+  //TODO falta Correo y Crones
+
+
 };

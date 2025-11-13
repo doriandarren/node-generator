@@ -7,15 +7,14 @@
 C:\Users\miled\Desktop\WorkSpaceNode\PROYECTOS\app1
 splytin_api
 
-# TODOLIST Tareas Pendientes NODE:
+# TODO LIST:
 
-- Revisar PHP al generar el proyecto
-- Revisar REACT al generar el proyecto
-- REACT tema de "perfil" hacer que funcione.
+- NEST JS generar un email de prueba.
+- NEST JS generar Cron y tareas programadas.
 
-- PHP generar / verificar de crear un email de prueba. Mail/TestMail y en la vista: test/email_test.blade.php
-- Cron y tareas programadas
-- Terminar con la llamada a callGenerate
+- REACT TS - Empezar generadores (copiar ideas de react)
+
+- REACT NATIVE TS - Empezar
 
 ## Notes
 
