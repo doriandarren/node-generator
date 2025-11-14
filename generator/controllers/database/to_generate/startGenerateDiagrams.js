@@ -87,7 +87,7 @@ export const startGenerateDiagrams = async ({
     }
 
 
-    const fullPath = path.join(process.cwd(), 'src', 'assets', 'diagrams');
+    const fullPath = path.join(process.cwd(), 'generator', 'assets', 'diagrams');
     await createDiagrams(myTables, fullPath, database);
 
     await connection.end();
