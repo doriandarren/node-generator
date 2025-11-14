@@ -48,6 +48,9 @@ DB_NAME=TesloDB
 DB_PORT=5432
 DB_USERNAME=postgres
 DB_PASSWORD=MyS3cr3tPass
+
+HOST_PORT=3000
+HOST_API=http://localhost:3000/api/v1/
 `.trimStart();
 
   try {
@@ -75,10 +78,13 @@ const createFileEnvTemplate = async (fullPath) => {
 
   // Code
   const code = `DB_HOST=localhost
-DB_NAME=
+DB_NAME=TesloDB
 DB_PORT=5432
-DB_USERNAME=
-DB_PASSWORD=
+DB_USERNAME=postgres
+DB_PASSWORD=MyS3cr3tPass
+
+HOST_PORT=3000
+HOST_API=http://localhost:3000/api/v1/
 `.trimStart();
 
   try {
