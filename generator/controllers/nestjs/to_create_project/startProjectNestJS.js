@@ -15,6 +15,7 @@ import { generateHttp } from "./generateHttp.js";
 import { generateSeeder } from "./generateSeeder.js";
 import { generateShared } from "./generateShared.js";
 import { generateMulter } from "./generateMulter.js";
+import { generateFolderStatic } from "./generateFolderStatic.js";
 
 export const startProjectNestJS = async () => {
   // Ruta predeterminada
@@ -64,9 +65,9 @@ export const startProjectNestJS = async () => {
 
   await generateMulter(fullPath);
 
+  await generateFolderStatic(fullPath);
+
   //await generateShared(fullPath);
 
   //TODO falta Correo y Crones
-
-
 };
