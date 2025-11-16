@@ -13,9 +13,9 @@ import { generateUUID } from "./generateUUID.js";
 import { generateMappedTypes } from "./generateMappedTypes.js";
 import { generateHttp } from "./generateHttp.js";
 import { generateSeeder } from "./generateSeeder.js";
-import { generateShared } from "./generateShared.js";
 import { generateMulter } from "./generateMulter.js";
 import { generateFolderStatic } from "./generateFolderStatic.js";
+import { generateShared } from "./generateShared.js";
 
 export const startProjectNestJS = async () => {
   // Ruta predeterminada
@@ -47,7 +47,11 @@ export const startProjectNestJS = async () => {
 
   await generateEnv(fullPath);
 
+  // hace el npm
   await generateServeStatic(fullPath);
+
+  // Crea solamente la carpeta Static
+  await generateFolderStatic(fullPath);
 
   await generateGitignore(fullPath);
 
@@ -64,8 +68,6 @@ export const startProjectNestJS = async () => {
   await generateSeeder(fullPath);
 
   await generateMulter(fullPath);
-
-  await generateFolderStatic(fullPath);
 
   //await generateShared(fullPath);
 

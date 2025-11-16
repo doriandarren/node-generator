@@ -35,8 +35,9 @@ import { ${singularName} } from './entities/${singularNameKebab}.entity';
   controllers: [${pluralName}Controller],
   providers: [${pluralName}Service],
   imports: [
-    TypeOrmModule.forFeature([${singularName}]),
-  ]
+    TypeOrmModule.forFeature([${singularName}]),    // Sincronización de la DB
+  ], 
+  exports: [TypeOrmModule]                          // Se puede usar en otros modulos
 })
 export class ${pluralName}Module {}
 `.trimStart();
