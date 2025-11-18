@@ -33,14 +33,13 @@ const createLogWinston = async (fullPath) => {
 
   // Code
   const code = `import * as winston from 'winston';
-import * as winstonDaily from 'winston-daily-rotate-file';
+import DailyRotateFile from 'winston-daily-rotate-file';
 import { utilities as nestWinstonModuleUtilities } from 'nest-winston';
 
 export const winstonConfig = {
   transports: [
-
     // 📌 ROTACIÓN DIARIA — logs generales
-    new winstonDaily({
+    new DailyRotateFile({
       dirname: 'logs',                    // carpeta donde guardar
       filename: 'app-%DATE%.log',         // archivo diario
       datePattern: 'YYYY-MM-DD',
@@ -51,13 +50,13 @@ export const winstonConfig = {
     }),
 
     // 📌 ROTACIÓN DIARIA — ONLY ERRORS
-    new winstonDaily({
+    new DailyRotateFile({
       dirname: 'logs',
       filename: 'error-%DATE%.log',
       datePattern: 'YYYY-MM-DD',
       zippedArchive: true,
       maxSize: '10m',
-      //maxFiles: '30d',    // guarda 30 días máximo
+      // maxFiles: '30d',    // si lo quieres, lo puedes reactivar
       level: 'error',
     }),
 
@@ -73,7 +72,7 @@ export const winstonConfig = {
       ),
     }),
   ],
-};   
+};
 `.trimStart();
 
   try {

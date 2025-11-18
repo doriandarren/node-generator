@@ -15,9 +15,9 @@ import { generateHttp } from "./generateHttp.js";
 import { generateSeeder } from "./generateSeeder.js";
 import { generateMulter } from "./generateMulter.js";
 import { generateFolderStatic } from "./generateFolderStatic.js";
-import { generateShared } from "./generateShared.js";
 import { generateCronSchedule } from "./generateCronSchedule.js";
 import { generateLogWinston } from "./generateLogWinston.js";
+import { generateShared } from "./generateShared.js";
 
 export const startProjectNestJS = async () => {
   // Ruta predeterminada
