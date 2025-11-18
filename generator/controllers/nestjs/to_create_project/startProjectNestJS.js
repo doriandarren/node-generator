@@ -47,7 +47,7 @@ export const startProjectNestJS = async () => {
   await generateEnv(fullPath);
   await generateGitignore(fullPath);
   await generateDockerComposeYaml(fullPath);
-  await generateReadme(fullPath);
+  await generateReadme(fullPath, projectName);
 
 
   // hace el npm

@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 import { createFolder } from "../../../helpers/helperFile.js";
 
-export const generateReadme = async (fullPath) => {
+export const generateReadme = async (fullPath, projectName) => {
   // Folder
   const folderPath = path.join(fullPath);
 
@@ -13,9 +13,9 @@ export const generateReadme = async (fullPath) => {
   createFolder(folderPath);
 
   // Code
-  const code = `# NestJS with MongoDB
+  const code = `# ${projectName} - NestJS and Postgre
 
-The project contain NestJs and database MongoDB
+The project ${projectName} development with NestJs and database Postgre.
 
 ## Settings
 
@@ -37,22 +37,38 @@ http://localhost:3000/api/v1/seed
 
 
 
+## Librerias instaladas:
+
+\`\`\`sh
+npm i uuid                                                      // UUID
+npm i -D @types/uuid                                            // UUID TypeScript
+npm i class-validator class-transformer                         // Para Validacion en el controlador | @UsePipes()
+npm i @nestjs/mapped-types                                      // MappedTypes
+npm i @nestjs/serve-static                                      // Contenido en carpeta "public"
+npm i @nestjs/schedule                                          // Cron 
+npm install --save-dev @types/cron                              // Cron 
+npm install winston nest-winston winston-daily-rotate-file      // Logs
+npm install --save @nestjs/typeorm typeorm pg                   // TypeORM + Postgre
+npm install axios                                               // Axios
+npm i -D @types/multer                                          // Send and receiver Files
+
+\`\`\`
+
+
 
 ## Settings
 
 \`\`\`sh
 
-nest new fer-nest-teslo-shop              // Create Project
+1. Create Project
+nest new app-1
 
 
-
-// Remover paquete Prettier:
+2. Remover paquete Prettier:
 npm remove prettier eslint-config-prettier eslint-plugin-prettier
 
 
-
-
-// Agregar en el archivo: "eslint.config.mjs"
+3. Agregar en el archivo: "eslint.config.mjs"
 ...
 rules: {
   '@typescript-eslint/no-unused-vars': [
@@ -63,21 +79,21 @@ rules: {
 ...
 
 
-// Librerias para instalar:
+4. Librerias para instalar:
 npm i uuid                                  // UUID
 npm i -D @types/uuid                        // UUID TypeScript
 npm i class-validator class-transformer     // Para Validacion en el controlador | @UsePipes()
 
 
+5. Crear recurso seeder
+nest g res seed --no-spec
 
-nest g res seed --no-spec                   // crear los seeders
 
 
+6. Contenido estatico. Instalar y configurar:
+npm i @nestjs/serve-static
 
-// Contenido estatico:
-npm i @nestjs/serve-static                  // Instalar
-
-// Y en el archivo "app.module.ts":
+--> Y en el archivo "app.module.ts":
 ...
 @Module({
   imports: [
@@ -91,25 +107,31 @@ export class AppModule {}
 
 
 
-
-// Agregar Prefijo: "api/v1". En el archivo: "main.ts":
-
+7. Agregar Prefijo: "api/v1". En el archivo: "main.ts":
 ...
 app.setGlobalPrefix('api/v1');
 ...
 
 
-
-
-// Crear module Common:
+8. Crear module Common:
 
 nest g mo common                        // crear un Module Common
 nest g pi common/pipes/parseMongoId     // Crear los Pipes
 
-
-
 \`\`\`
 
+
+
+# Docker
+
+\`\`\`sh
+
+// crear el archivo "docker-compose.yaml"
+
+// Luego:
+docker compose up -d
+
+\`\`\`
 
 
 
@@ -119,9 +141,9 @@ nest g pi common/pipes/parseMongoId     // Crear los Pipes
 \`\`\`sh
 npm i @nestjs/config
 
-// 1.- Luego se crea el archivo .env 
-// 2.- Se agrega en el .gitignore. 
-// 3.- Luego En app.module.ts SE AGREGA EN LA PRIMERA LINEA de los "imports":
+1.- Luego se crea el archivo .env 
+2.- Se agrega en el .gitignore. 
+3.- Luego En app.module.ts SE AGREGA EN LA PRIMERA LINEA de los "imports":
 
 ...
 ConfigModule.forRoot({
@@ -166,12 +188,7 @@ ConfigModule.forRoot({
   validationSchema: JoiValidationSchema,
 }),
 ...
-
-
-
 \`\`\`
-
-
 
 
 
@@ -181,57 +198,21 @@ ConfigModule.forRoot({
 
 \`\`\`sh
 
-npm run start:dev                       // Ejecutar el servidor
-
-
 // Create Modules
-
 nest --help
 nest g mo cars                          // Module
 nest g co cars                          // Controller
 nest g s cars --no-spec                 // Service
 nest g res brands --no-spec
 
-\`\`\`
 
 # Notas importantes:
-
-\`\`\`sh
-
 DTO:
 Los dto siempre son clases
 
-
-
 \`\`\`
 
 
-
-
-# Docker
-
-\`\`\`sh
-
-// crear el archivo "docker-compose.yaml"
-
-// Luego:
-docker compose up -d
-
-
-\`\`\`
-
-
-
-
-# TYPEORM
-
-\`\`\`sh
-
-npm install --save @nestjs/typeorm typeorm pg
-
-\`\`\`
-
-    
 `.trimStart();
 
   try {
