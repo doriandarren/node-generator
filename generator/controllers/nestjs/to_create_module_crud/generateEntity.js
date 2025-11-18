@@ -38,7 +38,7 @@ export const generateEntity = async (
 
   // Code
   const code =
-    `import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+    `import { Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity({ name: '${pluralNameSnake}'})
 export class ${singularName} {
@@ -50,6 +50,15 @@ export class ${singularName} {
   id: string;
 
 ${columnLines}
+
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
+
+  @DeleteDateColumn()
+  deletedAt: Date;
 
 }
 `.trimStart();

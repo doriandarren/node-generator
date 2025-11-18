@@ -16,6 +16,8 @@ import { generateSeeder } from "./generateSeeder.js";
 import { generateMulter } from "./generateMulter.js";
 import { generateFolderStatic } from "./generateFolderStatic.js";
 import { generateShared } from "./generateShared.js";
+import { generateCronSchedule } from "./generateCronSchedule.js";
+import { generateLogWinston } from "./generateLogWinston.js";
 
 export const startProjectNestJS = async () => {
   // Ruta predeterminada
@@ -36,28 +38,28 @@ export const startProjectNestJS = async () => {
   const fullPath = `${projectPath}/${projectName}`;
 
   await generateCommandLine(fullPath);
-
   await generateUUID(fullPath);
-
   await generateMappedTypes(fullPath);
-
   await generateLinesMainTS(fullPath);
 
+  
   await generateClassValidator(fullPath);
-
   await generateEnv(fullPath);
+  await generateGitignore(fullPath);
+  await generateDockerComposeYaml(fullPath);
+  await generateReadme(fullPath);
+
 
   // hace el npm
   await generateServeStatic(fullPath);
-
   // Crea solamente la carpeta Static
   await generateFolderStatic(fullPath);
 
-  await generateGitignore(fullPath);
+  
+  await generateCronSchedule(fullPath);
+  await generateLogWinston(fullPath);
 
-  await generateDockerComposeYaml(fullPath);
-
-  await generateReadme(fullPath);
+  
 
   await generateTypeORM(fullPath);
 
