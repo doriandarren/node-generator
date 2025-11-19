@@ -123,11 +123,11 @@ const addHeader = async (fullPath) => {
 
 const addModuleProviderAdapter = async (fullPath) => {
   const filePath = path.join(fullPath, "src", "common", "common.module.ts");
-  addModuleProvider(filePath, `AxiosAdapter`);
+  addModuleProvider(filePath, `AxiosAdapter,`);
 };
 
 const addModuleExportAdapter = async (fullPath) => {
   const filePath = path.join(fullPath, "src", "common", "common.module.ts");
 
-  addModuleExport(filePath, `AxiosAdapter`);
+  addModuleExport(filePath, `AxiosAdapter,`);
 };

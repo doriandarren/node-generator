@@ -43,14 +43,21 @@ const createFileEnv = async (fullPath) => {
   createFolder(folderPath);
 
   // Code
-  const code = `DB_HOST=localhost
-DB_NAME=TesloDB
+  const code = `APP_NAME=SiteLocal
+APP_ENV=local
+HOST_PORT=3000
+HOST_API=http://localhost:3000/api/v1/
+
+# Setting DB
+DB_HOST=localhost
 DB_PORT=5432
+DB_NAME=TesloDB
 DB_USERNAME=postgres
 DB_PASSWORD=MyS3cr3tPass
 
-HOST_PORT=3000
-HOST_API=http://localhost:3000/api/v1/
+# Message Channel
+MESSAGE_CHANNEL=https://discord.com/api/webhooks/1411446452105773107/OJOCYAsBok1-x7N5IUo83BOE00bqmadYWhc8SxiRIAErMj0JHN9yGF_jV-rkKDNOZYRM
+
 `.trimStart();
 
   try {
@@ -77,14 +84,21 @@ const createFileEnvTemplate = async (fullPath) => {
   createFolder(folderPath);
 
   // Code
-  const code = `DB_HOST=localhost
-DB_NAME=TesloDB
-DB_PORT=5432
-DB_USERNAME=postgres
-DB_PASSWORD=MyS3cr3tPass
-
+  const code = `APP_NAME=SiteLocal
+APP_ENV=local
 HOST_PORT=3000
 HOST_API=http://localhost:3000/api/v1/
+
+# Setting DB
+DB_HOST=localhost
+DB_PORT=5432
+DB_NAME=TesloDB
+DB_USERNAME=postgres
+DB_PASSWORD=
+
+# Message Channel
+MESSAGE_CHANNEL=
+
 `.trimStart();
 
   try {

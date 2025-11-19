@@ -18,6 +18,7 @@ import { generateFolderStatic } from "./generateFolderStatic.js";
 import { generateCronSchedule } from "./generateCronSchedule.js";
 import { generateLogWinston } from "./generateLogWinston.js";
 import { generateShared } from "./generateShared.js";
+import { generateMessageChannel } from "./generateMessageChannel.js";
 
 export const startProjectNestJS = async () => {
   // Ruta predeterminada
@@ -64,8 +65,9 @@ export const startProjectNestJS = async () => {
   await generateTypeORM(fullPath);
 
   await generateCommon(fullPath);
-
   await generateHttp(fullPath);
+  await generateMessageChannel(fullPath);
+
 
   await generateSeeder(fullPath);
 

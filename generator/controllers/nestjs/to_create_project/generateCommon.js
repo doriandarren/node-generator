@@ -1,16 +1,13 @@
 import fs from "fs";
 import path from "path";
 import { createFolder } from "../../../helpers/helperFile.js";
-import {
-  addHeaderLine,
-  addModuleImport,
-} from "../helpers/helperFileWrite.js";
+import { addHeaderLine, addModuleImport } from "../helpers/helperFileWrite.js";
 
 export const generateCommon = async (fullPath) => {
   await createCommon(fullPath);
   await addHeader(fullPath);
   await addBody(fullPath);
-  await createFolderDtos(fullPath);
+  await createPaginationDto(fullPath);
 };
 
 const createCommon = async (fullPath) => {
@@ -25,8 +22,11 @@ const createCommon = async (fullPath) => {
 
   // Code
   const code = `import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 
-@Module({})
+@Module({
+    imports: [ConfigModule]
+})
 export class CommonModule {}
     
 `.trimStart();
@@ -53,7 +53,7 @@ const addBody = async (fullPath) => {
   addModuleImport(filePath, `CommonModule,`);
 };
 
-const createFolderDtos = async (fullPath) => {
+const createPaginationDto = async (fullPath) => {
   // Folder
   const folderPath = path.join(fullPath, "src", "common", "dtos");
 
