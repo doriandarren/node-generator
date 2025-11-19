@@ -6,7 +6,6 @@ import { addHeaderLine, addModuleImport } from "../helpers/helperFileWrite.js";
 import { printMessage } from "../../../helpers/inquirer.js";
 
 export const generateLinesMainTS = async (fullPath) => {
-
   // Set main.ts
   await createSetGlobalPrefix(fullPath);
   await createValidationPipeAndLogger(fullPath);
@@ -16,7 +15,6 @@ export const generateLinesMainTS = async (fullPath) => {
   await createLogWinston(fullPath);
   await addFileImport(fullPath);
   await addFileToImports(fullPath);
-
 };
 
 const createSetGlobalPrefix = async (fullPath) => {
@@ -33,10 +31,9 @@ const createSetGlobalPrefix = async (fullPath) => {
   printMessage("Lineas agregadas en: main.ts", "green");
 };
 
-
 /**
  * Este metodo agrega los PIPEs y el Logger
- * @param {*} fullPath 
+ * @param {*} fullPath
  */
 const createValidationPipeAndLogger = async (fullPath) => {
   /**
@@ -47,7 +44,6 @@ const createValidationPipeAndLogger = async (fullPath) => {
   let newLine = `import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 import { WINSTON_MODULE_NEST_PROVIDER } from 'nest-winston';`;
-
 
   // File
   let filePath = path.join(fullPath, "src", "main.ts");
@@ -66,7 +62,8 @@ import { WINSTON_MODULE_NEST_PROVIDER } from 'nest-winston';`;
       forbidNonWhitelisted: true,
     })
   );
-  app.useLogger(app.get(WINSTON_MODULE_NEST_PROVIDER));`;
+  app.useLogger(app.get(WINSTON_MODULE_NEST_PROVIDER));
+  app.enableCors({origin: '*',});`;
 
   // File
   filePath = path.join(fullPath, "src", "main.ts");
@@ -75,11 +72,6 @@ import { WINSTON_MODULE_NEST_PROVIDER } from 'nest-winston';`;
 
   printMessage("Lineas agregadas en: main.ts", "green");
 };
-
-
-
-
-
 
 const install = async (fullPath) => {
   printMessage("Intalando winston...", "cyan");
@@ -172,4 +164,3 @@ const addFileToImports = async (fullPath) => {
 
   addModuleImport(filePath, `WinstonModule.forRoot(winstonConfig),`);
 };
-
