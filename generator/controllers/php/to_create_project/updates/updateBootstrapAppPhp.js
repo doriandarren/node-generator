@@ -45,7 +45,7 @@ use Illuminate\\Database\\QueryException;\n`
       `    ->withMiddleware(function (Middleware $middleware): void {
         //
     })`,
-      `->withMiddleware(function (Middleware $middleware): void {
+      `    ->withMiddleware(function (Middleware $middleware): void {
         $middleware->alias([
             'abilities' => CheckAbilities::class,
             'ability' => CheckForAnyAbility::class,
