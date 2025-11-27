@@ -4,6 +4,8 @@ import { createFolder } from '../../../../helpers/helperFile.js';
 
 
 
+//TODO Corregir poque no esta funcionando al generar esta funcion
+
 export const updateBootstrapAppPhp = async(fullPath) => {
     await updateAbilities(fullPath);
     await createHandlerResponse(fullPath);
@@ -35,14 +37,15 @@ use App\\Exceptions\\HandlerResponse;
 use Symfony\\Component\\HttpKernel\\Exception\\AccessDeniedHttpException;
 use Symfony\\Component\\HttpKernel\\Exception\\NotFoundHttpException;
 use Symfony\\Component\\HttpKernel\\Exception\\MethodNotAllowedHttpException;
-use Illuminate\\Database\\QueryException;
-use App\\Exceptions\\HandlerResponse;\n`
+use Illuminate\\Database\\QueryException;\n`
     );
 
     // Reemplazo de ->withMiddleware
     content = content.replace(
-      `->withMiddleware(function (Middleware $middleware) {\n        //\n    })`,
-      `->withMiddleware(function (Middleware $middleware) {
+      `    ->withMiddleware(function (Middleware $middleware): void {
+        //
+    })`,
+      `->withMiddleware(function (Middleware $middleware): void {
         $middleware->alias([
             'abilities' => CheckAbilities::class,
             'ability' => CheckForAnyAbility::class,
@@ -52,8 +55,8 @@ use App\\Exceptions\\HandlerResponse;\n`
 
     // Agregar bloque de excepciones
     content = content.replace(
-      `->withMiddleware(function (Middleware $middleware) {`,
-      `->withExceptions(function (Exceptions $exceptions) {
+      `->withExceptions(function (Exceptions $exceptions): void {`,
+      `->withExceptions(function (Exceptions $exceptions): void {
         // BadMethodCallException
         $exceptions->render(function (BadMethodCallException $e, Request $request) {
             if ($request->is('api/*')) {
@@ -111,8 +114,8 @@ use App\\Exceptions\\HandlerResponse;\n`
             }
             return null;
         });
-    })
-    ->withMiddleware(function (Middleware $middleware) {`
+    
+    `
     );
 
     fs.writeFileSync(appPhpPath, content, 'utf-8');

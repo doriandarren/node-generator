@@ -9,6 +9,8 @@ splytin_api
 
 # TODO LIST:
 
+- Generar PHP mal el bootstrap/app.php ---- URGENTE -----
+
 - NEST JS generar un email de prueba.
 - NEST JS generar Cron y tareas programadas.
 
