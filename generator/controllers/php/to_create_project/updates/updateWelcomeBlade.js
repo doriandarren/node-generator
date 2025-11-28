@@ -1,16 +1,13 @@
-import fs from 'fs';
-import path from 'path';
-import { createFolder } from '../../../../helpers/helperFile.js';
-
-
-
+import fs from "fs";
+import path from "path";
+import { createFolder } from "../../../../helpers/helperFile.js";
 
 export const updateWelcomeBlade = async (fullPath) => {
   // Ruta a la carpeta de vistas
-  const folderPath = path.join(fullPath, 'resources', 'views');
+  const folderPath = path.join(fullPath, "resources", "views");
 
   // Ruta completa del archivo welcome.blade.php
-  const filePath = path.join(folderPath, 'welcome.blade.php');
+  const filePath = path.join(folderPath, "welcome.blade.php");
 
   // Asegurar que la carpeta exista
   createFolder(folderPath);
@@ -41,11 +38,11 @@ export const updateWelcomeBlade = async (fullPath) => {
             <img
                 src="{{ asset('brand/images/company_logos/logo.svg') }}"
                 alt="logo"
-                class="w-40 sm:w-48 md:w-56 lg:w-64 xl:w-72 h-auto mx-auto animate__animated animate__zoomIn"
+                class="w-64 sm:w-72 md:w-80 lg:w-96 xl:w-[28rem] h-auto mx-auto animate__animated animate__zoomIn"
             />
         </div>
         <footer class="w-full text-md text-left text-black px-8 mb-5 animate__animated animate__slideInLeft">
-            ©<span id="year"></span> Splytin.com - Developed by <strong>SplytinDevelopers</strong>.
+            ©<span id="year"></span><a href="https://splytin.com/">Splytin.com</a> - Developed by <strong><a href="https://splytin.com/">SplytinDevelopers</a></strong>.
         </footer>
         <script>
             document.getElementById("year").textContent = new Date().getFullYear();
@@ -56,9 +53,11 @@ export const updateWelcomeBlade = async (fullPath) => {
 `.trimStart();
 
   try {
-    fs.writeFileSync(filePath, code, 'utf-8');
+    fs.writeFileSync(filePath, code, "utf-8");
     console.log(`✅ Archivo generado: ${filePath}`.green);
   } catch (error) {
-    console.error(`❌ Error al generar el archivo ${filePath}: ${error.message}`.cyan);
+    console.error(
+      `❌ Error al generar el archivo ${filePath}: ${error.message}`.cyan
+    );
   }
 };
