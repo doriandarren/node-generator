@@ -30,7 +30,7 @@ namespace App\\Http\\Controllers\\${namespace}\\${pluralName};
 use App\\Models\\${pluralName}\\${singularName};
 use Illuminate\\Http\\JsonResponse;
 use App\\Http\\Controllers\\Controller;
-use App\\Repositories\\${pluralName}\\${singularName}Repository;
+use App\\Repositories\\${namespace}\\${pluralName}\\${singularName}Repository;
 
 class ${singularName}ShowController extends Controller
 {

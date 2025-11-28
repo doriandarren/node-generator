@@ -35,7 +35,7 @@ export const generateSeederPHP = async (
 namespace Database\\Seeders;
 
 use Illuminate\\Database\\Seeder;
-use App\\Models\\${pluralName}\\${singularName};
+use App\\Models\\${namespace}\\${pluralName}\\${singularName};
 
 class ${singularName}Seeder extends Seeder
 {

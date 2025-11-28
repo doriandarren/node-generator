@@ -42,7 +42,7 @@ namespace App\\Http\\Controllers\\${namespace}\\${pluralName};
 use Illuminate\\Http\\JsonResponse;
 use Illuminate\\Http\\Request;
 use App\\Http\\Controllers\\Controller;
-use App\\Repositories\\${pluralName}\\${singularName}Repository;
+use App\\Repositories\\${namespace}\\${pluralName}\\${singularName}Repository;
 
 class ${singularName}ListController extends Controller
 {

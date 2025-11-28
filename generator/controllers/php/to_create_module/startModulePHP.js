@@ -38,28 +38,33 @@ export const startModulePHP = async () => {
     "Ruta Proyecto: ",
     false,
     //"/Users/dorian/PhpstormProjects81/app-1"
-    "/Users/dorian/PhpstormProjects81/docker-laravel-84/projects/api.truckwashvilamalla.eu"
+    //"/Users/dorian/PhpstormProjects81/docker-laravel-84/projects/api.truckwashvilamalla.eu"
+    "/Users/dorian/PhpstormProjects81/docker-laravel-84/projects/services.avanzaoil.eu"
     //"/Users/dorian/PhpstormProjects81/docker-laravel-84/projects/api.splytin.com"
   );
   const namespace = await readInput(
     "Namespace (API / SHARED / ERP): ",
     false,
-    "API"
+    //"API"
+    "EFIDATA"
   );
   const singularName = await readInput(
     "Nombre singular: ",
     false,
-    "AgendaUnloading"
+    //"AgendaUnloading"
+    "Customer"
   );
   const pluralName = await readInput(
     "Nombre plural: ",
     false,
-    "AgendaUnloadings"
+    //"AgendaUnloadings"
+    "Customers"
   );
   const inputColumns = await readInput(
     "Columnas (separadas por espacio): ",
     false,
-    "customer_id:fk name:string amount:float description has_active:boolean"
+    //"customer_id:fk name:string amount:float description has_active:boolean"
+    "code name station_tariff_code station_tariff_email"
   );
 
   const columns = parseColumns(inputColumns);

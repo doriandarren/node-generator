@@ -1,9 +1,6 @@
-import fs from 'fs';
-import path from 'path';
-import { createFolder } from '../../../helpers/helperFile.js';
-
-
-
+import fs from "fs";
+import path from "path";
+import { createFolder } from "../../../helpers/helperFile.js";
 
 export const generateControllerUpdatePHP = async (
   fullPath,
@@ -18,8 +15,14 @@ export const generateControllerUpdatePHP = async (
   pluralNameCamel,
   columns
 ) => {
-
-  const folderPath = path.join(fullPath, 'app', 'Http', 'Controllers', namespace, pluralName);
+  const folderPath = path.join(
+    fullPath,
+    "app",
+    "Http",
+    "Controllers",
+    namespace,
+    pluralName
+  );
 
   const filePath = path.join(folderPath, `${singularName}UpdateController.php`);
 
@@ -27,13 +30,13 @@ export const generateControllerUpdatePHP = async (
 
   // Comentarios @bodyParam
   const bodyParamComments = columns
-    .map(col => `    * @bodyParam ${col.name} string required`)
-    .join('\n');
+    .map((col) => `    * @bodyParam ${col.name} string required`)
+    .join("\n");
 
   // Reglas de validación
   const validationRules = columns
-    .map(col => `                '${col.name}' => 'required',`)
-    .join('\n');
+    .map((col) => `                '${col.name}' => 'required',`)
+    .join("\n");
 
   // Contenido del archivo PHP
   const code = `<?php
@@ -46,7 +49,7 @@ use Illuminate\\Http\\Request;
 use App\\Http\\Controllers\\Controller;
 use Illuminate\\Support\\Facades\\Validator;
 use Illuminate\\Validation\\Rule;
-use App\\Repositories\\${pluralName}\\${singularName}Repository;
+use App\\Repositories\\${namespace}\\${pluralName}\\${singularName}Repository;
 
 class ${singularName}UpdateController extends Controller
 {
@@ -100,9 +103,11 @@ ${validationRules}
 
   // Escribir el archivo PHP
   try {
-    fs.writeFileSync(filePath, code, 'utf-8');
+    fs.writeFileSync(filePath, code, "utf-8");
     console.log(`✅ Archivo controlador creado: ${filePath}`.green);
   } catch (error) {
-    console.error(`❌ Error al crear archivo controlador: ${error.message}`.red);
+    console.error(
+      `❌ Error al crear archivo controlador: ${error.message}`.red
+    );
   }
 };

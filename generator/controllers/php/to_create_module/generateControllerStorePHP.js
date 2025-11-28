@@ -48,7 +48,7 @@ use Illuminate\\Http\\JsonResponse;
 use Illuminate\\Http\\Request;
 use App\\Http\\Controllers\\Controller;
 use Illuminate\\Support\\Facades\\Validator;
-use App\\Repositories\\${pluralName}\\${singularName}Repository;
+use App\\Repositories\\${namespace}\\${pluralName}\\${singularName}Repository;
 
 class ${singularName}StoreController extends Controller
 {

@@ -1,12 +1,10 @@
-import fs from 'fs';
-import path from 'path';
-import { createFolder } from '../../../helpers/helperFile.js';
-import { buildPhpLikeFilters, buildUpdateAssignments } from '../helpers/helperPHPRepository.js';
-
-
-
-
-
+import fs from "fs";
+import path from "path";
+import { createFolder } from "../../../helpers/helperFile.js";
+import {
+  buildPhpLikeFilters,
+  buildUpdateAssignments,
+} from "../helpers/helperPHPRepository.js";
 
 export const generateRepositoryPHP = async (
   fullPath,
@@ -21,37 +19,38 @@ export const generateRepositoryPHP = async (
   pluralNameCamel,
   columns
 ) => {
-
-
   // Carpeta: app/Repositories/{pluralName}
-  const folderPath = path.join(fullPath, 'app', 'Repositories', pluralName);
+  const folderPath = path.join(
+    fullPath,
+    "app",
+    "Repositories",
+    namespace,
+    pluralName
+  );
   const filePath = path.join(folderPath, `${singularName}Repository.php`);
 
   // Crear carpeta si no existe
   createFolder(folderPath);
 
-  const columnNames = columns.map(col => col.name);
+  const columnNames = columns.map((col) => col.name);
 
-  const storeAssignments = columnNames.map(col =>
-    `        $model->${col} = $data->${col};`
-  ).join('\n');
+  const storeAssignments = columnNames
+    .map((col) => `        $model->${col} = $data->${col};`)
+    .join("\n");
 
+  const setParams = columnNames.map((col) => `\n        $${col},`).join("");
 
-  const setParams = columnNames.map(col => `\n        $${col},`).join('');
+  const setAssignments = columnNames
+    .map((col) => `        $model->${col} = $${col};`)
+    .join("\n");
 
-  const setAssignments = columnNames.map(col =>
-    `        $model->${col} = $${col};`
-  ).join('\n');
-
-  const paramDoc = columnNames.map(col => `    * @param $${col}`).join('\n');
-
-
-
+  const paramDoc = columnNames.map((col) => `    * @param $${col}`).join("\n");
 
   // columns puede ser: ["name","amount","..."] o
   // [{ name: "has_active", type: "BOOLEAN" }, ...]
   const toName = (c) => (typeof c === "string" ? c : c.name);
-  const toType = (c) => (typeof c === "string" ? "" : String(c.type || "").toUpperCase());
+  const toType = (c) =>
+    typeof c === "string" ? "" : String(c.type || "").toUpperCase();
 
   const updateAssignments = columns
     .map((col) => {
@@ -74,19 +73,13 @@ export const generateRepositoryPHP = async (
     })
     .join("\n\n");
 
-
-
-
-
-
-
   // Contenido del archivo PHP
   const code = `<?php
 
-namespace App\\Repositories\\${pluralName};
+namespace App\\Repositories\\${namespace}\\${pluralName};
 
 use App\\Enums\\EnumApiSetup;
-use App\\Models\\${pluralName}\\${singularName};
+use App\\Models\\${namespace}\\${pluralName}\\${singularName};
 
 class ${singularName}Repository
 {
@@ -245,9 +238,11 @@ ${setAssignments}
 
   // Escribir el archivo PHP
   try {
-    fs.writeFileSync(filePath, code, 'utf-8');
+    fs.writeFileSync(filePath, code, "utf-8");
     console.log(`✅ Archivo repositorio creado: ${filePath}`.green);
   } catch (error) {
-    console.error(`❌ Error al crear archivo repositorio: ${error.message}`.red);
+    console.error(
+      `❌ Error al crear archivo repositorio: ${error.message}`.red
+    );
   }
 };

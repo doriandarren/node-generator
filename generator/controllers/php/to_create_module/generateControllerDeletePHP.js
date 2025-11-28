@@ -1,8 +1,6 @@
-import fs from 'fs';
-import path from 'path';
-import { createFolder } from '../../../helpers/helperFile.js';
-
-
+import fs from "fs";
+import path from "path";
+import { createFolder } from "../../../helpers/helperFile.js";
 
 export const generateControllerDestroyPHP = async (
   fullPath,
@@ -17,14 +15,22 @@ export const generateControllerDestroyPHP = async (
   pluralNameCamel,
   columns
 ) => {
+  const folderPath = path.join(
+    fullPath,
+    "app",
+    "Http",
+    "Controllers",
+    namespace,
+    pluralName
+  );
 
-  const folderPath = path.join(fullPath, 'app', 'Http', 'Controllers', namespace, pluralName);
-  
-  const filePath = path.join(folderPath, `${singularName}DestroyController.php`);
+  const filePath = path.join(
+    folderPath,
+    `${singularName}DestroyController.php`
+  );
 
   createFolder(folderPath);
 
-  
   const code = `<?php
 
 namespace App\\Http\\Controllers\\${namespace}\\${pluralName};
@@ -33,7 +39,7 @@ use App\\Models\\${pluralName}\\${singularName};
 use Illuminate\\Http\\JsonResponse;
 use Illuminate\\Http\\Request;
 use App\\Http\\Controllers\\Controller;
-use App\\Repositories\\${pluralName}\\${singularName}Repository;
+use App\\Repositories\\${namespace}\\${pluralName}\\${singularName}Repository;
 
 class ${singularName}DestroyController extends Controller
 {
@@ -67,9 +73,11 @@ class ${singularName}DestroyController extends Controller
 
   // Escribir el archivo
   try {
-    fs.writeFileSync(filePath, code, 'utf-8');
+    fs.writeFileSync(filePath, code, "utf-8");
     console.log(`✅ Archivo controlador creado: ${filePath}`.green);
   } catch (error) {
-    console.error(`❌ Error al crear archivo controlador: ${error.message}`.red);
+    console.error(
+      `❌ Error al crear archivo controlador: ${error.message}`.red
+    );
   }
 };

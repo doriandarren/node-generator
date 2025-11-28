@@ -1,8 +1,7 @@
-import fs from 'fs';
-import path from 'path';
-import { createFolder } from '../../../helpers/helperFile.js';
-import { buildPHPRelations } from '../helpers/helperPHPRelations.js';
-
+import fs from "fs";
+import path from "path";
+import { createFolder } from "../../../helpers/helperFile.js";
+import { buildPHPRelations } from "../helpers/helperPHPRelations.js";
 
 export const generateModelPHP = async (
   fullPath,
@@ -17,33 +16,30 @@ export const generateModelPHP = async (
   pluralNameCamel,
   columns
 ) => {
-
-
-
   // Carpeta: app/Models/{pluralName}
-  const folderPath = path.join(fullPath, 'app', 'Models', pluralName);
+  const folderPath = path.join(
+    fullPath,
+    "app",
+    "Models",
+    namespace,
+    pluralName
+  );
   const filePath = path.join(folderPath, `${singularName}.php`);
 
   // Crear carpeta si no existe
   createFolder(folderPath);
 
-
-
-
   const phpMethods = await buildPHPRelations(columns);
 
-
   const belongsToImport =
-  phpMethods.trim().length > 0
-    ? `\nuse Illuminate\\Database\\Eloquent\\Relations\\BelongsTo;`
-    : '';
-
-
+    phpMethods.trim().length > 0
+      ? `\nuse Illuminate\\Database\\Eloquent\\Relations\\BelongsTo;`
+      : "";
 
   // Contenido del archivo
   const code = `<?php
 
-namespace App\\Models\\${pluralName};
+namespace App\\Models\\${namespace}\\${pluralName};
 
 use Illuminate\\Database\\Eloquent\\Factories\\HasFactory;${belongsToImport}
 use Illuminate\\Database\\Eloquent\\Model;
@@ -53,7 +49,7 @@ class ${singularName} extends Model
     use HasFactory;
     // use SoftDeletes;
 
-    protected \$connection = 'api';
+    protected \$connection = '${namespace.toLowerCase()}';
     protected \$table = '${pluralNameSnake}';
 
     /***********************
@@ -73,7 +69,7 @@ class ${singularName} extends Model
 `.trimStart();
 
   try {
-    fs.writeFileSync(filePath, code, 'utf-8');
+    fs.writeFileSync(filePath, code, "utf-8");
     console.log(`✅ Archivo modelo creado: ${filePath}`.green);
   } catch (error) {
     console.error(`❌ Error al crear archivo modelo: ${error.message}`.red);
