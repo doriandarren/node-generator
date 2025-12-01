@@ -18,6 +18,7 @@ import { generateFolderStatic } from "./generateFolderStatic.js";
 import { generateCronSchedule } from "./generateCronSchedule.js";
 import { generateMessageChannel } from "./generateMessageChannel.js";
 import { generateShared } from "./generateShared.js";
+import { generateBcrypt } from "./generateBcrypt.js";
 
 export const startProjectNestJS = async () => {
   // Ruta predeterminada
@@ -64,6 +65,9 @@ export const startProjectNestJS = async () => {
   await generateSeeder(fullPath);
 
   await generateMulter(fullPath);
+
+  await generateBcrypt(fullPath);
+  
 
   //await generateShared(fullPath);
 
