@@ -47,7 +47,7 @@ class MessageChannel
         try {
             Http::withHeaders([
                 'Content-Type' => 'application/json',
-            ])->post(env('MESSAGE_CHANNEL'), \$payload);
+            ])->post(\$url, \$payload);
         } catch (\\GuzzleHttp\\Exception\\GuzzleException \$e) {
             echo 'Error: ' . \$e->getMessage();
         } catch (ConnectionException \$e) {

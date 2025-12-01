@@ -23,14 +23,14 @@ export const updateEnv = async (fullPath) => {
     );
 
     // Reemplazar BASE_API_GLOBALAPP
-    if (/^BASE_API_GLOBALAPP=.*$/m.test(envContent)) {
-      envContent = envContent.replace(
-        /^BASE_API_GLOBALAPP=.*$/m,
-        'BASE_API_GLOBALAPP=http://api.globaltank.test/api/v1/'
-      );
-    } else {
-      envContent += `\nBASE_API_GLOBALAPP=http://api.globaltank.test/api/v1/`;
-    }
+    // if (/^BASE_API_GLOBALAPP=.*$/m.test(envContent)) {
+    //   envContent = envContent.replace(
+    //     /^BASE_API_GLOBALAPP=.*$/m,
+    //     'BASE_API_GLOBALAPP=http://api.globaltank.test/api/v1/'
+    //   );
+    // } else {
+    //   envContent += `\nBASE_API_GLOBALAPP=http://api.globaltank.test/api/v1/`;
+    // }
 
     // Guardar el contenido modificado
     fs.writeFileSync(envPath, envContent, 'utf8');
