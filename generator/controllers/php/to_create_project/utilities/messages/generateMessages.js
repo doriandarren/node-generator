@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import { createFolder } from '../../../../../helpers/helperFile.js';
+import { createFolder } from "../../../../../helpers/helperFile.js";
 
 export const generateMessages = async (fullPath) => {
   const folderPath = path.join(fullPath, "app", "Utilities", "Messages");
@@ -47,7 +47,7 @@ class MessageChannel
         try {
             Http::withHeaders([
                 'Content-Type' => 'application/json',
-            ])->post(self::URL, \$payload);
+            ])->post(env('MESSAGE_CHANNEL'), \$payload);
         } catch (\\GuzzleHttp\\Exception\\GuzzleException \$e) {
             echo 'Error: ' . \$e->getMessage();
         } catch (ConnectionException \$e) {
