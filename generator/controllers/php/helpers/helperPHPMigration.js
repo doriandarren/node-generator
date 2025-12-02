@@ -76,7 +76,7 @@ const renderCommonModifiers = (c) => {
   out += "->nullable()";
 
   if (c.unsigned) out += "->unsigned()";
-  if (c.allowNull) out += "->nullable()";
+  //if (c.allowNull) out += "->nullable()";
   if (c.defaultRaw) out += `->default(${c.defaultRaw})`;
   else if (c.default !== undefined) out += renderDefault(c.default);
   if (c.unique) out += "->unique()";
