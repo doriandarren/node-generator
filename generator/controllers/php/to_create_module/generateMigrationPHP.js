@@ -34,6 +34,9 @@ export const generateMigrationPHP = async (
   const { upColumnsBlock, downForeignsBlock } =
     buildMigrationColumnsAndDown(pluralNameSnake, columns, { connection: 'api' });
 
+
+ const namespaceNew = (namespace.toLowelCase() === 'shared') ? 'api' : namespace.toLowelCase();
+
   // Contenido del archivo PHP
   const code = `<?php
 
@@ -50,9 +53,9 @@ return new class extends Migration
     */
     public function up()
     {
-        if (!Schema::connection('api')->hasTable('${pluralNameSnake}')) {
+        if (!Schema::connection('${namespaceNew}')->hasTable('${pluralNameSnake}')) {
 
-            Schema::connection('api')->create('${pluralNameSnake}', function (Blueprint $table) {
+            Schema::connection('${namespaceNew}')->create('${pluralNameSnake}', function (Blueprint $table) {
 ${upColumnsBlock}
             });
         }
@@ -65,7 +68,7 @@ ${upColumnsBlock}
     */
     public function down()
     {
-${downForeignsBlock}        Schema::connection('api')->dropIfExists('${pluralNameSnake}');
+${downForeignsBlock}        Schema::connection('${namespaceNew}')->dropIfExists('${pluralNameSnake}');
     }
 };
 `.trimStart();

@@ -36,6 +36,8 @@ export const generateModelPHP = async (
       ? `\nuse Illuminate\\Database\\Eloquent\\Relations\\BelongsTo;`
       : "";
 
+  const namespaceNew = (namespace.toLowelCase() === 'shared') ? 'api' : namespace.toLowelCase();
+
   // Contenido del archivo
   const code = `<?php
 
@@ -49,7 +51,7 @@ class ${singularName} extends Model
     use HasFactory;
     // use SoftDeletes;
 
-    protected \$connection = '${namespace.toLowerCase()}';
+    protected \$connection = '${namespaceNew}';
     protected \$table = '${pluralNameSnake}';
 
     /***********************

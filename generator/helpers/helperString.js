@@ -54,8 +54,12 @@ export const convertSnakeCaseToPascalSingularCase = (str) => {
   const words = str.split("_");
 
   const pascalWords = words.map((word, index) => {
-    const singular = pluralize.singular(word); // convierte a singular si está en plural
-    return singular.charAt(0).toUpperCase() + singular.slice(1).toLowerCase();
+    const processedWord =
+      index === words.length - 1 ? pluralize.singular(word) : word;
+    return (
+      processedWord.charAt(0).toUpperCase() +
+      processedWord.slice(1).toLowerCase()
+    );
   });
 
   return pascalWords.join("");
