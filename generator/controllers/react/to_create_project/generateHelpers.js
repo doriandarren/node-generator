@@ -411,7 +411,7 @@ export function padLeft(numero, longitud = 0) {
  * @returns {string} El número con ceros a la izquierda
  */
 export function getUID() {
-  return \`\${Date.now()}-${Math.random().toString(16).slice(2)}\`;
+  return \`\${Date.now()}-\${Math.random().toString(16).slice(2)}\`;
 }
 
 `;
