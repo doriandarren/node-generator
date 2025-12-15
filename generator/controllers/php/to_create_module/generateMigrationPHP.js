@@ -1,13 +1,10 @@
-import fs from 'fs';
-import path from 'path';
-import { createFolder } from '../../../helpers/helperFile.js';
+import fs from "fs";
+import path from "path";
+import { createFolder } from "../../../helpers/helperFile.js";
 import {
   buildMigrationTimestamp,
-  buildMigrationColumnsAndDown
-} from '../helpers/helperPHPMigration.js';
-
-
-
+  buildMigrationColumnsAndDown,
+} from "../helpers/helperPHPMigration.js";
 
 export const generateMigrationPHP = async (
   fullPath,
@@ -22,20 +19,22 @@ export const generateMigrationPHP = async (
   pluralNameCamel,
   columns
 ) => {
-
-  const folderPath = path.join(fullPath, 'database', 'migrations');
+  const folderPath = path.join(fullPath, "database", "migrations");
   createFolder(folderPath);
+
+  const namespaceNew =
+    namespace.toLowerCase() === "shared" ? "api" : namespace.toLowerCase();
 
   // Nombre de archivo estilo Laravel
   const fileName = `${buildMigrationTimestamp()}_create_${pluralNameSnake}_table.php`;
   const filePath = path.join(folderPath, fileName);
 
   // Bloques de columnas (UP/DOWN)
-  const { upColumnsBlock, downForeignsBlock } =
-    buildMigrationColumnsAndDown(pluralNameSnake, columns, { connection: 'api' });
-
-
- const namespaceNew = (namespace.toLowelCase() === 'shared') ? 'api' : namespace.toLowelCase();
+  const { upColumnsBlock, downForeignsBlock } = buildMigrationColumnsAndDown(
+    pluralNameSnake,
+    columns,
+    { connection: namespaceNew }
+  );
 
   // Contenido del archivo PHP
   const code = `<?php
@@ -74,9 +73,11 @@ ${downForeignsBlock}        Schema::connection('${namespaceNew}')->dropIfExists(
 `.trimStart();
 
   try {
-    fs.writeFileSync(filePath, code, 'utf-8');
+    fs.writeFileSync(filePath, code, "utf-8");
     console.log(`✅ Archivo de migración creado: ${filePath}`.green);
   } catch (error) {
-    console.error(`❌ Error al crear archivo de migración: ${error.message}`.red);
+    console.error(
+      `❌ Error al crear archivo de migración: ${error.message}`.red
+    );
   }
 };

@@ -36,7 +36,8 @@ export const generateModelPHP = async (
       ? `\nuse Illuminate\\Database\\Eloquent\\Relations\\BelongsTo;`
       : "";
 
-  const namespaceNew = (namespace.toLowelCase() === 'shared') ? 'api' : namespace.toLowelCase();
+  const namespaceNew =
+    namespace.toLowerCase() === "shared" ? "api" : namespace.toLowerCase();
 
   // Contenido del archivo
   const code = `<?php

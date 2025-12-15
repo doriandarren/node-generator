@@ -340,14 +340,14 @@ export const buildQuery = (filters = {}, allowed = []) => {
     }
   }
   const s = qs.toString();
-  return s ? \`?${s}\` : "";
+  return s ? \`?\${s}\` : "";
 };
 
 /**
  * Devuelve basePath + query ya montado.
  */
 export const buildURL = (basePath, filters = {}, allowed = []) =>
-  \`${basePath}${buildQuery(filters, allowed)}\`;
+  \`\${basePath}\${buildQuery(filters, allowed)}\`;
 `;
 
   try {
@@ -388,7 +388,7 @@ export const formatNumber = (
 
   const formatted = numericValue.toLocaleString("es-ES", options);
 
-  return withCurrency ? \`${formatted} €\` : formatted;
+  return withCurrency ? \`\${formatted} €\` : formatted;
 };
 
 
@@ -411,7 +411,7 @@ export function padLeft(numero, longitud = 0) {
  * @returns {string} El número con ceros a la izquierda
  */
 export function getUID() {
-  return \`${Date.now()}-${Math.random().toString(16).slice(2)}\`;
+  return \`\${Date.now()}-${Math.random().toString(16).slice(2)}\`;
 }
 
 `;
